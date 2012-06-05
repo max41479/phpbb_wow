@@ -1,0 +1,139 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<p>{L_EXPLAIN}</p>
+
+<form method="post" action="{F_EDIT_MEMBER}" id="editmemberdkp">
+
+<div>
+<input type="hidden" name="hidden_id" value="{V_MEMBER_ID}" />
+<input type="hidden" name="hidden_dkpid" value="{V_MEMBER_DKPID}" />
+<div style="float: left; width: 100%;">
+<fieldset>
+<legend>{L_ADD_MEMBER_TITLE}</legend>
+  <dl>
+    <dt>{L_POOL}</dt>
+    <dd><label><strong>{MEMBER_DKPNAME}</strong></label></dd>
+  </dl>
+  
+  <dl>
+    <dt><label><strong>{L_NAME}</strong>:</label>	</dt>
+    <dd><label><strong>{MEMBER_NAME}</strong></label></dd>
+  </dl>
+  
+  <dl>
+    <dt><label>{L_LEVEL}:</label></dt>
+    <dd><label><strong>{MEMBER_LEVEL}</strong></label></dd>
+  </dl>
+  
+  <dl>
+    <dt><label>{L_RACE}:</label></dt>
+    <dd><label><strong>{MEMBER_RACE}</strong></label></dd>
+ </dl>
+   
+  <dl>
+    <dt><label>{L_CLASS}:</label></dt>
+    <dd><label><strong><img src="{IMAGENAME}" alt="" />&nbsp;<span style="color:{COLORCODE}">{MEMBER_CLASS}</span></strong></label></dd>
+  </dl> 
+
+  <dl>
+    <dt><label>{L_MEMBER_RANK}:</label></dt>
+    <dd><label><em>{MEMBER_RANK}</em></label></dd>
+  </dl> 
+<hr/>
+  
+  <dl>
+    <dt><label for="raid_value">{L_RAIDVALUE}:</label></dt>
+		<dd><input type="text" id="raid_value" name="raid_value" size="20" maxlength="14" value="{RAIDVAL}" class="input" /> 
+		/ {L_SHOULD_BE}: <span class="positive">{CORRECT_RAIDVAL}</span></dd>
+  </dl> 
+  <!-- IF S_SHOWTIME -->
+    <dl>
+    <dt><label for="time_value">{L_TIMEDKP}:</label></dt>
+		<dd><input type="text" id="time_value" name="time_value" size="20" maxlength="14" value="{TIMEBONUS}" class="input" /> 
+		/ {L_SHOULD_BE}: <span class="positive">{CORRECT_TIMEBONUS}</span></dd>
+  </dl> 
+  <!-- ENDIF -->
+   <!-- IF S_SHOWZS -->
+    <dl>
+    <dt><label for="zerosum">{L_ZSVALUE}:</label></dt>
+		<dd><input type="text" id="zerosum" name="zerosum" size="20" maxlength="14" value="{ZEROSUM}" class="input" /> 
+		/ {L_SHOULD_BE}: <span class="positive">{CORRECT_ZEROSUM}</span></dd>
+  </dl> 
+  <!-- ENDIF -->
+    <hr/>
+    
+    <dl>
+    <dt><label for="earned">{L_EARNED}:</label></dt>
+		<dd><input type="text" name="earned"  id="earned" size="20" maxlength="14" value="{EARNED}" class="input" /> 
+		/ {L_SHOULD_BE}: <span class="positive">{CORRECT_EARNED}</span></dd>
+  </dl> 
+   <!-- IF S_SHOWDECAY -->    
+    <dl>
+    <dt><label for="rdecay">{L_DECAY}:</label></dt>
+		<dd><input type="text" id="rdecay" name="rdecay" size="20" maxlength="14" value="{RAIDDECAY}" class="input" /> 
+		/ {L_SHOULD_BE}: <span class="negative">{CORRECT_RAIDDECAY}</span></dd>
+  </dl> 
+  <!-- ENDIF -->  
+  <dl>
+    <dt><label>{L_ADJUSTMENT}:</label></dt>
+	<dd>{ADJUSTMENT}</dd>
+  </dl> 
+    <hr/>
+  <!-- IF S_SHOWEPGP -->    
+  <dl>
+    <dt><label>{L_EP}:</label></dt>
+	<dd><span class="positive"><strong>{EP}</strong></span></dd>
+  </dl>
+  <hr/>
+  <!-- ENDIF -->  
+  <dl>
+    <dt><label for="spent">{L_SPENT}:</label></dt>
+	<dd><input type="text" id="spent" name="spent" size="20" maxlength="14" value="{SPENT}" class="input" /> 
+	/ {L_SHOULD_BE}:  <span class="negative">{CORRECT_MEMBER_SPENT}</span></dd>
+  </dl> 
+  <!-- IF S_SHOWDECAY -->
+  <dl>
+    <dt><label for="idecay">{L_DECAY}:</label></dt>
+	<dd><input type="text" id="idecay" name="idecay" size="20" maxlength="14" value="{ITEMDECAY}" class="input" /> 
+	/ {L_SHOULD_BE}: <span class="positive"><strong>{CORRECT_ITEMDECAY}</span></dd>
+  </dl> 
+  <!-- ENDIF -->      
+  <!-- IF S_SHOWEPGP -->
+  <dl>
+    <dt><label for="gp">{L_GP}:</label></dt>
+	<dd><span class="negative"><strong>{GP}</strong></span></dd>
+  </dl>
+  <!-- ENDIF -->
+<hr/>  
+  <!-- IF S_SHOWEPGP -->
+  <dl>
+    <dt><label for="er">{L_ER}:</label></dt>
+	<dd><span><strong>{ER}</strong></span></dd>
+  </dl>
+  <!-- ENDIF -->
+  <dl>
+    <dt><label>{L_CURRENT}:</label></dt>
+	<dd><span><strong>{MEMBER_CURRENT}</strong></span></dd>
+  </dl>
+
+
+
+<div style="float: left; width: 100%;">
+{S_FORM_TOKEN}
+ <p class="quick">
+    <input type="submit" name="update" value="{L_UPDATE_MEMBER}" class="button1" /> 
+    <input type="submit"  name="delete" value="{L_DELETE_MEMBER}" class="button1" />
+ </p>
+</div>
+
+</fieldset>
+
+</div>
+
+</div>
+</form>
+
+<!-- INCLUDE dkp/overall_footer.html -->

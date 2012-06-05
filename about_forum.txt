@@ -1,0 +1,8 @@
+[installed]phpBB:							3.0.10				http://www.phpbb.com/
+[installed]bbDKP:							1.2.6				http://bbdkp.com/
+[installed]Recruitment Block:				v2.0.1				http://www.teksonicmods.com/viewtopic.php?f=2&t=120
+[installed]Apply Plugin:					v1.3.3				http://bbdkp.com/viewforum.php?f=36
+[installed]Auto Backup:						1.0.3				http://www.phpbb.com/customise/db/mod/auto_backup/
+[installed]BB3Spoiler:						rev.20120222		http://www.ppkbb3cker.ru/viewtopic.php?f=58&t=2958
+[installed]NV advanced last topic titles:	1.3.3				http://www.phpbb.com/customise/db/mod/last_post_topic_title/
+[done]: bbcode shadow color choose by palette

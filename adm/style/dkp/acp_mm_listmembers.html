@@ -1,0 +1,105 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<p>{L_EXPLAIN}</p>
+
+<form method="post" action="{F_MEMBERS_LIST}" id="selectguild">
+
+<div>
+<label for="member_guild_id">{L_GUILD}:</label>
+<select id="member_guild_id" name="member_guild_id" class="input" onchange="javascript:form.submit();" >
+       	<!-- BEGIN guild_row -->
+       <option value="{guild_row.VALUE}"{guild_row.SELECTED}>{guild_row.OPTION}</option>
+        <!-- END guild_row -->
+</select>
+</div>
+</form>
+
+<form id="mm_listmembers" method="post" action="{F_MEMBERS_LIST}">
+
+<!-- IF .members_row -->
+<!-- IF MEMBER_PAGINATION -->
+<div class="pagination">
+	<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{MEMBER_PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+	<thead>
+  <tr>
+    <th style="text-align:center; width:6%; white-space: nowrap;">{L_ACTIVE}<br /> 
+    <span class="small"><a href="#" onclick="marklist('mm_listmembers', 'activate_id', true); return false;">{L_MARK_ALL}</a> <br /> 
+    <a href="#" onclick="marklist('mm_listmembers', 'activate_id', false); return false;">{L_UNMARK_ALL}</a></span>
+    </th>
+    <th style="text-align:left; width:20%"><a href="{O_NAME}">{L_NAME}</a></th>
+    <th style="text-align:left; width:15%; white-space: nowrap;"><a href="{O_CLASS}">{L_RACE}/{L_CLASS}</a></th>
+    <th style="text-align:left; width:5%; white-space: nowrap;"><a href="{O_LEVEL}">{L_LEVEL}</a></th>
+    <th style="text-align:left; width:10%"><a href="{O_USERNAME}">{L_USERNAME}</a></th>
+    <th style="text-align:left; width:10%"><a href="{O_RANK}">{L_RANK}</a></th>
+    <th style="text-align:left; width:10%"><a href="{O_JOINDATE}">{L_JOINDATE}</a></th>
+    <th style="text-align:left; width:10%"><a href="{O_OUTDATE}">{L_OUTDATE}</a></th>
+  	<th style="text-align:center; width:6%">{L_ACTION}
+  	<span class="small"><a href="#" onclick="marklist('mm_listmembers', 'delete_id', true); return false;">{L_MARK_ALL}</a> <br /> 
+	<a href="#" onclick="marklist('mm_listmembers', 'delete_id', false); return false;">{L_UNMARK_ALL}</a></span>
+  	
+  	</th>
+  </tr>
+  </thead>
+  <tfoot>
+  <tr>
+    <th colspan="10" class="footer">{LISTMEMBERS_FOOTCOUNT}</th>
+  </tr>
+  </tfoot>
+  <tbody>
+  <!-- BEGIN members_row -->
+  <!-- IF members_row.S_ROW_COUNT is even -->
+  <tr class="row1">
+  <!-- ELSEIF members_row.S_ROW_COUNT is not even -->
+  <tr class="row2">
+  <!-- ENDIF -->
+  
+  <!-- IF members_row.S_READONLY  == 1 -->
+  <tr class="highlight">
+  <!-- ENDIF -->
+    <td style="text-align:center;" align="right">{members_row.ID} <input type="checkbox" class="radio" name="activate_id[{members_row.ID}]" value="{members_row.ID}" {members_row.STATUS} /></td>
+    <td class="row2" style="text-align:left;" ><a style="color:{members_row.COLORCODE}"  href="{members_row.U_VIEW_MEMBER}"><strong>{members_row.NAME}</strong></a></td>
+    <td style="text-align:left;" ><!-- IF members_row.S_RACE_IMAGE_EXISTS --><img src="{members_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE -->&nbsp;<!-- ENDIF --><!-- IF members_row.S_CLASS_IMAGE_EXISTS --><img src="{members_row.CLASS_IMAGE}" alt="" /><!-- ELSE -->&nbsp;<!-- ENDIF -->&nbsp;<span style="color:{members_row.COLORCODE}" >{members_row.CLASS}</span></td>
+    <td style="text-align:center;" >{members_row.LEVEL}</td>
+    <td style="text-align:left;" ><a href="{members_row.U_VIEW_USER}">{members_row.USERNAME}</a></td>
+    <td style="text-align:left;" >{members_row.RANK}</td>
+    <td style="text-align:left;" >{members_row.JOINDATE}</td>
+    <td style="text-align:left;" >{members_row.OUTDATE}</td>
+	<td style="text-align:center; white-space: nowrap;">
+		<a href="{members_row.U_VIEW_MEMBER}">{ICON_EDIT}</a>
+		<!-- IF members_row.S_READONLY == 0 --> <a href="{members_row.U_DELETE_MEMBER}">{ICON_DELETE}</a> <!-- ENDIF -->
+    	<input type="checkbox" class="radio" name="delete_id[{members_row.ID}]" value="1" {members_row.DELETED} />		
+	</td>
+  </tr>
+  <!-- END members_row -->
+  </tbody>
+</table>
+
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+    {S_FORM_TOKEN}
+  	<!-- BEGIN members_row -->
+  	<input type="hidden" name="hidden_member[{members_row.ID}]" value="{members_row.ID}" />
+  	<input type="hidden" name="start" value="{START}" />
+  	<!-- END members_row -->
+	<input class="button2" type="submit" name="deactivate" value="{L_CHANGE_STATUS}" />
+	<input class="button2" name="memberadd" type="submit" value="{L_ADD}" />
+	<br /><br />
+</fieldset>
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+	<input class="button2" type="submit" name="delete" value="{L_DELETE_MEMBER}" />
+</fieldset>
+<!-- ELSE -->
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+	<input class="button2" name="memberadd" type="submit" value="{L_ADD}" />
+</fieldset>
+<!-- ENDIF -->
+</form>
+
+<!-- INCLUDE dkp/overall_footer.html -->

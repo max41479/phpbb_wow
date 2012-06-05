@@ -1,0 +1,22 @@
+<!--  begin recent topics block  -->
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+	<h3 style="text-align:center">{L_RECENT_TOPICS}</h3>
+	
+	<ul class="topiclist forums" style="padding: 0.05cm">
+			<!-- IF NO_RECENT -->
+				<li style="list-style:none">{NO_RECENT}</li>
+			<!-- ELSE -->
+				<!-- BEGIN recent_topic_row -->
+					<li>&raquo; <span><a href="{recent_topic_row.U_TITLE}">{recent_topic_row.L_TITLE}</a><br />
+					{recent_topic_row.POSTED_BY}<br /><br />
+					</span></li>
+				<!-- END recent_topic_row -->
+			<!-- ENDIF -->
+	</ul>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!--  end recent topics block  -->
+

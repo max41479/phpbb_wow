@@ -1,0 +1,198 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<h1>{L_ACP_INDEXPAGE}</h1>
+
+<p>{L_ACP_INDEXPAGE_EXPLAIN}</p>
+
+<form method="post" action="{F_ADD_CONFIG}" id="indexpageconfig">
+
+<fieldset>
+<legend>{L_WELCOMEBLOCKSETTING}</legend>
+	<dl>
+	<dt>    
+	  <label>{L_SHOWWELCOME}:</label>
+	  </dt>
+	  <dd>
+	  		<input type="radio" name="show_welcomeblock" value="1" {SHOW_WELCOME_YES_CHECKED} /> {L_YES}&nbsp;&nbsp;
+	  		<input type="radio" name="show_welcomeblock" value="0" {SHOW_WELCOME_NO_CHECKED} /> {L_NO}
+   		</dd>
+   </dl> 
+	
+	<dl>
+		<dt><label>{L_WELCOMEBLOCK}:</label><br />{L_WELCOMEBLOCK_EXPLAIN}</dt>
+		<dd>
+		<textarea name="welcome_message" rows="10" cols="60" style=" font-size: 100%; width: 99%" class="input">{WELCOME_MESSAGE}</textarea>
+		</dd>
+	</dl>
+</fieldset>
+
+<fieldset>
+<legend>{L_NEWSBLOCKSETTING}</legend>
+<br />
+ <dl>
+    <dt><label>{L_NEWSFORUM}</label></dt>
+    <dd>
+    <select name="news_id" class="input" id="news_id">
+    	{FORUM_NEWS_OPTIONS}
+     </select>
+     </dd>
+  </dl> 
+ 
+ <dl>
+    <dt><label for="n_news">{L_NEWSNUMBER}</label></dt>
+    <dd><input type="text" name="n_news" id="n_news" size="20" maxlength="30" value="{N_NEWS}" class="input" /></dd>
+  </dl>
+ 
+</fieldset>
+
+
+<fieldset>
+<legend>{L_MENUBLOCKSETTING}</legend>
+
+  <dl>
+    <dt><label for="show_menublock">{L_SHOWMENUBLOCK}</label><br /></dt>
+    <dd>
+    <input type="radio" name="show_menublock" id="show_menublock" value="1"{SHOW_MENU_YES_CHECKED} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="show_menublock" value="0"{SHOW_MENU_NO_CHECKED} /> {L_NO}
+   </dd>
+ </dl>
+</fieldset>
+
+<fieldset>
+<legend>{L_LOOTBLOCKSETTING}</legend>
+
+ <dl>
+    <dt><label for="show_lootblock">{L_SHOWLOOTBLOCK}</label><br /></dt>
+    <dd>
+    <input type="radio" name="show_lootblock" id="show_lootblock" value="1"{SHOW_LOOT_YES_CHECKED} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="show_lootblock" value="0"{SHOW_LOOT_NO_CHECKED} /> {L_NO}
+   </dd>
+ </dl>
+ 
+    <dl>
+    <dt><label for="n_items">{L_NUMBITEMS}</label></dt>
+    <dd><input type="text" name="n_items" id="n_items" size="20" maxlength="30" value="{N_ITEMS}" class="input" /></dd>
+  </dl>
+</fieldset>
+
+<fieldset>
+<legend>{L_RECBLOCK}</legend>
+
+ <dl>
+    <dt style="width: 35%;"><label for="show_recrblock">{L_SHOWRECBLOCK}</label><br /></dt>
+    <dd style="margin: 0 0 0 35%; padding: 0 0 0 5px;">
+    <input type="radio" name="show_recrblock" id="show_recrblock" value="1"{SHOW_REC_YES_CHECKED} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="show_recrblock" value="0"{SHOW_REC_NO_CHECKED} /> {L_NO}
+   </dd>
+ </dl>
+ 
+ <dl>
+    <dt style="width: 35%;"><label>{L_RECFORUM}</label></dt>
+    <dd style="margin: 0 0 0 35%; padding: 0 0 0 5px;">
+    <select name="rec_id" class="input" id="rec_id">
+		{FORUM_RECRUIT_OPTIONS}
+     </select>
+     </dd>
+  </dl>
+
+  <dl>
+    <dt style="width: 35%;"><label>{L_RECSTATUS}</label></dt>
+    <dd style="margin: 0 0 0 35%; padding: 0 0 0 5px;">
+    <select name="bbdkp_recruitment" class="input" id="bbdkp_recruitment">
+       <!-- BEGIN recruitment_status_row -->
+      <option value="{recruitment_status_row.VALUE}"{recruitment_status_row.SELECTED}>{recruitment_status_row.OPTION}</option>
+      <!-- END recruitment_status_row -->
+     </select>
+     </dd>
+  </dl> 
+
+ <!-- BEGIN recruitment -->
+  <dl>
+    <dt style="width: 35%;"><label>{recruitment.CLASSID}) {recruitment.CLASS} :</label>
+   		 <!-- IF recruitment.S_CLASS_IMAGE_EXISTS --> <img src="{recruitment.CLASS_IMAGE}" alt=" " /><!-- ENDIF -->
+    </dt>
+
+    <dd style="margin: 0 0 0 35%; padding: 0 0 0 5px;">
+    <img src="{T_IMAGES_PATH}icons/{recruitment.TANKCOLOR}" alt="tank" />
+    <select name="T{recruitment.CLASSID}" class="input" id="T{recruitment.CLASSID}">
+      <!-- BEGIN tankstatus_row -->
+      <option value="{recruitment.tankstatus_row.VALUE}"{recruitment.tankstatus_row.SELECTED}>Tank : {recruitment.tankstatus_row.OPTION}</option>
+      <!-- END tankstatus_row  -->
+    </select>
+    
+    <img src="{T_IMAGES_PATH}icons/{recruitment.DPSCOLOR}" alt="dps" />
+    <select name="D{recruitment.CLASSID}" class="input" id="D{recruitment.CLASSID}">
+      <!-- BEGIN dpsstatus_row -->
+      <option value="{recruitment.dpsstatus_row.VALUE}"{recruitment.dpsstatus_row.SELECTED}>DPS : {recruitment.dpsstatus_row.OPTION}</option>
+      <!-- END dpsstatus_row  -->
+    </select>
+
+    <img src="{T_IMAGES_PATH}icons/{recruitment.HEALCOLOR}" alt="heal" />  
+    <select name="H{recruitment.CLASSID}" class="input" id="H{recruitment.CLASSID}">
+      <!-- BEGIN healstatus_row -->
+      <option value="{recruitment.healstatus_row.VALUE}"{recruitment.healstatus_row.SELECTED}>Heal : {recruitment.healstatus_row.OPTION}</option>
+      <!-- END healstatus_row  -->
+    </select>
+    </dd> 
+
+  </dl> 
+ <!-- END recruitment -->
+</fieldset>
+
+
+<!-- IF S_BP_SHOW -->
+<fieldset>
+<legend>{L_BOSSBLOCKSETTING}</legend>
+
+ <dl>
+    <dt><label for="show_bosspblock">{L_SHOWBOSSBLOCK}</label><br />{L_SHOWBOSSBLOCKNOTE}</dt>
+    <dd>
+    <input type="radio" name="show_bosspblock"  id="show_bosspblock"  value="1"{SHOW_BOSS_YES_CHECKED} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="show_bosspblock" value="0"{SHOW_BOSS_NO_CHECKED} /> {L_NO}
+   </dd>
+ </dl>
+ 
+ </fieldset>
+<!-- ENDIF -->
+
+<fieldset>
+<legend>{L_LINKBLOCKSETTING}</legend>
+
+  <dl>
+    <dt><label for="show_linkblock">{L_SHOWLINKBLOCK}</label><br /></dt>
+    <dd>
+    <input type="radio" name="show_linkblock"  id="show_linkblock" value="1"{SHOW_LINK_YES_CHECKED} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="show_linkblock" value="0"{SHOW_LINK_NO_CHECKED} /> {L_NO}
+   </dd>
+ </dl>
+</fieldset>
+
+<fieldset>
+<legend>{L_RECENT_TOPICS_SETTING}</legend>
+
+  <dl>
+    <dt><label for="show_recenttopics">{L_SHOW_RT_BLOCK}</label><br /></dt>
+    <dd>
+    <input type="radio" name="show_recenttopics"  id="show_recenttopics" value="1"{SHOW_RT_YES_CHECKED} /> {L_YES}&nbsp;&nbsp;<input type="radio" name="show_recenttopics" value="0"{SHOW_RT_NO_CHECKED} /> {L_NO}
+   </dd>
+ </dl>
+ <dl>
+    <dt><label for="n_rcno">{L_NUMTOPICS}</label></dt>
+    <dd><input type="text" name="n_rcno" id="n_rcno" size="20" maxlength="30" value="{N_RTNO}" class="input" /></dd>
+  </dl>
+  <dl>
+    <dt><label for="n_rclength">{L_RECENT_LENGTH}</label></dt>
+    <dd><input type="text" name="n_rclength" id="n_rclength" size="20" maxlength="30" value="{N_RTLENGTH}" class="input" /></dd>
+  </dl>
+
+</fieldset>
+
+
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+	  {S_FORM_TOKEN}
+	  <input type="submit" name="update" value="{L_SUBMIT}" class="button1" /> 
+	  <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+</fieldset>
+
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->
+

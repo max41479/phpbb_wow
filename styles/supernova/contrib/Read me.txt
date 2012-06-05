@@ -1,0 +1,33 @@
+
+  _____                                             
+ / ____|                                            
+| (___  _   _ _ __   ___ _ __ _ __   _____   ____ _ 
+ \___ \| | | | '_ \ / _ \ '__| '_ \ / _ \ \ / / _` |
+ ____) | |_| | |_) |  __/ |  | | | | (_) \ V / (_| |
+|_____/ \__,_| .__/ \___|_|  |_| |_|\___/ \_/ \__,_|
+             | |                                    
+             |_|                                    
+
+Style version: 1.0.1
+for phpBB: 3.0.8                                      
+
+Supernova phpBB3 Style by Christian Bullock
+http://www.christianbullock.com
+
+
+Support given through phpBB.com only. 
+
+Please enjoy the style, and I welcome any feedback :)
+
+Thanks. 
+
+
+Icons from http://www.famfamfam.com/lab/icons/silk/
+
+
+If you would like more exposure for your forum, advertise it at:
+http://www.phpbbcommunities.com
+
+
+
+

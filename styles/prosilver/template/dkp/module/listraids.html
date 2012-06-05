@@ -1,0 +1,98 @@
+<form method="post" action="{U_LIST_RAIDS}">
+
+<div class="forabg" >
+<span class="corners-top"><span></span></span>
+<ul class="topiclist">
+<li class="header">
+
+
+<div style="float: left; width:50%">
+<h1 style ="color:#dfc065;">{L_RAIDS}</h1>
+</div>
+<div style="float: left; width:50%">
+<br/>
+<div style="color:white; text-align:left; width:56; white-space:nowrap;">{L_POOL}:
+      <select name="pool" class="input" onchange="javascript:form.submit();">
+        <!-- BEGIN pool_row -->
+        <option value="{pool_row.VALUE}" {pool_row.SELECTED}{pool_row.DISABLED}>{pool_row.OPTION}</option>
+        <!-- END pool_row -->
+      </select>
+ </div>
+</div>
+
+</li>
+</ul>
+<span class="corners-bottom"><span></span></span>
+</div>
+</form> 
+
+
+<div class="forumbg forumbg-table">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+<!-- IF RAID_PAGINATION -->  
+<ul class="linklist">
+ <li class="rightside pagination"><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> <span>{RAID_PAGINATION}</span></li>
+</ul>
+<!-- ENDIF -->
+<table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+    <th style="text-align:left; width:5%;">{L_RAID}</th>
+    <th style="text-align:center; width:5%;"><a href="{O_DATE}">{L_DATE}</a></th>
+    <th style="text-align:left; width:15%;" ><a href="{O_NAME}">{L_EVENT}</a></th>
+    <th style="text-align:center; width:5%;">{L_ATTENDEES}</th> 
+    <th style="text-align:left; width:15%;"><a href="{O_NOTE}">{L_NOTE}</a></th>
+    
+    <th style="text-align:right; width:11%; white-space:nowrap;"><a href="{U_VIEW_EVENT}o={O_VALUE}">{L_RAIDVALUE}</a></th>    
+    <!-- IF S_SHOWTIME -->
+    <th style="text-align:right; width:11%; white-space:nowrap;">{L_TIMEVALUE}</th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <th style="text-align:right; width:11%; white-space:nowrap;">{L_ZSVALUE}</th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <th style="text-align:right; width:11%; white-space:nowrap;">{L_DECAY}</th>
+    <!-- ENDIF -->
+    <th style="text-align:right; width:11%; white-space:nowrap;">{L_TOTAL}</th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+	<th  style="text-align: left; white-space: nowrap; color:white;" colspan="0">{LISTRAIDS_FOOTCOUNT}</th>
+</tr>
+</tfoot>
+<!-- BEGIN raids_row -->
+<tr class="<!-- IF raids.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+	
+	<td style="text-align:left;"><a href="{raids_row.U_VIEW_RAID}"><img src="adm/images/glyphs/view.gif" width="16" height="16" alt="View" /></a> </td>
+    <td style="text-align:center;"><a href="{raids_row.U_VIEW_RAID}">{raids_row.DATE}</a></td> 
+    <td style="text-align:left;"><a href="{raids_row.U_VIEW_EVENT}">{raids_row.NAME}</a></td>
+    <td style="text-align:center;">{raids_row.ATTENDEES}</td> 
+    <td style="text-align:left;"><a href="{raids_row.U_VIEW_RAID}">{raids_row.NOTE}</a></td>
+    
+    <td style="text-align:right;"><span class="positive">{raids_row.RAIDVALUE}</span></td>
+    <!-- IF S_SHOWTIME -->
+    <td style="text-align:right;"><span class="positive">{raids_row.TIMEVALUE}</span></td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <td style="text-align:right;"><span class="positive">{raids_row.ZSVALUE}</span></td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <td style="text-align:right;"><span class="negative">{raids_row.DECAYVALUE}</span></td>
+    <!-- ENDIF -->
+    <td style="text-align:right;"><span class="positive">{raids_row.TOTAL}</span></td>    
+    
+</tr>
+  <!-- END raids_row -->
+
+</table>
+<!-- IF RAID_PAGINATION -->  
+<ul class="linklist">
+ <li class="rightside pagination"><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a><span>{RAID_PAGINATION}</span></li>
+</ul>
+<!-- ENDIF -->
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<hr />

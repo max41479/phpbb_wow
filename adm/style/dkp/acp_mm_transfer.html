@@ -1,0 +1,67 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+<p>{L_EXPLAIN}</p>
+
+<form method="post" action="{F_DKP}" id="mm_transferdkp">
+
+<fieldset>
+     <label for="dkpsys_id">{L_POOL}:</label>
+  	<select id="dkpsys_id" name="dkpsys_id" class="input"  onchange="javascript:form.submit();">	
+       <!-- BEGIN dkpsys_row -->
+       <option value="{dkpsys_row.VALUE}"{dkpsys_row.SELECTED}>{dkpsys_row.OPTION}</option>
+       <!-- END dkpsys_row -->
+    </select>
+</fieldset>
+
+</form>
+
+<!-- IF S_SHOW -->
+<form method="post" action="{F_TRANSFER}" id="mm_transfer">
+
+<fieldset>
+<legend>{L_TRANSFER_MEMBER_HISTORY}</legend>
+<br />
+
+	<dl>
+ 		<dt><label for="transfer_from">{L_FROM}:</label></dt>
+ 		<dd>
+	      <select id="transfer_from" name="transfer_from" class="input">
+	        <option value="">{L_SELECT_1_OF_X_MEMBERS}</option>
+	        <!-- BEGIN transfer_from_row -->
+	        <option value="{transfer_from_row.VALUE}"{transfer_from_row.SELECTED}>{transfer_from_row.OPTION}</option>
+	        <!-- END transfer_from_row -->
+	      </select>
+       </dd>
+	</dl>
+	
+	<dl>
+ 		<dt><label for="transfer_to">{L_TO}:</label></dt>
+ 		<dd>
+	      <select id="transfer_to"  name="transfer_to" class="input">
+	        <option value="">{L_SELECT_1_OF_Y_MEMBERS}</option>
+	        <!-- BEGIN transfer_to_row -->
+	        <option value="{transfer_to_row.VALUE}"{transfer_to_row.SELECTED}>{transfer_to_row.OPTION}</option>
+	        <!-- END transfer_to_row -->
+	      </select>
+     </dd>
+	</dl>
+
+</fieldset>
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+	{S_FORM_TOKEN}
+	<input type="hidden" name="hidden_idfrom" value="{MEMBER_IDFROM}" />
+	<input type="hidden" name="hidden_idto" value="{MEMBER_IDTO}" />
+    <input type="submit" name="transfer" value="{L_TRANSFER_HISTORY}" class="button1" />
+</fieldset>
+</form>
+
+<!-- ELSE -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{ERROR_MSG}</p>
+	</div>
+<!-- ENDIF -->
+
+<!-- INCLUDE dkp/overall_footer.html -->

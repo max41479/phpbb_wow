@@ -1,0 +1,93 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+<h1>{L_BBDKP_WELCOME}</h1>
+
+<!-- IF S_UP_TO_DATE -->
+	<div class="successbox">
+		<p>{BBDKPVERSION}</p>
+	</div>
+<!-- ELSE -->
+	<div class="errorbox">
+		<p>{BBDKPVERSION}</p>
+		<p>{UPDATEINSTR}</p>
+	</div>
+<!-- ENDIF -->
+
+
+<table cellspacing="1">
+		<caption>{L_STATISTICS}</caption>
+		<col class="col1" /><col class="col2" /><col class="col1" /><col class="col2" />
+		
+		<thead>
+	<tr>
+		<th>{L_STATISTIC}</th>
+		<th>{L_VALUE}</th>
+		<th>{L_STATISTIC}</th>
+		<th>{L_VALUE}</th>
+	</tr>
+	</thead>
+	<tbody>
+
+  <tr>
+    <td class="row2" style="width:25%">{L_BBDKP_STARTED}:</td>
+    <td class="row1" style="width:25%">{BBDKP_STARTED}</td>
+    <td class="row2" style="width:25%">{L_NUMBER_OF_DKPSYS}:</td>
+    <td class="row1" style="width:25%">{NUMBER_OF_DKPSYS}</td>
+  </tr>
+
+  <tr>
+    <td class="row2" style="width:25%">{L_NUMBER_OF_EVENTS}:</td>
+    <td class="row1" style="width:25%">{NUMBER_OF_EVENTS}</td>
+    <td class="row2" style="width:25%">{L_NUMBER_OF_RAIDS}:</td>
+    <td class="row1" style="width:25%">{NUMBER_OF_RAIDS}</td>
+  </tr>
+  
+  <tr>
+    <td class="row2" style="width:25%">{L_RAIDS_PER_DAY}:</td>
+    <td class="row1" style="width:25%">{RAIDS_PER_DAY}</td>
+    <td class="row2" style="width:25%">{L_NUMBER_OF_ITEMS}:</td>
+    <td class="row1" style="width:25%">{NUMBER_OF_ITEMS}</td>
+  </tr>
+
+  <tr>
+    <td class="row2" style="width:25%">{L_ITEMS_PER_DAY}:</td>
+    <td class="row1" style="width:25%">{ITEMS_PER_DAY}</td>
+    <td class="row2" style="width:25%">{L_NUMBER_OF_GUILDS}:</td>
+    <td class="row1" style="width:25%">{NUMBER_OF_GUILDS}</td>
+  </tr>
+
+   <tr>
+    <td class="row2" style="width:25%">{L_NUMBER_OF_MEMBERS}:</td>
+    <td class="row1" style="width:25%">{NUMBER_OF_MEMBERS}</td>
+    <td class="row2" style="width:25%">{L_NUMBER_OF_MEMBERDKP}:</td>
+    <td class="row1" style="width:25%">{NUMBER_OF_MEMBERDKP}</td>
+  </tr>
+
+  <tr>
+    <td class="row2" style="width:25%">{L_NUMBER_OF_ADJUSTMENTS}:</td>
+    <td class="row1" style="width:25%">{NUMBER_OF_ADJUSTMENTS}</td>
+    <td class="row2" style="width:25%"></td>
+    <td class="row1" style="width:25%"></td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- IF S_LOGS -->
+<table cellspacing="1">
+<caption>{L_NEW_ACTIONS}</caption>
+
+
+  <!-- BEGIN actions_row -->
+  <!-- IF actions_row.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+    <td  style="text-align: center; width:16; white-space: nowrap"><a href="{actions_row.U_VIEW_LOG}">
+    	<img src="{ROOT_PATH}images/glyphs/view.gif" width="16" height="16" alt="View" /></a>
+    	</td>
+    <td>{actions_row.ACTION}</td>
+  </tr>
+  <!-- END actions_row -->
+</table>
+<br />
+<!-- ENDIF -->
+
+<!-- INCLUDE dkp/overall_footer.html -->

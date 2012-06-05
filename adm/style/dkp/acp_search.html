@@ -1,0 +1,74 @@
+<!-- INCLUDE simple_header.html -->
+<!--
+		$Id$
+//-->
+
+<script  type="text/javascript">
+//<![CDATA[
+
+function select_item()
+{
+    opener.document.additem.item_name.value = document.post.items.options[document.post.items.selectedIndex].value;  
+    opener.changed = "True";
+    window.close();
+    opener.window.focus();
+}
+
+function switch_item_val()
+{
+    parent.frames['iframe2'].location = ('index.php{SID}&i=dkp_item&mode=viewitem&item=') + document.post.items.options[document.post.items.selectedIndex].value ;   
+}
+//]]>
+</script>
+
+
+<div class="panel" >
+
+<form method="post" action="{F_SEARCH_ITEM}" name="post">
+
+<div style="float: left; width: 48%;">
+	<fieldset style="float: center; width: 90%;">
+	<legend>{L_ITEM_SEARCH}</legend>
+	    <input type="text" name="query" size="30" maxlength="255" value="" class="input" /><br /><br /> 
+	    <input type="submit" name="search" value="{L_SEARCH}" class="button1" /> 
+	    <input type="button" name="button" value="{L_CLOSE_WINDOW}" onclick="javascript:window.close(); window.opener.window.focus();" class="button1" />
+	</fieldset>
+</div>
+
+<!-- IF S_RESULT -->
+<div style="float: right; width: 48%;">
+	<fieldset class="quick" >
+	<IFRAME SRC="{LINKKI}" width="350" height="250" NAME="iframe2" FRAMEBORDER ="0" SCROLLING = "no">
+	    <FRAME SRC="{L_LINKKI}" width="300" height="300" NAME="iframe2" FRAMEBORDER ="0" SCROLLING = "no">
+	</IFRAME>
+	</fieldset>
+</div>
+
+<form method="post" name="post">
+<div style="float: left; width: 48%;">
+	<fieldset style="float: center; width: 90%;">
+	<legend>{L_RESULTS}</legend>
+	<br />
+	      <select name="items" onchange="javascript:switch_item_val();"  class="input">
+	        <!-- BEGIN items_row -->
+		        <option value="{items_row.VALUE}">{items_row.OPTION}</option>
+	        <!-- END items_row -->
+	      </select>
+	    <input type="button" name="select" value="{L_SELECT}" class="button1" onclick="javascript:select_item();" />
+	<script type="text/javascript">
+	//<![CDATA[
+	switch_item_val();
+	//]]>
+	</script>
+	  
+	</fieldset>
+</div>
+</form>
+
+<!-- ENDIF -->
+
+</form>
+		
+</div>
+
+<!-- INCLUDE simple_footer.html -->

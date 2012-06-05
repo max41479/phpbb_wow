@@ -1,0 +1,66 @@
+<!-- INCLUDE overall_header.html -->
+<script type="text/javascript">
+//<![CDATA[ 
+function check_form()
+{
+    if (document.getElementById('guild_name').value.length < 2)
+    {
+        alert('{LA_FV_REQUIRED_NAME}');
+        return false;
+    }
+    return true;
+}
+//]]> 
+</script>
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+<p>{L_EXPLAIN}</p>
+
+<form method="post" action="{F_ADD_GUILD}" onsubmit="return check_form(this)" id="addguild">
+
+<fieldset>
+<legend>{L_ADD_GUILD_TITLE}</legend>
+	<dl>
+		<dt><label for="guild_name">{L_GUILD_NAME}:</label></dt>
+		<dd><input class="medium" type="text" id="guild_name" name="guild_name" value="{GUILD_NAME}" /></dd>
+	</dl>
+
+	<dl>
+		<dt><label for="realm">{L_REALM_NAME}:</label></dt>
+		<dd><input class="medium" type="text" id="realm" name="realm" value="{REALM}" /></dd>
+	</dl>
+	
+    <dl>
+    <dt>
+        <label for="region_id">{L_REGION}:</label></dt>
+       <dd>
+      <select id="region_id" name="region_id" class="input">
+        <!-- BEGIN region_row -->
+        <option value="{region_row.VALUE}"{region_row.SELECTED}>{region_row.OPTION}</option>
+        <!-- END region_row -->
+      </select>
+      </dd>
+  	</dl>
+    
+    <dl>
+     <dt><label for="showroster">{L_SHOWONROSTER}:</label></dt>
+       
+	<dd style="text-align: left">
+	<input type="checkbox" id="showroster" name="showroster" value="1" {SHOW_ROSTER} /></dd>
+   </dl>
+</fieldset>
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+<input type="hidden" name="{URI_GUILD}" value="{GUILD_ID}" />
+ {S_FORM_TOKEN}
+    <!-- IF S_ADD -->
+    <input type="submit" name="add" value="{L_ADD_GUILD}" class="button1" /> <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+    <!-- ELSE -->
+    <input type="submit" name="update" value="{L_UPDATE_GUILD}" class="button1" /> <input type="submit"  name="delete" value="{L_DELETE_GUILD}" class="button1" />
+    <!-- ENDIF -->
+</fieldset>
+
+</form>
+
+<!-- INCLUDE dkp/overall_footer.html -->

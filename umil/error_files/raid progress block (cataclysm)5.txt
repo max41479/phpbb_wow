@@ -1,0 +1,26 @@
+Raid Progress Block (Cataclysm)
+PHP Version: 5.2.17
+DBMS: MySQL(i) 5.1.58
+phpBB3 Version: 3.0.10
+
+Добавление acp модуля: Raid Sorting Order
+Ошибка: Модуль уже существует.
+
+Добавление acp модуля: Firelands: Normal
+Ошибка: Модуль уже существует.
+
+Добавление acp модуля: Firelands: Heroic
+Ошибка: Модуль уже существует.
+
+Добавление acp модуля: Raid Sorting Order
+Ошибка: Модуль уже существует.
+
+Добавление acp модуля: Dragon Soul: Normal
+Ошибка: Модуль уже существует.
+
+Добавление acp модуля: Dragon Soul: Heroic
+Ошибка: Модуль уже существует.
+
+Добавление новой таблицы: rt_cata_rpb_order
+Ошибка: Таблица rt_cata_rpb_order уже существует.
+

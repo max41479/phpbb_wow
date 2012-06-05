@@ -1,0 +1,101 @@
+<!-- INCLUDE overall_header.html -->
+
+	<h1>{L_ACP_RB_MAIN_OPTIONS_INFO}</h1>
+	<p>{L_RECRUIT_EXPLAIN}</p>
+
+	<!-- IF S_ERROR -->
+		<div class="errorbox">
+			<h3>{L_WARNING}</h3>
+			<p>{ERROR_MSG}</p>
+		</div>
+	<!-- ENDIF -->
+	<form id="options" name="options" method="post" action="{U_ACTION}">
+<!-- BEGIN mods -->
+	<fieldset>
+		<legend>{L_VERSION_CHECK}</legend>
+		<p style="font-weight: bold; color: <!-- IF mods.S_UP_TO_DATE -->#228822<!-- ELSE -->#BC2A4D<!-- ENDIF -->;">{mods.UP_TO_DATE}</p>
+		<dl>
+			<dt><label>{L_CURRENT_VERSION}</label></dt>
+			<dd><strong>{mods.CURRENT_VERSION}</strong></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_LATEST_VERSION}</label></dt>
+			<dd><strong>{mods.LATEST_VERSION}</strong></dd>
+		</dl>
+		<!-- IF not mods.S_UP_TO_DATE -->
+			<dl>
+				<dt><label>{L_DOWNLOAD_LATEST}</label></dt>
+				<dd><strong><a href="{mods.DOWNLOAD}">{L_DOWNLOAD} {mods.TITLE} v{mods.LATEST_VERSION}</a></strong></dd>
+			</dl>
+			<dl>
+				<dt><label>{L_ANNOUNCEMENT_TOPIC}</label></dt>
+				<dd><strong><a href="{mods.ANNOUNCEMENT}" target="_blank">{L_RELEASE_ANNOUNCEMENT}</a></strong></dd>
+			</dl>
+		<!-- ENDIF -->
+	</fieldset>
+<!-- END mods -->
+	<fieldset>
+		<legend>{L_SETTINGS}</legend>
+        <dl>
+			<dt><label>{L_BLOCK}:</label><br />{L_BLOCK_EXPLAIN}</dt>
+			<dd><input type="radio" name="show_block" id="show_block" value="1" {SEL_BLOCK_YES}/>&nbsp;{L_YES}
+            	&nbsp;&nbsp;
+            	<input type="radio" name="show_block" id="show_block" value="0" {SEL_BLOCK_NO}/>&nbsp;{L_NO}</dd>
+		</dl>
+        <dl>
+			<dt><label>{L_IMAGES}:</label><br />{L_IMAGES_EXPLAIN}</dt>
+			<dd><input type="radio" name="show_images" id="show_images" value="1" {SEL_IMAGES_YES}/>&nbsp;{L_YES}
+            	&nbsp;&nbsp;
+            	<input type="radio" name="show_images" id="show_images" value="0" {SEL_IMAGES_NO}/>&nbsp;{L_NO}</dd>
+		</dl>
+        <dl>
+			<dt><label>{L_CLASSCOLOR}:</label><br />{L_CLASSCOLOR_EXPLAIN}</dt>
+			<dd><input type="radio" name="class_colors" id="class_colors" value="1" {SEL_CCOLOR_YES}/>&nbsp;{L_YES}
+            	&nbsp;&nbsp;
+            	<input type="radio" name="class_colors" id="class_colors" value="0" {SEL_CCOLOR_NO}/>&nbsp;{L_NO}</dd>
+		</dl>
+        <dl>
+			<dt><label>{L_REC_LEVEL}:</label><br />{L_REC_LEVEL_EXPLAIN}</dt>
+			<dd><input type="radio" name="rec_level" id="rec_level" value="0" {SEL_REC_LEVEL_0}/>&nbsp;{L_LEVEL}
+            	&nbsp;&nbsp;
+            	<input type="radio" name="rec_level" id="rec_level" value="1" {SEL_REC_LEVEL_1}/>&nbsp;{L_NUM}
+				&nbsp;&nbsp;
+            	<input type="radio" name="rec_level" id="rec_level" value="2" {SEL_REC_LEVEL_2}/>&nbsp;{L_BOTH}</dd>
+		</dl>
+        <!--
+        <dl>
+			<dt><label>{L_DEFAULT_LEVEL}:</label><br />{L_DEFAULT_LEVEL_EXPLAIN}</dt>
+			<dd><select id="def_level" name="def_level">
+            	<option value="dl_none" {SEL_DL_NONE}>{L_NONE}</option>
+				<option value="dl_low" {SEL_DL_LOW}>{L_LOW}</option>
+                <option value="dl_med" {SEL_DL_MED}>{L_MED}</option>
+                <option value="dl_high" {SEL_DL_HIGH}>{L_HIGH}</option>
+                </select>
+            </dd>
+		</dl>
+        -->
+        <dl>
+			<dt><label>{L_R_LINK}:</label><br />{L_R_LINK_EXPLAIN}</dt>
+			<dd><select id="r_link" name="r_link">
+            	<option value="f_link" {SEL_F_LINK}>{L_RECRUIT_FORUM}</option>
+				<option value="c_link" {SEL_C_LINK}>{L_RECRUIT_LINK}</option>
+                </select>
+            </dd>
+		</dl>
+        <dl>
+			<dt><label>{L_RECRUIT_FORUM}:</label><br />{L_RECRUIT_FORUM_EXPLAIN}</dt>
+			<dd><select id="recruit_forum" name="recruit_forum" size="5">{S_FORUM_OPTIONS}</select></dd>
+		</dl>        
+        <dl>
+			<dt><label>{L_RECRUIT_LINK}:</label><br />{L_RECRUIT_LINK_EXPLAIN}</dt>
+			<dd><input maxlength="100" size="30" type="text" name="recruit_link" id="recruit_link" value="{SEL_RECRUIT_LINK}"/>
+		</dl>
+
+    </fieldset>    
+	<p class="quick">
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	{S_FORM_TOKEN}
+	</fieldset>
+	</form>
+<!-- INCLUDE overall_footer.html -->

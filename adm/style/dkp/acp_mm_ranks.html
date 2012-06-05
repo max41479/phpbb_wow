@@ -1,0 +1,128 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_ACP_MM_RANKS}</h1>
+
+<p>{L_ACP_MM_RANKS_EXPLAIN}</p>
+
+<form method="post" action="{F_EDIT_RANKS}" id="mm_ranks">
+
+<fieldset>
+	
+     <label for="guild_id">{L_GUILD}:</label>
+  	<select id="guild_id" name="guild_id" class="input" onchange="javascript:form.submit();" > 	
+       <!-- BEGIN guild_row -->
+         <option value="{guild_row.VALUE}"{guild_row.SELECTED}>{guild_row.OPTION}</option>
+       <!-- END guild_row -->
+    </select>
+ </fieldset>
+<!-- IF .ranks_row -->
+<div>
+<fieldset>
+<legend>{L_EDIT_RANKS}</legend>
+
+<table cellspacing="1">
+<thead>
+	<tr>
+	<th align="left">{L_RANKID}</th>
+    <th align="left">{L_MEMBER_RANK}</th>
+    <th align="center">{L_HIDE}</th>
+    <th align="left">{L_LIST_PREFIX}</th>
+    <th align="left">{L_LIST_SUFFIX}</th>
+    <th></th>
+  </tr> 
+  
+   </thead>
+	<tbody> 
+  <!-- BEGIN ranks_row -->
+	  <!-- IF ranks_row.S_ROW_COUNT is even -->
+	  <tr class="row1">
+	  <!-- ELSE -->
+	  <tr class="row2">
+	  <!-- ENDIF -->
+	    <td>{ranks_row.RANK_ID}</td>
+	    <!-- IF ranks_row.S_READONLY == 1 -->
+
+	    <td><input type="text" readonly="readonly" disabled="disabled" name="ranks[{ranks_row.RANK_ID}]" size="30" maxlength="50" value="{ranks_row.RANK_NAME}" class="input" /></td>
+	    <td align="center"><input readonly="readonly" disabled="disabled" type="checkbox" name="hide[{ranks_row.RANK_ID}]" value="1" {ranks_row.HIDE_CHECKED} /></td>
+	    <td><input readonly="readonly" type="text" disabled="disabled" name="prefix[{ranks_row.RANK_ID}]" size="25" maxlength="40" value="{ranks_row.RANK_PREFIX}" class="input" /></td>
+	    <td><input readonly="readonly" type="text" disabled="disabled" name="suffix[{ranks_row.RANK_ID}]" size="25" maxlength="40" value="{ranks_row.RANK_SUFFIX}" class="input" /></td>
+	    <td style="text-align:center; width:5 white-space: nowrap;">
+		</td>
+
+	    <!-- ELSE -->
+	      <td><input type="text" name="ranks[{ranks_row.RANK_ID}]" size="30" maxlength="50" value="{ranks_row.RANK_NAME}" class="input" /></td>
+	    <td align="center"><input type="checkbox" name="hide[{ranks_row.RANK_ID}]" value="1" {ranks_row.HIDE_CHECKED} /></td>
+	    <td><input type="text" name="prefix[{ranks_row.RANK_ID}]" size="25" maxlength="40" value="{ranks_row.RANK_PREFIX}" class="input" /></td>
+	    <td><input type="text" name="suffix[{ranks_row.RANK_ID}]" size="25" maxlength="40" value="{ranks_row.RANK_SUFFIX}" class="input" /></td>
+	    <td style="text-align:center; width:5; white-space: nowrap;">
+			<a href="{ranks_row.U_DELETE_RANK}">{ICON_DELETE}</a>
+		</td>
+	    
+	    <!-- ENDIF -->
+	
+	  </tr>
+	  <!-- END ranks_row -->
+	  </tbody>
+</table>
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+     <input type="submit" name="update" value="{L_EDIT_RANKS}" class="button1" /> 
+</fieldset>
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+     <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+</fieldset>
+
+
+</fieldset>
+</div>
+<!-- ENDIF -->
+<div>
+
+
+<fieldset>
+<legend>{L_ADD_RANKS}</legend>
+
+<table cellspacing="1">
+<thead>
+	<tr>
+	<th align="left">{L_RANKID}</th>
+    <th align="left">{L_MEMBER_RANK}</th>
+    <th align="center">{L_HIDE}</th>
+    <th align="left">{L_LIST_PREFIX}</th>
+    <th align="left">{L_LIST_SUFFIX}</th>
+  </tr> 
+</thead>
+<tbody> 
+  <tr class="row2">
+    <td><input type="text" name="nrankid" size="5" maxlength="2" value="" class="input" /></td>
+    <td><input type="text" name="nrankname" size="30" maxlength="50" value="" class="input" /></td>
+    <td  align="center"><input type="checkbox" name="nhide" value="1" /></td>
+    <td><input type="text" name="nprefix" size="25" maxlength="40" value="" class="input" /></td>
+    <td><input type="text" name="nsuffix" size="25" maxlength="40" value="" class="input" /></td>
+  </tr>
+</tbody>
+
+</table>
+  
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+  {S_FORM_TOKEN}
+     <input type="submit" name="add" value="{L_ADD_RANKS}" class="button1" />
+</fieldset>
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+  {S_FORM_TOKEN}
+     <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+</fieldset>
+
+ 
+</fieldset>
+ 
+</div>
+
+</form>
+
+
+<!-- INCLUDE dkp/overall_footer.html -->

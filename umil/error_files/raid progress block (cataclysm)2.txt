@@ -1,0 +1,14 @@
+Raid Progress Block (Cataclysm)
+PHP Version: 5.2.17
+DBMS: MySQL(i) 5.1.58
+phpBB3 Version: 3.0.10
+
+Удаление acp модуля: Raid Sorting Order
+Ошибка: Модуля не существует.
+
+Удаление acp модуля: Firelands: Normal
+Ошибка: Модуля не существует.
+
+Удаление acp модуля: Firelands: Heroic
+Ошибка: Модуля не существует.
+

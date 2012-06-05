@@ -1,0 +1,56 @@
+<!-- INCLUDE overall_header.html -->
+<div>
+
+<div style="float: left; width: 16%;  margin:0.5%">
+<!-- IF not S_USER_LOGGED_IN -->
+<!-- INCLUDE dkp/block/loginblock.html -->
+<br/>
+<!-- ENDIF -->
+
+<!-- IF S_USER_LOGGED_IN -->
+<!-- INCLUDE dkp/block/userblock.html -->
+<br/>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_MAINMENU -->
+<!-- INCLUDE dkp/block/mainmenu.html -->
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_RT -->
+<!-- INCLUDE dkp/block/recent.html -->
+<!-- ENDIF -->
+</div>
+
+<div  style="float: left; width: 61%; margin:0.5%">
+<!-- IF S_DISPLAY_WELCOME -->
+<!-- INCLUDE dkp/block/welcomeblock.html -->
+<!-- ENDIF -->
+
+<!-- INCLUDE dkp/block/news.html -->
+
+<!-- INCLUDE dkp/block/whoisonlineblock.html -->
+</div>
+
+<div style="float: right; width: 20%; margin:0.5%">
+
+
+<!-- IF S_DISPLAY_LOOT -->
+<!-- INCLUDE dkp/block/lastloot.html -->
+<br/>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_RECRUIT -->
+<!-- INCLUDE dkp/block/recruitment.html -->
+<br/>
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_LINKS -->
+<!-- INCLUDE dkp/block/links.html -->		
+<br/>
+<!-- ENDIF -->
+
+</div>
+<div style="clear:both;"></div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

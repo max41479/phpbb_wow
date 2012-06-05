@@ -1,0 +1,104 @@
+<div class="forumlist">
+<!-- BEGIN forumrow -->
+	<!-- IF (forumrow.S_IS_CAT and not forumrow.S_FIRST_ROW) or forumrow.S_NO_CAT  -->
+    				</table>
+            	</div>
+            </div>
+            <br /><br />
+	<!-- ENDIF -->
+
+	<!-- IF forumrow.S_IS_CAT or forumrow.S_FIRST_ROW  or forumrow.S_NO_CAT  -->
+    <div class="catglow">
+        <div class="cathead-m">
+            <div class="cathead-r">
+                <div class="cathead-l">
+                    <!-- IF forumrow.S_IS_CAT --><a href="{forumrow.U_VIEWFORUM}">{forumrow.FORUM_NAME}</a><!-- ELSE -->{L_FORUM}<!-- ENDIF -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- IF $COLLAPSIBLE_CATEGORIES -->
+        	<!-- IF SCRIPT_NAME eq 'index' --><div class="trigger active"></div><!-- ENDIF -->
+        <!-- ENDIF -->
+        <div class="collapsethis">
+        	<table class="cat" cellpadding="0" cellspacing="0" width="100%">
+	<!-- ENDIF -->
+
+	<!-- IF not forumrow.S_IS_CAT -->
+    	<tr>
+        	<td class="forumicon">{forumrow.FORUM_FOLDER_IMG}</td>
+            <td class="forumdetails<!-- IF forumrow.S_IS_LINK --> forumlink<!-- ENDIF -->">
+            	<!-- IF forumrow.FORUM_IMAGE --><span class="forumimage">{forumrow.FORUM_IMAGE}</span><!-- ENDIF -->
+            	                   <a href="{forumrow.U_VIEWFORUM}" class="forumtitle">{forumrow.FORUM_NAME}</a> <!-- IF S_ENABLE_FEEDS and forumrow.S_FEED_ENABLED --> <a class="feed-icon-forum" title="{L_FEED} - {forumrow.FORUM_NAME}" href="{U_FEED}?f={forumrow.FORUM_ID}"><img src="{T_THEME_PATH}/images/feed.gif" alt="{L_FEED} - {forumrow.FORUM_NAME}" /></a> <!-- ENDIF -->
+    <br />
+				<span class="forum-descriptions">{forumrow.FORUM_DESC}</span>
+                <!-- IF forumrow.SUBFORUMS and forumrow.S_LIST_SUBFORUMS -->
+                    <span class="subforums">
+                    	<img src="{T_THEME_PATH}/images/tree.gif" width="19" height="12" alt="" />
+                    	<strong>{forumrow.L_SUBFORUM_STR}</strong> {forumrow.SUBFORUMS}
+                    </span>
+                <!-- ENDIF -->
+                <!-- IF forumrow.MODERATORS -->
+                    <span class="forummods">
+                    	<!-- IF forumrow.SUBFORUMS -->&nbsp;&nbsp;&nbsp;&nbsp;<!-- ENDIF --><img src="{T_THEME_PATH}/images/tree.gif" width="19" height="12" alt="" />
+                    	<strong>{forumrow.L_MODERATOR_STR}:</strong> {forumrow.MODERATORS}
+                    </span>
+                <!-- ENDIF -->                          
+            </td>
+            <!-- IF forumrow.CLICKS -->
+            <td colspan="3" class="forumclicks">
+            	{L_REDIRECTS}: {forumrow.CLICKS}
+            </td>
+            <!-- ELSEIF not forumrow.S_IS_LINK -->
+                <td class="forumlastpost">
+                    <!-- IF forumrow.U_UNAPPROVED_TOPICS --><a href="{forumrow.U_UNAPPROVED_TOPICS}">{UNAPPROVED_IMG}</a><!-- ENDIF -->
+                    <!-- IF forumrow.LAST_POST_TIME -->
+						<!-- IF S_ALTT_ACTIVE --><!-- IF forumrow.ALTT_LINK_NAME_SHORT != '' --><a <!-- IF ALTT_STYLE -->style="{ALTT_STYLE}"<!-- ENDIF --> href="{forumrow.U_ALTT_LINK}" title="{forumrow.ALTT_LINK_NAME}">{forumrow.ALTT_LINK_NAME_SHORT}</a><!-- ELSE -->{L_ALTT_PROTECTED}<!-- ENDIF --><br /><!-- ENDIF -->
+                        {L_LAST_POST} {L_POST_BY_AUTHOR} 
+						<br />{forumrow.LAST_POSTER_FULL}
+                        <!-- IF not S_IS_BOT -->
+                            <a href="{forumrow.U_LAST_POST}">{LAST_POST_IMG}</a>
+                        <!-- ENDIF --><span class="fade">{forumrow.LAST_POST_TIME}</span>
+                    <!-- ELSE -->
+                        <span class="fade">{L_NO_POSTS}</span><br />&nbsp;
+                    <!-- ENDIF -->            
+                </td>
+                <td class="forumtopics"><div class="statbubble"><span>{forumrow.TOPICS}</span><br />{L_TOPICS}</div></td>
+                <td class="forumposts"><div class="statbubble"><span>{forumrow.POSTS}</span><br />{L_POSTS}</div></td>
+            <!-- ENDIF -->
+        </tr>
+	<!-- ENDIF -->
+
+	<!-- IF forumrow.S_LAST_ROW -->  					
+					</table>
+           		</div>
+            </div>
+	<!-- ENDIF -->
+<!-- BEGINELSE -->
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		<strong>{L_NO_FORUMS}</strong>
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+<!-- END forumrow -->
+</div>
+
+<!-- IF $COLLAPSIBLE_CATEGORIES -->
+    <script type="text/javascript">
+    // <![CDATA[
+                $(".forumlist").collapse({show: function(){
+                        this.animate({
+                            opacity: 'toggle',
+                            height: 'toggle'
+                        }, 300);
+                    },
+                    hide : function() {
+                        this.animate({
+                            opacity: 'toggle',
+                            height: 'toggle'
+                        }, 300);
+                    }
+                });
+    // ]]>
+    </script>
+<!-- ENDIF -->

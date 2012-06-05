@@ -1,0 +1,468 @@
+<!-- INCLUDE overall_header.html -->
+	<script language="JavaScript">
+          function isNumberKey(evt)
+          {
+             var charCode = (evt.which) ? evt.which : event.keyCode
+             if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+             return true;
+          }
+    </script>
+    
+	<h1>{ACP_RB_CLASSES_INFO}</h1>
+	<p>{L_CLASS_EXPLAIN}</p>
+
+	<!-- IF S_ERROR -->
+		<div class="errorbox">
+			<h3>{L_WARNING}</h3>
+			<p>{ERROR_MSG}</p>
+		</div>
+	<!-- ENDIF -->
+	<form id="options" name="options" method="post" action="{U_ACTION}">
+<!-- BEGIN mods -->
+	<fieldset>
+		<legend>{L_VERSION_CHECK}</legend>
+		<p style="font-weight: bold; color: <!-- IF mods.S_UP_TO_DATE -->#228822<!-- ELSE -->#BC2A4D<!-- ENDIF -->;">{mods.UP_TO_DATE}</p>
+		<dl>
+			<dt><label>{L_CURRENT_VERSION}</label></dt>
+			<dd><strong>{mods.CURRENT_VERSION}</strong></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_LATEST_VERSION}</label></dt>
+			<dd><strong>{mods.LATEST_VERSION}</strong></dd>
+		</dl>
+		<!-- IF not mods.S_UP_TO_DATE -->
+			<dl>
+				<dt><label>{L_DOWNLOAD_LATEST}</label></dt>
+				<dd><strong><a href="{mods.DOWNLOAD}">{L_DOWNLOAD} {mods.TITLE} v{mods.LATEST_VERSION}</a></strong></dd>
+			</dl>
+			<dl>
+				<dt><label>{L_ANNOUNCEMENT_TOPIC}</label></dt>
+				<dd><strong><a href="{mods.ANNOUNCEMENT}" target="_blank">{L_RELEASE_ANNOUNCEMENT}</a></strong></dd>
+			</dl>
+		<!-- ENDIF -->
+	</fieldset>
+<!-- END mods -->
+	<fieldset>
+		<legend>{L_DEATHKNIGHT}</legend>
+        <dl>
+			<dt><label>{L_BLOOD}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="dk1" name="dk1">
+            	<option value="{L_NONE}" {SEL_DK1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_DK1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_DK1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_DK1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_dk1" id="n_dk1" value="{SEL_DK1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_UNHOLY}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="dk2" name="dk2">
+            	<option value="{L_NONE}" {SEL_DK2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_DK2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_DK2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_DK2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_dk2" id="n_dk2" value="{SEL_DK2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_FROST}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="dk3" name="dk3">
+            	<option value="{L_NONE}" {SEL_DK3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_DK3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_DK3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_DK3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_dk3" id="n_dk3" value="{SEL_DK3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>
+    <fieldset>
+    <legend>{L_DRUID}</legend>
+        <dl>
+			<dt><label>{L_BALANCE}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="druid1" name="druid1">
+            	<option value="{L_NONE}" {SEL_DRUID1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_DRUID1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_DRUID1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_DRUID1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_druid1" id="n_druid1" value="{SEL_DRUID1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_FERAL}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="druid2" name="druid2">
+            	<option value="{L_NONE}" {SEL_DRUID2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_DRUID2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_DRUID2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_DRUID2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_druid2" id="n_druid2" value="{SEL_DRUID2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_RESTORATION}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="druid3" name="druid3">
+            	<option value="{L_NONE}" {SEL_DRUID3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_DRUID3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_DRUID3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_DRUID3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_druid3" id="n_druid3" value="{SEL_DRUID3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>
+	<fieldset>
+    <legend>{L_HUNTER}</legend>
+        <dl>
+			<dt><label>{L_BEASTMASTERY}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="hunter1" name="hunter1">
+            	<option value="{L_NONE}" {SEL_HUNTER1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_HUNTER1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_HUNTER1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_HUNTER1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_hunter1" id="n_hunter1" value="{SEL_HUNTER1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_MARKSMANSHIP}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="hunter2" name="hunter2">
+            	<option value="{L_NONE}" {SEL_HUNTER2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_HUNTER2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_HUNTER2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_HUNTER2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_hunter2" id="n_hunter2" value="{SEL_HUNTER2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_SURVIVAL}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="hunter3" name="hunter3">
+            	<option value="{L_NONE}" {SEL_HUNTER3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_HUNTER3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_HUNTER3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_HUNTER3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_hunter3" id="n_hunter3" value="{SEL_HUNTER3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>
+ 	<fieldset>
+    <legend>{L_MAGE}</legend>
+        <dl>
+			<dt><label>{L_ARCANE}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="mage1" name="mage1">
+            	<option value="{L_NONE}" {SEL_MAGE1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_MAGE1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_MAGE1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_MAGE1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_mage1" id="n_mage1" value="{SEL_MAGE1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_FIRE}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="mage2" name="mage2">
+            	<option value="{L_NONE}" {SEL_MAGE2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_MAGE2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_MAGE2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_MAGE2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_mage2" id="n_mage2" value="{SEL_MAGE2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_FROST}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="mage3" name="mage3">
+            	<option value="{L_NONE}" {SEL_MAGE3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_MAGE3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_MAGE3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_MAGE3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_mage3" id="n_mage3" value="{SEL_MAGE3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>
+     	<fieldset>
+    <legend>{L_PALADIN}</legend>
+        <dl>
+			<dt><label>{L_HOLY}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="paladin1" name="paladin1">
+            	<option value="{L_NONE}" {SEL_PALADIN1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_PALADIN1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_PALADIN1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_PALADIN1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_paladin1" id="n_paladin1" value="{SEL_PALADIN1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_PROTECTION}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="paladin2" name="paladin2">
+            	<option value="{L_NONE}" {SEL_PALADIN2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_PALADIN2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_PALADIN2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_PALADIN2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_paladin2" id="n_paladin2" value="{SEL_PALADIN2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_RETRIBUTION}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="paladin3" name="paladin3">
+            	<option value="{L_NONE}" {SEL_PALADIN3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_PALADIN3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_PALADIN3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_PALADIN3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_paladin3" id="n_paladin3" value="{SEL_PALADIN3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>
+     	<fieldset>
+    <legend>{L_PRIEST}</legend>
+        <dl>
+			<dt><label>{L_DISCIPLINE}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="priest1" name="priest1">
+            	<option value="{L_NONE}" {SEL_PRIEST1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_PRIEST1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_PRIEST1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_PRIEST1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_priest1" id="n_priest1" value="{SEL_PRIEST1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_HOLY}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="priest2" name="priest2">
+            	<option value="{L_NONE}" {SEL_PRIEST2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_PRIEST2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_PRIEST2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_PRIEST2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_priest2" id="n_priest2" value="{SEL_PRIEST2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_SHADOW}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="priest3" name="priest3">
+            	<option value="{L_NONE}" {SEL_PRIEST3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_PRIEST3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_PRIEST3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_PRIEST3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_priest3" id="n_priest3" value="{SEL_PRIEST3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>
+     	<fieldset>
+    <legend>{L_ROGUE}</legend>
+        <dl>
+			<dt><label>{L_ASSASSINATION}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="rogue1" name="rogue1">
+            	<option value="{L_NONE}" {SEL_ROGUE1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_ROGUE1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_ROGUE1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_ROGUE1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_rogue1" id="n_rogue1" value="{SEL_ROGUE1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_COMBAT}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="rogue2" name="rogue2">
+            	<option value="{L_NONE}" {SEL_ROGUE2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_ROGUE2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_ROGUE2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_ROGUE2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_rogue2" id="n_rogue2" value="{SEL_ROGUE2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_SUBTLETY}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="rogue3" name="rogue3">
+            	<option value="{L_NONE}" {SEL_ROGUE3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_ROGUE3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_ROGUE3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_ROGUE3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_rogue3" id="n_rogue3" value="{SEL_ROGUE3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>
+     	<fieldset>
+    <legend>{L_SHAMAN}</legend>
+        <dl>
+			<dt><label>{L_ELEMENTAL}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="shaman1" name="shaman1">
+            	<option value="{L_NONE}" {SEL_SHAMAN1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_SHAMAN1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_SHAMAN1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_SHAMAN1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_shaman1" id="n_shaman1" value="{SEL_SHAMAN1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_ENHANCEMENT}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="shaman2" name="shaman2">
+            	<option value="{L_NONE}" {SEL_SHAMAN2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_SHAMAN2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_SHAMAN2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_SHAMAN2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_shaman2" id="n_shaman2" value="{SEL_SHAMAN2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_RESTORATION}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="shaman3" name="shaman3">
+            	<option value="{L_NONE}" {SEL_SHAMAN3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_SHAMAN3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_SHAMAN3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_SHAMAN3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_shaman3" id="n_shaman3" value="{SEL_SHAMAN3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>
+     	<fieldset>
+    <legend>{L_WARLOCK}</legend>
+        <dl>
+			<dt><label>{L_AFFLICTION}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="warlock1" name="warlock1">
+            	<option value="{L_NONE}" {SEL_WARLOCK1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_WARLOCK1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_WARLOCK1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_WARLOCK1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_warlock1" id="n_warlock1" value="{SEL_WARLOCK1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_DEMONOLOGY}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="warlock2" name="warlock2">
+            	<option value="{L_NONE}" {SEL_WARLOCK2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_WARLOCK2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_WARLOCK2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_WARLOCK2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_warlock2" id="n_warlock2" value="{SEL_WARLOCK2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_DESTRUCTION}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="warlock3" name="warlock3">
+            	<option value="{L_NONE}" {SEL_WARLOCK3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_WARLOCK3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_WARLOCK3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_WARLOCK3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_warlock3" id="n_warlock3" value="{SEL_WARLOCK3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>
+     	<fieldset>
+    <legend>{L_WARRIOR}</legend>
+        <dl>
+			<dt><label>{L_ARMS}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="warrior1" name="warrior1">
+            	<option value="{L_NONE}" {SEL_WARRIOR1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_WARRIOR1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_WARRIOR1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_WARRIOR1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_warrior1" id="n_warrior1" value="{SEL_WARRIOR1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_FURY}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="warrior2" name="warrior2">
+            	<option value="{L_NONE}" {SEL_WARRIOR2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_WARRIOR2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_WARRIOR2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_WARRIOR2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_warrior2" id="n_warrior2" value="{SEL_WARRIOR2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_PROTECTION}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="warrior3" name="warrior3">
+            	<option value="{L_NONE}" {SEL_WARRIOR3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_WARRIOR3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_WARRIOR3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_WARRIOR3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_warrior3" id="n_warrior3" value="{SEL_WARRIOR3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>   
+	{S_FORM_TOKEN}
+	</form>
+<!-- INCLUDE overall_footer.html -->

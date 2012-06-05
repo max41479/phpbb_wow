@@ -1,0 +1,96 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+<form id="acp_listraids" method="post" action="{F_DKPSYS}">
+<div>
+<h1>{L_TITLE}</h1>
+<p>{L_EXPLAIN}</p>
+
+<!-- IF RAID_PAGINATION -->
+<div class="pagination">
+	<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{RAID_PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+<fieldset>
+    <label for="dkpsys_id">{L_POOL}:</label>
+ 	<select id="dkpsys_id" name="dkpsys_id" class="input" onchange="javascript:form.submit();" > 	
+      <!-- BEGIN dkpsys_row -->
+        <option value="{dkpsys_row.VALUE}"{dkpsys_row.SELECTED}>{dkpsys_row.OPTION}</option>
+      <!-- END dkpsys_row -->
+   </select>
+ </fieldset>
+ 
+ <!-- IF .raids_row -->
+  
+<table cellspacing="1">
+<thead>
+  <tr>
+    <th style="text-align:left; width: 7%; white-space: nowrap;"><a href="{U_LIST_RAIDS}&amp;o={O_DATE}&amp;start={START}">{L_DATE}</a></th>
+    <th style="text-align:left; width: 20%; white-space: nowrap;"><a href="{U_LIST_RAIDS}&amp;o={O_NAME}&amp;start={START}">{L_NAME}</a></th>
+    <th style="text-align:left; width: 30%;"><a href="{U_LIST_RAIDS}&amp;o={O_NOTE}&amp;start={START}">{L_NOTE}</a></th>
+    <th style="text-align:center; width: 10%; white-space: nowrap;"><a href="{U_LIST_RAIDS}&amp;o={O_RAIDVALUE}&amp;start={START}">{L_RAIDVALUE}</a></th>
+    <!-- IF S_SHOWTIME -->
+    <th style="text-align:center; width: 10%; white-space: nowrap;"><a href="{U_LIST_RAIDS}&amp;o={O_TIMEVALUE}&amp;start={START}">{L_TIMEVALUE}</a></th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <th style="text-align:left; width: 10%; white-space: nowrap;"><a href="{U_LIST_RAIDS}&amp;o={O_ZSVALUE}&amp;start={START}">{L_ZSVALUE}</a></th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <th style="text-align:center; width: 10%; white-space: nowrap;"><a href="{U_LIST_RAIDS}&amp;o={O_DECAYVALUE}&amp;start={START}">{L_DECAY}</a></th>
+    <!-- ENDIF -->
+    <th style="text-align:center; width: 10%; white-space: nowrap;"><a href="{U_LIST_RAIDS}&amp;o={O_TOTALVALUE}&amp;start={START}">{L_TOTAL}</a></th>
+    <th style="text-align:center;  width: 5%;">{L_ACTION}</th>
+  </tr>
+  </thead>
+  <tfoot>
+  <tr>
+	  <th colspan="3" class="footer">{LISTRAIDS_FOOTCOUNT}</th>
+	  <th class="footer"></th>
+	  <!-- IF S_SHOWTIME --> <th class="footer"></th> <!-- ENDIF -->
+	  <!-- IF S_SHOWZS --> <th class="footer"></th> <!-- ENDIF -->
+	  <!-- IF S_SHOWDECAY --> <th class="footer"></th> <!-- ENDIF -->
+	  <th class="footer"></th>
+	  <th class="footer"></th>
+  </tr>
+  </tfoot>
+<tbody>
+  <!-- BEGIN raids_row -->
+  <tr
+  <!-- IF raids_row.S_ROW_COUNT is even --> class="row1"><!-- ELSE --> class="row2"><!-- ENDIF -->
+    <td>{raids_row.DATE}</td>
+    <td><a href="{raids_row.U_VIEW_RAID}">{raids_row.NAME}</a></td>
+    <td>{raids_row.NOTE}</td>
+    <td class="positive">{raids_row.RAIDVALUE}</td>
+    <!-- IF S_SHOWTIME -->
+    <td class="positive">{raids_row.TIMEVALUE}</td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <td class="positive">{raids_row.ZSVALUE}</td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <td class="negative">{raids_row.DECAYVALUE}</td>
+    <!-- ENDIF -->
+    <td class="positive">{raids_row.TOTAL}</td>
+    <td>
+		<a href="{raids_row.U_VIEW_RAID}">{ICON_EDIT}</a>
+		<a href="{raids_row.U_COPY_RAID}">{ICON_RCOPY}</a>
+	</td>
+	
+  </tr>
+  <!-- END raids_row -->
+  </tbody>
+</table>
+<!-- ENDIF -->
+
+<!-- IF RAID_PAGINATION -->
+<div class="pagination">
+	<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{RAID_PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+	<input class="button2" name="raidadd" type="submit" value="{L_ADD}" />
+</fieldset>
+</div>
+</form>
+<!-- INCLUDE dkp/overall_footer.html -->

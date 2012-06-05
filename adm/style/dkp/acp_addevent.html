@@ -1,0 +1,109 @@
+<!-- INCLUDE overall_header.html -->
+
+<script  type="text/javascript">
+//<![CDATA[
+function check_form()
+{
+   
+    if (document.getElementById('event_value').value.length < 1)
+    {
+        alert('{MSG_VALUE_EMPTY}');
+        return false;
+    }
+    return true;
+}
+
+ $(document).ready(
+ function() 
+ {
+   $('#nojquery').hide();
+   $('#picker').farbtastic('#event_color');
+
+ });
+
+//]]>
+
+</script>
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+<p>{L_EXPLAIN}</p>
+
+<form method="post" action="{F_ADD_EVENT}" id="addevent" onsubmit="return check_form(this)">
+<div>
+<input type="hidden" name="{URI_EVENT}" value="{EVENT_ID}" />
+<input type="hidden" name="hidden_id" value="{EVENT_ID}" />
+
+<fieldset>
+<legend>{L_ADD_EVENT_TITLE}</legend>
+	<dl>
+		<dt><label for="event_dkpid">{L_POOL}:</label></dt>
+		<dd>
+    	 	<select id="event_dkpid" name="event_dkpid" class="input">	
+       			<!-- BEGIN event_dkpid_row -->
+       			<option value="{event_dkpid_row.VALUE}"{event_dkpid_row.SELECTED}>{event_dkpid_row.OPTION}</option>
+       			<!-- END event_dkpid_row -->
+    		</select>
+	 	</dd>
+	</dl>
+
+	<dl>
+		<dt><label for="event_name">{L_EVENT_NAME}:</label><br/>{L_EVENT_NAME_EXPLAIN}</dt>
+		<dd><input class="medium" type="text" id="event_name" name="event_name" value="{EVENT_NAME}" /></dd>
+	</dl>
+	<!-- IF S_BP_SHOW -->
+	<dl>
+		<dt><label for="zoneevent">{L_IMPORTBOSSZONE}:</label><br /><span>{L_IMPORTBOSSZONE_EXPLAIN}</span></dt>
+		<dd><select id="zoneevent" name="zoneevent">{S_ZONEEVENT_OPTIONS}</select> &nbsp;{ZONE_EVENT} </dd>
+	</dl>
+	<!-- ENDIF -->
+	<dl>
+		<dt><label for="event_color">{L_EVENT_COLOR}:</label><br/>{L_EVENT_COLOR_EXPLAIN}</dt>
+		<dd>
+		<table style=" border-width: 0px;"> 
+			<tr>
+				<td>
+				<span id="nojquery" style="color: red; font-size: 1.4em">{L_JQUERY_MISSING}</span>
+				  <span id="picker"></span>
+		       	</td>
+	       		<td>
+				<span class="form-item"><input type="text" id="event_color" name="event_color" value="{EVENT_COLOR}" /></span>
+	    	 	</td>
+		     </tr>
+			</table>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="event_image">{L_EVENT_IMAGE}:</label><br/>{L_EVENT_IMAGE_EXPLAIN}</dt>
+		<dd><input class="medium" type="text" id="event_image" name="event_image" value="{EVENT_IMAGENAME}" />
+		<!-- IF S_EVENT_IMAGE_EXISTS -->   <img src="{IMAGEPATH}" alt="{EVENT_NAME}" />  <!-- ENDIF -->
+		
+		</dd>
+	</dl>
+	<dl>
+		<dt><label for="event_value">{L_EVENT_VALUE}:</label><br/>{L_EVENT_VALUE_EXPLAIN}</dt>
+		<dd><input class="medium" type="text" id="event_value" name="event_value" value="{EVENT_VALUE}" /></dd>
+	</dl>
+</fieldset>
+
+{S_FORM_TOKEN}
+    <!-- IF S_ADD -->
+    <fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+    <input type="submit" name="add" value="{L_ADD_EVENT}" class="button1" /> 
+    <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+    </fieldset>
+    <!-- ELSE -->
+    <fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+    	<input type="submit" name="newraid" value="{L_ADD_RAID}" class="button1" />
+    </fieldset>
+    <fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+    <input type="submit" name="update" value="{L_UPDATE_EVENT}" class="button1" />
+    <input type="submit"  name="delete" value="{L_DELETE_EVENT}" class="button1" />
+    </fieldset>
+    <!-- ENDIF -->
+
+</div>
+</form>
+
+<!-- INCLUDE dkp/overall_footer.html -->

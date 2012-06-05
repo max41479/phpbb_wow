@@ -1,0 +1,289 @@
+<!-- INCLUDE overall_header.html -->
+<h2>{L_APPLY_TITLE}</h2>
+<div class="panel bg1" >
+<div class="inner"  >
+<span class="corners-top"><span></span></span>
+{WELCOME_MSG}
+<!-- IF ERROR -->
+<fieldset class="fields1">
+<center><span class="genmed1 error">{ERROR}</span></center><br/>
+</fieldset>
+<!-- ENDIF -->
+
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+<form action="{S_POST_ACTION}" method="post" id="applyform" onsubmit="return check_form(this)" {S_FORM_ENCTYPE}>
+<!-- IF S_SHOW_FORUMCHOICE -->
+<div class="post bg2" >
+<div class="inner"  >
+<span class="corners-top"><span></span></span>
+<fieldset class="fields2">		
+<dl>
+	<dt><strong>{L_APPLY_PUBLICQUESTION}</strong></dt>
+    <dd>
+    	<input type="radio" name="publ" value="1"{PUBLIC_YES_CHECKED} />&nbsp;{L_APPLY_ACP_PUBLIC}&nbsp;
+    	<input type="radio" name="publ" value="0"{PUBLIC_NO_CHECKED} />&nbsp;{L_APPLY_ACP_PRIVATE}
+    	<span style="color:red">{L_MANDATORY}</span>
+    </dd>
+</dl>
+</fieldset>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>	
+<!-- ENDIF -->
+
+<div class="post bg2" >
+<div class="inner"  >
+<span class="corners-top"><span></span></span>
+
+<fieldset class="fields2">	
+
+
+
+<dl>
+	<dt><strong>{L_APPLY_ACP_CHARNAME}</strong></dt>
+	<dd><input type="text" name="candidate_name" size="25" maxlength="25" class="input" /> <span style="color:red">{L_MANDATORY}</span> </dd>
+</dl>
+<dl>
+	<dt><strong>{L_APPLY_ACP_REALM}</strong></dt>
+	<dd><input type="text" name="candidate_realm" size="25" maxlength="25" class="input" /> <span style="color:red">{L_MANDATORY}</span> </dd>
+</dl>
+
+
+
+<!-- IF S_SHOW_GUILDSELECT -->
+<dl>
+	<dt><strong>{L_GUILD}:</strong></dt>
+  	<dd>
+  	  <div>
+  	  <select id="candidate_guild_id" name="candidate_guild_id" class="input">
+       <!-- BEGIN guild_row -->
+       <option value="{guild_row.VALUE}"{guild_row.SELECTED}>{guild_row.OPTION}</option>
+        <!-- END guild_row -->
+    </select>
+    </div>
+    </dd>
+</dl>
+<!-- ELSE -->
+	<input type="hidden" name="candidate_guild_id" value="{GUILD_ID}" class="input" />
+<!-- ENDIF -->
+
+<dl>
+    <dt><strong>{L_APPLY_LEVEL}</strong></dt>
+	<dd><input type="text" name="candidate_level" size="3" maxlength="3" value="{MEMBER_LEVEL}" class="input" /> <span style="color:red">{L_MANDATORY}</span> </dd>
+</dl> 
+ 
+<dl>
+    <dt><strong>{L_GAME}:</strong></dt>
+  	 <dd>
+  	  <div>
+  		<select name="game_id" class="input" onchange="return GetClassRace(this.value)">
+       <!-- BEGIN game_row -->
+       <option value="{game_row.VALUE}"{game_row.SELECTED}>{game_row.OPTION}</option>
+        <!-- END game_row -->
+      </select>
+      <label for="candidate_race_id">{L_RACE}:</label>
+  	  <select id="candidate_race_id" name="candidate_race_id" class="input">
+       <!-- BEGIN race_row -->
+       <option value="{race_row.VALUE}"{race_row.SELECTED}>{race_row.OPTION}</option>
+        <!-- END race_row -->
+        </select>
+   		<!-- IF S_RACE_IMAGE_EXISTS --> <br/><img src="{RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE -->&nbsp;<!-- ENDIF -->
+	  <label for="candidate_class_id">{L_CLASS}:</label>
+	  <select id="candidate_class_id" name="candidate_class_id" class="input">
+       <!-- BEGIN class_row -->
+        <option value="{class_row.VALUE}"{class_row.SELECTED}>{class_row.OPTION}</option>
+        <!-- END class_row -->
+        </select>
+	    <!-- IF S_CLASS_IMAGE_EXISTS --><br/><img src="{CLASS_IMAGE}" alt="" /><!-- ELSE -->&nbsp;<!-- ENDIF --> &nbsp;<span style="color:red">{L_MANDATORY}</span>
+	</div>
+	</dd>
+</dl>
+
+<dl>
+    <dt><strong>{L_GENDER}:</strong></dt>
+    <dd>
+    <input type="radio" name="candidate_gender"  value="0"{MALE_CHECKED} /> {L_MALE}&nbsp;&nbsp;
+    <input type="radio" name="candidate_gender"  value="1"{FEMALE_CHECKED} /> {L_FEMALE}
+   </dd>
+ </dl>
+</fieldset>
+
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+<hr />
+
+<div class="post bg1" >
+<div class="inner"  >
+<span class="corners-top"><span></span></span>
+
+<fieldset class="fields2">	
+<!-- BEGIN apptemplate -->
+<dl>
+	<dt><strong>{apptemplate.TITLE}</strong></dt>
+	<dd>{apptemplate.QUESTION}
+	<br/>{apptemplate.TYPE}{apptemplate.MANDATORY}</dd>
+</dl>
+<!-- END apptemplate -->
+</fieldset>
+
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+<div class="panel" id="postingbox">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+			<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+			 <center> 	
+					<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+					<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+			</center>
+			<!-- ENDIF --> 
+			<br />
+			<fieldset class="submit-buttons">
+			<input type="submit" accesskey="s" name="post" value="{L_SUBMIT}" class="button1 default-submit-action" />&nbsp;
+			<input type="reset" name="reset" value="{L_RESET}" class="button1" />
+			{S_FORM_TOKEN}
+			</fieldset>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+	
+
+</form>
+
+
+<script type="text/javascript">
+// <![CDATA[
+
+function check_form()
+{
+    if (document.applyform.member_name.value.length < 3)
+    {
+        alert('{LA_MSG_NAME_EMPTY}');
+        return false;
+    }
+    
+    if (document.applyform.member_level.value.length < 1 )
+    {
+        alert('{LA_MSG_LEVEL_EMPTY}');
+        return false;
+    }
+    
+    return true;
+}
+
+/*  make a XMLHTTP Request object */
+function GetXmlHttpObject() 
+{ 
+	var xmlhttp=false;	
+	
+	try
+	{ 
+		//  IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	catch(e)	
+	{	// activex code for IE6, IE5
+		try
+		{			
+			xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		catch(e)
+		{
+			try
+			{
+				xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+			}
+			catch(e1)
+			{
+				xmlhttp=false;
+			}
+		}
+	}
+	return xmlhttp;
+}
+
+/* ajax function to find class and race array based on game */ 
+function GetClassRace(game_id)
+{
+   xmlhttp = GetXmlHttpObject();
+   if (xmlhttp == null)
+   {
+	   alert("{LA_ALERT_OLDBROWSER}");
+	   return;  
+   }
+    var strURL="{T_TEMPLATE_PATH}/dkp/findclassrace.php?game_id="+game_id;
+    xmlhttp.onreadystatechange=classracestateChanged;
+    xmlhttp.open("GET", strURL, true);
+    // send to server
+    xmlhttp.send(null);
+}
+
+
+
+/* called from GetClassRace when state changed */
+function classracestateChanged()
+{
+	if (xmlhttp.readyState==4) //request complete
+	{
+		if (xmlhttp.status == 200)
+		{
+			//receive xml
+			xmlDoc=xmlhttp.responseXML;
+			var racelist = xmlDoc.getElementsByTagName('racelist')[0];
+			var classlist = xmlDoc.getElementsByTagName("classlist")[0];
+
+			var species = racelist.getElementsByTagName("race");
+			var classes = classlist.getElementsByTagName("class");
+			
+			//now modify html : first remove old select options
+			var rsel = document.getElementById('candidate_race_id'); 
+			rsel.options.length = 0; 
+
+			
+			for (var i = 0; i < species.length; i++)
+			{
+				var spec = species[i]; 
+				var raceid = spec.getElementsByTagName("race_id")[0].firstChild.nodeValue;
+				var racename = spec.getElementsByTagName("race_name")[0].firstChild.nodeValue;
+			    // add the options
+			    rsel.options[i] = new Option(racename,raceid, true, false); 
+			}
+			
+			var csel = document.getElementById('candidate_class_id'); 
+			csel.options.length = 0; 
+
+			
+			for (var j = 0; j < classes.length; j++)
+			{
+				
+				var cla = classes[j]; 
+				var classid = cla.getElementsByTagName("class_id")[0].firstChild.nodeValue;
+				var classname = cla.getElementsByTagName("class_name")[0].firstChild.nodeValue;
+			    // add the options
+			    csel.options[j] = new Option(classname,classid, true, false); 
+			}
+			
+			
+			
+		}
+		else 
+		{
+   	   		alert("{LA_ALERT_AJAX}:\n" + xmlhttp.statusText);
+	 	}
+	}
+}
+
+
+
+
+// ]]>
+</script>
+
+<!-- INCLUDE overall_footer.html -->

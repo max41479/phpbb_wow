@@ -1,0 +1,107 @@
+<div style="clear: both;"></div>
+<div id="nav-wrap-left"></div>
+<div id="nav-wrap-right"></div>
+
+<div id="nav">
+    <ul>
+
+			<li class="float-left<!-- IF SCRIPT_NAME eq 'portal' --> active<!-- ENDIF -->">
+				<a href="{U_PORTAL}"><img src="{T_THEME_PATH}/images/nav-home.png" width="16" height="16" alt="" />{L_PORTAL}</a>
+            </li>
+			<li class="divider"></li>
+            <li<!-- IF SCRIPT_NAME eq 'index' --> class="active"<!-- ENDIF -->>
+                <a href="{U_INDEX}">{L_INDEX}</a>
+            </li>
+			<li class="divider"></li>
+            <li class="float-left">
+                <a href="#">{L_LINKS}</a>
+                   	<div style="clear: both;"></div>
+                  	<ul class="drop">
+                        <li><a href="//eu.battle.net/wow/ru/guild/пиратская-бухта/Креатив/" target="_blank"><img src="/forum/images/wow.ico" width="16" height="16" alt="" />Оружейная</a></li>
+                        <li><a href="//worldoflogs.com/guilds/45969/" target="_blank"><img src="/forum/images/worldoflogs.ico" width="16" height="16" alt="" />Wolrd of logs</a></li>
+						<li><a href="//www.wowprogress.com/guild/eu/пиратская-бухта/Креатив/" target="_blank"><img src="/forum/images/wowprogress.ico" width="16" height="16" alt="" />WoWProgress</a></li>
+						<li><a href="//www.guildox.com/wow/guild/eu/Booty%20Bay/Креатив" target="_blank"><img src="/forum/images/guildox.ico" width="16" height="16" alt="" />Guildox</a></li>
+                   	</ul>          
+            </li>
+			<li class="divider"></li>
+            <li class="float-left">
+                <a href="#">{L_VIDEO}</a>
+                   	<div style="clear: both;"></div>
+                  	<ul class="drop">
+                        <li><a href="//www.youtube.com/user/tonyhowk2/videos" target="_blank"><img src="/forum/images/youtube.ico" width="16" height="16" alt="" />Youtube</a></li>
+						<li><a href="//ru.twitch.tv/max41479" target="_blank"><img src="/forum/images/twitch.ico" width="16" height="16" alt="" />Kiliminara's Stream</a></li>
+                    </ul>
+            </li>
+            <li class="divider"></li>
+
+        
+        <!-- IF not S_IS_BOT -->
+        
+        	<!-- IF S_USER_LOGGED_IN -->
+            	<li class="float-right logout">
+                	<a href="{U_LOGIN_LOGOUT}" class="tip" title="{L_LOGOUT}"><img src="{T_THEME_PATH}/images/logout.png" width="16" height="16" alt="" /></a>
+                </li>
+                <li class="divider float-right"></li>
+            <!-- ENDIF -->
+                     	
+        	<li class="float-right<!-- IF SCRIPT_NAME eq 'ucp' and $CURRENT_PAGE != 'register' --> active<!-- ENDIF -->">
+            	<!-- IF not S_USER_LOGGED_IN -->
+            		<a href="{U_LOGIN_LOGOUT}"><img src="{T_THEME_PATH}/images/key.png" width="16" height="16" alt="" />{L_LOGIN_LOGOUT}</a>               
+                <!-- ELSE -->
+                	<a href="{U_PROFILE}"><img src="{T_THEME_PATH}/images/userdrop.png" width="16" height="16" alt="" />{S_USERNAME}</a>
+                    <div style="clear: both;"></div>
+                    <ul class="drop">
+                        <li><a href="{U_SEARCH_SELF}">{L_SEARCH_SELF}</a></li>
+                        <li><a href="{U_PROFILE}">{L_PROFILE}</a></li>
+                        <!-- IF U_MCP --><li><a href="{U_MCP}">{L_MCP}</a></li><!-- ENDIF -->
+                        <!-- IF U_ACP --><li><a href="{U_ACP}">{L_ACP}</a></li><!-- ENDIF -->
+                    </ul>                         
+                <!-- ENDIF -->
+            </li>
+            <li class="divider float-right"></li>
+            
+            <!-- IF not S_USER_LOGGED_IN and S_REGISTER_ENABLED and not S_SHOW_COPPA -->
+            	<li class="float-right<!-- IF $CURRENT_PAGE == 'register' --> active<!-- ENDIF -->">
+                	<a href="{U_REGISTER}"><img src="{T_THEME_PATH}/images/add.png" width="16" height="16" alt="" />{L_REGISTER}</a>
+                </li>
+                <li class="divider float-right"></li>
+            <!-- ENDIF -->
+            
+        	<!-- IF S_DISPLAY_SEARCH -->
+                <li class="float-right<!-- IF SCRIPT_NAME eq 'search' --> active<!-- ENDIF -->">
+                    <a href="{U_SEARCH}"><img src="{T_THEME_PATH}/images/search<!-- IF S_USER_LOGGED_IN -->-drop<!-- ENDIF -->.png" width="16" height="16" alt="" />{L_SEARCH}</a>
+                    <!-- IF S_USER_LOGGED_IN -->
+                    	<div style="clear: both;"></div>
+                    	<ul class="drop">
+                            <li><a href="{U_SEARCH}">{L_SEARCH_ADV}</a></li>
+                            <li><a href="{U_SEARCH_UNANSWERED}">{L_SEARCH_UNANSWERED}</a></li>
+                            <!-- IF S_LOAD_UNREADS -->
+                            	<li><a href="{U_SEARCH_UNREAD}">{L_SEARCH_UNREAD}</a></li>
+                                <li><a href="{U_SEARCH_NEW}">{L_SEARCH_NEW}</a></li>
+                                <li><a href="{U_SEARCH_ACTIVE_TOPICS}">{L_SEARCH_ACTIVE_TOPICS}</a></li>
+                            <!-- ENDIF -->
+                    	</ul>
+                    <!-- ENDIF -->                    
+                </li>
+                <li class="divider float-right"></li>
+            <!-- ENDIF --> 
+                
+            <!-- IF S_DISPLAY_MEMBERLIST -->
+                <li class="float-right<!-- IF SCRIPT_NAME eq 'memberlist' --> active<!-- ENDIF -->">
+                    <a href="{U_MEMBERLIST}"><img src="{T_THEME_PATH}/images/nav-members.png" width="16" height="16" alt="" />{L_MEMBERLIST}</a>
+                </li>
+                <li class="divider float-right"></li>
+            <!-- ENDIF -->
+            
+            <!-- IF S_DISPLAY_PM -->
+                <li class="float-right">
+                    <a href="{U_PRIVATEMSGS}"><img src="{T_THEME_PATH}/images/nav-pm<!-- IF S_USER_UNREAD_PRIVMSG -->-new<!-- ENDIF -->.png" width="16" height="16" alt="" />{L_MESSAGES}</a>
+                </li>
+                <li class="divider float-right"></li>            
+            <!-- ENDIF -->
+                
+                                                  
+        <!-- ENDIF -->      
+
+    </ul>
+</div>

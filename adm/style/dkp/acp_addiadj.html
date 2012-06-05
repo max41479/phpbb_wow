@@ -1,0 +1,100 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+<script type="text/javascript">
+
+//<![CDATA[
+function check_form()
+{
+    if (document.getElementById("adjustment_value").value.length < 1)
+    {
+        alert('{MSG_VALUE_EMPTY}');
+        return false;
+    }
+    return true;
+}
+//]]>
+
+</script>
+<form method="post" action="{F_ADD_ADJUSTMENT}" id="addiadj" onsubmit="return check_form(this)">
+
+<h1>{L_TITLE}</h1>
+
+<p>{L_EXPLAIN}</p>
+
+<div style="float: left; width: 50%;">
+<fieldset>
+
+<legend>{L_ADD_IADJ_TITLE}</legend>
+<dl>
+ <dt><label for="adj_dkpid">{L_POOL}:</label></dt>
+<dd>
+ 	<select id="adj_dkpid" name="adj_dkpid" class="input">	
+		<!-- BEGIN adj_dkpid_row -->
+ 			<option value="{adj_dkpid_row.VALUE}"{adj_dkpid_row.SELECTED}>{adj_dkpid_row.OPTION}</option>
+		<!-- END adj_dkpid_row -->
+	</select>
+ 	</dd>
+</dl>
+<dl>
+ <dt><label for="adjustment_reason">{L_REASON}:</label></dt>
+ <dd><input type="text" name="adjustment_reason" id="adjustment_reason"  size="35" maxlength="255" value="{ADJUSTMENT_REASON}" class="input" /></dd>
+</dl>
+
+<dl>
+  <dt><label for="adjustment_value">{L_VALUE}</label><span class="small">({L_ADJUSTMENT_VALUE_NOTE})</span>:
+  </dt>
+  <dd><input type="text" id="adjustment_value" name="adjustment_value" size="7" maxlength="10" 
+  	value="{ADJUSTMENT_VALUE}" class="input" />{FV_ADJUSTMENT}
+  </dd>
+</dl>
+
+<dl>
+  <dt><label for="mo">{L_DATE}:</label></dt><dd><input type="text" id="mo" name="mo" size="3" maxlength="2" value="{MO}" class="input" />/
+  <input type="text" name="d" size="3" maxlength="2" value="{D}" class="input" />/
+  <input type="text" name="y" size="5" maxlength="4" value="{Y}" class="input" />
+  <br />{FV_MO}{FV_D}{FV_Y}</dd>
+</dl>
+
+  <dl>
+    <dt><label for="adj_decayable">{L_NO_DECAY_ADJ}</label><br /></dt>
+    <dd>
+    <input type="radio" id="adj_decayable" name="adj_decayable" value="1"{CAN_DECAY_YES_CHECKED} /> {L_YES}&nbsp;&nbsp;
+    <input type="radio" name="adj_decayable" value="0"{CAN_DECAY_NO_CHECKED} /> {L_NO}
+   </dd>
+ </dl>
+  
+
+</fieldset>
+
+
+</div>
+<div style="float: right; width: 48%;"><fieldset>
+<legend>{L_MEMBERS}</legend>
+    <span style="small">{L_HOLD_CTRL_NOTE}</span> <br />
+      <select name="member_names[]" style="float: left; width: 100%;" multiple="multiple" class="input">
+        <!-- BEGIN members_row -->
+        <option value="{members_row.VALUE}"{members_row.SELECTED}>{members_row.OPTION}</option>
+        <!-- END members_row -->
+      </select> 
+    
+</fieldset>
+
+
+</div>  
+<div style="clear:both; width: 100%;">
+   <fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+    <input type="hidden" name="{URI_ADJUSTMENT}" value="{ADJUSTMENT_ID}" />
+	<input type="hidden" name="hidden_id" value="{ADJUSTMENT_ID}" />
+	<input type="hidden" name="{URI_DKPSYS}" value="{DKP_ID}" />
+	<input type="hidden" name="hidden_dkpid" value="{DKP_ID}" />
+  	{S_FORM_TOKEN}
+    <!-- IF S_ADD -->
+    <input type="submit" name="add" value="{L_ADD_ADJUSTMENT}" class="button1" /> <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+    <!-- ELSE -->
+    <input type="submit" name="update" value="{L_UPDATE_ADJUSTMENT}" class="button1" /> <input type="submit"  name="delete" value="{L_DELETE_ADJUSTMENT}" class="button1" />
+    <!-- ENDIF -->
+	</fieldset>
+</div>
+
+</form>
+<!-- INCLUDE overall_footer.html -->

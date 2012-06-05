@@ -1,0 +1,85 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<p>{L_EXPLAIN}</p>
+
+<form method="post" id="listiadj" action="{F_LISTIADJ}">
+<!-- IF S_SHOW -->
+
+<fieldset>
+<legend>Filter</legend>
+    <label for="dkpsys_id">{L_POOL}:</label>
+  	<select id="dkpsys_id"  name="dkpsys_id" class="input" onchange="javascript:form.submit();"> 	
+       <!-- BEGIN dkpsys_row -->
+         <option value="{dkpsys_row.VALUE}"{dkpsys_row.SELECTED}>{dkpsys_row.OPTION}</option>
+       <!-- END dkpsys_row -->
+    </select><label>&nbsp;&nbsp;{L_NAME}:</label>
+    <input type="text" name="member_name" id="member_name" size="20" maxlength="30" value="{MEMBER_NAME}" class="input" />
+      <input type="submit" name="submit_options" value="{L_FILTER}" class="button1" />
+</fieldset>
+
+<!-- IF ADJUSTMENT_PAGINATION -->
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{ADJUSTMENT_PAGINATION}</span>
+</div>
+ 
+<!-- ENDIF -->
+<table cellspacing="1">
+  <tr class="rowhead">
+    <th style="text-align:left; width:70; white-space: nowrap"><a href="{U_LIST_ADJUSTMENTS}&amp;o={O_DATE}&amp;start={START}">{L_DATE}</a></th>
+    <th style="text-align:left; width:30; white-space: nowrap"><a href="{U_LIST_ADJUSTMENTS}&amp;o={O_DKPID}&amp;start={START}">{L_POOLID}</a></th>
+    <th style="text-align:left; width:50; white-space: nowrap"><a href="{U_LIST_ADJUSTMENTS}&amp;o={O_DKPPOOL}&amp;start={START}">{L_POOL}</a></th>
+    <th style="text-align:left; width:150; white-space: nowrap"><a href="{U_LIST_ADJUSTMENTS}&amp;o={O_MEMBER}&amp;start={START}">{L_MEMBER}</a></th>
+    <th style="text-align:left; width:400"><a href="{U_LIST_ADJUSTMENTS}&amp;o={O_REASON}&amp;start={START}">{L_REASON}</a></th>
+    <th style="text-align:left; width:90; white-space: nowrap"><a href="{U_LIST_ADJUSTMENTS}&amp;o={O_ADDED_BY}&amp;start={START}">{L_ADDED_BY}</a></th>
+    <th style="text-align:right; width:90; white-space: nowrap"><a href="{U_LIST_ADJUSTMENTS}&amp;o={O_ADJUSTMENT}&amp;start={START}">{L_ADJUSTMENT}</a></th>
+    <th style="text-align:right; width:90; white-space: nowrap">{L_DECAY}</th>
+    <th style="text-align:right; width:90; white-space: nowrap"><a href="{U_LIST_ADJUSTMENTS}&amp;o={O_ADJUSTMENT}&amp;start={START}">{L_ADJUSTMENT_NET}</a></th>
+    <th style="text-align:right; width:90; white-space: nowrap">{L_TIME}</th>
+    <th style="text-align:center; width:5">{L_ACTION}</th>
+  </tr>
+  
+  <!-- BEGIN adjustments_row -->
+  <!-- IF menu_row.S_ROW_COUNT is even --><tr class="row1">
+  <!-- ELSE -->
+  <tr class="row2"><!-- ENDIF -->
+    <td style="text-align:left;">{adjustments_row.DATE}</td>
+    <td style="text-align:left;">{adjustments_row.DKPID}</td>
+    <td style="text-align:left;">{adjustments_row.DKPPOOL}</td>
+    <td style="text-align:left;"><!-- IF adjustments_row.S_CLASS_IMAGE_EXISTS --><img src="{adjustments_row.CLASS_IMAGE}" alt="{adjustments_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF -->&nbsp;<strong><a style="color:{adjustments_row.COLORCODE}" href="{adjustments_row.U_VIEW_MEMBER}">{adjustments_row.MEMBER}</a></strong></td>
+    <td style="text-align:left;">{adjustments_row.REASON}</td>
+    <td style="text-align:left;" class="{adjustments_row.ADDED_BY}">{adjustments_row.ADDED_BY}</td>
+    <td style="text-align:right;" class="{adjustments_row.C_ADJUSTMENT}">{adjustments_row.ADJUSTMENT}</td>
+    <td style="text-align:right;">{adjustments_row.ADJ_DECAY}</td>
+    <td style="text-align:right;">{adjustments_row.ADJUSTMENT_NET}</td>
+    <td style="text-align:right;">{adjustments_row.DECAY_TIME}</td>
+    <td style="text-align:center;">
+		<a href="{adjustments_row.U_ADD_ADJUSTMENT}">{ICON_EDIT}</a>
+	</td>
+  </tr>
+  <!-- END adjustments_row --> 
+  <tr>
+    <th colspan="11" class="footer">{LISTADJ_FOOTCOUNT}</th>
+  </tr>
+</table>
+
+<!-- IF ADJUSTMENT_PAGINATION -->
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{ADJUSTMENT_PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+<!-- ELSE -->
+<div class="errorbox">
+<p>{L_ERROR_NOADJUSTMENTS}</p>
+</div>
+<!-- ENDIF -->
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN}">
+	<input class="button2" name="addiadj" type="submit" value="{L_ADD}" />
+</fieldset>
+
+</form>
+<!-- INCLUDE dkp/overall_footer.html -->	

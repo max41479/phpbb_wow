@@ -1,0 +1,259 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_POINT_SETTINGS}</h1>
+<p>{L_ACP_DKP_POINTCONFIG_EXPLAIN}</p>
+
+<form method="post" action="{F_ADD_CONFIG}" id="pointconfig" >
+
+<fieldset>
+<legend>{L_MENU_DKP}</legend>
+ 
+<dl>	
+	<dt>
+		{L_SYNCDKP} <br/>
+		{L_SYNCDKP_EXPLAIN}
+	</dt>
+	<dd>
+		<input type="submit" name="syncdkp" value="{L_SYNC}" class="button1" />
+	</dd>
+</dl>
+
+<hr/>
+
+<h3>{L_STANDARDDKP}</h3>
+<p>{L_STANDARDDKP_EXPLAIN}</p>
+
+<hr/>
+
+<h3>{L_TIMEDKP}</h3>
+<p>{L_TIMEDKP_EXPLAIN}</p>
+
+<p>{L_TIMEDKP_EXAMPLE}</p>
+<dl><dt>  
+     <label>{L_TIMEDKP}:</label>
+     <br />
+     </dt>
+     <dd>
+     <input type="radio" name="timebonus_activate" value="1"<!-- IF F_TIMEBONUSACTIVATE == 1 --> checked="checked"<!-- ENDIF --> /> {L_ON}&nbsp;&nbsp;
+     <input type="radio" name="timebonus_activate" value="0"<!-- IF F_TIMEBONUSACTIVATE == 0 --> checked="checked"<!-- ENDIF --> /> {L_OFF}
+ 	</dd>
+</dl> 
+
+<dl>
+	<dt>   
+	<label for="dkptimeunit">{L_DKPTIMEUNIT}:</label>
+    <br />{L_DKPTIMEUNIT_EXPLAIN}
+	</dt><dd>
+  <input type="text" name="dkptimeunit" id="dkptimeunit" size="10" maxlength="10" value="{DKPTIMEUNIT}" class="input" />
+  </dd>
+  <dd></dd>
+</dl> 
+
+<dl>
+	<dt>   
+	<label for="timeunit">{L_TIMEUNIT}:</label>
+    <br />{L_TIMEUNIT_EXPLAIN}
+	</dt><dd>
+  <input type="text" name="timeunit" id="timeunit" size="10" maxlength="10" value="{TIMEUNIT}" class="input" />
+  </dd>
+  <dd></dd>
+</dl> 
+
+<dl>
+	<dt>   
+	<label for="standardduration">{L_STANDARDDURATION}:</label>
+    <br />{L_STANDARDDURATION_EXPLAIN}
+	</dt><dd>
+  <input type="text" name="standardduration" id="standardduration" size="10" maxlength="10" value="{STANDARDDURATION}" class="input" />
+  </dd>
+  <dd></dd>
+</dl> 
+
+<hr/>
+
+<h3>{L_ZEROSUM}</h3>
+<p>{L_ZEROSUM_EXPLAIN}</p>
+<p>{L_ZEROSUM_EXAMPLE}</p>
+<dl><dt>  
+     <label>{L_ZEROSUM}:</label><br />{L_ZEROSUM_ONOFF_EXPLAIN}
+     <br />
+     </dt>
+     <dd>
+     <input type="radio" name="zerosum_activate" value="1"<!-- IF F_ZEROSUMACTIVATE == 1 --> checked="checked"<!-- ENDIF --> /> {L_ON}&nbsp;&nbsp;
+     <input type="radio" name="zerosum_activate" value="0"<!-- IF F_ZEROSUMACTIVATE == 0 --> checked="checked"<!-- ENDIF --> /> {L_OFF}
+ 	</dd>
+</dl> 
+
+<dl><dt>  
+     <label for="zerosum_synchronise">{L_RESYNC_ZEROSUM}:</label><br />{L_RESYNC_ZEROSUM_EXPLAIN}
+     <br />
+     </dt>
+     <dd>
+		<input type="submit" name="zerosum_synchronise" id="zerosum_synchronise" value="{L_RUN}" class="button1" /> 	 
+ 	</dd>
+</dl> 
+
+
+<dl><dt>  
+     <label for="zerosumdistother">{L_ZEROSUM_DISTRIBUTEOTHER}:</label>
+     <br />{L_ZEROSUM_DISTRIBUTEOTHER_EXPLAIN}
+     </dt>
+     <dd>
+     <input name="zerosumdistother" type="checkbox" id="zerosumdistother" value="1" <!-- IF F_ZEROSUM_DISTOTHER == 1 --> checked="checked"<!-- ENDIF -->  />
+ 	</dd>
+</dl> 
+
+<dl><dt>  
+     <label for="zerosumbanker">{L_ZEROSUMBANKER}:</label>
+     <br />{L_ZEROSUMBANKER_EXPLAIN}
+     </dt>
+     <dd>
+     
+ 	<select id="zerosumbanker" name="zerosumbanker">{S_BANKER_OPTIONS}</select>
+ 	</dd>
+</dl> 
+
+<hr/>
+<h3>{L_DECAY}</h3>
+<p>{L_DECAY_EXPLAIN}</p>
+
+<dl><dt>  
+     <label for="decay_activate">{L_DECAY}:</label>
+     <br />
+     </dt>
+     <dd>
+     <input type="radio" name="decay_activate" id="decay_activate"  value="1"<!-- IF F_DECAYACTIVATE == 1 --> checked="checked"<!-- ENDIF --> /> {L_ON}&nbsp;&nbsp;
+     <input type="radio" name="decay_activate" value="0"<!-- IF F_DECAYACTIVATE == 0 --> checked="checked"<!-- ENDIF --> /> {L_OFF}
+ 	</dd>
+</dl> 
+
+<dl><dt>  
+     <label for="decay_synchronise">{L_RESYNC_DECAY}:</label><br />{L_RESYNC_DECAY_EXPLAIN}
+     <br />
+     </dt>
+     <dd>
+		<input type="submit" name="decay_synchronise" id="decay_synchronise" value="{L_RUN}" class="button1" /> 	 
+ 	</dd>
+</dl> 
+
+<dl>
+	<dt><label for="raiddecaypct">{L_DECAYPCTRAIDS}:</label> <br />
+	{L_DECAYPCTRAIDS_EXPLAIN}</dt>
+	<dd><input type="text" name="raiddecaypct" id="raiddecaypct" size="5" maxlength="5" value="{RAIDDECAYPCT}" class="input" /></dd>
+</dl>
+
+
+<dl>
+	<dt><label for="itemdecaypct">{L_DECAYPCTITEM}:</label> <br />
+	{L_DECAYPCTITEM_EXPLAIN}</dt>
+	<dd><input type="text" name="itemdecaypct" id="itemdecaypct" size="5" maxlength="5" value="{ITEMDECAYPCT}" class="input" /></dd>
+</dl>
+
+<dl>
+	<dt><label for="adjdecaypct">{L_DECAYPCTADJ}:</label> <br />
+	{L_DECAYPCTADJ_EXPLAIN}</dt>
+	<dd><input type="text" name="adjdecaypct" id="adjdecaypct" size="5" maxlength="5" value="{ADJDECAYPCT}" class="input" /></dd>
+</dl>
+
+
+<dl>
+	<dt><label for="decayfreq">{L_DECAYFREQ}:</label> <br />
+	{L_DECAYFREQ_EXPLAIN}</dt>
+	<dd><input type="text" name="decayfreq" id="decayfreq" size="5" maxlength="5" value="{DECAYFREQ}" class="input" />
+	<select id="decayfreqtype" name="decayfreqtype">{S_FREQTYPE_OPTIONS}</select>
+	</dd>
+</dl>
+
+<dl><dt>  
+     <label for="decay_scheduler">{L_DECAY_SCHEDULE}</label>
+     <br />{L_DECAY_SCHEDULE_EXPLAIN}
+     </dt>
+     <dd>
+     <input type="radio" name="decay_scheduler" id="decay_scheduler"  value="1"<!-- IF F_DECAYSCHEDULER == 1 --> checked="checked"<!-- ENDIF --> /> {L_ON}&nbsp;&nbsp;
+     <input type="radio" name="decay_scheduler" value="0"<!-- IF F_DECAYSCHEDULER == 0 --> checked="checked"<!-- ENDIF --> /> {L_OFF}
+ 	</dd>
+</dl> 
+
+<dl>
+<dt>
+<label>{L_FORMULA}</label>
+</dt>
+<dd>
+{L_DECAY_N}	<br/>
+{L_DECAY_I}	<br/> 
+{L_DECAY_D}	<br/>
+{L_DECAY_R}	<br/>
+{L_DECAY_K}	<br/>
+<br/>
+{L_DECAY_L} <br/>	
+{L_DECAY_J}	<br/>
+{L_DECAY_F}<br/>
+
+</dd>
+</dl>
+
+<dl>
+<dt>
+<label>{L_DECAY_EXAMPLE}</label>
+</dt>
+<dd>
+<div style="border:thin"><img src="{DECAYIMGEXAMPLE}" alt="decay"/></div>
+</dd>
+</dl>
+
+
+<hr/>
+
+<h3>{L_EPGP}</h3>
+<p>{L_EPGP_EXPLAIN}</p>
+
+<dl>
+	<dt>  
+     <label for="epgp_activate">{L_EPGP}:</label><br />{L_EPGP_ONOFF_EXPLAIN}
+     <br />
+     </dt>
+    <dd>
+     <input type="radio" name="epgp_activate" id="epgp_activate"  value="1"<!-- IF F_EPGPACTIVATE == 1 --> checked="checked"<!-- ENDIF --> /> {L_ON}&nbsp;&nbsp;
+     <input type="radio" name="epgp_activate" value="0"<!-- IF F_EPGPACTIVATE == 0 --> checked="checked"<!-- ENDIF --> /> {L_OFF}    
+	 </dd>
+</dl> 
+	
+<dl>
+	<dt><label for="minep">{L_MEP}:</label> <br />
+	{L_MEP_EXPLAIN}</dt>
+	<dd><input type="text" name="minep" id="minep"  size="5" maxlength="5" value="{MINEP}" class="input" /></dd>
+</dl>
+<dl>
+	<dt><label for="basegp">{L_BGP}:</label> <br />
+	{L_BGP_EXPLAIN}</dt>
+	<dd><input type="text" name="basegp" id="basegp"  size="5" maxlength="5" value="{BASEGP}" class="input" /></dd>
+</dl>
+
+<dl>
+<dt>
+<label>{L_FORMULA}</label>
+</dt>
+<dd>
+{L_EP_DEFINITION}<br/>
+{L_MEP_DEFINITION}<br/>
+{L_DECAY_EP}  
+<br/><br/>
+{L_GP_DEFINITION} <br/>
+{L_RGP_DEFINITION} <br />
+{L_DECAY_GP}<br/>
+</dd>
+</dl>
+
+</fieldset>
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+	{S_FORM_TOKEN}
+  <input type="submit" name="update" value="{L_SUBMIT}" class="button1" /> <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+</fieldset>
+
+</form>
+
+
+<!-- INCLUDE dkp/overall_footer.html -->

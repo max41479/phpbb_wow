@@ -1,0 +1,331 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+<script type="text/javascript">
+//<![CDATA[
+
+function check_form()
+{
+    if ((document.getElementById("select_item_id").value.length < 2) && (document.getElementById('item_name').value.length < 2))
+    {
+        alert('{MSG_NAME_EMPTY}');
+        return false;
+    }
+    
+    if (document.getElementById('item_value').value.length < 1)
+    {
+        alert('{MSG_VALUE_EMPTY}');
+        return false;
+    }
+    return true;
+}
+
+function fnSearchmembers(event)
+{
+   
+    var searchBox = document.getElementById("memberSearch");  
+    var reSearch = new RegExp( searchBox.value, "i" );
+    
+    var selectBox = document.getElementById("raiders");
+    var len = selectBox.options.length;
+    
+    for ( var i = 0; i < len; i++ )
+    {
+        if( reSearch.test( selectBox.options[i].text ) )
+        {
+            selectBox.options[i].selected = true;
+            break;
+        }
+        else
+        {
+            selectBox.options[i].selected = false;
+        }
+    }
+}
+
+
+
+function fnAddBuyer()
+{
+	var fromField = document.getElementById("raiders");
+    var fromSize = fromField.options.length
+
+    var toField = document.getElementById("item_buyers");
+    var toSize = toField.options.length
+
+    var aSelected = new Array();
+
+    // Build an array of the selected members
+    for (var i = 0; i < fromSize; i++)
+    {
+        if ( fromField.options[i].selected == true )
+        {
+            aSelected[aSelected.length] = i;
+        }
+    }
+
+    var offset = 0;
+    
+    for(var i = 0; i < aSelected.length; i++ )
+    {
+        var index = aSelected[i];
+
+        var memberValue = fromField.options[index].value;
+        var memberText = fromField.options[index].text;
+
+        // Remove the initial spacer member
+        if ( (toSize == 1) && (toField.options[0].text == "") )
+        {
+            toSize = 0;
+        }
+
+        // Loop through the destination list, don't add if it's a duplicate
+        for (var j = 0, exists = false; j < toSize; j++ )
+        {
+            // destination already exists
+            if ( toField.options[ j ].text == memberText )
+            {
+                var exists = true;
+                offset++;
+            }
+        }
+
+        // destination doesn't exist, add them
+        if ( exists != true )
+        {
+            toField.options[toSize + i - offset] = new Option(memberText, memberValue);
+            toField.options[toSize + i - offset].selected = true;
+        }
+    }
+    document.getElementById('memberSearch').value = "";
+    document.getElementById('memberSearch').focus();
+}
+
+
+function fnRemoveBuyer()
+{
+  var toField = document.getElementById("item_buyers");
+  var toSize = toField.options.length;
+    
+  var i;
+  for (i = toField.length - 1; i>=0; i--) 
+  {
+  	if (toField.options[i].selected) 
+  	  {
+     	 toField.remove(i);
+  	  }
+  }
+}
+
+/* add function to string object to trim leading and training spaces. */ 
+String.prototype.trim = function () {
+	return this.replace(/^\s*|\s*$/,"");
+}
+
+function switch_item_val()
+{
+  var selecttext = document.getElementById('select_item_id').options[document.getElementById('select_item_id').selectedIndex].text;
+  document.getElementById('item_name').value = selecttext.split('/')[0].trim();
+  document.getElementById('item_gameid').value = selecttext.split('/')[1].trim();
+  document.getElementById('item_value').value = selecttext.split('/')[2].trim();
+
+}
+
+function fnSearchItems(event)
+{
+    var searchBox = document.getElementById("itemSearch");  
+	GetItems(searchBox.value);
+}
+
+/* ajax function to find item */ 
+var xmlhttp; 
+function GetItems(itemname)
+{
+   xmlhttp = GetXmlHttpObject();
+   if (xmlhttp == null)
+   {
+	   alert("{LA_ALERT_OLDBROWSER}");
+	   return;  
+   }
+    var strURL="{UA_FINDITEMS}&itemSearch="+itemname;
+    xmlhttp.onreadystatechange=stateChanged;
+    xmlhttp.open("GET", strURL, true);
+    // send to server
+    xmlhttp.send(null);
+}
+
+
+/* called from GetItems when state changed */
+function stateChanged()
+{
+	if (xmlhttp.readyState==4) //request complete
+	{
+		if (xmlhttp.status == 200)
+		{
+			//remove select options
+			var itemsel = document.getElementById('select_item_id'); 
+			itemsel.options.length = 0; 
+			
+			//receive xml
+			var xmlDoc=xmlhttp.responseXML;
+			
+			var root = xmlDoc.getElementsByTagName('itemlist')[0];
+			var items = root.getElementsByTagName("item")
+			for (var i = 0; i < items.length; i++)
+			{
+				var item = items[i]; 
+				var itemname = item.getElementsByTagName("item_name")[0].firstChild.nodeValue;
+				var item_gameid = item.getElementsByTagName("item_gameid")[0].firstChild.nodeValue;
+				var item_value = item.getElementsByTagName("item_value")[0].firstChild.nodeValue;
+			    // add the options
+				itemsel.options[i] = new Option(itemname + " / " + item_gameid + " / " + item_value ,itemname, true, false); 
+			}
+		}
+		else 
+		{
+   	   		alert("{LA_ALERT_AJAX}:\n" + xmlhttp.statusText);
+	 	}
+	}
+}
+
+/*  make a XMLHTTP Request object */
+function GetXmlHttpObject() 
+{ 
+	var xmlhttp=false;	
+	
+	try
+	{ 
+		//  IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	catch(e)	
+	{	// legacy activex code for IE6, IE5
+		try
+		{			
+			xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		catch(e)
+		{
+			try
+			{
+				xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+			}
+			catch(e1)
+			{
+				xmlhttp=false;
+			}
+		}
+	}
+	return xmlhttp;
+}
+
+//]]>
+</script>
+
+<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
+
+<form method="post" action="{F_ADD_ITEM}" id="additem" >
+
+<h1>{ITEMTITLE}</h1>
+<p>{L_EXPLAIN}</p>
+ 
+<div style="float: right; width: 50%;">
+<fieldset>
+<legend>{FV_ITEM_BUYERS}{L_BUYERS}:</legend>
+<div style="text-align:center">
+	
+	<div class="search-box">
+   	<input type="text" name="memberSearch" id="memberSearch" value="{L_SEARCH_MINI}" onblur="if(this.value=='')this.value='Search…';" onclick="if(this.value=='Search…') this.value='';" onkeyup="fnSearchmembers(event);" />
+    </div>
+	    
+	<br />
+	<span class="small">{L_HOLD_CTRL_NOTE}</span>
+	
+	<select style="float: left; width: 49%;" name="raiders[]" id= "raiders" size="20" multiple="multiple" class="input">
+		<!-- BEGIN raiders_row -->
+		<option value="{raiders_row.VALUE}">{raiders_row.OPTION}</option>
+		<!-- END raiders_row -->
+	</select>
+	
+	<select style="float: right; width: 49%;" name="item_buyers[]" id="item_buyers" size="20" multiple="multiple" class="input">
+		<!-- BEGIN buyers_row -->
+		<option value="{buyers_row.VALUE}" selected="selected">{buyers_row.OPTION}</option>
+		<!-- END buyers_row -->
+	</select>
+	
+	<input type="button" name="button1" value="&lt;&lt;" accesskey="r" onclick="return fnRemoveBuyer()" class="button1" />
+	<input type="button" name="button2" value="&gt;&gt;" accesskey="m" onclick="return fnAddBuyer()" class="button1" />
+</div>
+</fieldset>
+</div>
+    
+    
+<div style="float: left; width: 50%;"> 
+ <fieldset> 
+ <legend>{L_ITEM} </legend>
+    
+	<div class="search-box">
+   	<input type="text" name="itemSearch" id="itemSearch" value="{L_SEARCH_MINI}" onblur="if(this.value=='')this.value='Search…';" onclick="if(this.value=='Search…') this.value='';" onkeyup="fnSearchItems(event); switch_item_val();" />
+    </div>
+    <br />
+ 	
+    <div style="width:50%">
+ 	<select id="select_item_id" name="select_item_id[]" onchange="javascript:switch_item_val();" size="10" style="width: 100%" class="input">
+      <!-- BEGIN items_row -->
+      <option value="{items_row.VALUE}"{items_row.SELECTED}>{items_row.OPTION}</option>
+      <!-- END items_row -->
+    </select>
+   </div>
+   <br />
+   <hr />
+    <dl>
+	   	<dt><label>{L_ENTER_NEW}:</label></dt>
+   		<dd><input type="text" id="item_name" name="item_name" size="30" maxlength="255" value="{ITEM_NAME}" class="input" />{FV_ITEM_NAME}</dd>
+   	</dl>
+   	
+   	<dl>
+	   	<dt><label>{L_ENTER_NEW_GAMEITEMID}:</label>{L_GAMEITEMID_EXPLAIN}</dt>
+   		<dd><input type="text" name="item_gameid" id="item_gameid"  size="15" maxlength="255" value="{ITEM_GAMEID}" class="input" /></dd>
+   		
+	</dl>
+	<dl>
+    	<dt><label>{L_ITEMVALUE}:</label></dt>
+    	<dd> <input type="text" name="item_value" id="item_value" size="10" maxlength="10" value="{ITEM_VALUE}" class="input" />{FV_ITEM_VALUE}</dd>
+	 </dl>
+	 
+	<!-- IF S_SHOWDECAY -->
+	 <dl>
+    	<dt><label>{L_ITEMDECAY}:</label></dt>
+    	<dd> <input type="text" name="item_decay" id="item_decay" size="10" maxlength="10" value="{ITEM_DECAY}" class="input" /></dd>
+	 </dl>	 
+	 <!-- ENDIF -->
+	<!-- IF S_SHOWZS -->
+	 <dl>
+        <dt><label>{L_ZSVALUE}:</label>{L_ZS_CHECKED_EXPLAIN}</dt>
+    	<dd> <input type="checkbox" READONLY DISABLED name="item_zs" id="item_zs" value="1" {ITEM_ZS} /></dd>
+	 </dl>
+	 <!-- ENDIF -->
+		 
+ </fieldset>
+ </div>
+
+
+<div style="float: left; width: 100%;"> 
+     <fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+	<input type="hidden" name="hidden_item_id" id="hidden_item_id" value="{ITEM_ID}" />
+	<input type="hidden" name="hidden_dkp_id" id="hidden_dkp_id" value="{ITEM_DKPID}" />
+	<input type="hidden" name="hidden_raid_id" id="hidden_raid_id" value="{ITEM_RAIDID}" />
+	<input type="hidden" name="hidden_raiddate" id="hidden_raiddate" value="{RAID_DATE}" />
+     {S_FORM_TOKEN}
+    <!-- IF S_ADD -->
+    <input type="submit" name="add" id="add" value="{L_ADD_ITEM}" class="button1" /> 
+    <input type="reset" name="reset" id="reset" value="{L_RESET}" class="button1" />
+    <!-- ELSE -->
+    <input type="submit" name="update"  id="update"  value="{L_UPDATE_ITEM}" class="button1" />
+    <input type="submit"  name="deleteitem" id="deleteitem" value="{L_DELETE_ITEM}" class="button1" />
+    <!-- ENDIF -->
+   </fieldset>
+</div>
+</form>
+
+
+<!-- INCLUDE dkp/overall_footer.html -->

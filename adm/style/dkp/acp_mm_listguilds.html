@@ -1,0 +1,52 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+
+<p>{L_EXPLAIN}</p>
+
+<form method="post" action="{F_GUILD}" id="listguilds">
+<fieldset class="tabulated">
+
+<!-- IF .guild_row -->
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <thead>
+  <tr>
+    <th style="text-align: left; width:5%">&nbsp;</th>
+    <th style="text-align: left; width:30%; white-space: nowrap"><a href="{U_LIST_GUILD}&amp;o={O_NAME}">{L_GUILD_NAME}</a></th>
+    <th style="text-align: left; width:20%; white-space: nowrap"><a href="{U_LIST_GUILD}&amp;o={O_REALM}">{L_REALM_NAME}</a></th>
+    <th style="text-align: left; width:10%;"><a href="{U_LIST_GUILD}&amp;o={O_REGION}">{L_REGION}</a></th>
+    <th style="text-align: left; width:15%;"><a href="{U_LIST_GUILD}&amp;o={O_ROSTER}">{L_SHOWONROSTER}</a></th>
+    <th style="text-align: center; width:5%;">{L_ACTION}</th>
+  </tr>
+  </thead>
+  <tfoot>
+   <tr>
+    <th colspan="6" class="footer">{GUILDMEMBERS_FOOTCOUNT}</th>
+    </tr>
+  </tfoot>
+  <tbody>
+  <!-- BEGIN guild_row -->
+  <!-- IF guild_row.S_ROW_COUNT is even -->
+  <tr class="row1">
+  <!-- ELSE -->
+  <tr class="row2">
+  <!-- ENDIF -->
+    <td>{guild_row.ID}</td>
+    <td><a href="{guild_row.U_VIEW_GUILD}">{guild_row.NAME}</a></td>
+    <td>{guild_row.REALM}</td>
+    <td>{guild_row.REGION}</td>
+	<td>{guild_row.SHOW_ROSTER}</td>    
+	<td style="text-align: center;"><a href="{guild_row.U_VIEW_GUILD}">{ICON_EDIT}</a></td>
+  </tr>
+  <!-- END guild_row -->
+</tbody>
+</table>
+<!-- ENDIF -->
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+	<input class="button2" name="guildadd" type="submit" value="{L_ADD}" />
+</fieldset>
+</fieldset>
+</form>
+<!-- INCLUDE dkp/overall_footer.html -->

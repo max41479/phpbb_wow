@@ -1,0 +1,257 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<h1>{L_ACP_DKP_APPLY}&nbsp;{APPLY_VERS}</h1>
+
+<p>{L_ACP_DKP_APPLY_EXPLAIN}</p>
+
+<form method="post" action="{F_ADD_CONFIG}" id="acp_apply" onsubmit="return check_form(this)">
+	
+<fieldset>
+<legend>{L_APPLY_ACP_PRISETTING}</legend>
+<br />
+
+ <dl>
+    <dt><label>{L_APPLY_ACP_FORUM_PUB}</label></dt>
+    <dd>
+    <select name="app_id_pub" class="input" id="app_id_pub" >
+		{APPLY_FORUM_PUB_OPTIONS}
+     </select>
+     </dd>
+  </dl> 
+
+ <dl>
+    <dt><label>{L_APPLY_ACP_FORUM_PRI}</label><br/>{L_APPLY_ACP_FORUM_PRI_EXPLAIN}</dt>
+    <dd>
+    <select name="app_id_pri" class="input" id="app_id_pri">
+		{APPLY_FORUM_PRIV_OPTIONS}
+     </select>
+     </dd>
+  </dl> 
+  
+   <dl>
+    <dt><label>{L_APPLY_ACP_FORUM_PREF}</label><br />{L_APPLY_ACP_FORUM_PREF_EXPLAIN}</dt>
+    <dd>
+    	<input type="radio" name="priv" value="1"{PUBLIC_YES_CHECKED} />&nbsp;{L_APPLY_ACP_PUBLIC}&nbsp;
+    	<input type="radio" name="priv" value="0"{PUBLIC_NO_CHECKED} />&nbsp;{L_APPLY_ACP_PRIVATE}
+     </dd>
+  </dl>
+  
+   <dl>
+    <dt><label>{L_APPLY_ACP_FORUM_CHOICE}</label><br />{L_APPLY_ACP_FORUM_CHOICE_EXPLAIN}</dt>
+    <dd> 
+    	<input type="radio" name="forumchoice" value="1"{FORUM_CHOICE_YES_CHECKED} />&nbsp;{L_YES}&nbsp;
+    	<input type="radio" name="forumchoice" value="0"{FORUM_CHOICE_NO_CHECKED} />&nbsp;{L_NO}
+     </dd>
+   </dl>
+   
+   <dl>
+    <dt><label>{L_APPLY_ACP_GUESTPOST}</label><br/>{L_APPLY_ACP_GUESTPOST_EXPLAIN}</dt>
+    <dd>
+    <select name="guests" class="input" id="guests">
+       <!-- BEGIN guests -->
+      <option value="{guests.VALUE}"{guests.SELECTED}>{guests.OPTION}</option>
+      <!-- END guests -->
+     </select>
+     </dd>
+  </dl>
+  	
+  	<p class="quick">
+  
+	<input type="submit" name="savepri" value="{L_UPDATE}" class="button1" />
+	</p>
+	
+</fieldset>
+<fieldset>
+<legend>{L_APPLY_ACP_TEMPLATESETTING}</legend>
+<br />  
+	<dl>
+		<dt><label>{L_APPLY_WELCOME}:</label><br />{L_APPLY_WELCOME_EXPLAIN}</dt>
+		<dd>
+		<textarea name="welcome_message" rows="3" cols="60" style=" font-size: 100%; width: 99%" class="input">{WELCOME_MESSAGE}</textarea>
+		</dd>
+	</dl>
+	<dl>
+	   <dt><label for="realm">{L_APPLY_REALM1}</label></dt>
+	   <dd><input type="text" name="realm" id="realm" size="20" maxlength="30" value="{REALM}" class="input" /></dd>
+	</dl>
+	
+	<dl>
+	 <dt><label>{L_APPLY_ACP_REGION}</label></dt>
+	 <dd>
+	 <select name="region" class="input" id="region">
+	    <!-- BEGIN region -->
+	   <option value="{region.VALUE}"{region.SELECTED}>{region.OPTION}</option>
+	   <!-- END region -->
+	   </select>
+	   </dd>
+	</dl>
+	  
+	<dl>
+	  <dt><label>{L_ACP_APPLY_WHATGUILD}</label><br />{L_ACP_APPLY_WHATGUILD_EXPLAIN}</dt>
+	  <dd>
+	  <select name="guild_choice" class="input" id="guild_choice">
+	    <!-- BEGIN guild -->
+	   <option value="{guild.VALUE}"{guild.SELECTED}>{guild.OPTION}</option>
+	   <!-- END guild -->
+	   </select>
+	   </dd>
+	</dl>
+	   
+	<p class="quick">
+		<input type="submit" name="savearm" value="{L_UPDATE}" class="button1" />
+	</p>
+
+</fieldset>
+
+<fieldset>
+<legend>{L_APPLY_ACP_APPTEMPLATEUPD}</legend>
+	<dl>
+		<dt style= "width: 100%"><label>{L_APPLY_CHGMAND}</label><br/>{L_APPLY_CHGMAND_EXPLAIN}</dt>
+	</dl>
+	
+<table cellspacing="1">
+	<thead>
+	<tr>
+	<th style="width:8%; text-align:left">{L_ID}</th>
+    <th style="width:17%; text-align:left">{L_TYPE}</th>
+    <th style="width:18.75%; text-align:center">{L_ACP_APPLY_HEADER}</th>
+    <th style="width:18.75%; text-align:center">{L_ACP_APPLY_QUESTION}</th>
+    <th style="width:18.75%; text-align:center">{L_ACP_APPLY_CONTENTS}</th>
+	<th style="width:18.75%; text-align:center">{L_ACP_APPLY_CONTENTS}</th>
+  </tr>
+  </thead>
+  <tbody>
+   <!-- BEGIN apptemplate -->
+	  <!-- IF ranks_row.S_ROW_COUNT is even -->
+	  <tr class="row1">
+	  <!-- ELSE -->
+	  <tr class="row2">
+	  <!-- ENDIF -->
+	    <td style="width:5%; text-align:center">
+	    <!-- IF apptemplate.QORDER <= 1 and not PREVIOUS_PAGE -->{ICON_MOVE_UP_DISABLED}<!-- ELSE --><a href="{apptemplate.U_MOVE_UP}">{ICON_MOVE_UP}</a><!-- ENDIF -->
+		<!-- IF apptemplate.S_LAST_ROW and not NEXT_PAGE --> {ICON_MOVE_DOWN_DISABLED}
+		<!-- ELSE --><a href="{apptemplate.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
+		<!-- ENDIF --><a href="{apptemplate.U_DELETE}">{ICON_DELETE}</a>
+		</td>
+	    <td style="width:16%; text-align:left">
+	    <input type="checkbox" name="q_mandatory[{apptemplate.ID}]" value="True" {apptemplate.DISABLED} {apptemplate.CHECKED} />&nbsp;
+	    	<select name="q_type[{apptemplate.ID}]" class="input" {apptemplate.DISABLED}>
+				<!-- BEGIN template_type -->
+				<option value="{template_type.TYPE}"{template_type.SELECTED}>{template_type.TYPE}</option>
+				<!-- END template_type -->
+			</select>
+		</td>
+	    <td style="width:18.75%; text-align:center; overflow:ellipsis">
+	    <textarea style="width:95%; resize:none;" rows="2" cols="10"  
+	    class="text" name="q_header[{apptemplate.ID}]">{apptemplate.HEADER}</textarea></td>
+	    
+	    <td style="width:18.75%; text-align:center; overflow:ellipsis">
+	    <textarea style="width:95%; resize:none;" rows="2" cols="10"
+	    class="text" name="q_question[{apptemplate.ID}]" >{apptemplate.QUESTION}</textarea></td>
+	    
+	    <td style="width:18.75%; text-align:center; overflow:ellipsis">
+	    <textarea style="width:95%; resize:none;" rows="2" cols="10"
+	    class="text" name="q_options[{apptemplate.ID}]" >{apptemplate.OPTIONS}</textarea></td>
+		
+		<td style="width:18.75%; text-align:center; overflow:ellipsis">
+	    <textarea style="width:95%; resize:none;" rows="2" cols="10"
+	    class="text" name="q_defaultt[{apptemplate.ID}]" >{apptemplate.DEFAULTT}</textarea></td>
+	  </tr>
+	  <!-- END apptemplate -->
+	  </tbody>
+</table>
+<p class="quick">
+	<input type="submit" name="update" value="{L_UPDATE}" class="button1" />
+</p>
+
+</fieldset>
+
+<fieldset>
+<legend>{L_APPLY_ACP_APPTEMPLATENEW}</legend>
+	<dl>
+		<dt style= "width: 100%"><label>{L_APPLY_ACP_NEWQUESTION}</label><br />{L_APPLY_ACP_NEWQUESTION_EXPLAIN}</dt>
+	</dl>
+	
+<table cellspacing="1">
+	<thead>
+	<tr>
+    <th align="left">{L_TYPE}</th>
+    <th align="left">{L_ACP_APPLY_HEADER}</th>
+    <th align="center">{L_ACP_APPLY_QUESTION}</th>
+    <th align="left">{L_ACP_APPLY_CONTENTS}</th>
+  </tr>
+  </thead>
+  <tbody>
+	  <tr class="row1">
+	    <td>
+	    	<input type="checkbox" name="app_add_mandatory" value="True" />&nbsp;
+	    	<select name="app_add_type" class="input" id="app_add_type">
+				<option value="Inputbox">{L_APPLY_ACP_INPUTBOX}</option>
+				<option value="Textbox">{L_APPLY_ACP_TXTBOX}</option>
+				<option value="Selectbox">{L_APPLY_ACP_SELECTBOX}</option>
+                <option value="Radiobuttons">{L_APPLY_ACP_RADIOBOX}</option>
+                <option value="Checkboxes">{L_APPLY_ACP_CHECKBOX}</option>
+         	</select>
+	    </td>
+	    
+	    <td>
+	      <textarea style="width:95%; resize:none;" rows="2" cols="10"
+	    	class="text" name="app_add_title" onclick="this.value ='';" onblur="if(this.value == '') { this.value = '{L_ACP_APPLY_HEADER}' };" >{L_ACP_APPLY_HEADER}</textarea>
+	    </td>
+	    <td>
+	      <textarea style="width:95%; resize:none;" rows="2" cols="10"
+	    	class="text" name="app_add_question" onclick="this.value ='';" onblur="if(this.value == '') { this.value = '{L_ACP_APPLY_QUESTION}' };" >{L_ACP_APPLY_QUESTION}</textarea>
+	    </td>
+	    <td>
+	   	      <textarea style="width:95%; resize:none;" rows="2" cols="10"
+	    	class="text" name="app_add_options" ></textarea>
+	    </td>
+	    
+	  </tr>
+	  </tbody>
+</table>
+
+<p class="quick">
+	<input type="submit" name="add" value="{L_ADD}" class="button1" />
+</p>
+</fieldset>
+
+<script type="text/javascript" charset="utf-8">
+ $(document).ready(function() {
+   $('#nojquery').hide();
+   $('#picker').farbtastic('#applyquestioncolor');
+ });
+</script>
+
+<fieldset>
+<legend>{L_APPLY_COLORSETTINGS}</legend>
+<dl>
+	<dt><label>{L_APPLY_POSTCOLOR}</label><br /><br />{L_APPLY_POSTCOLOR_EXPLAIN}</dt>
+	<dd>
+		<table style=" border-width: 0px;"> 
+		<tr>
+			<td >
+			<span id="nojquery" style="color: red; font-size: 1.4em">{L_JQUERY_MISSING}</span>
+			  <span id="picker"></span>
+	       	</td>
+       		<td>
+			<span class="form-item"><input type="text" id="applyquestioncolor" name="applyquestioncolor" value="#123456" /></span>
+    	 	</td>
+	     </tr>
+		</table>
+	</dd>
+</dl>
+<p class="quick">
+    <select name="app_textcolors" class="input" id="app_textcolors">
+             <option value="postqcolor">{L_APPLY_POST_QUESTIONCOLOR}</option>
+             <option value="postacolor">{L_APPLY_POST_ANSWERCOLOR}</option>
+             <option value="formqcolor">{L_APPLY_FORMCOLOR}</option>
+    </select>
+    <input type="submit" name="updatecolor" value="{L_UPDATE}" class="button1" />
+</p>
+<span>{S_FORM_TOKEN}</span>
+</fieldset>
+</form>
+
+<!-- INCLUDE dkp/overall_footer.html -->

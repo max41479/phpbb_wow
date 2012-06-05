@@ -1,0 +1,22 @@
+<div class="panel">
+	<div class="inner">
+		<span class="corners-top"><span></span></span>
+		<div style="font-size:1.1em;">
+			<div style="width:90%;margin:auto;display:block;text-align:center;">
+				<a href="{U_VIEW_PROFILE}"><!-- IF USER_COLOR --><span style="color: {USER_COLOR}; font-weight: bold;"><!-- ELSE --><span><!-- ENDIF -->{USERNAME}</span></a><br /><br />
+				<a href="{U_PROFILE}"><!-- IF AVATAR_IMG -->{AVATAR_IMG}<!-- ELSE --><img src="{T_THEME_PATH}/images/no_avatar.gif" alt="" /><!-- ENDIF --></a>
+				<!-- IF RANK_TITLE --><br /><small>{RANK_TITLE}</small><!-- ENDIF -->
+				<!-- IF RANK_IMG --><br />{RANK_IMG}<!-- ENDIF -->
+			</div>		
+			<hr class="dashed" />
+			<ul class="portalmenu" >
+			<li style="list-style:none"><a href="{U_NEW_POSTS}">{L_NEW_POSTS}</a></li>
+			<li style="list-style:none"><a href="{U_SELF_POSTS}">{L_SELF_POSTS}</a></li>
+			<li style="list-style:none"><a href="{U_UM_BOOKMARKS}">{L_VIEW_BOOKMARKS}</a></li>
+			<li style="list-style:none"><a href="{U_PRIVATE_MESSAGES}">{L_PRIVATE_MESSAGES}</a></li>
+			<li style="list-style:none"><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></li>
+			</ul>
+		</div>
+		<span class="corners-bottom"><span></span></span>
+	</div>
+</div>

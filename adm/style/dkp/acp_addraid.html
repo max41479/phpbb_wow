@@ -1,0 +1,352 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+<script type="text/javascript">
+
+//<![CDATA[
+window.onload = start;
+
+function start()
+{
+	switch_event_val();
+	durationcalc();
+}
+
+function check_form()
+{
+	// checking length of raidmembername
+	if (document.getElementById("raid_attendees").value.length < 1)
+    {
+        alert('{MSG_ATTENDEES_EMPTY}');
+        return false;
+    }
+    
+    // checking if there is an event selected	
+    if (document.getElementById("event_id").selectedIndex < 0 )
+    {
+        alert('{MSG_NAME_EMPTY}');
+        return false;
+    }
+    return true;
+}
+
+/* gets value from event and puts it in raidvalue box */
+function switch_event_val()
+{
+  var patt= / - \(([0-9.]+)\)/;
+  if (document.getElementById("event_id").selectedIndex > 0 )
+  {
+	  var eventvalue  = document.getElementById('event_id').options[document.getElementById('event_id').selectedIndex].text.match(patt);
+	  document.getElementById('raid_value').value = eventvalue[eventvalue.length-1]; 
+  }
+}
+<!-- IF S_SHOWTIME -->
+/* time dkp bonus from duration */ 
+function update_timebonus()
+{
+	var duration = durationcalc();
+	var dkp_per_timeunit = document.getElementById("dkptimeunit").value;
+	var unitminutes = document.getElementById("timeunit").value;  
+	var dkp_bonus = 0;
+	if(unitminutes > 0)
+	{
+		dkp_bonus = (dkp_per_timeunit * (duration * 60) / unitminutes ).toFixed(2);
+	}
+	document.getElementById("time_bonus").value = dkp_bonus;
+}
+<!-- ENDIF -->
+
+/* calculates raid duration */
+function durationcalc()
+{
+	var raidbegin = new Date();
+	var startday = document.getElementById("d").options[document.getElementById("d").selectedIndex].text;
+	startday= startday.replace("--", "1");
+	raidbegin.setDate(startday);
+	var startmonth = document.getElementById("mo").options[document.getElementById("mo").selectedIndex].text;
+	startmonth= startmonth.replace("--", "1");
+	raidbegin.setMonth(startmonth);
+	var startyear = document.getElementById("Y").options[document.getElementById("Y").selectedIndex].text;
+	startyear= startyear.replace("--", "1");
+	raidbegin.setYear(startyear);
+	var starth = document.getElementById("sh").options[document.getElementById("sh").selectedIndex].text;
+	starth= starth.replace("--", "0");
+	raidbegin.setHours(starth);
+	var startm = document.getElementById("smi").options[document.getElementById("smi").selectedIndex].text;
+	startm= startm.replace("--", "0");
+	raidbegin.setMinutes(startm);
+	var starts = document.getElementById("ss").options[document.getElementById("ss").selectedIndex].text;
+	starts= starts.replace("--", "0");
+	raidbegin.setSeconds(starts);
+	
+	var raidend = new Date();
+	var stopday = document.getElementById("ed").options[document.getElementById("ed").selectedIndex].text;
+	stopday= stopday.replace("--", "1");
+	raidend.setDate(stopday);
+	var stopmonth = document.getElementById("emo").options[document.getElementById("emo").selectedIndex].text;
+	stopmonth= stopmonth.replace("--", "1");
+	raidend.setMonth(stopmonth);
+	var stopyear = document.getElementById("eY").options[document.getElementById("eY").selectedIndex].text;
+	stopyear= stopyear.replace("--", "1");
+	raidend.setYear(stopyear);
+	var stoph = document.getElementById("eh").options[document.getElementById("eh").selectedIndex].text;
+	stoph= stoph.replace("--", "0");
+	raidend.setHours(stoph);
+	var stopm = document.getElementById("emi").options[document.getElementById("emi").selectedIndex].text;
+	stopm= stopm.replace("--", "0");
+	raidend.setMinutes(stopm);
+	var stops = document.getElementById("es").options[document.getElementById("es").selectedIndex].text;
+	stops= stops.replace("--", "0");
+	raidend.setSeconds(stops);
+
+	var diff=raidend-raidbegin;
+	if(diff> 0)
+	{
+		diff=diff/86400000*24;
+		diff=diff.toFixed(2);		
+		document.getElementById("raid_duration").value = diff;
+	}
+	else
+	{
+		document.getElementById("raid_duration").value = 0;
+	}
+	
+	return document.getElementById("raid_duration").value;
+}
+
+
+function fnSearch(event)
+{
+   
+    var searchBox = document.getElementById("memberSearch");  
+    var reSearch = new RegExp( searchBox.value, "i" );
+    
+    var selectBox = document.getElementById("all_members");
+    var len = selectBox.options.length;
+    
+    for ( var i = 0; i < len; i++ )
+    {
+        if( reSearch.test( selectBox.options[i].text ) )
+        {
+            selectBox.options[i].selected = true;
+            break;
+        }
+        else
+        {
+            selectBox.options[i].selected = false;
+        }
+    }
+}
+
+
+function fnAddMember()
+{
+    
+    var fromField = document.getElementById("all_members");
+    var toField = document.getElementById("raid_attendees");
+
+    var fromSize = fromField.options.length
+    var toSize = toField.options.length
+
+    var aSelected = new Array();
+
+    // Build an array of the selected members
+    for (var i = 0; i < fromSize; i++)
+    {
+        if ( fromField.options[i].selected == true )
+        {
+            aSelected[aSelected.length] = i;
+        }
+    }
+
+    var offset = 0;
+    for(var i = 0; i < aSelected.length; i++ )
+    {
+        var index = aSelected[i];
+
+        var memberValue = fromField.options[index].value;
+        var memberText = fromField.options[index].text;
+
+        // Remove the initial spacer member
+        if ( (toSize == 1) && (toField.options[0].value == "") )
+        {
+            toSize = 0;
+        }
+
+        // Loop through the destination list, don't add if it's a duplicate
+        for (var j = 0, exists = false; j < toSize; j++ )
+        {
+            // destination already exists
+            if ( toField.options[ j ].value == memberValue )
+            {
+                var exists = true;
+                offset++;
+            }
+        }
+
+        // destination doesnt exist, add them
+        if ( exists != true )
+        {
+            toField.options[toSize + i - offset] = new Option(memberText, memberValue);
+            toField.options[toSize + i - offset].selected = true;
+        }
+    }
+    
+    /* done - clear the search box and focus it for the next entry */
+    document.getElementById('memberSearch').value = "";
+    document.getElementById('memberSearch').focus();
+
+}
+
+function fnRemoveMember()
+{
+  
+  var toField = document.getElementById("raid_attendees");
+  var toSize = toField.options.length;
+    
+  var i;
+  for (i = toField.length - 1; i>=0; i--) 
+  {
+  	if (toField.options[i].selected) 
+  	  {
+     	 toField.remove(i);
+  	  }
+  }
+}
+
+//]]>
+
+</script>
+<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
+<form method="post" action="{F_ADD_RAID}" id="addraid" onsubmit="return check_form(this)" >
+<div>
+
+<h1>{L_TITLE}</h1>
+<p>{L_EXPLAIN}</p>
+
+<div style="float: left; width: 55%;">
+<fieldset>
+<legend>{L_ADD_RAID_TITLE}</legend>
+
+	<dl><dt><label>{L_POOL}:</label></dt>
+	<dd>
+	<select name="dkpsys_id" class="input" onchange="javascript:form.submit();">
+		<!-- BEGIN dkpsys_row -->
+		<option value="{dkpsys_row.VALUE}"{dkpsys_row.SELECTED}>{dkpsys_row.OPTION}</option>
+		<!-- END dkpsys_row -->
+	</select>
+	</dd>
+	</dl>
+	
+	<dl>
+		<dt><label>{L_EVENT}:</label> (<a href="{U_ADD_EVENT}">{L_ADD_EVENT}</a>)</dt>
+    <dd>
+	    <select name="event_id" id="event_id" class="input" size="10" style="width: 100%;" onchange="javascript:switch_event_val();" >
+			<!-- BEGIN events_row -->
+			<option value="{events_row.VALUE}"{events_row.SELECTED}>{events_row.OPTION}</option>
+			<!-- END events_row -->
+		</select>
+	</dd>
+	</dl>		
+	
+	<dl>
+		<dt><label>{L_RAIDSTART}:</label></dt>
+		<dd>
+			<select id="d" name="d"  <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF -->>{S_RAIDDATE_DAY_OPTIONS}</select>
+			<select id="mo" name="mo" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();" <!-- ENDIF -->>{S_RAIDDATE_MONTH_OPTIONS}</select> 
+			<select id="Y" name="Y" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();" <!-- ENDIF -->>{S_RAIDDATE_YEAR_OPTIONS}</select>
+	   </dd>
+		<dd>
+			<select id="sh" name="sh" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();" <!-- ENDIF -->>{S_RAIDSTART_H_OPTIONS}</select>
+			<select id="smi" name="smi" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();" <!-- ENDIF -->>{S_RAIDSTART_MI_OPTIONS}</select> 
+			<select id="ss" name="ss" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();" <!-- ENDIF -->>{S_RAIDSTART_S_OPTIONS}</select>
+		</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_RAIDEND}:</label></dt>
+		<dd>
+			<select id="ed" name="ed" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();" <!-- ENDIF --> >{S_RAIDENDDATE_DAY_OPTIONS}</select>
+			<select id="emo" name="emo" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();" <!-- ENDIF --> >{S_RAIDENDDATE_MONTH_OPTIONS}</select> 
+			<select id="eY" name="eY" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ENDIF --> >{S_RAIDENDDATE_YEAR_OPTIONS}</select>
+		</dd>
+		<dd>
+			<select id="eh" name="eh" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();" <!-- ENDIF -->>{S_RAIDEND_H_OPTIONS}</select>
+			<select id="emi" name="emi" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();" <!-- ENDIF -->>{S_RAIDEND_MI_OPTIONS}</select> 
+			<select id="es" name="es" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();" <!-- ENDIF -->>{S_RAIDEND_S_OPTIONS}</select>
+		</dd>
+	</dl>
+	
+	<dl>
+		<dt><label>{L_RAIDDURATION}:</label>({L_RAIDDURATION_EXPLAIN})</dt>
+		<dd>
+			<input readonly="readonly" type="text" name="raid_duration" id="raid_duration" size="8" maxlength="7" value="{RAID_DURATION}" class="input"  style="border: none"/>
+		</dd>
+	</dl>
+	
+	<!-- IF S_SHOWTIME -->
+	
+	<input type="hidden" name="dkptimeunit" id="dkptimeunit" value="{DKPTIMEUNIT}" /> 
+	<input type="hidden" id="timeunit" name="timeunit" value="{TIMEUNIT}" /> 
+	<dl>
+		<dt><label>{L_TIME_BONUS}:</label>&nbsp;{L_TIME_BONUS_EXPLAIN}&nbsp;{DKPPERTIME}</dt>
+		<dd>
+			<input type="text" name="time_bonus" id="time_bonus" size="8" maxlength="7" value="{TIME_BONUS}" class="input" />
+		</dd>
+	</dl>
+	<!-- ENDIF -->
+	
+	<dl>
+		<dt><label>{L_RAIDVALUE}:</label>({L_ADD_RAID_VALUE_NOTE})</dt>
+		<dd>
+			<input type="text" name="raid_value" id="raid_value" size="8" maxlength="7" value="{RAID_VALUE}" class="input" />
+		</dd>
+	</dl>
+	<dl>
+		<dt><label>{L_NOTE}:</label></dt>
+		<dd><textarea name="raid_note" id="raid_note" cols="40" rows="5">{RAID_NOTE}</textarea></dd>
+	</dl>
+			
+</fieldset>
+</div>
+
+
+<div style="float: left; width: 45%;">
+<fieldset>
+
+<legend>{L_SEARCH}</legend>
+	<div style="text-align:center">
+	
+	<span>{L_SEARCH}: <input type="text" name="memberSearch" id="memberSearch"  size="35" maxlength="255" value="" onkeyup="fnSearch(event);" /></span>
+	<br/>
+	<span class="small">{L_HOLD_CTRL_NOTE}</span>
+	<br />
+
+	<select style="float: left; width: 47%;" id="all_members" name="all_members" size="20" multiple="multiple" class="input">
+		<!-- BEGIN members_row -->
+		<option value="{members_row.VALUE}">{members_row.OPTION}</option>
+		<!-- END members_row -->
+	</select>
+
+	<select style="float: right; width: 47%;" name="raid_attendees[]" id="raid_attendees" size="20" multiple="multiple" class="input">
+		<!-- BEGIN raid_attendees_row -->
+		<option value="{raid_attendees_row.VALUE}" selected="selected">{raid_attendees_row.OPTION}</option>
+		<!-- END raid_attendees_row -->
+	</select>
+	
+	<br />
+	<input type="button" name="button1" value="&lt;&lt;" accesskey="r"  onclick="return fnRemoveMember()" class="button1" /> 
+	<input type="button" name="button2" value="&gt;&gt;" accesskey="m" onclick="return fnAddMember()" class="button1" />
+	</div>
+</fieldset>
+</div>
+
+
+</div>
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+	{S_FORM_TOKEN}
+    <input type="submit" name="add"	value="{L_ADD_RAID}" class="button1" /> 
+    <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+</fieldset> 
+
+</form>
+
+<!-- INCLUDE dkp/overall_footer.html -->

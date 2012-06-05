@@ -1,0 +1,21 @@
+/*  Apply css prosilver
+ @package bbDkp
+ @copyright 2012 bbdkp <https://github.com/bbDKP/Apply>
+ @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ */
+
+textarea {
+	width: 600px;
+	height: 60px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+fieldset.fields2 dl dt
+{
+	font-family: Verdana,Helvetica,Arial,sans-serif;
+    font-size: 1.1em;
+}

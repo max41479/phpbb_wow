@@ -1,0 +1,76 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<form id="acp_listdkpsys" method="post" action="{S_DEFAULTDKP}">
+<div>
+<h1>{L_TITLE}</h1>
+
+<p>{L_EXPLAIN}</p>
+
+<fieldset><legend>{L_DEFAULT_DKP_POOL}</legend>
+	<dl>
+	<dt>
+		{L_DEFAULTDKP}
+	</dt>
+	<dd>
+		<select name="defaultsys" class="input" id="defaultsys">
+	      <!-- BEGIN dkpsysdef_row -->
+	         <option value="{dkpsysdef_row.VALUE}"{dkpsysdef_row.SELECTED}>{dkpsysdef_row.OPTION}</option>
+	      <!-- END dkpsysdef_row -->
+		</select>
+		<input type="submit" name="upddkpsysdef" value="{L_DEFAULTDKP}" class="button1" />
+	</dd>
+</dl>
+</fieldset>
+
+<!-- IF DKPSYS_PAGINATION -->
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{DKPSYS_PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+<table cellspacing="1">
+<thead>
+  <tr>
+    <th style="text-align:left; width:200"><a href="{U_LIST_DKPSYS}&amp;o={O_NAME}&amp;start={START}">{L_POOL}</a></th>
+    <th style="text-align:left; width:60; white-space: nowrap"><a href="{U_LIST_DKPSYS}&amp;o={O_STATUS}&amp;start={START}">{L_STATUS}</a></th>
+    <th style="text-align:left; width:60; white-space: nowrap">{L_DEFAULT_DKP_POOL}</th>
+    <th style="text-align:left; width:16; white-space: nowrap">{L_ACTION}</th>
+    
+  </tr>
+</thead>
+<tbody>
+
+  <!-- BEGIN dkpsys_row -->
+  <!-- IF dkpsys_row.S_ROW_COUNT is even -->
+  	<tr class="row1">
+  <!-- ELSE -->
+  	<tr class="row2">
+  <!-- ENDIF -->
+    <td><a href="{dkpsys_row.U_VIEW_DKPSYS}">{dkpsys_row.NAME}</a></td>
+    <td>{dkpsys_row.STATUS}</td>
+    <td>{dkpsys_row.DEFAULT}</td>
+    <td><a href="{dkpsys_row.U_VIEW_DKPSYS}">{ICON_EDIT}</a>
+    	<a href="{dkpsys_row.U_DELETE_DKPSYS}">{ICON_DELETE}</a></td>
+  </tr>
+  <!-- END dkpsys_row -->
+  <tr>
+    <th colspan="4" class="footer">{LISTDKPSYS_FOOTCOUNT}</th>
+  </tr>
+  </tbody>
+</table>
+
+<!-- IF DKPSYS_PAGINATION -->
+<div class="pagination">
+	<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{DKPSYS_PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+	<input class="button2" name="dkpsysadd" type="submit" value="{L_ADD}" />
+</fieldset>
+</div>
+</form>
+<!-- INCLUDE dkp/overall_footer.html -->
+

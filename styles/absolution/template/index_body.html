@@ -1,0 +1,66 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- INCLUDE forumlist_body.html -->
+
+<br />
+
+<div class="indexlinks">
+    <!-- IF U_TEAM --><a href="{U_TEAM}">{L_THE_TEAM}</a> | <!-- ENDIF -->
+    <!-- IF not S_IS_BOT --><a href="{U_DELETE_COOKIES}">{L_DELETE_COOKIES}</a><!-- ENDIF --> | 
+    <a href="{U_FAQ}">{L_FAQ}</a>
+    <!-- IF not S_IS_BOT and U_MARK_FORUMS and SCRIPT_NAME eq 'index' --> | <a href="{U_MARK_FORUMS}" accesskey="m">{L_MARK_FORUMS_READ}</a><!-- ENDIF -->
+    <br />{CURRENT_TIME}
+</div>
+
+<br />
+
+<div class="catglow">
+    <div class="cathead-m">
+        <div class="cathead-r">
+            <div class="cathead-l">
+            	{L_INFORMATION}
+            </div>
+        </div>
+    </div>
+    <div class="collapsethis">
+    	<!-- IF not S_USER_LOGGED_IN and not S_IS_BOT -->
+            <div class="statspanel" style="background-image: url('{T_THEME_PATH}/images/lock.png');">
+                <form method="post" action="{S_LOGIN_ACTION}">
+                    <fieldset class="quick-login">
+                        <label for="username">{L_USERNAME}:</label>&nbsp;<input type="text" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" />
+                        <label for="password">{L_PASSWORD}:</label>&nbsp;<input type="password" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" />
+                        <!-- IF S_AUTOLOGIN_ENABLED -->
+                            <input type="checkbox" name="autologin" id="autologin" class="tip" title="{L_LOG_ME_IN}" /> &nbsp;
+                        <!-- ENDIF -->
+                        <input type="submit" name="login" value="{L_LOGIN}" class="button2" />
+                        {S_LOGIN_REDIRECT}
+                    </fieldset>
+                </form>
+            </div>
+        <!-- ENDIF -->
+        <!-- IF S_DISPLAY_ONLINE_LIST and S_USER_LOGGED_IN -->
+        	<div class="statspanel" style="background-image: url('{T_THEME_PATH}/images/who-is-online.png');">
+                {TOTAL_USERS_ONLINE} <!--({L_ONLINE_EXPLAIN})--><!-- IF S_USER_LOGGED_IN and U_VIEWONLINE --> - <a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}?</a><!-- ENDIF -->
+                <!--<br />{RECORD_USERS}-->
+                <br /><br />{LOGGED_IN_USER_LIST}<br />
+                <!-- IF LEGEND --><br /><strong>{L_LEGEND}: {LEGEND}</strong><!-- ENDIF -->   
+                <br />    
+            </div>
+        <!-- ENDIF -->
+        <!-- IF NEWEST_USER and S_USER_LOGGED_IN-->
+        	<div class="statspanel" style="background-image: url('{T_THEME_PATH}/images/statistics.png');">
+            	{TOTAL_POSTS} &bull; {TOTAL_TOPICS} &bull; {TOTAL_USERS} &bull; {NEWEST_USER}
+            </div>
+        <!-- ENDIF -->
+        <!-- IF S_DISPLAY_BIRTHDAY_LIST and BIRTHDAY_LIST and S_USER_LOGGED_IN-->
+        	<div class="statspanel" style="background-image: url('{T_THEME_PATH}/images/birthdays.png');">
+            	<!-- IF BIRTHDAY_LIST -->{L_CONGRATULATIONS}: <strong>{BIRTHDAY_LIST}</strong><!-- ELSE -->{L_NO_BIRTHDAYS}<!-- ENDIF -->
+            </div>
+        <!-- ENDIF -->
+    </div>
+</div>
+
+
+
+
+<!-- INCLUDE overall_footer.html -->

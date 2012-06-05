@@ -1,0 +1,282 @@
+<div class="forabg" >
+<span class="corners-top"><span></span></span>
+<ul class="topiclist">
+<li class="header">
+<div style="float: left; width:10%">
+<h1 style="color:#dfc065; white-space:nowrap;">{L_GUILDROSTER}</h1>
+</div>
+<div style="text-align: center; float: left; width:90%">
+<h4>{GUILDNAME} </h4>
+
+
+<!-- IF S_RSTYLE == 1 -->
+    <a href="{U_LIST_MEMBERS0}">{L_NAME}</a> - 
+	<!-- IF S_RSTYLE == 0 -->
+    	<a href="{U_LIST_MEMBERS1}">{L_CLASS}</a> -
+	<!-- ENDIF --> 
+    <a href="{U_LIST_MEMBERS2}">{L_RANK}</a> -
+    <a href="{U_LIST_MEMBERS3}">{L_LVL}</a> 
+   	<!-- IF S_SHOWACH == 1 -->
+- <a href="{U_LIST_MEMBERS4}">{L_ACHIEV}</a> 
+	<!-- ENDIF -->
+	<!-- ENDIF -->
+
+	<!-- IF S_MULTIGAME -->
+	<form method="post" action="{F_ROSTER}">
+	<div>
+	 <select name="displaygame" class="input" onchange="javascript:form.submit();">
+        <!-- BEGIN game_row -->
+        <option value="{game_row.VALUE}"{game_row.SELECTED}>{game_row.OPTION}</option>
+        <!-- END game_row -->
+      </select>
+      </div>
+      </form>
+     <!-- ENDIF -->
+</div>
+</li>
+</ul>
+<span class="corners-bottom"><span></span></span>
+</div>
+
+<!-- 
+**************
+list layout 
+**************
+ -->
+<!-- IF S_RSTYLE == 0 -->
+
+<div class="forumbg forumbg-table">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+<!-- IF ROSTERPAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
+		<span>{ROSTERPAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+<table class="table1" width="95%" border="0" cellspacing="0" cellpadding="0">
+<thead>
+<tr>
+	<th style="text-align: left; width: 15%"><a href="{O_NAME}">{L_NAME}</a></th>
+	<th style="text-align: left; width: 10%"><a href="{O_RANK}">{L_RANK}</a></th>
+    <th style="text-align: center;width: 5%"><a href="{O_LEVEL}">{L_LEVEL}</a></th>
+ 	<th style="text-align: left;width: 15%"><a href="{O_RACE}">{L_RACE}</a></th>
+ 	<th style="text-align: left;width: 15%"><a href="{O_CLASS}">{L_CLASS}</a></th>
+ 	<th style="text-align: left;width: 15%"><a href="{O_PHPBB}">{L_MEMBER}</a></th>
+ 	<!-- IF S_SHOWACH == 1 -->
+ 	<th style="text-align: left;width: 15%"><a href="{O_ACHI}">{L_ACHIEV}</a></th>
+ 	<!-- ENDIF -->
+ 	<!-- IF S_GAME == wow || S_GAME == aion -->  
+ 	<th style="text-align: left;">{L_ARMORY_URL}</th>
+ 	<!-- ENDIF --> 
+</tr>
+</thead>
+
+<!-- BEGIN members_row -->
+	<tr class="<!-- IF members_row.S_ROW_COUNT is even -->bg1<!-- ELSE -->bg2<!-- ENDIF -->">
+		<td style="text-align: left;">
+		<a style="white-space: nowrap; color:{members_row.COLORCODE}" href="{members_row.U_VIEW_MEMBER}"><strong>{members_row.NAME}</strong></a>
+		</td>
+		<td style="text-align:left;">{members_row.RANK}</td>
+    	<td style="text-align:center;">{members_row.LVL}</td>
+		<td style="text-align: left;"><!-- IF members_row.S_RACE_IMAGE_EXISTS --><img src="{members_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE --><!-- ENDIF -->{members_row.RACE}</td>		
+    	<td style="text-align: left;">
+    	<!-- IF members_row.S_CLASS_IMAGE_EXISTS --><img src="{members_row.CLASS_IMAGE}" alt="{members_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF -->&nbsp;
+    	<span style="white-space: nowrap; color:{members_row.COLORCODE}"><strong>{members_row.CLASS}</strong></span>
+    	</td>
+    	<td style="text-align:left;">{members_row.PHPBBUID}</td>
+    	<!-- IF S_SHOWACH == 1 -->
+ 		<td style="text-align: left;width: 15%">{members_row.ACHIEVPTS}</td>
+ 		<!-- ENDIF -->
+	    <!-- IF S_GAME == wow || S_GAME == aion -->
+	    <td style="text-align:left;"><a href="{members_row.ARMORY}"><img src="adm/images/glyphs/view.gif"  alt="View" /></a></td>
+	    <!-- ENDIF -->
+	</tr>
+
+  <!-- END members_row -->
+<tfoot>
+<tr>
+	<th  style="text-align: left; white-space: nowrap; color:white;" colspan="0">{LISTRAIDS_FOOTCOUNT}</th>
+</tr>
+</tfoot>
+</table>
+<!-- IF ROSTERPAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
+		<span>{ROSTERPAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!-- ENDIF --> 
+
+
+<!-- 
+**************
+grid layout 
+**************
+ -->
+ 
+<!-- IF S_RSTYLE == 1 && (S_GAME == wow || S_GAME == aion) --> 
+
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+<!-- BEGIN class -->
+
+<h2> <img src="{class.CLASSIMG}" alt="{class.CLASSNAME}"  ></img>
+&nbsp;
+<span style="color: {class.COLORCODE};">{class.CLASSNAME}</span>  
+</h2>
+
+<table  style="width: 100%" border="0" cellspacing="0" cellpadding="0">
+  
+  <colgroup span="10">
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+</colgroup>
+  
+  <!-- BEGIN members_row -->
+  
+  <!-- IF members_row.S_ROW_COUNT % 5 == 0 -->
+  <tr class="bg1">
+  <!-- ENDIF -->
+ 	<td style="text-align:center; width:100;" class="bg1" >
+	<a href="{class.members_row.ARMORY}">
+	<img src="{class.members_row.PORTRAIT}" alt=" " width="64" height="64"></img></a></td>
+  	<td style="text-align:left; width:100" class="bg2" >
+	<strong><a style="color: {class.COLORCODE};" href="{class.members_row.ARMORY}" >{class.members_row.NAME}</a></strong>
+	<p>
+	{class.members_row.GNOTE}<br/>
+	{class.members_row.CLASS} 
+	{class.members_row.LVL}
+	<!-- IF S_SHOWACH == 1 -->
+    	<br/> Apt: {class.members_row.ACHIEVPTS}
+	<!-- ENDIF --> 
+	</p>
+	</td>
+    <!-- IF members_row.S_ROW_COUNT % 5 == 0 -->
+   	  <!-- IF members_row.S_LAST_ROW -->
+    	<td colspan="10"></td></tr>
+  	  <!-- ENDIF -->
+      <!-- ELSEIF members_row.S_ROW_COUNT % 5 == 1 -->
+       <!-- IF members_row.S_LAST_ROW -->
+    	 <td colspan="8"></td></tr>
+  	   <!-- ENDIF -->
+    <!-- ELSEIF members_row.S_ROW_COUNT % 5 == 2 -->
+       <!-- IF members_row.S_LAST_ROW -->
+        <td colspan="6"></td></tr>
+  	   <!-- ENDIF -->
+    <!-- ELSEIF members_row.S_ROW_COUNT % 5 == 3 -->
+       <!-- IF members_row.S_LAST_ROW -->
+         <td colspan="4"></td></tr>
+  	   <!-- ENDIF -->
+    <!-- ELSEIF members_row.S_ROW_COUNT % 5 == 4 -->
+         <td colspan="2"></td></tr>
+  	<!-- ENDIF -->  
+
+  <!-- END members_row -->
+</table>
+ <br />
+<!-- END class -->
+
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!-- ENDIF --> 
+
+<!-- IF S_RSTYLE == 1 && S_GAME != wow && S_GAME != aion --> 
+
+
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+
+<!-- BEGIN class -->
+<h2> <img src="{class.CLASSIMG}" alt="{class.CLASSNAME}"  >
+</img>&nbsp;<span style="color: {class.COLORCODE};">{class.CLASSNAME}</span>  </h2>
+
+<table  style="width: 100%" border="0" cellspacing="0" cellpadding="0">
+  <colgroup span="10">
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+	<col width="10%"></col>
+</colgroup>
+  
+  <!-- BEGIN members_row -->
+  
+  
+  <!-- IF class.members_row.S_ROW_COUNT % 5 == 0 -->
+  <tr class="bg1">
+  <!-- ENDIF -->
+ 	<td style="text-align:center; width:100;" class="bg1" >
+	<!-- IF class.members_row.S_RACE_IMAGE_EXISTS --><img src="{class.members_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE --><!-- ENDIF -->
+	</td>
+  	<td style="text-align:left; width:100" class="bg2" >
+	<strong><a style="color: {class.COLORCODE};" href="{class.members_row.ARMORY}" >{class.members_row.NAME}</a></strong>
+	<p>
+	{class.members_row.GNOTE}<br/>
+	{class.members_row.CLASS} 
+	{class.members_row.LVL}
+	<!-- IF S_SHOWACH == 1 -->
+    	<br/> Apt: {class.members_row.ACHIEVPTS}
+	<!-- ENDIF --> 
+	</p>
+	</td>
+    <!-- IF class.members_row.S_ROW_COUNT % 5 == 0 -->
+   	  <!-- IF class.members_row.S_LAST_ROW -->
+    	<td colspan="10"></td></tr>
+  	  <!-- ENDIF -->
+      <!-- ELSEIF class.members_row.S_ROW_COUNT % 5 == 1 -->
+       <!-- IF class.members_row.S_LAST_ROW -->
+    	 <td colspan="8"></td></tr>
+  	   <!-- ENDIF -->
+    <!-- ELSEIF class.members_row.S_ROW_COUNT % 5 == 2 -->
+       <!-- IF class.members_row.S_LAST_ROW -->
+        <td colspan="6"></td></tr>
+  	   <!-- ENDIF -->
+    <!-- ELSEIF class.members_row.S_ROW_COUNT % 5 == 3 -->
+       <!-- IF class.members_row.S_LAST_ROW -->
+         <td colspan="4"></td></tr>
+  	   <!-- ENDIF -->
+    <!-- ELSEIF class.members_row.S_ROW_COUNT % 5 == 4 -->
+         <td colspan="2"></td></tr>
+  	<!-- ENDIF -->  
+
+  <!-- END members_row -->
+</table>
+ <br />
+<!-- END class -->
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!-- ENDIF --> 
+
+<div class="forabg" >
+   <span class="corners-top"><span></span></span>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th style="color: white; text-align:center">{LISTMEMBERS_FOOTCOUNT}</th>
+  </tr>
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>

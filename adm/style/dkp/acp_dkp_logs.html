@@ -1,0 +1,103 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+<p>{L_EXPLAIN}</p>
+
+<form id="list" method="post" action="{U_ACTION}">
+<fieldset class="tabulated">
+<!-- IF S_LIST -->
+
+<!-- IF VIEWLOGS_PAGINATION -->
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; 
+		<span>{VIEWLOGS_PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+<table cellspacing="1">
+	<thead>
+	  <tr>
+	    <th style="text-align: left, width:150, white-space: nowrap"><a href="{U_LOGS}o={O_DATE}">{L_ID}</a></th>
+	    <th style="text-align: left, width:150, white-space: nowrap" ><a href="{U_LOGS}o={O_DATE}">{L_DATE}</a></th>
+	    <th style="text-align: left, width:100, white-space: nowrap"><a href="{U_LOGS}o={O_TYPE}">{L_TYPE}</a></th>
+	    <th style="text-align: left, width:100, white-space: nowrap" class="rowhead">{L_VIEW_ACTION}</th>
+	    <th style="text-align: left, width:100, white-space: nowrap"><a href="{U_LOGS}o={O_USER}">{L_USER}</a></th>
+	    <th style="text-align: left, width:120, white-space: nowrap"><a href="{U_LOGS}o={O_IP}">{L_IP_ADDRESS}</a></th>
+	    <th style="text-align: left, width:70, white-space: nowrap"><a href="{U_LOGS}o={O_RESULT}">{L_RESULT}</a></th>
+	    <th>{L_MARK}</th>
+	  </tr>
+  	</thead>
+	<tbody>
+  <!-- BEGIN logs_row -->
+  <!-- IF logs_row.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+  	<td>{logs_row.ID}</td>
+    <td>{logs_row.DATE}</td>
+    <td><a href="{U_LOGS_SEARCH}o={CURRENT_ORDER}&amp;search={logs_row.ENCODED_TYPE}">{logs_row.TYPE}</a></td>
+    <td><a href="{logs_row.U_VIEW_LOG}">{L_VIEW}</a></td>
+    <td><a href="{U_LOGS_SEARCH}o={CURRENT_ORDER}&amp;search={logs_row.ENCODED_USER}">{logs_row.USER}</a></td>
+    <td><a href="{U_LOGS_SEARCH}o={CURRENT_ORDER}&amp;search={logs_row.ENCODED_IP}">{logs_row.IP}</a></td>
+    <td class="{logs_row.C_RESULT}">{logs_row.RESULT}</td>
+    <td style="text-align: center;"><input type="checkbox" class="radio" name="mark[]" value="{logs_row.ID}" /></td>
+    
+  </tr>
+  <!-- END logs_row -->
+  <tr>
+    <th colspan="8" class="footer">{VIEWLOGS_FOOTCOUNT}</th>
+  </tr>
+  </tbody>
+</table>
+
+<!-- IF VIEWLOGS_PAGINATION -->
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{VIEWLOGS_PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+<!-- ELSE -->
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th align="left" colspan="2">{L_VIEWLOGS_TITLE}</th>
+  </tr>
+  <tr>
+    <td class="row1" style="width:200px">{L_DATE}:</td>
+    <td class="row1" style="width:100%">{LOG_DATE}</td>
+  </tr>
+  <tr>
+    <td class="row2" style="width:200px">{L_USERNAME}:</td>
+    <td class="row2" style="width:100%">{LOG_USERNAME}</td>
+  </tr>
+  <tr>
+    <td class="row1" style="width:200px">{L_IP_ADDRESS}:</td>
+    <td class="row1" style="width:100%">{LOG_IP_ADDRESS}</td>
+  </tr>
+  <tr>
+    <td class="row2" style="width:200px">{L_SESSION_ID}:</td>
+    <td class="row2" style="width:100%">{LOG_SESSION_ID}</td>
+  </tr>
+
+  <tr>
+    <th align="left" colspan="2">{LOG_ACTION}</th>
+  </tr>
+  <!-- BEGIN log_row -->
+  <tr>
+   <!-- IF log_row.S_ROW_COUNT is even --><td class="row1"<!-- ELSE --><td class="row2"<!-- ENDIF --> style="width:200px" >{log_row.KEY}</td>
+   <!-- IF log_row.S_ROW_COUNT is even --><td class="row1"<!-- ELSE --><td class="row2"<!-- ENDIF --> style="width:100%">{log_row.VALUE}</td>
+  </tr>
+  <!-- END log_row -->
+
+  <tr>
+    <th colspan="2">&nbsp;</th>
+  </tr>
+</table>
+
+<!-- ENDIF -->
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+	{S_FORM_TOKEN}
+	<input class="button2" type="submit" name="delmarked" value="{L_DELETE_MARKED}" /><br />
+	<p class="small"><a href="#" onclick="marklist('list', 'mark', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('list', 'mark', false); return false;">{L_UNMARK_ALL}</a></p>
+</fieldset>
+</fieldset>
+</form>
+<!-- INCLUDE dkp/overall_footer.html -->

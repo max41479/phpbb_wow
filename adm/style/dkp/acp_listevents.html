@@ -1,0 +1,61 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<form id="acp_listevents" method="post" action="{U_ACTION}">
+<div>
+<h1>{L_TITLE}</h1>
+<p>{L_EXPLAIN}</p>
+<br /> 
+
+<!-- IF EVENT_PAGINATION -->
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{EVENT_PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+<table cellspacing="1">
+<thead>
+  <tr>
+    <th style="text-align:left; width:20%"><a href="{U_LIST_EVENTS}&amp;o={O_DKPSYS}&amp;start={START}">{L_POOL}</a></th>
+    <th style="text-align:left; width:40%"><a href="{U_LIST_EVENTS}&amp;o={O_NAME}&amp;start={START}">{L_EVENT_NAME}</a></th>
+    <th style="text-align:left; width:20%">{L_EVENT_IMAGE}</th>
+    <th style="text-align:center; width:20%; white-space: nowrap"><a href="{U_LIST_EVENTS}&amp;o={O_VALUE}&amp;start={START}">{L_VALUE}</a></th>
+  	<th style="text-align:center; width:5%">{L_ACTION}</th>
+  </tr>
+</thead>
+<tbody>
+  <!-- BEGIN events_row -->
+  <!-- IF events_row.S_ROW_COUNT is even -->
+  <tr class="row1">
+  <!-- ELSE -->
+  <tr class="row2">
+  <!-- ENDIF -->
+    <td><strong>{events_row.DKPSYS_EVENT}</strong></td>
+    <td><a style="color:{events_row.COLOR}" href="{events_row.U_VIEW_EVENT}"><strong>{events_row.NAME}</strong></a></td>
+    <td><!-- IF events_row.S_EVENT_IMAGE_EXISTS -->  <img src="{events_row.IMAGEPATH}" alt="{events_row.NAME}" /><!-- ENDIF --> </td>
+    <td style="text-align:center; white-space: nowrap" class="positive">{events_row.VALUE}</td>
+	<td style="text-align:center; white-space: nowrap"><a href="{events_row.U_VIEW_EVENT}">{ICON_EDIT}</a>
+	</td>
+	    
+  </tr>
+  <!-- END events_row -->
+  <tr>
+    <th colspan="5" class="footer">{LISTEVENTS_FOOTCOUNT}</th>
+  </tr>
+  </tbody>
+</table>
+
+<!-- IF EVENT_PAGINATION -->
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{EVENT_PAGINATION}</span>
+</div>
+<!-- ENDIF -->
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+	<input class="button2" name="eventadd" type="submit" value="{L_ADD}" />
+</fieldset>
+</div>
+</form>
+
+
+<!-- INCLUDE dkp/overall_footer.html -->

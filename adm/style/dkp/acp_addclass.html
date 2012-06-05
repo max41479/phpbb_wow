@@ -1,0 +1,116 @@
+<!-- INCLUDE overall_header.html -->
+
+<script  type="text/javascript">
+//<![CDATA[
+ $(document).ready(function() {
+   $('#nojquery').hide();
+   $('#picker').farbtastic('#classcolor');
+
+ });
+
+ function check_form()
+{
+	 if (document.getElementById('class_name').value.length < 2)
+     {
+        alert('{MSG_NAME_EMPTY}');
+        return false;
+     }
+	 if (document.getElementById('class_id').value.length < 1)
+     {
+        alert('{MSG_ID_EMPTY}');
+        return false;
+     }
+     return true;
+}
+//]]>
+</script>
+
+<a name="maincontent"></a>
+
+<h1>{L_ACP_ADDCLASS}</h1>
+<p>{L_ACP_ADDCLASS_EXPLAIN}</p>
+
+<form id="acp_addclass" method="post" action="{U_ACTION}" onsubmit="return check_form(this)">
+<div>
+<input type="hidden" name="class_id0" value="{CLASS_ID}" />
+<input type="hidden" name="c_index" value="{C_INDEX}" />
+
+<fieldset>
+<legend>{L_ADD_CLASS_TITLE}</legend>
+    
+    <dl>
+	    <dt><label>{L_GAME}:</label><br />{L_GAME_CLASSRACEUPDATE_EXPLAIN}</dt>
+	  		<dd>
+	  		<!-- IF S_ADD -->
+	  		<select name="game_id" class="input" onchange="return Getfaction(this.value)">
+	       		<!-- BEGIN game_row -->
+	      		 <option value="{game_row.VALUE}"{game_row.SELECTED}>{game_row.OPTION}</option>
+	        	<!-- END game_row -->
+	      	</select>
+	      	<!-- ELSE -->
+	      		{GAME_ID}
+	      	<!-- ENDIF -->
+	      </dd>
+	 </dl>
+	 
+	 <dl>
+		<dt><label for="class_name">{L_CLASS_NAME}:</label></dt>
+		<dd><input class="medium" type="text" id="class_name" name="class_name" value="{CLASS_NAME}" /></dd>
+	</dl>
+
+	<dl>
+		<dt><label for="class_id">{L_CLASS_ID}:</label><br/>{L_CLASS_ID_EXPLAIN}</dt>
+		<dd><input class="medium" type="text" id="class_id" name="class_id" value="{CLASS_ID}" /></dd>
+	</dl>
+
+	<dl>
+		<dt><label>{L_CLASS_LEVEL}:</label><br/></dt>
+		<dd>
+			<input class="small" type="text" id="class_level_min" name="class_level_min" value="{CLASS_MIN}" />
+			<input class="small" type="text" id="class_level_max" name="class_level_max" value="{CLASS_MAX}" />
+		</dd>
+	</dl>
+
+
+	<dl>
+		<dt><label for="armory">{L_CLASS_ARMORY}:</label><br/>{L_CLASS_ARMORY_EXPLAIN}</dt>
+		<dd><select id="armory" name="armory">{S_ARMOR_OPTIONS}</select></dd>
+	</dl>
+	
+	<dl>
+		<dt><label for="image">{L_CLASS_IMAGE}:</label><br/>{L_CLASS_IMAGE_EXPLAIN}</dt>
+		<dd><input class="medium" type="text" id="image" name="image" value="{CLASS_IMAGENAME}" />
+			<!-- IF S_CLASS_IMAGE_EXISTS -->   <img src="{CLASS_IMAGE}" alt="{CLASS_NAME}" />  <!-- ENDIF -->
+		</dd>
+	</dl>
+
+	<dl>
+		<dt><label>{L_CLASS_COLOR}</label><br />{L_CLASS_COLOR_EXPLAIN}</dt>
+		<dd>
+			<table style=" border-width: 0px;"> 
+			<tr>
+				<td>
+				<span id="nojquery" style="color: red; font-size: 1.4em">{L_JQUERY_MISSING}</span>
+				  <span id="picker"></span>
+		       	</td>
+	       		<td>
+				<span class="form-item"><input type="text" id="classcolor" name="classcolor" value="{COLORCODE}" /></span>
+	    	 	</td>
+		     </tr>
+			</table>
+		</dd>
+	</dl>
+</fieldset>
+   
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+   {S_FORM_TOKEN}
+    <!-- IF S_ADD -->
+    <input type="submit" name="add" value="{L_ADD_CLASS}" class="button1" /> <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+    <!-- ELSE -->
+    <input type="submit" name="update" value="{L_UPDATE_CLASS}" class="button1" /> 
+    <!-- ENDIF -->
+	</fieldset>
+</div>
+</form>
+
+<!-- INCLUDE dkp/overall_footer.html -->

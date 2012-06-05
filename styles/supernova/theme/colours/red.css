@@ -1,0 +1,85 @@
+/* Supernova Colour-specific Stylesheet (Red) */
+
+#dummy-element {width: 2px;} /* Required. Don't delete */
+
+body {color: #a60808;}
+
+#sn-header {background-color: #bf1e1e;}
+
+#sn-nli-content, .sn-nli-form, fieldset.quick-login input.inputbox, input.inputbox:hover, input.inputbox:focus, #message-box textarea:hover, #message-box textarea:focus, a.button1, input.button1, input.button3, a.button2, input.button2, a.button1, a.button1:link, a.button1:visited, a.button1:active, a.button2, a.button2:link, a.button2:visited, a.button2:active, a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover, input.search, input.search:hover, input.search:focus, #sn-navbar a, .sn-breadcrumbs a, .sn-options a {color: #C50000;}
+input.inputbox:hover, input.inputbox:focus, #message-box textarea:hover, #message-box textarea:focus, textarea.inputbox:hover {border-color: #C50000;}
+
+.sn-nli-form, fieldset.quick-login input.inputbox, a.button1, input.button1, a.button2, input.button2, input.button3, a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover, input.search, input.search:hover, input.search:focus {border-color: #f5c1c1;}
+
+#sn-nli-content a {color: #a70000;}
+
+.mini-profile span a {color: #FFFFFF;}
+a.sn-mini-profile-logout {color: #ff8686 !important;}
+
+#sn-navbar a:hover, .sn-breadcrumbs a:hover, .sn-options a:hover  {color: #fa0000;}
+
+div.cat-name span, div.cat-name span a {color: #AB1B1B;}
+
+.sn-big-stat, a.forumtitle, a.forumtitle:active, a:link, a:visited, a:active, a.left, a.left:active, a.left:visited a.right, a.right:visited, a.right:visited, h2, h3, label, .content h2, .panel h2, .postbody h3, #tabs a span, #navigation a, #navigation #active-subsection a {color: #BB1D1D;}
+
+.row .pagination span a:hover, li.pagination span a:hover, .pagination span a:hover, .pagination span strong {background-color: #BB1D1D; border-color: #BB1D1D;}
+
+a.forumtitle:hover, a:hover, a.left:hover, a.right:hover, a.topictitle:hover {color: #e32323;}
+
+select {background-color: #fdf0f0; border-color: #f1a4a4; color: #a81a1a;}
+
+.navbar {background-color: #f5d2d2;}
+
+.bg1 {background-color: #fbf0f0;}
+.bg2, .bg3 {background-color: #fbecec;}
+
+blockquote, blockquote blockquote blockquote {border-color: #e0bfbf;}
+blockquote blockquote {background-color: #f5ebeb;}
+
+.forabg, .forumbg {background-color: #891616;}
+table.table1 tbody tr:hover, table.table1 tbody tr.hover {background-color: #fcdada;}
+
+#tabs a:hover span {color: #e32323;}
+
+#navigation a {background-color: #d1b3b3;}
+#navigation a:hover {color: #e32323;}
+#navigation #active-subsection a:hover {color: #e32323;}
+
+
+
+/* Below are only image overrides. Only thing to edit below here is the /red/ file name to some other colour */
+
+.reply-icon span {background-image: url("../images/red/post-reply.png");}
+.post-icon span	{background-image: url("../images/red/new-topic.png");}
+.locked-icon span {background-image: url("../images/red/locked.png");}
+.pmreply-icon span {background-image: url("../images/red/send-reply.png");}
+.newpm-icon span {background-image: url("../images/red/new-pm.png");}
+.forwardpm-icon span {background-image: url("../images/red/forward.png");}
+
+#sn-header {background: url("../images/red/headerbg.png");}
+a#sn-logo {background-image: url("../images/red/logo.png");}
+#sn-not-logged-in {background-image: url("../images/red/login-notice.png");}
+#sn-not-logged-in-hover {background-image: url("../images/red/login-notice-hover.png");}
+
+.fakecheck {background-image: url("../images/red/checkbox.png");}
+#sn-nli-button {background-image: url("../images/red/login-button.png");}
+div.mini-profile {background-image: url("../images/red/mini-profile-r.png");}
+div.mini-profile .mini-profile-inner {background-image: url("../images/red/mini-profile-l.png");}
+.member-icon {background-image: url("../images/red/member-icon.png");}
+
+.sn-cat-header {background-image: url("../images/red/cat-header.png");}
+.sn-cat-row {background-image: url("../images/red/cat-row.png");}
+.sn-cat-footer {background-image: url("../images/red/cat-footer.png");}
+div.cat-name {background-image: url("../images/red/cat-name-r.png");}
+div.cat-name span {background-image: url("../images/red/cat-name-l.png");}
+
+input.search, input.search:hover, input.search:focus {background-image: url("../images/red/search-form-bg.png");}
+a.button1, input.button1, input.button3, a.button2, input.button2 {background-image: url("../images/red/buttonbg.png");}
+.sn-nli-form, fieldset.quick-login input.inputbox {background-image: url("../images/red/nli-form-bg.png");}
+
+.forabg, .forumbg {background-image: url("../images/red/bg_list.gif");}
+
+#tabs a {background-image: url("../images/red/bg_tabs1.gif");}
+#tabs a span {background-image: url("../images/red/bg_tabs2.gif");}
+#navigation a {background-image: url("../images/red/bg_menu.gif");}
+.rtl #navigation a {background-image: url("../images/red/bg_menu_rtl.gif");}

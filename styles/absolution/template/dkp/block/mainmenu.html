@@ -1,0 +1,37 @@
+<!--  begin loot block  -->
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+	<h3 style="text-align:center">{L_MENU}</h3>
+	<div>
+		<ul class="portalmenu" >
+			<li style="list-style:none"><a href="{U_INDEX}"><strong>{L_INDEX}</strong></a></li>
+			<li style="list-style:none"><a href="{U_SEARCH}"><strong>{L_SEARCH}</strong></a></li>
+			<!-- IF not S_USER_LOGGED_IN and S_REGISTER_ENABLED -->
+			<li style="list-style:none"><a href="{U_REGISTER}"><strong>{L_REGISTER}</strong></a></li>
+			<!-- ENDIF -->
+			<!-- IF not S_IS_BOT and S_DISPLAY_MEMBERLIST -->
+			<li style="list-style:none"><a href="{U_MEMBERLIST}"><strong>{L_MEMBERLIST}</strong></a></li>
+			<!-- ENDIF -->
+			<!-- IF U_TEAM -->
+			<li style="list-style:none"><a href="{U_TEAM}"><strong>{L_THE_TEAM}</strong></a></li>
+			<!-- ENDIF -->
+		</ul>
+	<!-- IF S_USER_LOGGED_IN and not S_IS_BOT -->
+	<hr class="dashed" />
+	<ul class="portalmenu" >
+		    <li style="list-style:none"><a href="{U_ROSTER}"><strong>{L_MENU_ROSTER}</strong></a></li>
+			<li style="list-style:none"><a href="{U_LISTEVENTS}"><strong>{L_MENU_EVENTS}</strong></a></li>
+			<li style="list-style:none"><a href="{U_LISTITEMS}"><strong>{L_MENU_ITEMVAL}</strong></a></li>
+			<li style="list-style:none"><a href="{U_STATS}"><strong>{L_MENU_STATS}</strong></a></li>
+			<li style="list-style:none"><a href="{U_LISTRAIDS}"><strong>{L_MENU_RAIDS}</strong></a></li>
+		    <li style="list-style:none"><a href="{U_LISTMEMBERS}"><strong>{L_MENU_STANDINGS}</strong></a></li>
+			<li style="list-style:none"><a href="{U_LISTITEMHIST}"><strong>{L_MENU_ITEMHIST}</strong></a></li>
+	</ul>
+	<!-- ENDIF -->	
+	</div>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<br />
+<!--  end loot block  -->

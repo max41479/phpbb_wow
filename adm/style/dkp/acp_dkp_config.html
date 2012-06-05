@@ -1,0 +1,206 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+
+<h1>{L_GENERAL_SETTINGS}</h1>
+<p>{L_ACP_DKP_CONFIG_EXPLAIN}</p>
+
+<form method="post" action="{F_ADD_CONFIG}" id="dkpconfig" >
+
+<fieldset>
+<legend>{L_MENU_GENERAL}</legend>
+<br />
+
+  <dl>
+    <dt><label for="guildtag">{L_GUILDTAG}:</label></dt>
+    <dd><input type="text" name="guildtag" id="guildtag" size="20" maxlength="50" value="{GUILDTAG}" class="input" /></dd>
+  </dl>
+  
+  <dl>
+    <dt><label for="realm">{L_DEFAULT_REALM}:</label></dt>
+    <dd><input type="text" name="realm" id="realm" size="20" maxlength="50" value="{REALM}" class="input" /></dd>
+  </dl>
+  
+  <dl>
+    <dt><label for="region">{L_DEFAULT_REGION}:</label></dt>
+    <dd>
+	       <select id="region" name="region" class="input">
+	       <!-- BEGIN region_row -->
+	     		 <option value="{region_row.VALUE}"{region_row.SELECTED}>{region_row.OPTION}</option>
+	       <!-- END region_row -->
+	     	</select>
+       </dd>
+  </dl>
+  
+  <dl>
+    <dt><label>{L_BBDKP_STARTED}:</label></dt>
+    <dd><input type="text" name="bbdkp_start_dd" id="bbdkp_start_dd" size="2" maxlength="2" value="{EQDKP_START_DD}" class="input" />
+        <input type="text" name="bbdkp_start_mm" id="bbdkp_start_mm" size="2" maxlength="2" value="{EQDKP_START_MM}" class="input" />
+        <input type="text" name="bbdkp_start_yy" id="bbdkp_start_yy" size="4" maxlength="4" value="{EQDKP_START_YY}" class="input" />
+   </dd>
+  </dl>
+  
+  <dl>
+    <dt><label for="date_format">{L_DATE_FORMAT}:</label></dt>
+		<dd><input type="text" name="date_format" id="date_format" size="20" maxlength="30" value="{DATE_FORMAT}" class="input" /></dd>
+  </dl> 
+  
+  <dl>
+    <dt><label for="dkp_name">{L_POINT_NAME}:</label><br />{L_POINT_NAME_NOTE}</dt>
+    <dd><input type="text" name="dkp_name" id="dkp_name" size="20" maxlength="30" value="{DKP_NAME}" class="input" /></dd>
+  </dl>
+
+  <dl>
+  <dt><label for="default_game">{L_DEFAULT_GAME}:</label></dt>
+  	<dd>
+	<span id="default_game" >{DEFAULT_GAME}</span>
+	</dd>
+  </dl>
+
+  <dl>
+    <dt><label for="language">{L_DEFAULT_LANGUAGE}:</label><br />{L_DEFAULT_LANGUAGE_EXPLAIN}</dt>
+    <dd>
+		<select id="language" name="language">{S_LANG_OPTIONS}</select>
+       </dd>
+  </dl>
+
+  </fieldset>
+  
+ <fieldset>
+ <legend>{L_MENU_NEWS}</legend>
+ 
+  <dl>
+    <dt><label for="bbdkp_user_nlimit">{L_NEWS_PER_PAGE}:</label></dt>
+    <dd><input type="text" name="bbdkp_user_nlimit" id="bbdkp_user_nlimit" size="20" maxlength="30" value="{USER_NLIMIT}" class="input" />{FV_DEFAULT_NLIMIT}</dd>
+  </dl>
+
+
+ </fieldset>
+ 
+
+<fieldset>
+ <legend>{L_MEMBERS}</legend>
+ 
+ <dl>
+    <dt><label for="bbdkp_user_llimit">{L_LISTMEMBERS_PER_PAGE}:</label></dt>
+    <dd><input type="text" name="bbdkp_user_llimit" id="bbdkp_user_llimit" size="20" maxlength="30" value="{USER_LLIMIT}" class="input" />{FV_DEFAULT_LLIMIT}</dd>
+ </dl>
+   
+<dl>
+    <dt><label for="maxchars">{L_MAX_NUMBER_CHARS}:</label><br /><span>{L_MAX_NUMBER_CHARS_EXPLAIN}</span></dt>
+    <dd><input type="text" name="maxchars" id="maxchars" size="5" maxlength="2" value="{MAXCHARS}" class="input" /></dd>
+ </dl>
+</fieldset>
+
+
+ <fieldset>
+ <legend>{L_MENU_ROSTER}</legend>
+ <dl>
+       <dt><label for="rosterlayout">{L_ARM_LAYOUTDO}:</label></dt>
+       <dd>
+	       <select name="rosterlayout" id="rosterlayout" class="input">
+	       <!-- BEGIN rosterlayout_row -->
+	     		 <option value="{rosterlayout_row.VALUE}"{rosterlayout_row.SELECTED}>{rosterlayout_row.OPTION}</option>
+	       <!-- END rosterlayout_row -->
+	     	</select>
+       </dd>
+		      
+       <dt><label for="showachievement">{L_ARM_SHOWACH}</label></dt>
+        <dd>
+        	<input type="checkbox" name="showachievement" id="showachievement" value="1" <!-- IF F_SHOWACHIEV == 1 --> checked="checked"<!-- ENDIF -->/>
+       </dd>
+       
+ </dl>
+ 
+ <dl>
+    <dt><label for="bbdkp_minrosterlvl">{L_MINLEVELROSTER}:</label><br /><span>{L_MINLEVELROSTER_EXPLAIN}</span></dt>
+    <dd><input type="text" name="bbdkp_minrosterlvl" id="bbdkp_minrosterlvl" size="5" maxlength="2" value="{MINLEVEL}" class="input" /></dd>
+ </dl>
+</fieldset>
+
+ 
+<fieldset>
+<legend>{L_MENU_STANDINGS}</legend>
+  <dl>
+    <dt><label for="hide_inactive">{L_HIDE_INACTIVE}:</label><br />{L_HIDE_INACTIVE_NOTE}</dt>
+    <dd>
+    <input type="radio" id="hide_inactive" name="hide_inactive" value="1"{HIDE_INACTIVE_YES_CHECKED} /> {L_YES}&nbsp;&nbsp;
+    <input type="radio" name="hide_inactive" value="0"{HIDE_INACTIVE_NO_CHECKED} /> {L_NO}
+   </dd>
+ </dl>
+  
+  <dl>
+    <dt><label for="inactive_period">{L_INACTIVE_PERIOD}:</label><br />{L_INACTIVE_PERIOD_NOTE}</dt>
+		<dd><input type="text" name="inactive_period" id="inactive_period" size="20" maxlength="30" value="{INACTIVE_PERIOD}" class="input" /></dd>
+  </dl>
+   
+  <dl>
+    <dt><label>{L_ATTENDANCEDAYS}:</label></dt>
+    <dd>
+    <input type="text" name="list_p1" id="list_p1" size="20" maxlength="30" value="{LIST_P1}" class="input" />{FV_DEFAULT_P1}<br />
+    <input type="text" name="list_p2" id="list_p2" size="20" maxlength="30" value="{LIST_P2}" class="input" />{FV_DEFAULT_P2}<br />
+    <input type="text" name="list_p3" id="list_p3" size="20" maxlength="30" value="{LIST_P3}" class="input" />{FV_DEFAULT_P3}
+    </dd>
+  </dl>
+</fieldset>
+
+<fieldset>
+<legend>{L_MENU_EVENTS}</legend>
+  <dl>
+    <dt><label for="bbdkp_user_elimit">{L_EVENTS_PER_PAGE}:</label></dt>
+    <dd><input type="text" name="bbdkp_user_elimit" id="bbdkp_user_elimit" size="20" maxlength="30" value="{USER_ELIMIT}" class="input" />{FV_DEFAULT_ELIMIT}</dd>
+  </dl>
+</fieldset>
+
+<fieldset>
+<legend>{L_MENU_ADJUSTMENTS}</legend>
+  <dl>
+    <dt><label for="bbdkp_user_alimit">{L_ADJUSTMENTS_PER_PAGE}:</label></dt>
+    <dd><input type="text" name="bbdkp_user_alimit" id="bbdkp_user_alimit" size="20" maxlength="30" value="{USER_ALIMIT}" class="input" />{FV_DEFAULT_ALIMIT}</dd>
+  </dl>
+
+<dl>
+<dt>   
+	<label for="starting_dkp">{L_STARTING_DKP}:</label>
+    <br />{L_STARTING_DKP_EXPLAIN}
+	</dt><dd>
+  <input type="text" name="starting_dkp" id="starting_dkp" size="10" maxlength="5" value="{STARTING_DKP}" class="input" />
+  {FV_STARTING_DKP}
+  </dd>
+</dl> 
+
+ <dl>
+    <dt><label for="bbdkp_active_point_adj">{L_ACTIVE_POINT_ADJ}:</label><br />{L_ACTIVE_POINT_ADJ_NOTE}</dt>
+		<dd><input type="text" name="bbdkp_active_point_adj" id="bbdkp_active_point_adj" size="20" maxlength="30" value="{ACTIVE_POINT}" class="input" /></dd>
+  </dl> 
+  <dl>
+    <dt><label for="bbdkp_inactive_point_adj">{L_INACTIVE_POINT_ADJ}:</label><br />{L_INACTIVE_POINT_ADJ_NOTE}</dt>
+    <dd><input type="text" name="bbdkp_inactive_point_adj" id="bbdkp_inactive_point_adj" size="20" maxlength="30" value="{INACTIVE_POINT}" class="input" /></dd>
+  </dl>
+</fieldset>
+
+ 
+ <fieldset>
+ <legend>{L_MENU_ITEMHIST}</legend>
+  
+   <dl>
+    <dt><label for="bbdkp_user_ilimit">{L_ITEMS_PER_PAGE}:</label></dt>
+    <dd><input type="text" name="bbdkp_user_ilimit" id="bbdkp_user_ilimit" size="20" maxlength="30" value="{USER_ILIMIT}" class="input" />{FV_DEFAULT_ILIMIT}</dd>
+  </dl>
+</fieldset>
+ 
+<fieldset>
+<legend>{L_MENU_RAIDS}</legend>
+ <dl>
+    <dt><label for="bbdkp_user_rlimit">{L_RAIDS_PER_PAGE}:</label></dt>
+    <dd><input type="text" name="bbdkp_user_rlimit" id="bbdkp_user_rlimit" size="20" maxlength="30" value="{USER_RLIMIT}" class="input" />{FV_DEFAULT_RLIMIT}</dd>
+  </dl>
+</fieldset>
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+	{S_FORM_TOKEN}
+  <input type="submit" name="update" value="{L_SUBMIT}" class="button1" /> <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+</fieldset>
+
+</form>
+<!-- INCLUDE dkp/overall_footer.html -->

@@ -1,0 +1,33 @@
+.sp-wrap			{ margin: 8px auto; }
+.sp-wrap			{ width: 98%; clear: both; }
+.sp-wrap .sp-wrap		{ margin: 2px auto 4px; }
+.sp-wrap, .sp-head, .sp-body	{
+	border: solid #A9C7E0; 
+	border-width: 1px 1px 1px 2px; 
+	clear: both;
+	border-radius: 1px;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 3px;
+}
+.sp-body	{ padding: 2px 6px; }
+.sp-head	{ text-align: left !important; }
+
+.sp-wrap	{ padding: 0; background: #c8e0f3; }
+.sp-head	{ border-width: 0; font-size: 11px; padding: 1px 14px 3px; margin-left: 6px; line-height: 15px; font-weight: bold; color: #2A2A2A; cursor: pointer; }
+.sp-body	{ border-width: 1px 0 0 0; display: none; font-weight: normal; background: #E8F2FA; }
+
+.clickable	{ cursor: pointer; }
+.folded	{ display: block;
+	background: transparent url(../images/spoiler/icon_plus_1.gif) no-repeat left center; padding-left: 14px; }
+.unfolded	{ display: block;
+	background: transparent url(../images/spoiler/icon_minus_1.gif) no-repeat left center; padding-left: 14px; }
+
+var.postImgAligned {
+	display: block;
+}
+
+img.postImg  { vertical-align: text-bottom; }
+img.postImg        { margin: 2px 2px 0 0; }
+img.postImgAligned { margin: 4px 4px 2px; }
+
+.clear     { clear: both; height: 0; font-size: 0px; line-height: 0px; overflow: hidden; }

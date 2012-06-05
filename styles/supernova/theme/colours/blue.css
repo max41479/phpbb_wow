@@ -1,0 +1,416 @@
+/* Supernova (Blue) CSS Information by Christian Bullock (http://www.ChristianBullock.com)
+---------------------------------------- */
+
+#dummy-element {width: 2px;}
+
+#sn-shadows {
+	min-height: 90%;
+	width: 932px;
+	padding: 0 19px;
+	margin: 0 auto;
+	background: url("{T_THEME_PATH}/images/shadow.png") repeat-y;
+	margin-top: -8px; /* Bury shadow borders below navbar */
+	padding-top: 15px; /* We don't want the board content to be buried by the navbar */
+}
+
+#sn-header {
+	width: 100%;
+	height: 100px;
+	background: url("{T_THEME_PATH}/images/blue/headerbg.png") repeat-x bottom #0f518f;
+}
+
+#sn-header-content, #sn-navbar-content {width: 960px; margin: auto;}
+
+a#sn-logo {
+	width: 484px;
+	height: 100px;
+	background: url("{T_THEME_PATH}/images/blue/logo.png") no-repeat;
+	display: block;
+	float: left;
+}
+
+#sn-controlbox {
+	float: right;
+	margin-right: 30px;
+}
+
+#sn-not-logged-in {
+	width: 259px;
+	height: 31px;
+	background: url("{T_THEME_PATH}/images/blue/login-notice.png") no-repeat;
+	margin-top: 34px;
+}
+
+#sn-not-logged-in-hover {
+	display: none;
+	width: 271px;
+	height: 248px;
+	background: url("{T_THEME_PATH}/images/blue/login-notice-hover.png") no-repeat;
+	position: absolute;
+	z-index: 9999; /* Make the div hover above the nav bar */
+	margin-top: -39px;
+	margin-left: -6px;
+}
+
+#sn-nli-content {
+	padding: 5px 15px 10px 15px;
+	margin-top: 45px;
+	color: #0870d1;
+}
+
+span.sn-form-label, #sn-nli-content a {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: 0.5px;
+}
+
+#sn-nli-content a {
+	text-transform:none;
+	color: #0870d1;
+	letter-spacing: normal;
+}
+
+.sn-nli-form {
+	width: 233px;
+	height: 24px;
+	line-height: 24px;
+	border: 1px solid #b8e3ff;
+	background: url("{T_THEME_PATH}/images/blue/nli-form-bg.png") repeat-x;
+	margin-top: 4px;
+	margin-bottom: 6px;
+	color: #0a81d0;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.fakecheck {
+	font: 12px Tahoma, Arial, Helvetica, sans-serif;
+	text-decoration: none;
+	outline: none;
+	background: url("{T_THEME_PATH}/images/blue/checkbox.png") no-repeat;
+	height: 16px;
+	display: block;
+	float: left;
+	padding: 1px 0px 0px 20px;
+}
+
+.fakechecked {
+	background-position: left -25px;
+}
+
+#sn-nli-button {
+	width: 69px;
+	height: 26px;
+	background: url("{T_THEME_PATH}/images/blue/login-button.png") no-repeat top;
+	border: none;
+	float: right;
+	margin-top: 6px;
+}
+
+#sn-nli-button:hover {
+	background-position: bottom;
+}
+
+div.mini-profile {
+	background: transparent url("{T_THEME_PATH}/images/blue/mini-profile-r.png") no-repeat scroll top right; 
+	display: block;
+	float: left;
+	height: 52px;
+	padding-right: 6px;
+	text-decoration: none;
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 21px;
+	color: #FFFFFF;
+}
+
+div.mini-profile .mini-profile-inner {
+	background: transparent url("{T_THEME_PATH}/images/blue/mini-profile-l.png") no-repeat; 
+	display: block;
+	padding-left: 7px;
+	padding-right: 5px;
+	padding-top: 8px;
+	height: 44px;
+	text-align: left;
+}
+
+div.mini-profile img {
+	vertical-align: middle;
+	margin-top: -2px;
+	margin-right: 3px;
+}
+
+.member-icon {
+	width: 32px;
+	height: 30px;
+	background: url("{T_THEME_PATH}/images/blue/member-icon.png") no-repeat;
+	float: left;
+	margin-right: 8px;
+}
+
+a.sn-mini-profile-username {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	color: #FFFFFF !important;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 5px #000000;
+	letter-spacing: -0.3px;
+	float: left;
+}
+
+a.sn-mini-profile-username:hover, a.sn-mini-profile-logout:hover {
+	text-decoration: underline;
+}
+
+a.sn-mini-profile-link {
+	color: #FFFFFF;
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+a.sn-mini-profile-logout {
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	color: #87cfff;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 5px #000000;
+	letter-spacing: -0.3px;
+	float: right;
+}
+
+.sn-header-alert {
+	background-color: #FBE3E4;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	color: #860006;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	border: 1px solid #FBC2C4;
+}
+
+.sn-header-alert a {color: #860006; text-decoration: underline;}
+.sn-header-alert a:hover {text-decoration: none;}
+.sn-header-alert img {vertical-align: middle; margin-top: -3px;}
+
+#sn-navbar {
+	width: 100%;
+	height: 51px;
+	line-height: 46px;
+	background: url("{T_THEME_PATH}/images/navbg.png") repeat-x bottom transparent;
+	position: relative; /* Allows for navbar to overlap shadow border */
+}
+
+#sn-navbar a {
+	color: #0870d1;
+	font-weight: bold;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 11px;
+	text-transform: uppercase;
+	text-decoration: none;
+	letter-spacing: -0.5px;
+}
+
+#sn-navbar a:hover {
+	text-decoration: underline;
+	color: #0a8ee6;
+}
+
+#sn-navbar img {vertical-align: middle; margin-top: -2px; margin-right: 6px;}
+
+div.colour-block {
+	background: transparent url("{T_THEME_PATH}/images/colour_block_right.png") no-repeat scroll top right; 
+	float: right;
+	height: 26px;
+	padding-right: 7px;
+	margin-top: 11px;
+	margin-left: 10px;
+	line-height: 25px;
+}
+
+div.colour-block span {
+	background: transparent url("{T_THEME_PATH}/images/colour_block_left.png") no-repeat; 
+	display: block;
+	padding-left: 29px;
+	height: 26px;
+}
+
+div.colour-block span a {outline: none;}
+
+img.colour-block {
+	margin-right: 0px !important;
+}
+
+.tipsy { padding: 5px; font-size: 10px; opacity: 0.8; filter: alpha(opacity=80); background-repeat: no-repeat;  background-image: url("{T_THEME_PATH}/images/tipsy.gif"); }
+.tipsy-inner { padding: 5px 8px 4px 8px; background-color: black; color: white; max-width: 200px; text-align: center; }
+.tipsy-inner { -moz-border-radius:3px; -webkit-border-radius:3px; }
+.tipsy-north { background-position: top center; }
+.tipsy-south { background-position: bottom center; }
+.tipsy-east { background-position: right center; }
+.tipsy-west { background-position: left center; }
+
+.sn-breadcrumbs {float: left; margin-bottom: 5px;}
+.sn-options {float: right; margin-bottom: 5px;}
+
+.sn-breadcrumbs a, .sn-options a {
+	font-weight: bold;
+	font-family: Verdana, Geneva, sans-serif; 
+	color: #0870D1;
+	font-size: 12px;
+}
+
+.sn-breadcrumbs a:hover, a.sn-options a:hover {color: #0A8EE6;}
+
+.sn-breadcrumbs img, .sn-options img {
+	vertical-align: middle;
+	margin-top: -6px;
+	margin-right: 6px;
+}
+
+.sn-search-links a {
+	font-size: 10px;
+	letter-spacing: -0.04em;
+}
+
+.sn-cat-header {
+	width: 932px;
+	height: 31px; 
+	background: url("{T_THEME_PATH}/images/blue/cat-header.png") no-repeat;
+	position: relative;
+	z-index: 1;
+}
+
+.sn-cat-row {
+	width: 924px;
+	padding: 0 4px;
+	background: url("{T_THEME_PATH}/images/blue/cat-row.png") repeat-y;
+	margin-top: -3px;
+}
+
+.sn-cat-footer {
+	width: 932px;
+	height: 6px;
+	background: url("{T_THEME_PATH}/images/blue/cat-footer.png") no-repeat;
+	margin-bottom: 6px;
+	position: relative;
+	z-index: 1;
+	margin-top: -2px;
+}
+
+div.cat-name {
+	background: transparent url("{T_THEME_PATH}/images/blue/cat-name-r.png") no-repeat scroll top right; 
+	float: left;
+	height: 21px;
+	padding-right: 6px;
+	margin-left: 4px;
+	line-height: 21px;
+}
+
+div.cat-name span {
+	background: transparent url("{T_THEME_PATH}/images/blue/cat-name-l.png") no-repeat; 
+	display: block;
+	padding-left: 6px;
+	height: 21px;
+	letter-spacing: -1px;
+}
+
+div.cat-name span, div.cat-name span a {
+	font-weight: bold;
+	font-family: Verdana, Geneva, sans-serif;
+	text-transform: uppercase;
+	font-size: 12px;
+	color: #096fb5;
+	text-shadow: none;
+}
+
+.sn-cat-header-label {
+	margin-top: 8px !important;
+	text-shadow: 1px 1px 3px #000000;
+	letter-spacing: 0.4px;
+}
+
+li.row {border-bottom: none;}
+
+.sn-forum-description {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 11px;
+	color: #838383;
+	line-height: 14px;
+}
+
+.sn-big-stat {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 14px;
+	color: #0e5999;
+}
+
+.sn-move-icon {
+	width: 11px;
+	height: 11px;
+	float: right;
+	background-image: url("{T_THEME_PATH}/images/move-icon.png");
+	background-repeat: no-repeat;
+	margin-top: 4px;
+	margin-right: 5px;
+	cursor: move;
+}
+
+.sn-placeholder {
+	background-color: #F6F6F6;
+	border: 2px dashed #DDDDDD;
+	margin-bottom: 4px;
+	background-image: url("{T_THEME_PATH}/images/drop.png");
+	background-position: 50% 20px;
+	background-repeat: no-repeat;
+}
+
+.sn-stat-info {
+	padding-left: 40px;
+	background-repeat: no-repeat;
+}
+
+.sn-stat-info strong {
+	font-size: 14px;
+}
+
+.sn-index-icon {
+	position: relative;
+	left: -18px;
+}
+
+.sn-author-column {
+	width: 40% !important;
+}
+
+.sn-reported-row {
+	background-image: url("{T_THEME_PATH}/images/row-reported.png") !important;
+	background-repeat: repeat-x;
+	background-color: #fdeded !important;
+}
+
+.sn-unapproved-row {
+	background-image: url("{T_THEME_PATH}/images/row-unapproved.png") !important;
+	background-repeat: repeat-x;
+	background-color: #eefcee !important;
+}
+
+.postbody h3 {
+	color: #115098;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	letter-spacing: -0.4px;
+}
+
+h3.first {
+	font-size: 16px !important;
+}

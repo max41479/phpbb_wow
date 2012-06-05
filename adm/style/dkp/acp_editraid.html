@@ -1,0 +1,469 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+
+<!-- IF S_EDITRAIDER -->
+<script type="text/javascript">
+//<![CDATA[
+
+window.onload = start;
+function start()
+{
+	updatesum();
+}
+
+function updatesum() 
+{
+	var earned = 0.00;
+	var total = 0.00;
+	
+	var raid_value = parseFloat(document.getElementById("raid_value").value.replace(",","."));
+	var time_bonus = parseFloat(document.getElementById("time_bonus").value.replace(",","."));
+	var zerosum_bonus = 0.00;
+	 <!-- IF S_SHOWZS --> 
+	 zerosum_bonus = parseFloat(document.getElementById("zerosum_bonus").value.replace(",",".")); 
+	 <!-- ENDIF -->
+	 earned = raid_value + time_bonus + zerosum_bonus; 
+	 document.getElementById("member_earned").value = earned.toFixed(2);
+	 total = earned - (document.getElementById("raid_decay").value-0);
+}
+//]]>
+</script>
+
+<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END}">&laquo;
+{L_BACK}</a>
+<h1>{RAIDTITLE}</h1>
+<p>{L_EDIT_RAIDER_EXPLAIN}</p>
+
+<form method="post" action="{F_EDIT_RAID}" id="editraid">
+<div><input type="hidden" name="hidden_raidid" value="{RAID_ID}" />
+<input type="hidden" name="hidden_memberid" value="{MEMBERID}" /> 
+	<input type="hidden" name="hidden_dkpid" value="{EVENT_DKPID}" /> 
+	<input type="hidden" name="old_raid_value" value="{RAID_VALUE}" /> 
+	<input type="hidden" name="old_time_bonus" value="{TIMEVALUE}" /> 
+	<!-- IF S_SHOWZS -->
+	<input type="hidden" name="old_zerosum_bonus" value="{ZEROSUMSVALUE}" />
+	<!-- ENDIF --> 
+	<input type="hidden" name="old_raid_decay" value="{DECAYVALUE}" />
+<fieldset>
+<dl>
+	<dt><label>{L_NAME}:</label></dt>
+	<dd><strong>{MEMBERNAME}</strong></dd>
+</dl>
+<hr />
+<dl>
+	<dt><label for="raid_value">{L_RAIDVALUE}:</label></dt>
+	<dd>&nbsp;&nbsp;<input readonly="readonly" type="text"
+		name="raid_value" id="raid_value" size="20" maxlength="14"
+		value="{RAID_VALUE}" class="input" onchange="javascript:updatesum()" /></dd>
+</dl>
+
+<dl>
+	<dt><label for="time_bonus">{L_TIMEDKP}:</label></dt>
+	<dd>+&nbsp;<input type="text" name="time_bonus" id="time_bonus"
+		size="20" maxlength="14" value="{TIMEVALUE}" class="input"
+		onchange="javascript:updatesum()" /></dd>
+</dl>
+
+<!-- IF S_SHOWZS -->
+<dl>
+	<dt><label for="zerosum_bonus">{L_ZSVALUE}:</label></dt>
+	<dd>+&nbsp;<input type="text" name="zerosum_bonus"
+		id="zerosum_bonus" size="20" maxlength="14" value="{ZEROSUMSVALUE}"
+		class="input" onchange="javascript:updatesum()" /></dd>
+</dl>
+<!-- ENDIF -->
+<hr />
+<dl>
+	<dt><label for="member_earned">{L_EARNED}:</label></dt>
+	<dd>=&nbsp;<input readonly="readonly" type="text"
+		id="member_earned" name="member_earned" size="20" maxlength="14"
+		value="{EARNED}" class="input" style="border: none" /></dd>
+</dl>
+
+
+<dl>
+	<dt><label for="raid_decay">{L_DECAY}:</label></dt>
+	<dd>&nbsp;-&nbsp;<input type="text" id="raid_decay"
+		name="raid_decay" size="20" maxlength="14" value="{DECAYVALUE}"
+		class="input" onchange="javascript:updatesum()" /></dd>
+</dl>
+<hr />
+<dl>
+	<dt><label>{L_TOTAL}:</label></dt>
+	<dd>=&nbsp;<input readonly="readonly" type="text"
+		id="member_total" name="member_total" size="20" maxlength="14"
+		value="{TOTAL}" class="input" style="border: none" /></dd>
+</dl>
+
+
+<fieldset class="submit-buttons"><input class="button1"
+	type="submit" id="editraider" name="editraider" value="{L_SUBMIT}" />&nbsp;
+<input class="button2" type="reset" id="reset" name="reset"
+	value="{L_RESET}" /> {S_FORM_TOKEN}</fieldset>
+</fieldset>
+</div>
+</form>
+
+<!-- ELSEIF S_EDITRAID -->
+
+<script type="text/javascript">
+//<![CDATA[
+window.onload = start;
+function start()
+{
+	durationcalc();
+}
+
+/* gets value from event and puts it in raidvalue box */
+function switch_event_val()
+{
+  var patt= / - \(([0-9.]+)\)/;
+  if (document.getElementById("event_id").selectedIndex > 0 )
+  {
+	  var eventvalue  = document.getElementById('event_id').options[document.getElementById('event_id').selectedIndex].text.match(patt);
+	  document.getElementById('raid_value').value = eventvalue[eventvalue.length-1]; 
+  }
+}
+
+
+<!-- IF S_SHOWTIME -->
+/* time dkp bonus from duration */ 
+function update_timebonus()
+{
+	var duration = durationcalc();
+	var dkp_per_timeunit = document.getElementById("dkptimeunit").value;
+	var unitminutes = document.getElementById("timeunit").value;  
+	var dkp_bonus = 0;
+	if(unitminutes > 0)
+	{
+		dkp_bonus = (dkp_per_timeunit * (duration * 60) / unitminutes ).toFixed(2);
+	}
+	document.getElementById("time_bonus").value = dkp_bonus;
+}
+<!-- ENDIF -->
+
+
+/* calculates time dkp bonus from raid duration and config settings */
+function durationcalc()
+{
+	var raidbegin = new Date();
+	var startday = document.getElementById("d").options[document.getElementById("d").selectedIndex].text;
+	startday= startday.replace("--", "1");
+	raidbegin.setDate(startday);
+	var startmonth = document.getElementById("mo").options[document.getElementById("mo").selectedIndex].text;
+	startmonth= startmonth.replace("--", "1");
+	raidbegin.setMonth(startmonth);
+	var startyear = document.getElementById("Y").options[document.getElementById("Y").selectedIndex].text;
+	startyear= startyear.replace("--", "1");
+	raidbegin.setYear(startyear);
+	var starth = document.getElementById("sh").options[document.getElementById("sh").selectedIndex].text;
+	starth= starth.replace("--", "0");
+	raidbegin.setHours(starth);
+	var startm = document.getElementById("smi").options[document.getElementById("smi").selectedIndex].text;
+	startm= startm.replace("--", "0");
+	raidbegin.setMinutes(startm);
+	var starts = document.getElementById("ss").options[document.getElementById("ss").selectedIndex].text;
+	starts= starts.replace("--", "0");
+	raidbegin.setSeconds(starts);
+	
+	var raidend = new Date();
+	var stopday = document.getElementById("ed").options[document.getElementById("ed").selectedIndex].text;
+	stopday= stopday.replace("--", "1");
+	raidend.setDate(stopday);
+	var stopmonth = document.getElementById("emo").options[document.getElementById("emo").selectedIndex].text;
+	stopmonth= stopmonth.replace("--", "1");
+	raidend.setMonth(stopmonth);
+	var stopyear = document.getElementById("eY").options[document.getElementById("eY").selectedIndex].text;
+	stopyear= stopyear.replace("--", "1");
+	raidend.setYear(stopyear);
+	var stoph = document.getElementById("eh").options[document.getElementById("eh").selectedIndex].text;
+	stoph= stoph.replace("--", "0");
+	raidend.setHours(stoph);
+	var stopm = document.getElementById("emi").options[document.getElementById("emi").selectedIndex].text;
+	stopm= stopm.replace("--", "0");
+	raidend.setMinutes(stopm);
+	var stops = document.getElementById("es").options[document.getElementById("es").selectedIndex].text;
+	stops= stops.replace("--", "0");
+	raidend.setSeconds(stops);
+	
+	var diff=raidend-raidbegin;
+	if(diff> 0)
+	{
+		diff=diff/86400000*24;
+		diff=diff.toFixed(2);		
+		document.getElementById("raid_duration").value = diff;
+	}
+	else
+	{
+		document.getElementById("raid_duration").value = 0;
+	}
+	return document.getElementById("raid_duration").value;
+	
+}
+
+//]]>
+</script>
+
+<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
+<h1>{RAIDTITLE}</h1>
+<p>{L_ACP_EDITRAID_EXPLAIN}</p>
+
+<form method="post" action="{F_EDIT_RAID}" id="editraid">
+
+<div style="float: left; width: 100%;">
+<fieldset>
+
+<legend>{L_EDIT_RAID_TITLE}</legend>
+
+<input type="hidden" name="hidden_id" value="{RAID_ID}" /> 
+<input type="hidden" name="hidden_dkpid" value="{EVENT_DKPID}" /> 
+	<dl><dt><label>{L_POOL}:</label></dt>
+	<dd><strong>{RAID_DKPPOOL}</strong></dd>
+	</dl>
+	
+	<dl>
+		<dt><label>{L_EVENT}:</label></dt>
+    <dd>
+	    <select id="event_id" onchange="javascript:switch_event_val();" >
+			<!-- BEGIN events_row -->
+			<option value="{events_row.VALUE}"{events_row.SELECTED}>{events_row.OPTION}</option>
+			<!-- END events_row -->
+		</select>
+	</dd>
+	</dl>		
+	
+	<dl>
+		<dt><label>{L_RAIDSTART}:</label></dt>
+		<dd>
+			<select id="d" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF -->>{S_RAIDSTARTDATE_DAY_OPTIONS}</select>
+			<select id="mo" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTARTDATE_MONTH_OPTIONS}</select> 
+			<select id="Y" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTARTDATE_YEAR_OPTIONS}</select>
+	   </dd>
+	   		<dd>
+			<select id="sh" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTART_H_OPTIONS}</select>
+			<select id="smi" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTART_MI_OPTIONS}</select> 
+			<select id="ss" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF -->  >{S_RAIDSTART_S_OPTIONS}</select>
+		</dd>
+	</dl>
+
+	<dl>
+		<dt><label>{L_RAIDEND}:</label></dt>
+		<dd>
+			<select id="ed" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDENDDATE_DAY_OPTIONS}</select>
+			<select id="emo" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF -->  >{S_RAIDENDDATE_MONTH_OPTIONS}</select> 
+			<select id="eY" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDENDDATE_YEAR_OPTIONS}</select>
+	   </dd>
+	   	<dd>
+			<select id="eh" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDEND_H_OPTIONS}</select>
+			<select id="emi" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDEND_MI_OPTIONS}</select> 
+			<select id="es" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDEND_S_OPTIONS}</select>
+		</dd>
+	</dl>
+	
+	<dl>
+		<dt><label>{L_RAIDDURATION}:</label>({L_RAIDDURATION_EXPLAIN})</dt>
+		<dd>
+			<input readonly="readonly" type="text" name="raid_duration" id="raid_duration" size="8" maxlength="7" value="{RAID_DURATION}" class="input" style="border: none" />
+		</dd>
+	</dl>
+	
+	<dl>
+		<dt><label>{L_RAIDVALUE}:</label>({L_ADD_RAID_VALUE_NOTE})</dt>
+		<dd>
+			<input type="text" name="raid_value" id="raid_value" size="8" maxlength="7" value="{INDIVIDUAL_RAID_VALUE}" class="input" />
+		</dd>
+	</dl>
+	<!-- IF S_SHOWTIME -->
+	<input type="hidden" name="dkptimeunit" id="dkptimeunit" value="{DKPTIMEUNIT}" /> 
+	<input type="hidden" name="timeunit" id="timeunit"  value="{TIMEUNIT}" /> 
+	<dl>
+		<dt><label>{L_TIME_BONUS}:</label>&nbsp;{L_TIME_BONUS_EXPLAIN}&nbsp;{DKPPERTIME}. </dt>
+		<dd>
+			<input type="text" name="time_bonus" id="time_bonus" size="8" maxlength="7" value="{INDIVIDUAL_TIMEVALUE}" class="input" /> &nbsp; <input type="checkbox" name="overridetime_bonus" value="1"/> {L_TIME_OVERRIDE}
+		</dd>
+	</dl>
+	<!-- ENDIF -->
+	
+	<strong>{L_NOTE}</strong>
+	<textarea style="width:100%;" name="raid_note" cols="60" rows="5">{RAID_NOTE}</textarea>
+	
+	<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+		<span>{ADDEDBY}<br />{UPDATEDBY}</span>
+	</fieldset>
+	<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+		<input type="submit" name="update" value="{L_UPDATE_RAID}" class="button1" />
+	</fieldset>
+	
+	
+</fieldset>
+	
+</div>
+
+
+
+<div style="clear: both; width: 100%;">
+<fieldset>
+<legend>{L_ATTENDEES}</legend>
+
+
+<!-- IF S_SHOWADDATTENDEE -->
+
+ 	 <dl>
+	    <dt><label for="attendee_id">{L_MEMBER}:</label>{L_ATTENDEEADD_EXPLAIN}</dt>
+	    <dd><select id="attendee_id">{S_MEMBERLIST_OPTIONS}</select> 
+		<input type="submit" name="addattendee" value="{L_ADD_ATTENDEE}" class="button1" /></dd>
+	 </dl>
+	 
+<!-- ENDIF -->
+
+<table cellspacing="1">
+<thead>
+  <tr>
+    <th style="text-align:left; width:7%" >{L_RACE}/{L_CLASS}</th>
+    <th style="text-align:left; width:25%"><a href="{F_EDIT_RAID}&amp;o={O_NAME}&amp;">{L_NAME}</a></th>
+    <th style="text-align:right; width:15%; white-space: nowrap"><a href="{F_EDIT_RAID}&amp;o={O_RAIDVALUE}">{L_RAIDVALUE}</a></th>
+    <!-- IF S_SHOWTIME -->
+    <th style="text-align:right; width:15%; white-space: nowrap"><a href="{F_EDIT_RAID}&amp;o={O_TIMEVALUE}">{L_TIMEVALUE}</a></th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <th style="text-align:right; width:15%; white-space: nowrap"><a href="{F_EDIT_RAID}&amp;o={O_ZSVALUE}">{L_ZSVALUE}</a></th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <th style="text-align:right; width:15%; white-space: nowrap"><a href="{F_EDIT_RAID}&amp;o={O_DECAYVALUE}">{L_DECAY}</a></th>
+    <!-- ENDIF -->
+    <th style="text-align:right; width:15%; white-space: nowrap"><a href="{F_EDIT_RAID}&amp;o={O_TOTALVALUE}">{L_TOTAL}</a></th>
+    <th style="text-align:center; width:5%">{L_ACTION}</th>
+  </tr>
+  </thead>
+<tfoot>
+  <tr>
+    <th></th>
+    <th class="footer">{LISTRAIDS_FOOTCOUNT}</th>
+    <th class="footer" style="text-align:right; width:15%; white-space: nowrap">{RAID_VALUE}</th>
+    <!-- IF S_SHOWTIME -->
+    <th class="footer" style="text-align:right; width:15%; white-space: nowrap">{TIMEVALUE}</th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <th class="footer" style="text-align:right; width:15%; white-space: nowrap">{ZSVALUE}</th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <th class="footer" style="text-align:right; width:15%; white-space: nowrap">{DECAYVALUE}</th>
+    <!-- ENDIF -->
+    <th class="footer" style="text-align:right; width:15%; white-space: nowrap">{TOTAL}</th>
+    <th></th>
+  </tr>
+  </tfoot>
+<tbody>
+  <!-- BEGIN raids_row -->
+  <!-- IF raids_row.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+    <td  style="text-align:left; width:7%;" ><!-- IF raids_row.S_RACE_IMAGE_EXISTS --><img src="{raids_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE -->&nbsp;<!-- ENDIF --><!-- IF raids_row.S_CLASS_IMAGE_EXISTS --><img src="{raids_row.CLASS_IMAGE}" alt="{raids_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF --></td>
+    <td style="text-align:left; width:25%;"><strong><a style="color:{raids_row.COLORCODE}" href="{raids_row.U_VIEW_ATTENDEE}">{raids_row.NAME}</a></strong></td>
+    <td style="text-align:right; width:15%;" class="positive">{raids_row.RAIDVALUE}</td>
+    <!-- IF S_SHOWTIME -->
+    <td style="text-align:right; width:15%;" class="positive">{raids_row.TIMEVALUE}</td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <td style="text-align:right; width:15%;" class="positive">{raids_row.ZSVALUE}</td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <td style="text-align:right; width:15%;" class="negative">{raids_row.DECAYVALUE}</td>
+    <!-- ENDIF -->
+    <td style="text-align:right; width:15%;" class="positive">{raids_row.TOTAL}</td>
+    <td style="text-align:center; width:5%; white-space: nowrap">
+		<a href="{raids_row.U_EDIT_ATTENDEE}">{ICON_EDIT}</a>&nbsp;
+		<a href="{raids_row.U_DELETE_ATTENDEE}">{ICON_DELETE}</a>
+	</td>
+	
+  </tr>
+  <!-- END raids_row -->
+  </tbody>
+</table>
+
+</fieldset>
+</div>
+
+
+<!-- IF S_SHOWITEMPANE -->
+<div style="clear: both; width: 100%;">
+<fieldset>
+<legend>{L_ITEMS}</legend>
+
+<table cellspacing="1">
+<thead>
+  <tr>
+    <th style="text-align:left; width:7%;" >{L_CLASS}</th>
+    <th style="text-align:left; width:25%;"><a href="{F_EDIT_RAID}&amp;ui={O_BUYER}&amp;">{L_NAME}</a></th>
+    <th style="text-align:left; width:25%;"><a href="{F_EDIT_RAID}&amp;ui={O_ITEMNAME}">{L_ITEM}</a></th>
+    <th style="text-align:right; width:15% white-space: nowrap;">{L_ITEMVALUE}</th>
+    <!-- IF S_SHOWZS -->
+    <th style="text-align:right; width:5%; white-space: nowrap;">zs</th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->    
+    <th style="text-align:right; width:15%; white-space: nowrap;">{L_ITEMDECAY}</th>
+    <!-- ENDIF -->
+    <th style="text-align:right; width:15%; white-space: nowrap;"><a href="{F_EDIT_RAID}&amp;ui={O_ITEMTOTAL}">{L_ITEMTOTAL}</a></th>
+    <th style="text-align:center; width:5;">{L_ACTION}</th>
+  </tr>
+  </thead>
+	<tfoot>
+	  <tr>
+	    <th></th>
+	    <th class="footer">{ITEMSFOOTCOUNT}</th>
+	    <th></th>
+	    <th class="footer" style="text-align:right; width:15%; white-space: nowrap">{ITEM_VALUE}</th>
+	    <!-- IF S_SHOWZS -->
+	   <th></th>
+	   <!-- ENDIF -->
+	   <!-- IF S_SHOWDECAY -->
+	   <th class="footer" style="text-align:right; width:15%; white-space: nowrap">{ITEMDECAYVALUE}</th>
+	   <!-- ENDIF -->
+	   <th class="footer" style="text-align:right; width:15%; white-space: nowrap">{ITEMTOTAL}</th>
+	   <th></th>
+	 </tr>
+	 </tfoot>
+	<tbody>
+	  <!-- BEGIN items_row -->
+	  <!-- IF items_row.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
+	    <td  style="text-align:left; width:7%"  nowrap="nowrap" ><!-- IF items_row.S_RACE_IMAGE_EXISTS --><img src="{items_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE -->&nbsp;<!-- ENDIF --><!-- IF items_row.S_CLASS_IMAGE_EXISTS --><img src="{items_row.CLASS_IMAGE}" alt="{items_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF --></td>
+	    <td style="text-align:left; width:25%"><strong><a style="color:{items_row.COLORCODE}" href="{items_row.U_VIEW_ATTENDEE}">{items_row.BUYER}</a></strong></td>
+	    <td style="text-align:left; width:25%"><a href="{items_row.U_VIEW_ITEM}">{items_row.ITEMNAME}</a></td>
+	    <td style="text-align:right; width:15%" class="positive">{items_row.ITEMVALUE}</td>
+	    <!-- IF S_SHOWZS -->
+	    <td style="text-align:right; width:5%" class="positive"> <input type="checkbox" READONLY DISABLED name="item[{items_row.ITEM_ID}]" value="1" {items_row.ITEM_ZS} />  </td>
+	    <!-- ENDIF -->
+	    <!-- IF S_SHOWDECAY -->      
+	    <td style="text-align:right; width:15%" class="negative">{items_row.DECAYVALUE}</td>
+	    <!-- ENDIF -->
+	    
+	    <td style="text-align:right; width:15%" class="positive">{items_row.TOTAL}</td>
+	    <td style="text-align:center; width:5%" ; white-space: nowrap">
+			<a href="{items_row.U_VIEW_ITEM}">{ICON_EDIT}</a>&nbsp;
+			<a href="{items_row.U_DELETE_ITEM}">{ICON_DELETE}</a>
+		</td>
+	  </tr>
+	  <!-- END items_row -->
+	  </tbody>
+</table>
+
+</fieldset>
+</div>
+<!-- ENDIF -->
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+	<input type="submit" name="delete" value="{L_DELETE_RAID}"	class="button1" />
+</fieldset>
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+{S_FORM_TOKEN}
+	<!-- IF S_SHOWDECAY -->
+	<input type="submit" name="decayraid" value="{L_DECAY_RAID}" class="button1" />
+	<!-- ENDIF -->
+	<input type="submit" name="additem" value="{L_ADD_ITEM}" class="button1" />
+</fieldset>
+
+</form>
+
+
+
+<!-- ENDIF -->
+
+<!-- INCLUDE dkp/overall_footer.html -->

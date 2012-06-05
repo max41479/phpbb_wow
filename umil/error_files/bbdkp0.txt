@@ -1,0 +1,101 @@
+bbDKP
+PHP Version: 5.2.17
+DBMS: MySQL(i) 5.1.58
+phpBB3 Version: 3.0.10
+
+Удаление поля decay_time из таблицы phpbb_bbdkp_raid_detail
+Ошибка: Поле decay_time не существует в таблице phpbb_bbdkp_raid_detail.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_raid_detail' doesn't exist
+
+Удаление поля decay_time из таблицы phpbb_bbdkp_raid_items
+Ошибка: Поле decay_time не существует в таблице phpbb_bbdkp_raid_items.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_raid_items' doesn't exist
+
+Удаление поля decay_time из таблицы phpbb_bbdkp_adjustments
+Ошибка: Поле decay_time не существует в таблице phpbb_bbdkp_adjustments.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_adjustments' doesn't exist
+
+Удаление поля adj_decay из таблицы phpbb_bbdkp_memberdkp
+Ошибка: Поле adj_decay не существует в таблице phpbb_bbdkp_memberdkp.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_memberdkp' doesn't exist
+
+Удаление поля can_decay из таблицы phpbb_bbdkp_adjustments
+Ошибка: Поле can_decay не существует в таблице phpbb_bbdkp_adjustments.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_adjustments' doesn't exist
+
+Удаление поля adj_decay из таблицы phpbb_bbdkp_adjustments
+Ошибка: Поле adj_decay не существует в таблице phpbb_bbdkp_adjustments.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_adjustments' doesn't exist
+
+Удаление таблицы: phpbb_bbdkp_welcomemsg
+Ошибка: Таблица phpbb_bbdkp_welcomemsg не существует.
+
+Tables uninstall for version 1.2.3
+SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_language' doesn't exist
+
+Удаление поля member_portrait_url из таблицы phpbb_bbdkp_memberlist
+Ошибка: Поле member_portrait_url не существует в таблице phpbb_bbdkp_memberlist.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_memberlist' doesn't exist
+
+Удаление поля game_id из таблицы phpbb_bbdkp_memberlist
+Ошибка: Поле game_id не существует в таблице phpbb_bbdkp_memberlist.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_memberlist' doesn't exist
+
+Удаление поля game_id из таблицы phpbb_bbdkp_language
+Ошибка: Поле game_id не существует в таблице phpbb_bbdkp_language.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_language' doesn't exist
+
+Удаление поля game_id из таблицы phpbb_bbdkp_factions
+Ошибка: Поле game_id не существует в таблице phpbb_bbdkp_factions.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_factions' doesn't exist
+
+Удаление поля game_id из таблицы phpbb_bbdkp_races
+Ошибка: Поле game_id не существует в таблице phpbb_bbdkp_races.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_races' doesn't exist
+
+Удаление поля class_faction_id из таблицы phpbb_bbdkp_classes
+Ошибка: Поле class_faction_id не существует в таблице phpbb_bbdkp_classes.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_classes' doesn't exist
+
+Удаление поля game_id из таблицы phpbb_bbdkp_classes
+Ошибка: Поле game_id не существует в таблице phpbb_bbdkp_classes.<br /><br />SQL ERROR Table 'u448297370_mysite.phpbb_bbdkp_classes' doesn't exist
+
+Удаление таблицы: phpbb_bbdkp_plugins
+Ошибка: Таблица phpbb_bbdkp_plugins не существует.
+
+Удаление таблицы: phpbb_bbdkp_logs
+Ошибка: Таблица phpbb_bbdkp_logs не существует.
+
+Удаление таблицы: phpbb_bbdkp_raid_items
+Ошибка: Таблица phpbb_bbdkp_raid_items не существует.
+
+Удаление таблицы: phpbb_bbdkp_raid_detail
+Ошибка: Таблица phpbb_bbdkp_raid_detail не существует.
+
+Удаление таблицы: phpbb_bbdkp_raids
+Ошибка: Таблица phpbb_bbdkp_raids не существует.
+
+Удаление таблицы: phpbb_bbdkp_adjustments
+Ошибка: Таблица phpbb_bbdkp_adjustments не существует.
+
+Удаление таблицы: phpbb_bbdkp_memberdkp
+Ошибка: Таблица phpbb_bbdkp_memberdkp не существует.
+
+Удаление таблицы: phpbb_bbdkp_events
+Ошибка: Таблица phpbb_bbdkp_events не существует.
+
+Удаление таблицы: phpbb_bbdkp_dkpsystem
+Ошибка: Таблица phpbb_bbdkp_dkpsystem не существует.
+
+Удаление таблицы: phpbb_bbdkp_memberlist
+Ошибка: Таблица phpbb_bbdkp_memberlist не существует.
+
+Удаление таблицы: phpbb_bbdkp_member_ranks
+Ошибка: Таблица phpbb_bbdkp_member_ranks не существует.
+
+Удаление таблицы: phpbb_bbdkp_memberguild
+Ошибка: Таблица phpbb_bbdkp_memberguild не существует.
+
+Удаление таблицы: phpbb_bbdkp_races
+Ошибка: Таблица phpbb_bbdkp_races не существует.
+
+Удаление таблицы: phpbb_bbdkp_classes
+Ошибка: Таблица phpbb_bbdkp_classes не существует.
+
+Удаление таблицы: phpbb_bbdkp_factions
+Ошибка: Таблица phpbb_bbdkp_factions не существует.
+
+Удаление таблицы: phpbb_bbdkp_language
+Ошибка: Таблица phpbb_bbdkp_language не существует.
+
+Удаление таблицы: phpbb_bbdkp_news
+Ошибка: Таблица phpbb_bbdkp_news не существует.
+

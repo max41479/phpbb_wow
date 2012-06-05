@@ -1,0 +1,69 @@
+<div class="forabg" >
+<span class="corners-top"><span></span></span>
+<ul class="topiclist">
+<li class="header">
+
+<h1 style ="color:#dfc065;">{L_EVENTS}</h1>
+
+</li>
+</ul>
+<span class="corners-bottom"><span></span></span>
+</div>
+
+<div class="forumbg forumbg-table">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+<table  class="table1" cellspacing="0">
+<thead>
+	<tr>
+    <th style="width:60%; white-space:nowrap; text-align:left;"></th>
+    <th style="width:10%; white-space:nowrap; text-align:left;">{L_RAIDCOUNT}</th>
+    <th style="width:10%; white-space:nowrap; text-align:left;">{L_OLDEST}</th>
+    <th style="width:10%; white-space:nowrap; text-align:left;">{L_NEWEST}</th>
+    <th style="width:10%; white-space:nowrap; text-align:left;">{L_VALUE}</th>
+  </tr>
+</thead>
+</table>
+
+<!-- BEGIN dkpsys_row -->
+<table  class="table1" cellspacing="1">
+<thead>
+	<tr>
+  	<th style="text-align: left; white-space: nowrap; color:white;"  colspan="5"><h4>{dkpsys_row.NAME}</h4></th>
+	</tr>
+</thead>
+<!-- BEGIN events_row -->
+<tr>
+
+  <tr class="row bg1">
+    <td style="width:60%; white-space:nowrap; text-align:left;"><img src="{ROOT_PATH}/images/icons/view.gif" width="16" height="16" alt="View" /> <a style="color:{dkpsys_row.events_row.EVENTCOLOR}" href="{dkpsys_row.events_row.U_VIEW_EVENT}"> <strong>{dkpsys_row.events_row.NAME}</strong></a></td>
+    <td style="width:10%; white-space:nowrap; text-align:left;">{dkpsys_row.events_row.RAIDCOUNT}</td>
+    <td style="width:10%; white-space:nowrap; text-align:left;">{dkpsys_row.events_row.OLDEST}</td>
+    <td style="width:10%; white-space:nowrap; text-align:left;">{dkpsys_row.events_row.NEWEST}</td>
+    <td style="width:10%; white-space:nowrap; text-align:left;">{dkpsys_row.events_row.VALUE}</td>
+  </tr>
+</tr>
+<!-- END events_row -->
+</table>
+<!-- END dkpsys_row -->
+
+<table  class="table1" cellspacing="1">
+<tfoot>
+	<tr>
+  	<th style="text-align: left; white-space: nowrap; color:white;" colspan="5">{LISTEVENTS_FOOTCOUNT}</th>
+	</tr>
+</tfoot>
+</table>
+
+
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+<!-- IF EVENT_PAGINATION -->  
+<div class="pagination">
+	<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{EVENT_PAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+

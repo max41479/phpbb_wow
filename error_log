@@ -1,0 +1,33 @@
+[21-Mar-2012 18:00:36] PHP Warning:  Cannot modify header information - headers already sent in /home/u448297370/public_html/forum/includes/functions.php on line 2727
+[04-May-2012 06:10:48] PHP Fatal error:  SQL ERROR [ mysqli ]<br /><br />MySQL server has gone away [2006]<br /><br />An sql error occurred while fetching this page. Please contact an administrator if this problem persists. in /home/u448297370/public_html/forum/includes/db/dbal.php on line 707
+[04-May-2012 08:20:40] PHP Fatal error:  SQL ERROR [ mysqli ]<br /><br />MySQL server has gone away [2006]<br /><br />An sql error occurred while fetching this page. Please contact an administrator if this problem persists. in /home/u448297370/public_html/forum/includes/db/dbal.php on line 707
+[04-May-2012 11:21:34] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/includes/template.php(230) : eval()'d code on line 24
+[04-May-2012 11:21:36] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[04-May-2012 11:21:42] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[04-May-2012 11:21:43] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[04-May-2012 11:21:44] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[04-May-2012 11:21:45] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[04-May-2012 11:21:46] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[04-May-2012 11:22:05] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[04-May-2012 11:22:06] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[04-May-2012 11:22:07] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[04-May-2012 11:22:08] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[04-May-2012 11:22:09] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 24
+[10-May-2012 23:43:38] PHP Fatal error:  Call to undefined function  format_date() in /home/u448297370/public_html/forum/includes/bbdkp/block/newsblock.php on line 191
+[11-May-2012 02:28:35] PHP Parse error:  syntax error, unexpected '(' in /home/u448297370/public_html/forum/includes/template.php(230) : eval()'d code on line 5
+[11-May-2012 02:28:39] PHP Parse error:  syntax error, unexpected '(' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 5
+[11-May-2012 02:28:41] PHP Parse error:  syntax error, unexpected '(' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 5
+[11-May-2012 02:28:42] PHP Parse error:  syntax error, unexpected '(' in /home/u448297370/public_html/forum/cache/tpl_absolution_dkp.news_body.html.php on line 5
+[13-May-2012 01:12:29] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/includes/template.php(230) : eval()'d code on line 156
+[13-May-2012 02:35:24] PHP Parse error:  syntax error, unexpected '"' in /home/u448297370/public_html/forum/apply.php on line 667
+[13-May-2012 02:36:37] PHP Parse error:  syntax error, unexpected ';' in /home/u448297370/public_html/forum/apply.php on line 667
+[13-May-2012 02:36:38] PHP Parse error:  syntax error, unexpected ';' in /home/u448297370/public_html/forum/apply.php on line 667
+[13-May-2012 02:36:39] PHP Parse error:  syntax error, unexpected ';' in /home/u448297370/public_html/forum/apply.php on line 667
+[13-May-2012 03:47:49] PHP Parse error:  syntax error, unexpected T_STRING in /home/u448297370/public_html/forum/apply.php on line 116
+[13-May-2012 04:05:22] PHP Parse error:  syntax error, unexpected T_STRING in /home/u448297370/public_html/forum/apply.php on line 115
+[13-May-2012 04:05:23] PHP Parse error:  syntax error, unexpected T_STRING in /home/u448297370/public_html/forum/apply.php on line 115
+[13-May-2012 04:05:42] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/u448297370/public_html/forum/apply.php on line 115
+[13-May-2012 04:05:59] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/u448297370/public_html/forum/apply.php on line 115
+[13-May-2012 04:06:01] PHP Parse error:  syntax error, unexpected T_ENCAPSED_AND_WHITESPACE, expecting T_STRING or T_VARIABLE or T_NUM_STRING in /home/u448297370/public_html/forum/apply.php on line 115
+[18-May-2012 14:24:55] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/includes/template.php(230) : eval()'d code on line 216
+[18-May-2012 14:27:20] PHP Parse error:  syntax error, unexpected '}' in /home/u448297370/public_html/forum/includes/template.php(230) : eval()'d code on line 216

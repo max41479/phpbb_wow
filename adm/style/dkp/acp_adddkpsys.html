@@ -1,0 +1,60 @@
+<!-- INCLUDE overall_header.html -->
+
+<script type="text/javascript">
+//<![CDATA[
+function check_form()
+{
+    if (document.getElementById('dkpsys_name').value.length < 2)
+    {
+        alert('{MSG_NAME_EMPTY}');
+        return false;
+    }
+    if (document.getElementById('dkpsys_status').value.length < 1)
+    {
+        alert('{MSG_STATUS_EMPTY}');
+        return false;
+    }
+    return true;
+}
+//]]>
+</script>
+
+<a name="maincontent"></a>
+
+<h1>{L_TITLE}</h1>
+<p>{L_EXPLAIN}</p>
+
+<form method="post" action="{F_ADD_DKPSYS}" id="adddkpsys" onsubmit="return check_form(this)">
+<div>
+<input type="hidden" name="{URI_DKPSYS}" value="{DKPSYS_ID}" />
+<input type="hidden" name="hidden_id" value="{DKPSYS_ID}" />
+
+<fieldset>
+<legend>{L_ADD_DKPSYS_TITLE}</legend>
+<br />
+
+	<dl>
+		<dt><label for="dkpsys_name">{L_POOL}:</label></dt>
+		<dd><input class="medium" type="text" id="dkpsys_name" name="dkpsys_name" value="{DKPSYS_NAME}" /></dd>
+	</dl>
+
+	<dl>
+		<dt><label for="dkpsys_status">{L_DKP_STATUS}:</label></dt>
+		<dd><input class="medium" type="text" id="dkpsys_status" name="dkpsys_status" value="{DKPSYS_STATUS}" /></dd>
+	</dl>
+
+</fieldset>
+
+   <fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+   {S_FORM_TOKEN}
+    <!-- IF S_ADD -->
+    <input type="submit" name="add" value="{L_ADD_DKPSYS}" class="button1" /> <input type="reset" name="reset" value="{L_RESET}" class="button1" />
+    <!-- ELSE -->
+    <input type="submit" name="update" value="{L_UPDATE_DKPSYS}" class="button1" /> 
+    <!-- ENDIF -->
+	</fieldset>
+	
+</div>
+</form>
+
+<!-- INCLUDE dkp/overall_footer.html -->

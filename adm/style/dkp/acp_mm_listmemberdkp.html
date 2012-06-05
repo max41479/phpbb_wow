@@ -1,0 +1,132 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+<h1>{L_TITLE} {DKPSYSNAME}</h1>
+<p>{L_EXPLAIN}</p>
+
+<form id="acp_dkp_memberlist" method="post" action="{F_MEMBERDKP}">
+<div>
+<fieldset>
+     <label for="dkpsys_id">{L_POOL}:</label>
+  	<select id="dkpsys_id" name="dkpsys_id" class="input"  onchange="javascript:form.submit();">	
+       <!-- BEGIN dkpsys_row -->
+       <option value="{dkpsys_row.VALUE}"{dkpsys_row.SELECTED}>{dkpsys_row.OPTION}</option>
+       <!-- END dkpsys_row -->
+    </select>
+</fieldset>
+
+<!-- IF .members_row -->
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <th style="text-align:left; width:1%"><a href="{U_LIST_MEMBERDKP}o={O_STATUS}">{L_ACTIVE}</a></th>
+    <th style="text-align:left; width:1%">&nbsp;</th>
+    <th style="text-align:left; width:15%"><a href="{U_LIST_MEMBERDKP}o={O_NAME}">{L_NAME}</a></th>
+    <th style="text-align:left; width:5%"><a href="{U_LIST_MEMBERDKP}o={O_RANK}">{L_RANK}</a></th>
+    <th style="text-align:left; width:5%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_LEVEL}">{L_LEVEL}</a></th>
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_RAIDVALUE}">{L_RAIDVALUE}</a></th>
+	<!-- IF S_SHOWTIME -->
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_TIMEBONUS}">{L_TIMEDKP}</a></th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_ZSBONUS}">{L_ZSVALUE}</a></th>
+    <!-- ENDIF -->
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_EARNED}">{L_EARNED}</a></th>
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_ADJUSTMENT}">{L_ADJUSTMENT}</a></th>
+    <!-- IF S_SHOWDECAY -->
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_RDECAY}">{L_DECAY}</a></th>
+    <!-- ENDIF -->
+
+
+    <!-- IF S_SHOWEPGP -->
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_EP}">{L_EP}</a></th>
+	<!-- ENDIF -->
+
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_SPENT}">{L_SPENT}</a></th>
+
+    <!-- IF S_SHOWDECAY -->
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_IDECAY}">{L_DECAY}</a></th>
+	<!-- ENDIF -->
+	<!-- IF S_SHOWEPGP -->
+	<th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_GP}">{L_GP}</a></th>
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_ER}">{L_ER}</a></th>
+	<!-- ENDIF -->    
+    <th style="text-align:right width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_CURRENT}">{L_CURRENT}</a></th>
+    <th style="text-align:left width:10%; white-space: nowrap"><a href="{U_LIST_MEMBERDKP}o={O_LASTRAID}">{L_LASTRAID}</a></th>
+    <th style="text-align:center width:5%">{L_ACTION}</th>
+  </tr>
+  <!-- BEGIN members_row -->
+  <!-- IF members_row.S_ROW_COUNT is even -->
+  <tr class="row1">
+  <!-- ELSE -->
+  <tr class="row2">
+  <!-- ENDIF -->
+    <td style="text-align:center; white-space: nowrap"><input type="checkbox" name="activate_ids[]" value="{members_row.ID}" {members_row.STATUS} /></td>
+    <td style="text-align:center; white-space: nowrap">{members_row.ID}</td>
+    <td style="text-align:left; white-space: nowrap"><strong><a style="color:{members_row.COLORCODE}"  href="{members_row.U_VIEW_MEMBER}"><!-- IF members_row.S_CLASS_IMAGE_EXISTS --><img src="{members_row.CLASS_IMAGE}" alt="{members_row.CLASS}" />&nbsp;<!-- ENDIF -->{members_row.NAME}</a></strong></td>
+    <td style="text-align:center; white-space: nowrap">{members_row.RANK}</td>
+    <td style="text-align:center; white-space: nowrap">{members_row.LEVEL}</td>
+    <td style="text-align:right; white-space: nowrap" class="positive">{members_row.RAIDVAL}</td>
+	<!-- IF S_SHOWTIME -->
+    <td style="text-align:right; white-space: nowrap" class="positive">{members_row.TIMEBONUS}</td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <td style="text-align:right; white-space: nowrap" class="positive">{members_row.ZEROSUM}</td>
+    <!-- ENDIF -->
+    <td class="row2" style="text-align:right; white-space: nowrap" ><span class="positive"><strong>{members_row.EARNED}</strong></span></td>
+    <td style="text-align:right; white-space: nowrap" class="positive">{members_row.ADJUSTMENT}</td>
+    <!-- IF S_SHOWDECAY -->
+    <td style="text-align:right; white-space: nowrap" class="negative">{members_row.RAIDDECAY}</td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWEPGP -->
+    <td class="row2" style="text-align:right; white-space: nowrap"><span class="positive"><strong>{members_row.EP}</strong></span></td>
+     <!-- ENDIF -->
+    <td style="text-align:right; white-space: nowrap" class="negative">{members_row.SPENT}</td>
+    <!-- IF S_SHOWDECAY -->
+    <td style="text-align:right; white-space: nowrap" class="negative">{members_row.ITEMDECAY}</td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWEPGP -->
+    <td class="row2" style="text-align:right; white-space: nowrap"><span class="negative"><strong>{members_row.GP}</strong></span></td>
+    <td class="row2" style="text-align:center; white-space: nowrap"><span><strong>{members_row.ER}</strong></td>
+    <!-- ENDIF -->
+    <td class="row2" style="text-align:right; white-space: nowrap"><span class="positive"><strong>{members_row.CURRENT}</strong></span></td>
+    <td style="white-space: nowrap">{members_row.LASTRAID}</td>
+ 	<td style="text-align:center; white-space: nowrap"><a href="{members_row.U_VIEW_MEMBER}">{ICON_EDIT}</a></td>
+    
+  </tr>
+  <!-- END members_row -->
+  <tr>
+    <th colspan="7" class="footer">{LISTMEMBERS_FOOTCOUNT}</th>
+    <!-- IF S_SHOWTIME -->
+    <th colspan="1" class="footer"></th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <th colspan="1" class="footer"></th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <th colspan="2" class="footer"></th>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWEPGP -->
+    <th colspan="3" class="footer"></th>
+    <!-- ENDIF -->
+    <th colspan="6" class="footer"></th>
+  </tr>
+</table>
+
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+	<input type="hidden" name="dkpsys" value="{DKPSYS}" />
+    {S_FORM_TOKEN}
+	<input type="submit" name="submit_activate" value="{L_CHANGE_ACTIVATION}" class="button1" />
+	<span class="small"><a href="#" onclick="marklist('acp_dkp_memberlist', 'activate_id', true); return false;">{L_MARK_ALL}</a> &bull; <a href="#" onclick="marklist('acp_dkp_memberlist', 'activate_id', false); return false;">{L_UNMARK_ALL}</a></span>
+	<br /><br />
+</fieldset>
+
+<br />
+<!-- ELSE -->
+<div class="errorbox">
+<p>{L_ERROR_POOLNOPOINTS} {DKPSYSNAME}</p>
+</div>
+
+<!-- ENDIF -->
+</div>
+</form>
+<!-- INCLUDE dkp/overall_footer.html -->
