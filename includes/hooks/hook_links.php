@@ -1,4 +1,4 @@
-<?
+<?php
 function gen_links()
 {
 	global $phpbb_root_path, $phpEx, $template, $user;
