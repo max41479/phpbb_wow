@@ -148,7 +148,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	
 	//character class
 	$sql_array = array(
-		'SELECT'	=>	' r.race_id, r.image_female, r.image_male, l.name as race_name ', 	 
+		'SELECT'	=>	' r.race_id, r.image_female_small, r.image_male_small, l.name as race_name ', 	 
 		'FROM'		=> array(
 				RACE_TABLE		=> 'r',
 				BB_LANGUAGE		=> 'l', 
@@ -162,7 +162,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	if(isset($row))
 	{
 		$race_name = $row['race_name']; 
-		$race_image = (string) (($candidate_genderid == 0) ? $row['image_male'] : $row['image_female']); 
+		$race_image = (string) (($candidate_genderid == 0) ? $row['image_male_small'] : $row['image_female_small']); 
 		$race_image = (strlen($race_image) > 1) ? $board_url . "images/race_images/" . $race_image . ".png" : ''; 
 		$race_image_exists = (strlen($race_image) > 1) ? true : false;
 	}
@@ -613,7 +613,7 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 	// reloading is done from ajax to prevent redraw
 	$sql_array = array(
 		'SELECT'	=>	' c.class_id, l.name as class_name, c.class_hide,
-						  c.class_min_level, class_max_level, c.class_armor_type , c.imagename ', 
+						  c.class_min_level, class_max_level, c.class_armor_type , c.imagename, c.colorcode ', 
 		'FROM'		=> array(
 			CLASS_TABLE		=> 'c',
 			BB_LANGUAGE		=> 'l', 
@@ -636,6 +636,7 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 		}
 		
 		$template->assign_block_vars('class_row', array(
+		'COLORCODE' => $row['colorcode'],
 		'VALUE' => $row['class_id'],
 		'SELECTED' => '',
 		'OPTION'   => $option ));
