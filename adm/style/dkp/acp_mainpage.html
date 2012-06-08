@@ -73,6 +73,101 @@
   </tbody>
 </table>
 
+<table cellspacing="1">
+		<col class="col1" /><col class="col2" />
+		
+		<thead>
+	<tr>
+		<th>{L_PLUGINS_INSTALLED}</th>
+		<th>{L_PLUGINS_STATUS}</th>
+	</tr>
+	</thead>
+	<tbody>
+
+  <tr>
+<!-- IF S_ANY_PLUGINS_INSTALLED -->  
+    <td class="row1" style="width:50%"><B>{L_NO_PLUGINS_INSTALLED}</B></td>
+    <td class="row1" style="width:50%"><a href="{PLUGINLINK}"><B>{L_DOWNLOAD_PLUGINS}</B></a></td>
+<!-- ENDIF -->    
+  </tr>
+
+  <tr>
+<!-- IF S_APPLY_INSTALLED -->
+    <td class="row2" style="width:50%">{L_APPLY_TITLE}: {APPLYVERSION}</td>
+    <!-- IF S_APPLY_UP_TO_DATE -->         
+    <td class="row1" style="width:50%"><font color="green">{L_PLUGIN_UP_TO_DATE}</font></td>
+	<!-- ELSE -->
+    <td class="row1" style="width:50%"><font color="red">{APPLYUPDATEINSTR}</font></td>
+    <!-- ENDIF -->
+<!-- ENDIF -->
+  </tr>
+
+   <tr>
+<!-- IF S_ARMORY_UPDATER_INSTALLED -->
+    <td class="row2" style="width:50%">{L_ARMORY_IMPORTER_TITLE}: {ARMORYUPDATERVERSION}</td>
+    <!-- IF S_ARMORYUPDATER_UP_TO_DATE -->         
+    <td class="row1" style="width:50%">{L_PLUGIN_UP_TO_DATE}</font></td>
+	<!-- ELSE -->
+    <td class="row1" style="width:50%"><font color="red">{ARMORYUPDATERUPDATEINSTR}</td>
+    <!-- ENDIF -->
+<!-- ENDIF -->
+  </tr>  
+
+  <tr>
+<!-- IF S_BBTIPS_INSTALLED -->  
+    <td class="row2" style="width:50%">{L_BBTIPS_TITLE}: {BBTIPSVERSION}</td>
+    <!-- IF S_BBTIPS_UP_TO_DATE -->     
+    <td class="row1" style="width:50%"><font color="green">{L_PLUGIN_UP_TO_DATE}</font></td>
+	<!-- ELSE -->
+    <td class="row1" style="width:50%"><font color="red">{BBTIPSUPDATEINSTR}</font></td>    
+	<!-- ENDIF -->    
+<!-- ENDIF -->    
+  </tr>
+
+  <tr>
+<!-- IF S_BOSSPROGRESS_INSTALLED -->
+    <td class="row2" style="width:50%">{L_BOSSPROGRESS_TITLE}: {BOSSPROGRESSVERSION}</td>
+    <!-- IF S_BOSSPROGRESS_UP_TO_DATE -->         
+    <td class="row1" style="width:50%"><font color="green">{L_PLUGIN_UP_TO_DATE}</font></td>
+	<!-- ELSE -->
+    <td class="row1" style="width:50%"><font color="red">{BOSSPROGRESSUPDATEINSTR}</font></td>
+    <!-- ENDIF -->
+<!-- ENDIF -->
+  </tr>
+
+   <tr>
+<!-- IF S_RAID_PLANNER_INSTALLED -->
+    <td class="row2" style="width:50%">{L_RAIDPLANNER_TITLE}: {RAIDPLANNERVERSION}</td>
+    <!-- IF S_RAIDPLANNER_UP_TO_DATE -->         
+    <td class="row1" style="width:50%"><font color="green">{L_PLUGIN_UP_TO_DATE}</font></td>
+	<!-- ELSE -->
+    <td class="row1" style="width:50%"><font color="red">{RAIDPLANNERUPDATEINSTR}</font></td>
+    <!-- ENDIF -->
+<!-- ENDIF -->
+  </tr>
+
+  <tr>  
+<!-- IF S_RAID_TRACKER_INSTALLED -->
+    <td class="row2" style="width:50%">{L_RAIDTRACKER_TITLE}: {RAIDTRACKVERSION}</td>
+    <!-- IF S_RAIDTRACKER_UP_TO_DATE -->     
+    <td class="row1" style="width:50%"><font color="green">{L_PLUGIN_UP_TO_DATE}</font></td>
+	<!-- ELSE -->
+    <td class="row1" style="width:50%"><font color="red">{RAIDTRACKUPDATEINSTR}</font></td>
+    <!-- ENDIF -->
+<!-- ENDIF -->    
+  </tr>
+  
+  <tr>
+<!-- IF S_ANY_PLUGINS_AVAIL -->  
+    <td class="row1" style="width:50%"><B>{L_ADD_PLUGINS_AVAIL}: {NUMBOFPLUGINS}</B></td>
+    <td class="row1" style="width:50%"><a href="{PLUGINLINK}"><B>{L_DOWNLOAD_HERE}</B></a></td>
+<!-- ENDIF -->    
+  </tr>
+  
+  </tbody>
+</table>
+<BR />
+
 <!-- IF S_LOGS -->
 <table cellspacing="1">
 <caption>{L_NEW_ACTIONS}</caption>

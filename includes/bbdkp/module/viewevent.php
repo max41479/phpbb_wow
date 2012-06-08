@@ -1,11 +1,11 @@
 <?php
 /**
- * Views detail of an event
- * 
- * @package bbDKP
- * @copyright 2009 bbdkp <https://github.com/bbDKP>
+ * @package bbDKP.module
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * 
+ * @version 1.2.7
  */
 
 
@@ -29,7 +29,8 @@ if ( isset($_GET[URI_EVENT]) && isset($_GET[URI_DKPSYS])  )
      *  
      **/  
     $sql = 'SELECT event_dkpid, event_id, event_name, event_value, event_imagename   
-	        FROM ' . EVENTS_TABLE . ' where event_id = ' . $eventid;
+	        FROM ' . EVENTS_TABLE . ' 
+	        WHERE event_id = ' . $eventid;
 	$result = $db->sql_query($sql);
 	while ( $row = $db->sql_fetchrow($result))
 	{
@@ -58,12 +59,12 @@ if ( isset($_GET[URI_EVENT]) && isset($_GET[URI_DKPSYS])  )
     
     $current_order = switch_order ( $sort_order );		
 	$sql_array = array (
-		'SELECT' => ' sum(ra.raid_value) as raid_value, sum(ra.time_bonus) as time_value, 
-					  sum(ra.zerosum_bonus) as zs_value, sum(ra.raid_decay) as raiddecay, 
-					  sum(ra.raid_value + ra.time_bonus  +ra.zerosum_bonus - ra.raid_decay) as total, 
-					  e.event_dkpid, e.event_name,  
+		'SELECT' => ' e.event_dkpid, e.event_name,  
 					  r.raid_id, r.raid_start, r.raid_note, 
-					  r.raid_added_by, r.raid_updated_by ', 
+					  r.raid_added_by, r.raid_updated_by, 
+					  SUM(ra.raid_value) as raid_value, SUM(ra.time_bonus) as time_value, 
+					  SUM(ra.zerosum_bonus) as zs_value, SUM(ra.raid_decay) as raiddecay, 
+					  SUM(ra.raid_value + ra.time_bonus  + ra.zerosum_bonus - ra.raid_decay) as total', 
 		'FROM' => array (
 			RAID_DETAIL_TABLE	=> 'ra' ,
 			RAIDS_TABLE 		=> 'r' , 
@@ -106,7 +107,7 @@ if ( isset($_GET[URI_EVENT]) && isset($_GET[URI_DKPSYS])  )
     $db->sql_freeresult($result);
     
     // Find the attendees at each raid
-    $sql = 'SELECT raid_id, count(member_id) AS count 
+    $sql = 'SELECT raid_id, count(member_id) AS countatt 
             FROM ' . RAID_DETAIL_TABLE . ' 
             WHERE ' . $db->sql_in_set('raid_id', $raid_ids) . ' 
             GROUP BY raid_id';
@@ -114,20 +115,20 @@ if ( isset($_GET[URI_EVENT]) && isset($_GET[URI_DKPSYS])  )
 
     while ( $row = $db->sql_fetchrow($result) )
     {
-        $raids[$row['raid_id']]['numattendees'] = $row['count'];
+        $raids[$row['raid_id']]['numattendees'] = $row['countatt'];
     }
     $db->sql_freeresult($result);
     
  
     //calculate the average event attendance and droprate 
     // Find the item drops for each raid
-    $sql = 'SELECT raid_id, count(item_id) AS count 
+    $sql = 'SELECT raid_id, count(item_id) AS countatt 
             FROM ' . RAID_ITEMS_TABLE . ' 
             WHERE ' . $db->sql_in_set('raid_id', $raid_ids) . ' GROUP BY raid_id';
     $result = $db->sql_query($sql);
     while ( $row = $db->sql_fetchrow($result) )
     {
-        $raids[$row['raid_id']]['numitems'] = $row['count'];
+        $raids[$row['raid_id']]['numitems'] = $row['countatt'];
     }
     $db->sql_freeresult($result);
     
@@ -178,7 +179,7 @@ if ( isset($_GET[URI_EVENT]) && isset($_GET[URI_DKPSYS])  )
     $sql_array = array(
 	    'SELECT'    => 'i.item_id, i.item_name, i.item_gameid, i.member_id, i.item_zs, 
 	    				l.member_name, c.colorcode, c.imagename, l.member_gender_id, 
-	    				a.image_female_small, a.image_male_small, i.item_date, i.raid_id, i.item_value, 
+	    				a.image_female, a.image_male, i.item_date, i.raid_id, i.item_value, 
 	    				i.item_decay, i.item_value - i.item_decay as item_total',
 	    'FROM'      => array(
 	        CLASS_TABLE 		=> 'c', 
@@ -211,7 +212,7 @@ if ( isset($_GET[URI_EVENT]) && isset($_GET[URI_DKPSYS])  )
 		{
 			$item_name = '<b>' . $row['item_name']. '</b>';
 		}
-		$race_image = (string) (($row['member_gender_id']==0) ? $row['image_male_small'] : $row['image_female_small']);
+		$race_image = (string) (($row['member_gender_id']==0) ? $row['image_male'] : $row['image_female']);
         $template->assign_block_vars('items_row', array(
           'DATE'          => date($config['bbdkp_date_format'], $row['item_date']),
           'U_VIEW_RAID'   => append_sid("{$phpbb_root_path}dkp.$phpEx" , 'page=viewraid&amp;' . URI_RAID . '=' . $row['raid_id']) ,

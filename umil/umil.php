@@ -18,7 +18,7 @@ if (!defined('IN_PHPBB'))
 	exit;
 }
 
-define('UMIL_VERSION', '1.0.4');
+define('UMIL_VERSION', '1.0.5-dev');
 
 /**
 * Multicall instructions
@@ -2136,15 +2136,16 @@ class umil
 			include("{$phpbb_root_path}includes/functions_install.$phpEx");
 		}
 
-		/*
-		* This function has had numerous problems and is currently broken, so until phpBB uses it I will not be anymore
-		if (method_exists($this->db_tools, 'sql_create_table'))
+		
+		/* This function has had numerous problems and is currently broken, so until phpBB uses it I will not be anymore*/
+		/*if (method_exists($this->db_tools, 'sql_create_table'))
 		{
 			// Added in 3.0.5
 			$this->db_tools->sql_create_table($table_name, $table_data);
 		}
 		else
-		{*/
+		{
+		*/
 			$available_dbms = get_available_dbms($dbms);
 
 			$sql_query = $this->create_table_sql($table_name, $table_data);
@@ -2154,7 +2155,9 @@ class umil
 			{
 				$this->db->sql_query($sql);
 			}
-		//}
+		/*
+		}
+		*/
 
 		return $this->umil_end();
 	}
@@ -2552,7 +2555,7 @@ class umil
 
 		// A list of types being unsigned for better reference in some db's
 		$unsigned_types = array('UINT', 'UINT:', 'USINT', 'BOOL', 'TIMESTAMP');
-		$supported_dbms = array('firebird', 'mssql', 'mysql_40', 'mysql_41', 'oracle', 'postgres', 'sqlite');
+		$supported_dbms = array('firebird', 'mssql', 'mssqlnative', 'mysql_40', 'mysql_41', 'oracle', 'postgres', 'sqlite');
 
 		$sql = '';
 
@@ -2571,6 +2574,7 @@ class umil
 			break;
 
 			case 'mssql':
+			case 'mssqlnative':
 				$sql .= "CREATE TABLE [{$table_name}] (\n";
 			break;
 		}
@@ -2709,6 +2713,7 @@ class umil
 				break;
 
 				case 'mssql':
+				case 'mssqlnative':
 					if ($column_type == '[text]')
 					{
 						$textimage = true;
@@ -2788,6 +2793,7 @@ class umil
 			break;
 
 			case 'mssql':
+			case 'mssqlnative':
 				$sql = substr($sql, 0, -2);
 				$sql .= "\n) ON [PRIMARY]" . (($textimage) ? ' TEXTIMAGE_ON [PRIMARY]' : '') . "\n";
 				$sql .= "GO\n\n";
@@ -2822,6 +2828,7 @@ class umil
 				break;
 
 				case 'mssql':
+				case 'mssqlnative':
 					$sql .= "ALTER TABLE [{$table_name}] WITH NOCHECK ADD \n";
 					$sql .= "\tCONSTRAINT [PK_{$table_name}] PRIMARY KEY  CLUSTERED \n";
 					$sql .= "\t(\n";
@@ -2914,6 +2921,7 @@ class umil
 					break;
 
 					case 'mssql':
+					case 'mssqlnative':
 						$sql .= ($key_data[0] == 'INDEX') ? 'CREATE  INDEX' : '';
 						$sql .= ($key_data[0] == 'UNIQUE') ? 'CREATE  UNIQUE  INDEX' : '';
 						$sql .= " [{$key_name}] ON [{$table_name}]([" . implode('], [', $key_data[1]) . "]) ON [PRIMARY]\n";
@@ -3029,7 +3037,19 @@ class umil
 		*/
 		if (!preg_match('#^' . preg_quote($table_prefix, '#') . '#', $table_name) || !in_array($table_name, $constants, true))
 		{
-			$table_name = preg_replace('#^phpbb_#i', $table_prefix, $table_name);
+			if ((strpos($table_name, $table_prefix) === 0) && (strlen($table_name) > strlen($table_prefix)))
+			{
+				/**
+				* Do not replace phpbb_ with the prefix, if it is already at the beginning.
+				* Otherwise we would replace the prefix "phpbb_umil" multiple times and
+				* end up with phpbb_umilumilumil_tablename, if the constant is not defined.
+				* See Bug #62646.
+				*/
+			}
+			else
+			{
+				$table_name = preg_replace('#^phpbb_#i', $table_prefix, $table_name);
+			}
 		}
 	}
 }

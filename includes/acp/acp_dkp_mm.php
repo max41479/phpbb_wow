@@ -1,13 +1,13 @@
 <?php
 /**
- * 
  * @package bbDKP.acp
- * @author sajaki9@gmail.com
- * @copyright (c) 2009 bbdkp https://github.com/bbDKP
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @version $Id$
- * 
+ * @version 1.2.7
  */
+ 
 /**
  * @ignore
  */
@@ -95,8 +95,9 @@ class acp_dkp_mm extends bbDKP_Admin
                        FROM ' . GUILD_TABLE . ' 
                        ORDER BY id desc';
 				$resultg = $db->sql_query($sql);
+
 				// show other guild
-				$submit = (isset($_POST['member_guild_id'])) ? true : false;
+				$submit = (isset ( $_POST ['member_guild_id'] ) || isset ( $_GET ['member_guild_id'] ) ) ? true : false;
 				/* check if page was posted back */
 				if ($submit)
 				{
@@ -114,9 +115,12 @@ class acp_dkp_mm extends bbDKP_Admin
 				}
 				else // default pageloading
 				{
-					$sql = 'SELECT max(id) as max FROM ' . GUILD_TABLE;
-					$result = $db->sql_query($sql);
-					$guild_id = $db->sql_fetchfield('max', 0, $result);
+					$sql = 'SELECT id FROM ' . GUILD_TABLE . ' ORDER BY id DESC';
+					$result = $db->sql_query_limit($sql, 1);
+					while ($row = $db->sql_fetchrow($result))
+					{
+						$guild_id = $row['id'];
+					}
 					$db->sql_freeresult($result);
 					// fill popup and set selected to default selection
 					while ($row = $db->sql_fetchrow($resultg))
@@ -180,7 +184,7 @@ class acp_dkp_mm extends bbDKP_Admin
 				$sql_array = array(
 					'SELECT' => 'm.* , u.username, u.user_id, u.user_colour, g.name, l.name as member_class, r.rank_id, 
 				    				r.rank_name, r.rank_prefix, r.rank_suffix,
-									 c.colorcode , c.imagename, m.member_gender_id, a.image_female_small, a.image_male_small' , 
+									 c.colorcode , c.imagename, m.member_gender_id, a.image_female, a.image_male' , 
 					'FROM' => array(
 						MEMBER_LIST_TABLE => 'm' , 
 						MEMBER_RANKS_TABLE => 'r' , 
@@ -217,7 +221,7 @@ class acp_dkp_mm extends bbDKP_Admin
 				while ($row = $db->sql_fetchrow($members_result))
 				{
 					$phpbb_user_id = (int) $row['phpbb_user_id'];
-					$race_image = (string) (($row['member_gender_id'] == 0) ? $row['image_male_small'] : $row['image_female_small']);
+					$race_image = (string) (($row['member_gender_id'] == 0) ? $row['image_male'] : $row['image_female']);
 					$member_count += 1;
 					$lines +=1;
 					$template->assign_block_vars('members_row', array(
@@ -246,11 +250,12 @@ class acp_dkp_mm extends bbDKP_Admin
 				
 				$db->sql_freeresult($members_result);
 				$footcount_text = sprintf($user->lang['LISTMEMBERS_FOOTCOUNT'], $lines);
-				$memberpagination = generate_pagination(append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_mm&amp;mode=mm_listmembers&amp;o=" . $current_order['uri']['current']), $total_members, $config['bbdkp_user_llimit'], $start, true);
+				$memberpagination = generate_pagination(append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_mm&amp;mode=mm_listmembers&amp;o=" . $current_order['uri']['current'] . "&amp;member_guild_id=".$guild_id), $total_members, $config['bbdkp_user_llimit'], $start, true);
 				$form_key = 'mm_listmembers';
 				add_form_key($form_key);
 				
 				$template->assign_vars(array(
+					'GUILDID' => $guild_id, 
 					'START' => $start, 
 					'F_MEMBERS' => append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_mm") . '&amp;mode=mm_addmember' , 
 					'F_MEMBERS_LIST' => append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_mm") . '&amp;mode=mm_listmembers' , 
@@ -298,7 +303,7 @@ class acp_dkp_mm extends bbDKP_Admin
 					// check if membername exists
 					$sql = 'SELECT count(*) as memberexists 
 							FROM ' . MEMBER_LIST_TABLE . "	
-							WHERE ucase(member_name)= ucase('" . $db->sql_escape($member_name) . "') 
+							WHERE UPPER(member_name)= UPPER('" . $db->sql_escape($member_name) . "') 
 							AND member_guild_id = " . $guild_id;
 					$result = $db->sql_query($sql);
 					$countm = $db->sql_fetchfield('memberexists');
@@ -412,7 +417,7 @@ class acp_dkp_mm extends bbDKP_Admin
 						$sql = 'SELECT count(*) as memberexists 
 								FROM ' . MEMBER_LIST_TABLE . '	
 								WHERE member_id <> ' . $member_id . " 
-								AND ucase(member_name)= ucase('" . $db->sql_escape($member_name) . "')";
+								AND UPPER(member_name)= UPPER('" . $db->sql_escape($member_name) . "')";
 						$result = $db->sql_query($sql);
 						$countm = $db->sql_fetchfield('memberexists');
 						$db->sql_freeresult($result);
@@ -587,9 +592,9 @@ class acp_dkp_mm extends bbDKP_Admin
 					}
 					else
 					{
-						$sql = "SELECT member_name FROM " . MEMBER_LIST_TABLE . ' where member_id = ' . $member_id;
+						$sql = "SELECT member_name FROM " . MEMBER_LIST_TABLE . ' WHERE member_id = ' . $member_id;
 						$result = $db->sql_query($sql);
-						$member_name = $db->sql_fetchfield('member_name', 1, $result);
+						$member_name = $db->sql_fetchfield('member_name', false, $result);
 						$db->sql_freeresult($result);
 						$s_hidden_fields = build_hidden_fields(array(
 							'delete' => true , 
@@ -611,7 +616,7 @@ class acp_dkp_mm extends bbDKP_Admin
 					$S_ADD = false;
 					$sql_array = array(
 						'SELECT' => 'm.*, c.colorcode , c.imagename,  c1.name AS member_class, l1.name AS member_race, 
-										r.image_female_small, r.image_male_small, 
+										r.image_female, r.image_male, 
 										g.id as guild_id, g.name as guild_name, g.realm , g.region' , 
 						'FROM' => array(
 							MEMBER_LIST_TABLE => 'm' , 
@@ -638,7 +643,7 @@ class acp_dkp_mm extends bbDKP_Admin
 					$db->sql_freeresult($result);
 					if ($row)
 					{
-						$race_image = (string) (($row['member_gender_id'] == 0) ? $row['image_male_small'] : $row['image_female_small']);
+						$race_image = (string) (($row['member_gender_id'] == 0) ? $row['image_male'] : $row['image_female']);
 						$this->member = array(
 							'member_id' => $row['member_id'] , 
 							'member_name' => $row['member_name'] , 
@@ -1687,21 +1692,35 @@ class acp_dkp_mm extends bbDKP_Admin
 	}
 
 	/**
-	 * get id given a membername
+	 * get id given a membername and guild
 	 *
 	 * @param string $membername
+	 * @param int $guild_id optional
 	 * @return int
 	 */
-	public function get_member_id ($membername)
+	public function get_member_id ($membername, $guild_id = 0)
 	{
 		global $db;
-		$sql = 'SELECT member_id
-                FROM ' . MEMBER_LIST_TABLE . "
-                WHERE member_name ='" . $db->sql_escape($membername) . "'";
+		if($guild_id !=0)
+		{
+			$sql = 'SELECT member_id
+	                FROM ' . MEMBER_LIST_TABLE . "
+	                WHERE member_name ='" . $db->sql_escape($membername) . "'
+	                AND member_guild_id = " . (int) $db->sql_escape($guild_id);
+			
+		}
+		else
+		{
+			$sql = 'SELECT member_id
+	                FROM ' . MEMBER_LIST_TABLE . "
+	                WHERE member_name ='" . $db->sql_escape($membername) . "'";
+		}
+		
 		$result = $db->sql_query($sql);
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$membid = $row['member_id'];
+			break;
 		}
 		$db->sql_freeresult($result);
 		if (isset($membid))
@@ -1867,7 +1886,7 @@ class acp_dkp_mm extends bbDKP_Admin
 			// get maxlevel
 			$sql = "SELECT max(class_max_level) as maxlevel FROM " . CLASS_TABLE . " where game_id = '" . $game_id . "'";
 			$result = $db->sql_query($sql);
-			$member_lvl = (int) $db->sql_fetchfield('maxlevel', 1, $result);
+			$member_lvl = (int) $db->sql_fetchfield('maxlevel', false, $result);
 		}
 		if (($game_id == 'wow' || $game_id == 'aion') && $memberportraiturl == ' ')
 		{
@@ -1886,8 +1905,8 @@ class acp_dkp_mm extends bbDKP_Admin
 		{
 			$realm = $config['bbdkp_default_realm'];
 		}
+		
 		$query = $db->sql_build_array('INSERT', array(
-			'member_id' => NULL , 
 			'member_name' => ucwords($member_name) , 
 			'member_status' => $member_status , 
 			'member_level' => $member_lvl , 
@@ -1904,15 +1923,19 @@ class acp_dkp_mm extends bbDKP_Admin
 			'phpbb_user_id' => (int) $phpbb_user_id , 
 			'game_id' => (string) $game_id , 
 			'member_portrait_url' => (string) $memberportraiturl));
+		
 		$log_action = array(
-			'header' => 'L_ACTION_MEMBER_ADDED' , 
-			'L_NAME' => $member_name , 
-			'L_LEVEL' => $member_lvl , 
-			'L_RACE' => $race_id , 
-			'L_CLASS' => $class_id , 
+			'header' 	 => 'L_ACTION_MEMBER_ADDED' , 
+			'L_NAME' 	 => $member_name , 
+			'L_LEVEL' 	 => $member_lvl , 
+			'L_RACE' 	 => $race_id , 
+			'L_CLASS' 	 => $class_id , 
 			'L_ADDED_BY' => $user->data['username']);
+		
 		$db->sql_query('INSERT INTO ' . MEMBER_LIST_TABLE . $query);
+		
 		$member_id = $db->sql_nextid();
+		
 		$this->log_insert(array(
 			'log_type' => $log_action['header'] , 
 			'log_action' => $log_action));
@@ -1967,56 +1990,56 @@ class acp_dkp_mm extends bbDKP_Admin
 
 	/***
 	 * function for updating a new member
-	 * does not deal with changing names/guilds
 	 * is also called from armory plugin for updating existing guildmembers
+	 * guildid is not updated
 	 * url is not updated
 	 */
-	public function updatemember ($member_name, $member_lvl, $race_id, $class_id, $rank_id, $member_comment, 
+	public function updatemember ($member_id, $member_name, $member_lvl, $race_id, $class_id, $rank_id, $member_comment, 
 	$guild_id, $gender, $achievpoints, $memberarmoryurl = ' ', $memberportraiturl = ' ', $game_id = 'wow', $member_status = 1)
 	{
 		global $db, $user, $config;
-		// find id for existing member name
-		$sql = "SELECT * 
-				FROM " . MEMBER_LIST_TABLE . " 
-				WHERE member_name = '" . $db->sql_escape($member_name) . "' and member_guild_id = " . (int) $guild_id;
-		$result = $db->sql_query($sql);
-		// get old data
-		$member_id = 0;
-		while ($row = $db->sql_fetchrow($result))
-		{
-			$member_id = $row['member_id'];
-			$this->old_member = array(
-				'game_id' => $row['game_id'] , 
-				'member_level' => $row['member_level'] , 
-				'member_race_id' => $row['member_race_id'] , 
-				'member_rank_id' => $row['member_rank_id'] , 
-				'member_class_id' => $row['member_class_id'] , 
-				'member_gender_id' => $row['member_gender_id'] , 
-				'member_achiev' => $row['member_achiev'] , 
-				'member_armory_url' => $row['member_armory_url'] , 
-				'member_portrait_url' => $row['member_portrait_url'] , 
-				'member_joindate' => $row['member_joindate'] , 
-				'member_outdate' => $row['member_outdate'] , 
-				'member_status' => $row['member_status']);
-		}
-		$db->sql_freeresult($result);
+		
 		if ($member_id == 0)
 		{
-			// could not find member - this shouldnt happen
 			return false;
 		}
+		
+		// get existing data
+		$sql = 'SELECT * FROM ' . MEMBER_LIST_TABLE . ' WHERE member_id = ' . (int) $member_id;
+		$result = $db->sql_query($sql);
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$this->old_member = array(
+				'game_id' => $row['game_id'] , 
+				'member_name' => (string) $row['member_name'] ,
+				'member_level' => (int) $row['member_level'] , 
+				'member_race_id' => (int) $row['member_race_id'] , 
+				'member_rank_id' => (int) $row['member_rank_id'] , 
+				'member_class_id' => (int) $row['member_class_id'] , 
+				'member_gender_id' => (int) $row['member_gender_id'] , 
+				'member_achiev' => (int) $row['member_achiev'] , 
+				'member_armory_url' => $row['member_armory_url'] , 
+				'member_portrait_url' => $row['member_portrait_url'] , 
+				'member_joindate' => (int) $row['member_joindate'] , 
+				'member_outdate' => (int) $row['member_outdate'] , 
+				'member_status' => (int) $row['member_status']);
+		}
+		$db->sql_freeresult($result);
+
 		// check level and set to maxlevel if zero
 		if ($member_lvl == 0)
 		{
 			// get maxlevel
 			$sql = "SELECT max(class_max_level) as maxlevel FROM " . CLASS_TABLE;
 			$result = $db->sql_query($sql);
-			$member_lvl = (int) $db->sql_fetchfield('maxlevel', 1, $result);
+			$member_lvl = (int) $db->sql_fetchfield('maxlevel', false, $result);
 		}
+		
 		if (($game_id == 'wow' || $game_id == 'aion') && $memberportraiturl == ' ')
 		{
 			$memberportraiturl = $this->generate_portraitlink($game_id, $race_id, $class_id, $gender, $member_lvl);
 		}
+		
 		if ($game_id == 'wow' & $memberarmoryurl == ' ')
 		{
 			if ($config['bbdkp_default_region'] == '')
@@ -2027,19 +2050,21 @@ class acp_dkp_mm extends bbDKP_Admin
 			$realm = $config['bbdkp_default_realm'];
 			$memberarmoryurl = $this->generate_armorylink($game_id, $config['bbdkp_default_region'], $realm, $member_name);
 		}
+		
 		if ($achievpoints == 0)
 		{
 			$achievpoints = $this->old_member['member_achiev'];
 		}
+		
 		// Get first and last raiding dates
 		$sql = "SELECT b.member_id, MIN(a.raid_start) as startdate , MAX(a.raid_start) as enddate
 			FROM " . RAIDS_TABLE . " a INNER JOIN " . RAID_DETAIL_TABLE . " b on a.raid_id = b.raid_id 
 			WHERE  b.member_id = " . $member_id . " group by b.member_id ";
 		$result = $db->sql_query($sql);
-		$startraiddate = (int) $db->sql_fetchfield('startdate', 0, $result);
-		$endraiddate = (int) $db->sql_fetchfield('enddate', 0, $result);
+		$startraiddate = (int) $db->sql_fetchfield('startdate', false, $result);
+		$endraiddate = (int) $db->sql_fetchfield('enddate', false, $result);
 		$db->sql_freeresult($result);
-		if ($this->old_member['member_joindate'] > $startraiddate || $this->old_member['member_joindate'] == 0)
+		if ($startraiddate != 0 && ($this->old_member['member_joindate'] == 0 || $this->old_member['member_joindate'] > $startraiddate))
 		{
 			$joindate = $startraiddate;
 		}
@@ -2054,39 +2079,45 @@ class acp_dkp_mm extends bbDKP_Admin
 		}
 		$sql_arr = array(
 			'game_id' => $game_id , 
-			'member_level' => $member_lvl , 
-			'member_race_id' => $race_id , 
-			'member_rank_id' => $rank_id , 
-			'member_class_id' => $class_id , 
-			'member_gender_id' => $gender , 
-			'member_achiev' => $achievpoints , 
-			'member_armory_url' => $memberarmoryurl , 
-			'member_portrait_url' => $memberportraiturl , 
-			'member_joindate' => $joindate , 
-			'member_outdate' => $leavedate , 
-			'member_status' => $member_status);
+			'member_name' => (string) $member_name ,		
+			'member_level' => (int) $member_lvl , 
+			'member_race_id' => (int) $race_id , 
+			'member_rank_id' => (int) $rank_id , 
+			'member_class_id' => (int) $class_id , 
+			'member_gender_id' => (int) $gender , 
+			'member_achiev' => (int) $achievpoints , 
+			'member_armory_url' => trim($memberarmoryurl) , 
+			'member_portrait_url' => trim($memberportraiturl) , 
+			'member_joindate' => (int) $joindate , 
+			'member_outdate' => (int) $leavedate , 
+			'member_status' => (int) $member_status);
+		
 		if ($sql_arr != $this->old_member)
 		{
 			// we have changes, so update 
 			$sql = 'UPDATE ' . MEMBER_LIST_TABLE . '
             SET ' . $db->sql_build_array('UPDATE', $sql_arr) . '
-            WHERE member_id = ' . (int) $member_id . ' and member_guild_id = ' . (int) $guild_id;
+            WHERE member_id = ' . (int) $member_id;
 			$db->sql_query($sql);
+			
 			// update the comment - its not included in array comparison because it always changes.
 			$sql = 'UPDATE ' . MEMBER_LIST_TABLE . "
             SET member_comment  = '" . $db->sql_escape($member_comment) . "'
-            WHERE member_id = " . (int) $member_id . ' and member_guild_id = ' . (int) $guild_id;
+            WHERE member_id = " . (int) $member_id;
+			
 			$db->sql_query($sql);
+			
 			$log_action = array(
 				'header' => 'L_ACTION_MEMBER_UPDATED' , 
 				'L_NAME' => $member_name , 
-				'L_NAME_BEFORE' => $this->old_member['member_level'] , 
+				'L_NAME_BEFORE' => $this->old_member['member_name'] , 
 				'L_LEVEL_BEFORE' => $this->old_member['member_level'] , 
 				'L_RACE_BEFORE' => $this->old_member['member_race_id'] , 
 				'L_RANK_BEFORE' => $this->old_member['member_rank_id'] , 
 				'L_CLASS_BEFORE' => $this->old_member['member_class_id'] , 
 				'L_GENDER_BEFORE' => $this->old_member['member_gender_id'] , 
 				'L_ACHIEV_BEFORE' => $this->old_member['member_achiev'] , 
+				'L_NAME_AFTER' => $member_name,
 				'L_LEVEL_AFTER' => $member_lvl , 
 				'L_RACE_AFTER' => $race_id , 
 				'L_RANK_AFTER' => $rank_id , 
@@ -2094,6 +2125,7 @@ class acp_dkp_mm extends bbDKP_Admin
 				'L_GENDER_AFTER' => $gender , 
 				'L_ACHIEV_AFTER' => $achievpoints , 
 				'L_UPDATED_BY' => $user->data['username']);
+			
 			$this->log_insert(array(
 				'log_type' => $log_action['header'] , 
 				'log_action' => $log_action));

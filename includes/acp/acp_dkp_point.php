@@ -1,11 +1,13 @@
 <?php
 /**
- * 
  * @package bbDKP.acp
- * @copyright (c) 2012 bbdkp https://github.com/bbDKP
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * 
+ * @version 1.2.7
  */
+ 
 /**
  * @ignore
  */

@@ -1,11 +1,11 @@
 <?php
 /**
- * list of Members per Dkp pool
- * 
- * @package bbDKP
- * @copyright 2009 bbdkp <https://github.com/bbDKP>
+ * @package bbDKP.module
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * 
+ * @version 1.2.7
  */
 
 /**
@@ -110,10 +110,10 @@ if (count ($memberarray))
 			$pr[$key]['pr'] = $member['pr']; 
 		}
 		
-		$member_spent [$key] = $member ['member_spent']; //*
-		$member_current [$key] = $member ['member_current'];  //*
-		$member_lastraid [$key] = $member ['member_lastraid']; //*
-		$attendanceP1 [$key] = $member ['attendanceP1']; //*
+		$member_spent [$key] = $member ['member_spent'];
+		$member_current [$key] = $member ['member_current']; 
+		$member_lastraid [$key] = $member ['member_lastraid']; 
+		$attendanceP1 [$key] = $member ['attendanceP1']; 
 	}
 	
 	
@@ -529,7 +529,7 @@ function dkppulldown()
 					MEMBER_DKP_TABLE => 'd',
 					), 
 		'WHERE'  => ' a.dkpsys_id = d.member_dkpid', 
-		'GROUP_BY'  => 'a.dkpsys_id'
+		'GROUP_BY'  => 'a.dkpsys_id, a.dkpsys_name, a.dkpsys_default'
 	); 
 	$sql = $db->sql_build_query('SELECT', $sql_array);
 	
@@ -629,7 +629,7 @@ function armor()
 	
 	// generic armor list
 	$sql = 'SELECT class_armor_type FROM ' . CLASS_TABLE . ' GROUP BY class_armor_type';
-	$result = $db->sql_query ( $sql,604000 );
+	$result = $db->sql_query ( $sql, 604000 );
 	while ( $row = $db->sql_fetchrow ( $result ) )
 	{
 		$filtervalues [strtoupper($row ['class_armor_type'])] = $user->lang[strtoupper($row ['class_armor_type'])];
@@ -640,7 +640,8 @@ function armor()
 	
 	// get classlist
 	$sql_array = array(
-	  'SELECT'    => 	'  c.game_id, c.class_id, l.name as class_name, c.class_min_level, c.class_max_level, c.imagename, c.colorcode ', 
+	  'SELECT'    => 	'  c.game_id, c.class_id, l.name as class_name, c.class_min_level, 
+	  c.class_max_level, c.imagename, c.colorcode ', 
 	  'FROM'      => array(
 	       CLASS_TABLE 	=> 'c',
 	       BB_LANGUAGE		=> 'l', 
@@ -651,12 +652,12 @@ function armor()
 	   AND l.language= '" . $config['bbdkp_lang'] . "' AND l.attribute = 'class' 
 	   AND i.member_class_id = c.class_id and i.game_id = c.game_id 
 	   AND d.member_id = i.member_id ",   				    	
-	  'GROUP_BY'	=> 'c.game_id, c.class_id, l.name, c.class_min_level, c.class_max_level, c.imagename',
-	  'ORDER_BY'	=> 'l.game_id, c.class_id ',
+	  'GROUP_BY'	=> 'c.game_id, c.class_id, l.name, c.class_min_level, c.class_max_level, c.imagename, c.colorcode',
+	  'ORDER_BY'	=> 'c.game_id, c.class_id ',
 	   );
 	   
 	$sql = $db->sql_build_query('SELECT', $sql_array);   
-	$result = $db->sql_query ( $sql,604000);
+	$result = $db->sql_query ( $sql, 604000);
 	$classarray = array();
 	while ( $row = $db->sql_fetchrow ( $result ) )
 	{
@@ -733,14 +734,14 @@ function get_standings($dkpsys_id, $installed_games, $startd, $show_all)
 	    'SELECT'    => 	'l.game_id, m.member_dkpid, d.dkpsys_name, m.member_id, m.member_status, m.member_lastraid, 
 	    				sum(m.member_raid_value) as member_raid_value, 
 	    				sum(m.member_earned) as member_earned, 
-	    				sum(m.member_adjustment - adj_decay) as member_adjustment,
+	    				sum(m.member_adjustment - m.adj_decay) as member_adjustment,
 	    				sum(m.member_spent) as member_spent, 
-						sum(m.member_earned + m.member_adjustment - m.member_spent - adj_decay ) AS member_current,
+						sum(m.member_earned + m.member_adjustment - m.member_spent - m.adj_decay ) AS member_current,
 	   					l.member_name, l.member_level, l.member_race_id ,l.member_class_id, l.member_rank_id ,
 	       				r.rank_name, r.rank_hide, r.rank_prefix, r.rank_suffix, 
 	       				l1.name AS member_class, c.class_id, 
 	       				c.colorcode, c.class_armor_type AS armor_type, c.imagename, 
-	       				l.member_gender_id, a.image_female_small, a.image_male_small, 
+	       				l.member_gender_id, a.image_female, a.image_male, 
 						c.class_min_level AS min_level,
 						c.class_max_level AS max_level', 
 	 
@@ -762,12 +763,12 @@ function get_standings($dkpsys_id, $installed_games, $startd, $show_all)
 				AND (m.member_dkpid = d.dkpsys_id) 
 				AND (l.member_guild_id = r.guild_id)
 				AND r.rank_hide = 0 " ,
-	    'GROUP_BY' => 'm.member_dkpid, d.dkpsys_name, m.member_id, m.member_status, m.member_lastraid, 
+	    'GROUP_BY' => 'l.game_id, m.member_dkpid, d.dkpsys_name, m.member_id, m.member_status, m.member_lastraid, 
 	   				l.member_name, l.member_level, l.member_race_id ,l.member_class_id, l.member_rank_id ,
 	       			r.rank_name, r.rank_hide, r.rank_prefix, r.rank_suffix, 
 	       			l1.name, c.class_id, 
 	       			c.colorcode, c.class_armor_type , c.imagename, 
-	       			l.member_gender_id, a.image_female_small, a.image_male_small, 
+	       			l.member_gender_id, a.image_female, a.image_male, 
 					c.class_min_level ,
 					c.class_max_level ', 
 	);
@@ -793,11 +794,11 @@ function get_standings($dkpsys_id, $installed_games, $startd, $show_all)
 	if($config['bbdkp_epgp'] == 1)
 	{
 		$sql_array[ 'SELECT'] .= ", 
-			sum(m.member_earned - m.member_raid_decay + m.member_adjustment - m.adj_decay) AS ep,  
+			sum(m.member_earned + m.member_adjustment - m.adj_decay) AS ep,  
 			sum(m.member_spent - m.member_item_decay  + ". floatval($config['bbdkp_basegp']) . " ) AS gp, 
 		CASE  WHEN SUM(m.member_spent - m.member_item_decay  + " . max(0, $config['bbdkp_basegp']) . " ) = 0 
 		THEN  1 
-		ELSE  ROUND(SUM(m.member_earned - m.member_raid_decay + m.member_adjustment - m.adj_decay) / 
+		ELSE  ROUND(SUM(m.member_earned + m.member_adjustment - m.adj_decay) / 
 			  SUM(" . max(0, $config['bbdkp_basegp']) . " + m.member_spent - m.member_item_decay),2) END AS pr " ;
 	}
 	
@@ -853,7 +854,7 @@ function get_standings($dkpsys_id, $installed_games, $startd, $show_all)
 	{
 		$sql_array[ 'ORDER_BY'] = "CASE WHEN SUM(m.member_spent - m.member_item_decay  + ". floatval($config['bbdkp_basegp']) . "  ) = 0 
 		THEN 1
-		ELSE ROUND(SUM(m.member_earned - m.member_raid_decay + m.member_adjustment - m.adj_decay) / 
+		ELSE ROUND(SUM(m.member_earned + m.member_adjustment - m.adj_decay) / 
 		SUM(" . max(0, $config['bbdkp_basegp']) .' + m.member_spent - m.member_item_decay),2) END DESC ' ;
 	}
 	else 
@@ -880,7 +881,7 @@ function get_standings($dkpsys_id, $installed_games, $startd, $show_all)
 	$member_count =0;
 	while ( $row = $db->sql_fetchrow ( $members_result ) )
 	{
-		$race_image = (string) (($row['member_gender_id']==0) ? $row['image_male_small'] : $row['image_female_small']);
+		$race_image = (string) (($row['member_gender_id']==0) ? $row['image_male'] : $row['image_female']);
 		
 		++$member_count;
 		$memberarray [$member_count] ['game_id'] = $row ['game_id'];

@@ -1,13 +1,11 @@
 <?php
 /**
- * This acp class manages DKP pools and Loot systems
- * 
  * @package bbDKP.acp
- * @author Sajaki
-
- * @copyright (c) 2009 bbdkp https://github.com/bbDKP
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * 
+ * @version 1.2.7
  */
 
 /**
@@ -436,7 +434,7 @@ class acp_dkp_sys extends bbDKP_Admin
 			$sql =  'SELECT count(*) as count FROM ' . MEMBER_DKP_TABLE . ' WHERE member_id = ' . $member_id . ' 
 			AND	member_dkpid = ' . $event_dkpid; 
 			$result = $db->sql_query ($sql);
-			$count = $db->sql_fetchfield('count', 0, $result);
+			$count = $db->sql_fetchfield('count', false, $result);
 			$db->sql_freeresult ( $result);
 			if($count ==1)
 			{
@@ -549,7 +547,7 @@ class acp_dkp_sys extends bbDKP_Admin
 			$sql =  'SELECT count(*) as count FROM ' . MEMBER_DKP_TABLE . ' WHERE member_id = ' . $member_id . ' 
 			AND	member_dkpid = ' . $event_dkpid; 
 			$result = $db->sql_query ($sql);
-			$count = $db->sql_fetchfield('count', 0, $result);
+			$count = $db->sql_fetchfield('count', false, $result);
 			$db->sql_freeresult ( $result);
 			if($count == 1 )
 			{

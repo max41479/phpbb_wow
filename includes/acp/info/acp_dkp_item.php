@@ -37,7 +37,7 @@ class acp_dkp_item_info
 		return array(
 			'filename'	=> 'acp_dkp_item',
 			'title'		=> 'ACP_DKP_ITEM',
-			'version'	=> '1.2.6',
+			'version'	=> '1.2.7',
 			'modes'		=> array(
 				'edititem'			=> array('title' => 'ACP_DKP_ITEM_EDIT', 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_RAIDS'), 'display' => false ),
 				'listitems'			=> array('title' => 'ACP_DKP_ITEM_LIST', 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_RAIDS') , 'display' => true ),

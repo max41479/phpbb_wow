@@ -1,12 +1,13 @@
 <?php
 /**
- * List Items
- * 
- * @package bbDKP
- * @copyright 2009 bbdkp <https://github.com/bbDKP>
+ * @package bbDKP.module
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * 
+ * @version 1.2.7
  */
+ 
 /**
  * @ignore
  */
@@ -31,7 +32,7 @@ $sql_array = array(
 				RAID_ITEMS_TABLE => 'ri',
 				), 
 	'WHERE'  => ' a.dkpsys_id = e.event_dkpid and e.event_id=r.event_id and ri.raid_id = r.raid_id', 
-	'GROUP_BY'  => 'a.dkpsys_id'
+	'GROUP_BY'  => 'a.dkpsys_id, a.dkpsys_name, a.dkpsys_default'
 );
 $sql = $db->sql_build_query('SELECT', $sql_array);
 $result = $db->sql_query ( $sql );
@@ -127,7 +128,7 @@ if ($query_by_pool)
 }
 $sql = $db->sql_build_query('SELECT', $sql_array);
 $result = $db->sql_query ( $sql);
-$total_items = $db->sql_fetchfield ( 'itemcount', 1, $result);
+$total_items = $db->sql_fetchfield ( 'itemcount');
 $db->sql_freeresult ($result);
 
 $start = request_var ( 'start', 0 );
@@ -172,16 +173,20 @@ switch ($mode)
 	case 'values' :
 		$sql_array = array (
 			'SELECT' => '
-				e.event_dkpid, e.event_name,  e.event_color, 
-				i.item_id, i.item_name, i.member_id, i.item_gameid, i.item_date, 
-				i.raid_id, min(i.item_value) AS item_value,  i.item_decay, i.item_value - i.item_decay as item_total, item_zs  ', 
+				e.event_dkpid, e.event_name,  e.event_color, i.item_id, i.item_name, 
+				i.member_id, i.item_gameid, i.item_date, i.raid_id, 
+				MIN(i.item_value) AS item_value, 
+				SUM(i.item_decay) as item_decay, 
+				SUM(i.item_value - i.item_decay) as item_total, 
+				SUM(item_zs) as item_zs  ', 
 			'FROM' => array (
 				EVENTS_TABLE => 'e', 
 				RAIDS_TABLE => 'r', 
 				RAID_ITEMS_TABLE => 'i', 
 				), 
 			'WHERE' => ' r.event_id = e.event_id AND i.raid_id = r.raid_id', 
-			'GROUP_BY' => 'i.item_name', 
+			'GROUP_BY' => 'e.event_dkpid, e.event_name,  e.event_color, i.item_id, i.item_name, 
+				i.member_id, i.item_gameid, i.item_date, i.raid_id ', 
 			'ORDER_BY' => $current_order ['sql'] );
 		
 		break;
@@ -191,8 +196,10 @@ switch ($mode)
 			'SELECT' => '
 				 e.event_dkpid, e.event_name, e.event_color,   
 				 i.raid_id, i.item_value, i.item_gameid, i.item_id, i.item_name, i.item_date, i.member_id, 
-				 i.item_decay, i.item_value - i.item_decay as item_total, item_zs,
-				 l.member_name, c.colorcode, c.imagename, c.class_id, l.member_gender_id, a.image_female_small, a.image_male_small ', 
+				 l.member_name, c.colorcode, c.imagename, c.class_id, l.member_gender_id, a.image_female, a.image_male, 
+				 SUM(i.item_decay) as item_decay, 
+				 SUM(i.item_value - i.item_decay) as item_total, 
+				 SUM(item_zs) as item_zs ', 
     		'FROM' => array (
 				EVENTS_TABLE => 'e', 
 				RAIDS_TABLE => 'r', 
@@ -208,6 +215,9 @@ switch ($mode)
            			AND l.member_race_id =  a.race_id 
            			AND l.game_id = a.game_id
            			AND l.game_id = c.game_id', 
+			'GROUP_BY' => 'e.event_dkpid, e.event_name, e.event_color,   
+				 i.raid_id, i.item_value, i.item_gameid, i.item_id, i.item_name, i.item_date, i.member_id, 
+				 l.member_name, c.colorcode, c.imagename, c.class_id, l.member_gender_id, a.image_female, a.image_male ', 
            	'ORDER_BY' => $current_order ['sql']);
 		
 		break;
@@ -257,14 +267,14 @@ while ( $item = $db->sql_fetchrow ( $items_result ) )
 
 	if ($mode == 'history')
 	{
-		$race_image = (string) (($item['member_gender_id']==0) ? $item['image_male_small'] : $item['image_female_small']);
+		$race_image = (string) (($item['member_gender_id']==0) ? $item['image_male'] : $item['image_female']);
 		
 		$template->assign_block_vars ( 'items_row', array (
 			'DATE' 			=> (! empty ( $item ['item_date'] )) ? date($config['bbdkp_date_format'], $item ['item_date'] ) : '&nbsp;', 
 			'ITEMNAME' 		=> $valuename, 
 			'U_VIEW_ITEM' 	=> append_sid ( "{$phpbb_root_path}dkp.$phpEx", "page=viewitem&amp;" . URI_ITEM . '=' . $item ['item_id'] ), 
 			'RAID' 			=> (! empty ( $item ['event_name'] )) ? $item ['event_name'] : '&lt;<i>'. $user->lang['NOT_AVAILABLE'] .'</i>&gt;', 
-			'U_VIEW_RAID' 	=> append_sid ( "{$phpbb_root_path}dkp.$phpEx", "page=viewitem&amp;" . URI_RAID . '=' . $item ['raid_id'] ), 
+			'U_VIEW_RAID' 	=> append_sid ( "{$phpbb_root_path}dkp.$phpEx", "page=viewraid&amp;" . URI_RAID . '=' . $item ['raid_id'] ), 
 			'EVENTCOLOR' => ( !empty($item['event_color']) ) ? $item['event_color'] : '#123456',
 			
 			'ITEM_ZS'      	=> ($item['item_zs'] == 1) ? ' checked="checked"' : '',

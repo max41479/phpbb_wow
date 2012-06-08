@@ -996,7 +996,7 @@ $max_post_time = 0;
 
 $sql = $db->sql_build_query('SELECT', array(
 	'SELECT'	=> 'u.*, z.friend, z.foe, p.*, 
-		bm.member_id, bm.member_level, bm.member_name, bm.member_gender_id, bl.name as class_name, bc.colorcode, bc.imagename, bl1.name as race_name,  br.image_female_small, br.image_male_small ',  
+		bm.member_id, bm.member_level, bm.member_name, bm.member_gender_id, bl.name as class_name, bc.colorcode, bc.imagename, bl1.name as race_name,  br.image_female, br.image_male ',  
 
 	'FROM'		=> array(
 		USERS_TABLE		=> 'u',

@@ -34,7 +34,7 @@ class acp_dkp_event_info
 		return array(
 			'filename'	=> 'acp_dkp_event',
 			'title'		=> 'ACP_DKP_EVENT',
-			'version'	=> '1.2.6',
+			'version'	=> '1.2.7',
 			'modes'		=> array(
 				'addevent'			=> array('title' => 'ACP_DKP_EVENT_ADD', 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_EVENT') , 'display' => false),
 				'listevents'		=> array('title' => 'ACP_DKP_EVENT_LIST', 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_EVENT')),

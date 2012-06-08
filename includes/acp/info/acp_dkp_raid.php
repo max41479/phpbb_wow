@@ -32,7 +32,7 @@ class acp_dkp_raid_info
 		return array(
 			'filename'	=> 'acp_dkp_raid',
 			'title'		=> 'ACP_DKP_RAIDS',
-			'version'	=> '1.2.6',
+			'version'	=> '1.2.7',
 			'modes'		=> array(
 				'addraid'		=> array('title' => 'ACP_DKP_RAID_ADD', 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_RAIDS') , 'display' => false),
 				'editraid'		=> array('title' => 'ACP_DKP_RAID_EDIT', 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_RAIDS') , 'display' => false),

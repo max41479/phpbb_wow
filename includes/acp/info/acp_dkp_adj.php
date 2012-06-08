@@ -33,7 +33,7 @@ class acp_dkp_adj_info
 		return array(
 			'filename'	=> 'acp_dkp_adj',
 		    'title'	=> 'ACP_DKP_MDKP',
-			'version'	=> '1.2.6',
+			'version'	=> '1.2.7',
 			'modes'		=> array(			
 				'addiadj'	=> array('title' => 'ACP_DKP_ADDADJ', 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_MDKP'), 'display' => false),
 				'listiadj'	=> array('title' => 'ACP_DKP_LISTADJ', 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_MDKP'), 'display' => true),

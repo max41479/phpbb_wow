@@ -1,14 +1,11 @@
 <?php
- /**
- * Roster2 - generic version
- * 
- * @package bbDKP
- * @copyright 2011 bbdkp http://www.bbdkp.com
+/**
+ * @package bbDKP.module
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- *
- * more data can be presented in the roster with the armory plugin 
- * 
- * 
+ * @version 1.2.7
  */
 
 /**
@@ -125,7 +122,7 @@ class roster
 	
 			foreach ($classes as  $classid => $class )
 			{
-				$classimgurl =  $phpbb_root_path . "images/roster_classes/" . $this->removeFromEnd($class['imagename'], '_small') .'.png'; 
+				$classimgurl =  $phpbb_root_path . "images/roster_classes/" . $this->removeFromEnd($class['imagename'], '') .'.png'; 
 				$classcolor = $class['colorcode']; 
 		         
 				$template->assign_block_vars('class', array(	
@@ -139,7 +136,7 @@ class roster
 		        {
 		        	if($row['member_class_id'] == $classid)
 		        	{
-					    $race_image = (string) (($row['member_gender_id']==0) ? $row['image_male_small'] : $row['image_female_small']);
+					    $race_image = (string) (($row['member_gender_id']==0) ? $row['image_male'] : $row['image_female']);
 			
 			         	$template->assign_block_vars('class.members_row', array(
 			     			'COLORCODE'		=> $row['colorcode'],
@@ -219,7 +216,7 @@ class roster
 		foreach ($this->dataset as $row)
 		{ 
 		 	$a++;
-			$race_image = (string) (($row['member_gender_id']==0) ? $row['image_male_small'] : $row['image_female_small']);
+			$race_image = (string) (($row['member_gender_id']==0) ? $row['image_male'] : $row['image_female']);
 		    $template->assign_block_vars('members_row', array(
 				'COLORCODE'		=> $row['colorcode'],
 				'CLASS'			=> $row['class_name'],
@@ -346,7 +343,7 @@ class roster
 		$sql_array = array();
 		$sql_array['SELECT'] =  'm.member_guild_id,  m.member_name, m.member_level, m.member_race_id, e1.name as race_name, 
 	           				 m.member_class_id, m.member_gender_id, m.member_rank_id, m.member_achiev, m.member_armory_url, m.member_portrait_url, 
-	           				 r.rank_prefix , r.rank_name, r.rank_suffix, e.image_female_small, e.image_male_small,
+	           				 r.rank_prefix , r.rank_name, r.rank_suffix, e.image_female, e.image_male,
 	           				 g.name, g.realm, g.region, c1.name as class_name, c.colorcode, c.imagename, m.phpbb_user_id, u.username, u.user_colour  '; 
 		
 		 $sql_array['FROM'] = array(

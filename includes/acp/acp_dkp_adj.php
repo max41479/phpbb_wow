@@ -1,16 +1,13 @@
 <?php
 /**
- * Powered by bbdkp © 2009 The bbDKP Project Team
- * If you use this software and find it to be useful, we ask that you
- * retain the copyright notice below.  While not required for free use,
- * it will help build interest in the bbDKP project.
- * 
  * @package bbDKP.acp
- * @copyright (c) 2009 bbdkp https://github.com/bbDKP
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @version $Id$
- * 
- **/
+ * @version 1.2.7
+ */
+
 /**
  * @ignore
  */
@@ -31,10 +28,10 @@ if (! defined('EMED_BBDKP'))
  */
 class acp_dkp_adj extends bbDKP_Admin
 {
-	var $u_action;
-	var $old_adjustment;
-	var $adjustment;
-
+	public $u_action;
+	private $old_adjustment;
+	private $adjustment;
+	private $link; 
 	/** 
 	 * main ACP dkp adjustment function
 	 * @param int $id the id of the node who parent has to be returned by function 
@@ -43,7 +40,7 @@ class acp_dkp_adj extends bbDKP_Admin
 	 */
 	public function main ($id, $mode)
 	{
-		global $db, $user, $auth, $template, $sid, $cache;
+		global $db, $user, $template;
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
 		if (! class_exists('acp_dkp_mm'))
 		{
@@ -51,10 +48,8 @@ class acp_dkp_adj extends bbDKP_Admin
 			include ($phpbb_root_path . 'includes/acp/acp_dkp_mm.' . $phpEx);
 			$class_members = new acp_dkp_mm();
 		}
-		$user->add_lang(array(
-			'mods/dkp_admin' , 
-			'mods/dkp_common'));
-		$link = '<br /><a href="' . append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp&amp;mode=mainpage") . '"><h3>' . $user->lang['RETURN_DKPINDEX'] . '</h3></a>';
+		$user->add_lang(array('mods/dkp_admin', 'mods/dkp_common'));
+		$this->link = '<br /><a href="' . append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp&amp;mode=mainpage") . '"><h3>' . $user->lang['RETURN_DKPINDEX'] . '</h3></a>';
 		switch ($mode)
 		{
 			/************************************
@@ -72,7 +67,7 @@ class acp_dkp_adj extends bbDKP_Admin
 				$sql = 'SELECT dkpsys_id, dkpsys_name , dkpsys_default 
 		          FROM ' . DKPSYS_TABLE . ' a, ' . ADJUSTMENTS_TABLE . ' j 
 		          WHERE a.dkpsys_id = j.adjustment_dkpid 
-		          GROUP BY dkpsys_name';
+		          GROUP BY dkpsys_id, dkpsys_name , dkpsys_default';
 				$result = $db->sql_query($sql);
 				$dkpsys_id = 0;
 				$submit = (isset($_POST['dkpsys_id']) || isset($_GET['dkpsys_id'])) ? true : false;
@@ -108,39 +103,29 @@ class acp_dkp_adj extends bbDKP_Admin
 						'OPTION' => (! empty($row['dkpsys_name'])) ? $row['dkpsys_name'] : '(None)'));
 				}
 				$db->sql_freeresult($result);
+				
 				/*** end DKPSYS drop-down ***/
 				$sort_order = array(
-					0 => array(
-						'adjustment_date desc' , 
-						'adjustment_date') , 
-					1 => array(
-						'adjustment_dkpid' , 
-						'adjustment_dkpid desc') , 
-					2 => array(
-						'dkpsys_name' , 
-						'dkpsys_name desc') , 
-					3 => array(
-						'member_name' , 
-						'member_name desc') , 
-					4 => array(
-						'adjustment_reason' , 
-						'adjustment_reason desc') , 
-					5 => array(
-						'adjustment_value desc' , 
-						'adjustment_value') , 
-					6 => array(
-						'adjustment_added_by' , 
-						'adjustment_added_by desc'));
+					0 => array('adjustment_date desc' , 'adjustment_date') , 
+					1 => array(	'adjustment_dkpid' , 'adjustment_dkpid desc') , 
+					2 => array('dkpsys_name' , 'dkpsys_name desc') , 
+					3 => array('member_name' , 'member_name desc') , 
+					4 => array('adjustment_reason' , 'adjustment_reason desc') , 
+					5 => array('adjustment_value desc' , 'adjustment_value') , 
+					6 => array('adjustment_added_by' , 'adjustment_added_by desc'));
+					
 				$sql2 = 'SELECT count(*) as total_adjustments 
 					FROM ' . ADJUSTMENTS_TABLE . ' 
 					WHERE member_id IS NOT NULL 
 					and adjustment_dkpid 	= ' . (int) $dkpsys_id;
+				
 				$member_filter = utf8_normalize_nfc(request_var('member_name', '', true));
 				if ($member_filter != '')
 				{
 					$member_id_filter = intval($class_members->get_member_id(trim($member_filter)));
 					$sql2 .= ' and member_id  = ' . $member_id_filter;
 				}
+				
 				$result2 = $db->sql_query($sql2);
 				$total_adjustments = (int) $db->sql_fetchfield('total_adjustments');
 				$db->sql_freeresult($result2);
@@ -166,6 +151,7 @@ class acp_dkp_adj extends bbDKP_Admin
 						AND a.member_id = l.member_id
 						AND a.member_id IS NOT NULL ' , 
 					'ORDER_BY' => $current_order['sql']);
+				
 				if ($member_filter != '')
 				{
 					$sql_array['WHERE'] .= ' AND l.member_name ' . $db->sql_like_expression($db->any_char . $member_filter . $db->any_char);
@@ -225,6 +211,7 @@ class acp_dkp_adj extends bbDKP_Admin
 				$this->page_title = 'ACP_LISTIADJ';
 				$this->tpl_name = 'dkp/acp_' . $mode;
 				break;
+				
 			/************************************
 			 * 
 			 * MANAGE INDIVIDUAL ADJUSTMENTS
@@ -243,8 +230,8 @@ class acp_dkp_adj extends bbDKP_Admin
 					'can_decay' => request_var('adj_decayable', 1) , 
 					'adjustment_value' => request_var('adjustment_value', 0.00) , 
 					'adjustment_reason' => utf8_normalize_nfc(request_var('adjustment_reason', ' ', true)) , 
-					'member_names' => utf8_normalize_nfc(request_var('member_names', array(
-						0 => ' '), true)));
+					'member_names' => utf8_normalize_nfc(request_var('member_names', array(0 => ' '), true)));
+						
 				$adjust_id = request_var(URI_ADJUSTMENT, 0);
 				$dkpsys_id = request_var(URI_DKPSYS, 0);
 				if ($adjust_id != 0 && $dkpsys_id != 0)
@@ -341,8 +328,7 @@ class acp_dkp_adj extends bbDKP_Admin
 					}
 					$adjval = request_var('adjustment_value', 0.0);
 					$adjreason = utf8_normalize_nfc(request_var('adjustment_reason', '', true));
-					$member_names = request_var('member_names', array(
-						0 => ' '), true);
+					$member_names = request_var('member_names', array(0 => ' '), true);
 					$candecay = request_var('adj_decayable', 1);
 					//
 					// get value from Pulldown !
@@ -370,8 +356,9 @@ class acp_dkp_adj extends bbDKP_Admin
 						'log_type' => $log_action['header'] , 
 						'log_action' => $log_action));
 					$success_message = sprintf($user->lang['ADMIN_ADD_IADJ_SUCCESS'], $config['bbdkp_dkp_name'], $adjval, implode(', ', $member_names));
-					trigger_error($success_message . $link);
+					trigger_error($success_message . $this->link);
 				}
+				
 				/************************************
 				// UPDATE INDIVIDUAL ADJUSTMENT
 				 ************************************/
@@ -387,8 +374,7 @@ class acp_dkp_adj extends bbDKP_Admin
 					$adjust_id = request_var('hidden_id', 0);
 					$adjval = request_var('adjustment_value', 0.0);
 					$adjreason = utf8_normalize_nfc(request_var('adjustment_reason', '', true));
-					$member_names = utf8_normalize_nfc(request_var('member_names', array(
-						0 => ' ')));
+					$member_names = utf8_normalize_nfc(request_var('member_names', array(0 => ' ')));
 					$candecay = request_var('adj_decayable', 1);
 					// remove old adjustment
 					$this->remove_old_adjustment($adjust_id, $dkpsys_id);
@@ -422,7 +408,7 @@ class acp_dkp_adj extends bbDKP_Admin
 						'log_type' => $log_action['header'] , 
 						'log_action' => $log_action));
 					$success_message = sprintf($user->lang['ADMIN_UPDATE_IADJ_SUCCESS'], $config['bbdkp_dkp_name'], $adjval, implode(', ', $member_names));
-					trigger_error($success_message . $link);
+					trigger_error($success_message . $this->link);
 				}
 				/************************************
 				// DELETE INDIVIDUAL ADJUSTMENT
@@ -449,7 +435,7 @@ class acp_dkp_adj extends bbDKP_Admin
 						//
 						// Success messages
 						$success_message = sprintf($user->lang['ADMIN_DELETE_IADJ_SUCCESS'], $config['bbdkp_dkp_name'], $this->old_adjustment['adjustment_value'], implode(', ', $this->old_adjustment['member_names']));
-						trigger_error($success_message . $link);
+						trigger_error($success_message . $this->link);
 					}
 					else
 					{
@@ -474,8 +460,7 @@ class acp_dkp_adj extends bbDKP_Admin
 					}
 					else
 					{
-						$selected = (@in_array($row['member_name'], utf8_normalize_nfc(request_var('member_names', array(
-							0 => ' '))))) ? ' selected="selected"' : '';
+						$selected = (@in_array($row['member_name'], utf8_normalize_nfc(request_var('member_names', array(0 => ' '))))) ? ' selected="selected"' : '';
 					}
 					$template->assign_block_vars('members_row', array(
 						'VALUE' => $row['member_name'] , 
@@ -577,7 +562,7 @@ class acp_dkp_adj extends bbDKP_Admin
 	 * add a new dkp adjustment
 	 * 
 	 */
-	public function add_new_adjustment ($dkpid, $member_id, $group_key, $adjval, $adjreason, $candecay)
+	public function add_new_adjustment ($dkpid, $member_id, $group_key, $adjval, $adjreason, $candecay = 0)
 	{
 		global $user, $db;
 		// no global scope
@@ -621,6 +606,7 @@ class acp_dkp_adj extends bbDKP_Admin
 				'member_raidcount' => 0));
 			$db->sql_query('INSERT INTO ' . MEMBER_DKP_TABLE . $query);
 		}
+		
 		//
 		// Add the adjustment to the database
 		//
@@ -638,7 +624,7 @@ class acp_dkp_adj extends bbDKP_Admin
 
 	/** 
 	 * validationfunction for adjustment values : required and numeric, date is in range
-	 * @access public 
+	 * @access private 
 	 */
 	private function error_check_i ()
 	{
@@ -736,7 +722,9 @@ class acp_dkp_adj extends bbDKP_Admin
 		//calculate rounded adjustment decay, defaults to rounds half up PHP_ROUND_HALF_UP, so 9.495 becomes 9.50
 		$decay = round($value * (1 - pow(1 - $i, $n)), 2);
 		// update adj detail to new decay value
-		$sql = 'UPDATE ' . ADJUSTMENTS_TABLE . ' SET adj_decay = ' . $decay . ", decay_time = " . $n . " WHERE adjustment_id = " . (int) $adj_id;
+		$sql = 'UPDATE ' . ADJUSTMENTS_TABLE . ' 
+			SET adj_decay = ' . $decay . ", decay_time = " . $n . " 
+			WHERE adjustment_id = " . (int) $adj_id;
 		$db->sql_query($sql);
 		// update dkp account, deduct old, add new decay
 		$sql = 'UPDATE ' . MEMBER_DKP_TABLE . ' SET adj_decay = adj_decay - ' . $olddecay . ' + ' . $decay . " 

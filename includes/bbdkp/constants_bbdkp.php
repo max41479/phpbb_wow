@@ -1,12 +1,12 @@
 <?php
 /**
-* Constants defined for bbdkp
-* 
-* @package bbDKP.includes
-* @version $Id$
-* @copyright (c) 2009 bbDKP 
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*/
+ * @package bbDKP.constants
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @version 1.2.7
+ */
 
 /**
 * @ignore

@@ -12,7 +12,7 @@ function check_form()
 
     if (document.getElementById('race_id').value.length < 1 )
     {
-        alert('{MSG_NAME_EMPTY}');
+        alert('{MSG_RACE_EMPTY}');
         return false;
     }
     
@@ -120,7 +120,7 @@ function stateChanged()
 	    <dt><label for="game_id">{L_GAME}:</label><br /> {L_GAME_CLASSRACEUPDATE_EXPLAIN}</dt>
 	  		<dd>
 	  		<!-- IF S_ADD -->
-	  		<select id="game_id" class="input" onchange="return Getfaction(this.value)">
+	  		<select id="game_id" name="game_id" class="input" onchange="return Getfaction(this.value)">
 	       <!-- BEGIN game_row -->
 	       <option value="{game_row.VALUE}"{game_row.SELECTED}>{game_row.OPTION}</option>
 	        <!-- END game_row -->

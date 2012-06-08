@@ -65,6 +65,29 @@ function class_config()
 	}
 	return $class_config;
 }
+function class_config_lang()
+{
+	global $db, $cache;
+
+	if (($class_config_lang = $cache->get('class_config_lang')) !== true)
+	{
+		$class_config_lang = $cached_class_config_lang = array();
+
+		$sql = 'SELECT config_name, config_lang
+			FROM ' . RECRUIT_CLASS_TABLE;
+		$result = $db->sql_query($sql);
+
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$cached_class_config_lang[$row['config_name']] = $row['config_lang'];
+			$class_config_lang[$row['config_name']] = $row['config_lang'];
+		}
+		$db->sql_freeresult($result);
+
+		$cache->put('class_config_lang', $class_config_lang);
+	}
+	return $class_config_lang;
+}
 function class_num_config()
 {
 	global $db, $cache;

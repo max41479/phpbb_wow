@@ -2,10 +2,10 @@
 
 <h2>{L_UCP_DKP_CHARACTERS}</h2>
 
-<form id="characters" method="post" action="{U_ACTION}">
+
 <div class="panel">
 <div class="inner"><span class="corners-top"><span></span></span>
-<h3>{L_UCP_DKP_CHARACTER_LIST}</h3>
+
 <fieldset><!-- IF ERROR -->
 <p class="error">{ERROR}</p>
 <!-- ENDIF -->
@@ -16,59 +16,56 @@
 	
 	<div class="panel">
 	<div class="inner">
-	<span class="corners-inner-top"><span></span></span>
 
 	<!-- BEGIN members_row -->
-	<table  class="table1" width="100%" border="0" cellspacing="0" cellpadding="2">
-		<thead>		
-		<tr>
-			<td width="100px" nowrap="nowrap" style="text-align:center;">
-			<!-- IF members_row.S_RACE_IMAGE_EXISTS --><img src="{members_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE --><!-- ENDIF -->
-			<!-- IF members_row.S_CLASS_IMAGE_EXISTS --><img src="{members_row.CLASS_IMAGE}" alt="{members_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF -->&nbsp;</span>
-			</td>
-			<td width="200px" nowrap="nowrap" style="text-align:left;" ><strong><h4><span style="color:{members_row.COLORCODE}">{members_row.NAME}</span></h4></strong></th>
-			<td width="100px" nowrap="nowrap" style="text-align:center;"><strong> {L_LEVEL} {members_row.LEVEL}</strong></td>
-			<!-- IF S_SHOWEPGP --> 
-				<th></th>
-			<!-- ENDIF -->
-			<td width="60px" nowrap="nowrap" style="text-align:left;"><a href="{members_row.U_EDIT}"><img title="Edit" alt="Edit" src="./images/icons/view.gif" /></a></td>	
-		</tr>
-		</thead>
-	</table>
-	<table  class="table1" width="100%" border="0" cellspacing="0" cellpadding="2">
-		<tbody>
+	<ul class ="topiclist">	
+		<li class="header">
+			<dl>
+				<dt>
+				<strong> <span style="color:{members_row.COLORCODE}">{members_row.NAME}</span>  </strong>
+				<br />
+				<!-- IF members_row.S_RACE_IMAGE_EXISTS --><img src="{members_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE --><!-- ENDIF -->
+				<!-- IF members_row.S_CLASS_IMAGE_EXISTS --><img src="{members_row.CLASS_IMAGE}" alt="{members_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF -->&nbsp;
+				({L_LEVEL} {members_row.LEVEL})
+				</dt>
+				<dd class="mark">
+				{L_EDIT}<br />
+				<a href="{members_row.U_EDIT}"><img title="Edit" alt="Edit" src="./images/icons/view.gif" /></a></dd>	
+			</dl>
+		</li>
+	</ul>
+	<ul class ="topiclist cplist">	
 		<!-- BEGIN dkp_row -->
 		<!-- IF dkp_row.S_ROW_COUNT is even -->
-		<tr class="row bg1">
+		<li class="row bg1">
 		<!-- ELSE -->
-		<tr class="row bg2">
+		<li class="row bg2">
 		<!-- ENDIF -->
-			<td width="20%" nowrap="nowrap"><a href="{members_row.dkp_row.U_VIEW_MEMBER}"> {members_row.dkp_row.DKPSYS}</td>
-			<td width="20%" nowrap="nowrap">{L_EARNED} : {members_row.dkp_row.EARNED}</td>
-			<td width="20%" nowrap="nowrap">{L_SPENT} : {members_row.dkp_row.SPENT}</td>
-			<td width="20%" nowrap="nowrap">{L_CURRENT} : {members_row.dkp_row.CURRENT}</td>
-			<!-- IF S_SHOWEPGP --> 
-			<td width="20%" nowrap="nowrap">{L_PR} : {members_row.dkp_row.PR}</td>
-			<!-- ENDIF -->
-			<td></td>
-		</tr>
+			<dl>
+			<dt style="width:40%"><a href="{members_row.dkp_row.U_VIEW_MEMBER}"><strong>{members_row.dkp_row.DKPSYS}</strong></a></dt>
+					<dd style="width:15%">{L_EARNED}: {members_row.dkp_row.EARNED} &nbsp;</dd>
+					<dd style="width:15%">{L_SPENT}: {members_row.dkp_row.SPENT}&nbsp;</dd>
+					<dd style="width:15%">{L_CURRENT}: {members_row.dkp_row.CURRENT}&nbsp;</dd>
+					<!-- IF S_SHOWEPGP --> 
+					<dd style="width:15%">{L_PR}: {members_row.dkp_row.PR}&nbsp;</dd>
+					<!-- ENDIF -->
+			</dl>
+			</li>
 		<!-- END dkp_row -->
-		<tr></tr>
-		</tbody>
-	</table>
+	</ul>
 	<!-- END members_row -->
-	
-	<span class="corners-inner-bottom"><span></span></span>
 	</div>
 	</div>
 
-	<p><br /></p>
+<!-- ENDIF -->
 
-	<hr />
-
-	<!-- ENDIF -->
+<span class="corners-bottom"><span></span></span></div>
+</div>
 
 <!-- IF S_SHOW_BUTTONS -->
+<form id="characters" method="post" action="{U_ACTION}">
+<div class="panel">
+<div class="inner"><span class="corners-top"><span></span></span>
 
 <fieldset class="submit-buttons">
 <dl>
@@ -77,19 +74,15 @@
 		{S_DKPMEMBER_OPTIONS}
 	</select></dd>
 </dl>
-
-<input class="button2"
-	type="reset" id="reset" name="reset" value="{L_RESET}" />&nbsp; <input
-	class="button1" type="submit" id="submit" name="submit"
-	value="{L_SUBMIT}" /> {S_FORM_TOKEN}
+	 <input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" /> {S_FORM_TOKEN}
 </fieldset>
 <!-- ENDIF --> 
 
 <!-- ELSE --> 
 <p class="error">{L_NO_CHARACTERS} </p><p><br /></p>
 <!-- ENDIF --> 
-
-<span class="corners-bottom"><span></span></span></div>
+<span class="corners-bottom"><span></span></span>
+</div>
 </div>
 </form>
 

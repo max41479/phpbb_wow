@@ -68,7 +68,7 @@ while ( $news = $db->sql_fetchrow($result) )
 {
 
 	$template->assign_block_vars('date_row', array(
-		'DATE' => $user->format_date($news['topic_time'], 'F j, Y')
+		'DATE' => date('F j, Y', $news['topic_time'])
 	));
      
 	$sql = 'SELECT * FROM ' . POSTS_TABLE . ' n
@@ -188,7 +188,7 @@ while ( $news = $db->sql_fetchrow($result) )
     $db->sql_freeresult($result2);
     
 	$template->assign_block_vars('news_row', array( 
-		'DATE' => $user->format_date($news['topic_time'], 'F j, Y'),
+		'DATE' => date('F j, Y', $news['topic_time']),
 		'HEADLINE' 	=> censor_text($news['topic_title']), 
 		'AUTHOR' 	=> get_username_string('full', $news['topic_poster'], $news['topic_first_poster_name'], $news['topic_first_poster_colour']), 
 		'LINK'		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $news['forum_id'] . '&amp;t=' . $news['topic_id']), 

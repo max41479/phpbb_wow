@@ -29,7 +29,7 @@ class acp_dkp_mm_info
 		return array(
 			'filename'	=> 'acp_dkp_mm',
 			'title'		=> 'ACP_DKP_MEMBER',
-			'version'	=> '1.2.6',
+			'version'	=> '1.2.7',
 			'modes'		=> array(
 				'mm_addguild'	    => array('title' => 'ACP_DKP_GUILD_ADD', 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_MEMBER'), 'display' => false),
 				'mm_listguilds'	    => array('title' => 'ACP_DKP_GUILD_LIST', 'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_MEMBER')),

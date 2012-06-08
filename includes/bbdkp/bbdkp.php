@@ -1,12 +1,12 @@
 <?php
 /**
-* bbdkp base admin classes
-* 
-* @package bbDKP.includes
-* @version $Id$
-* @copyright (c) 2009 bbDKP 
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*/
+ * @package bbDKP.functions
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @version 1.2.7
+ */
 
 /**
 * @ignore
@@ -76,11 +76,11 @@ function bbDKP_Admin()
     function log_insert($values = array())
     {
         global $db, $user;
-        $log_fields = array('log_id', 'log_date', 'log_type', 'log_action', 'log_ipaddress', 'log_sid', 'log_result', 'log_userid');
+        $log_fields = array('log_date', 'log_type', 'log_action', 'log_ipaddress', 'log_sid', 'log_result', 'log_userid');
+
         
         // Default our log values
          $defaultlog = array(
-            'log_id'        => NULL,
             'log_date'      => time(),
             'log_type'      => NULL,
             'log_action'    => NULL,

@@ -83,7 +83,7 @@
         <option value="{class_row.VALUE}"{class_row.SELECTED}>{class_row.OPTION}</option>
         <!-- END class_row -->
       </select>
-		 <!-- IF S_CLASS_IMAGE_EXISTS --><br/><img src="{CLASS_IMAGE}" alt="" /><!-- ELSE -->&nbsp;<!-- ENDIF -->
+		<!-- IF S_CLASS_IMAGE_EXISTS --><br/><img src="{CLASS_IMAGE}" alt="" /><!-- ELSE -->&nbsp;<!-- ENDIF -->
 		</dd>
   </dl> 
   <dl>
@@ -94,17 +94,17 @@
    </dd>
  </dl>
  
+	<!-- IF S_ADD -->
     <dl>
     <dt><label>{L_JOINDATE} (YYYY-MM-DD):</label></dt>
-    
     <dd>
 		{L_DAY}: <select id="member_joindate_d" name="member_joindate_d">{S_JOINDATE_DAY_OPTIONS}</select>
 		{L_MONTH}: <select name="member_joindate_mo">{S_JOINDATE_MONTH_OPTIONS}</select> 
 		{L_YEAR}: <select name="member_joindate_y">{S_JOINDATE_YEAR_OPTIONS}</select>
 	</dd>
-    
    </dl> 
-  
+	<!-- ENDIF -->   
+
     <dl>
     <dt><label for="member_comment">{L_COMMENT}:</label></dt>
 	<dd><textarea name="member_comment" type="text" rows="5" cols="10" style="width: 80%" class="input">{MEMBER_COMMENT}</textarea></dd>
@@ -120,8 +120,12 @@
 	<dt><label for="dkpmember"></label></dt>
 	<dd>
 		<!-- IF ! S_ADD -->
-			<input type="submit" name="update" value="{L_UPDATE_MEMBER}" class="button2" />
+			<!-- IF S_CANUPDATE -->
+			<input type="submit" name="update" value="{L_UPDATE_MEMBER}" class="button1" />
+			<!-- ENDIF -->
+			<!-- IF S_CANDELETE -->
 			<input type="submit"  name="delete" value="{L_DELETE_MEMBER}" class="button1" />
+			<!-- ENDIF -->
 		<!-- ELSE -->
 			<input type="submit" name="add" value="{L_ADD_MEMBER}" class="button2" /> 
 			<input type="reset" name="reset" value="{L_RESET}" class="button1" />

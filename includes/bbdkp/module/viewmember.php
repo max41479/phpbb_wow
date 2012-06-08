@@ -1,11 +1,11 @@
 <?php
 /**
- * View individual member
- * 
- * @package bbDKP
- * @copyright 2009 bbdkp <https://github.com/bbDKP>
+ * @package bbDKP.module
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * 
+ * @version 1.2.7
  */
  
 
@@ -120,12 +120,12 @@ $sql_array = array(
 		m.adj_decay, 
 		(m.member_earned + m.member_adjustment - m.member_spent ) AS member_current,
 		(m.member_earned + m.member_adjustment) AS ep	,
-		(m.member_earned + m.member_adjustment - m.member_raid_decay - m.adj_decay) AS ep_net	,
+		(m.member_earned + m.member_adjustment - m.adj_decay) AS ep_net	,
 		(m.member_spent + ' . max(0, $config['bbdkp_basegp']) . ') AS gp,
 		m.member_spent - m.member_item_decay as gp_net, 
 		CASE WHEN (m.member_spent - m.member_item_decay + ' . max(0, $config['bbdkp_basegp']) . ' ) = 0 
 		THEN 1 
-		ELSE ROUND((m.member_earned - m.member_raid_decay + m.member_adjustment - m.adj_decay) / (' . max(0, $config['bbdkp_basegp']) .' + m.member_spent - m.member_item_decay),2) end as pr,
+		ELSE ROUND((m.member_earned + m.member_adjustment - m.adj_decay) / (' . max(0, $config['bbdkp_basegp']) .' + m.member_spent - m.member_item_decay),2) end as pr,
 		m.member_firstraid,
 		m.member_lastraid,
 		r1.name AS member_race,
@@ -137,7 +137,7 @@ $sql_array = array(
 		c.class_armor_type AS armor_type ,
 		c.colorcode, 
 		c.imagename, 
-		a.member_gender_id, race.image_female_small, race.image_male_small ', 
+		a.member_gender_id, race.image_female, race.image_male ', 
  
     'FROM'      => array(
         MEMBER_LIST_TABLE 	=> 'a',
@@ -216,7 +216,7 @@ $member = array(
 	'member_rank_id'    => $row['member_rank_id'],
 	'member_rank'		=> $row['rank_name'],
 	'classimage'		=> $row['imagename'],
-	'raceimage'			=> (string) (($row['member_gender_id']==0) ? $row['image_male_small'] : $row['image_female_small']), 
+	'raceimage'			=> (string) (($row['member_gender_id']==0) ? $row['image_male'] : $row['image_female']), 
 	'colorcode'			=> $row['colorcode'], 
 );	
 
@@ -254,7 +254,7 @@ $template->assign_vars(array(
 
 
 	'NETCURRENT'    => $member['ep_net'] - $member['gp_net'] - max(0, $config['bbdkp_basegp']) ,
-	'C_NETCURRENT'      => (($member['member_current'] - $member['member_raid_decay'] + $member['member_item_decay'] - max(0, $config['bbdkp_basegp']) ) > 0   )  ? 'positive' : 'negative',
+	'C_NETCURRENT'      => (($member['member_current'] + $member['member_item_decay'] - max(0, $config['bbdkp_basegp']) ) > 0   )  ? 'positive' : 'negative',
 	
 	'MEMBER_LEVEL'    => $member['member_level'],
 	'MEMBER_DKPID'    => $dkp_id,
@@ -357,7 +357,7 @@ if($rstart > 0)
 	{
 	   trigger_error ($user->lang['MNOTFOUND']);
 	}
-	$current_earned = $member['member_earned'] + $member['member_time_bonus'] + $member['member_zerosum_bonus'] - $member['member_raid_decay'];
+	$current_earned = $member['member_earned'] + $member['member_time_bonus'] + $member['member_zerosum_bonus'];
 	while ( $raid = $db->sql_fetchrow($raids_result))
 	{
 		$current_earned = $current_earned - $raid['netearned'];
@@ -365,7 +365,7 @@ if($rstart > 0)
 }
 else 
 {
-	$current_earned = $member['member_earned'] + $member['member_time_bonus'] + $member['member_zerosum_bonus'] - $member['member_raid_decay'];
+	$current_earned = $member['member_earned'] + $member['member_time_bonus'] + $member['member_zerosum_bonus'];
 }
 
 $raidlines = $config['bbdkp_user_rlimit'] ;

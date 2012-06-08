@@ -201,6 +201,7 @@ $lang = array_merge($lang, array(
 'UMIL_GAME123' => 'Game data 1.2.3 installed for %s', 
 'UMIL_GAME125' => 'Game data 1.2.5 installed for %s', 
 'UMIL_GAME126' => 'Game data 1.2.6 installed for %s',
+'UMIL_GAME127' => 'Game data 1.2.7 installed for %s',
 'UMIL_GAMEUNINST123' => 'Game data uninstalled', 
 'UMIL_UPDTABLES' =>  'Tables %s for version %s', 
 
@@ -276,11 +277,11 @@ $lang = array_merge($lang, array(
 'ACP_ITEMSTATS_EXPLAIN' => 'Here you can change the Item, Itemicon Popup settings',
 'ACP_INDEXPAGE_EXPLAIN' => 'bbDKP Portal Settings, Block on/off switches, Block configuration can be changed here',
 'TRANSFER_MEMBER_HISTORY_DESCRIPTION' => 'This transfers all of a member’s history (raids, items, adjustments) to another member.',
-'ACP_LISTRACE_EXPLAIN' => 'Here you can edit the game races. Please mind that for WoW the race id has to match those of the Blizzard Armory. ', 
-'ACP_LISTCLASS_EXPLAIN' => 'Here you can edit the game classes. Please mind that for WoW the Class id has to match those of the Blizzard Armory. ', 
+'ACP_LISTRACE_EXPLAIN' => 'Here you can edit the game races. ', 
+'ACP_LISTCLASS_EXPLAIN' => 'Here you can edit the game classes.', 
 'ACP_LISTFACTIONS_EXPLAIN' => 'Here you can edit the game Factions. ', 
-'ACP_ADDRACE_EXPLAIN' => 'Here you can add/edit the game races.  Please mind that for WoW the race id has to match those of the Blizzard Armory. ', 
-'ACP_ADDCLASS_EXPLAIN' => 'Here you can add/edit the game Classes.  Please mind that for WoW the race id has to match those of the Blizzard Armory.', 
+'ACP_ADDRACE_EXPLAIN' => 'Here you can add/edit the game races. Please mind that for WoW the race id has to match those of the Blizzard Armory. ', 
+'ACP_ADDCLASS_EXPLAIN' => 'Here you can add/edit the game Classes. Please mind that for WoW the race id has to match those of the Blizzard Armory.', 
 'ACP_ADDFACTIONS_EXPLAIN' => 'Here you can add/edit the Factions', 
 'ACP_ADDRACE_EXPLAIN' => 'Here you can add/edit the Races.', 
 'RACEID_EXPLAIN' =>	'Note. the ID is unique. for Wow, it should match the raceId XML Armory tag. ',
@@ -824,6 +825,27 @@ So the loot would go to player 2 <br />',
 'UPDATE_RACE' => 'Update Race', 
 'UPDATE_CLASS' => 'Update Class', 
 'CHANGE_ACTIVATION' => 'Change Activation', 
+
+//Plugin Check System
+
+'PLUGINS_INSTALLED'	 => 'Plugins Installed',
+'PLUGINS_STATUS' 	 => 'Plugin Status',
+
+'NO_PLUGINS_INSTALLED'		=> 'No bbDKP Plugins Currently Installed',
+'ADD_PLUGINS_AVAIL'   		=> 'Additional Plugins Available',
+'DOWNLOAD_PLUGINS'		    => 'Download Plugins Here',
+'DOWNLOAD_LATEST_PLUGINS'	=> 'Download Latest Version',
+'DOWNLOAD_HERE' 			=> 'Download Here',
+'PLUGIN_UP_TO_DATE' 		=> 'Up To Date',
+'LATESTPLUGINVERSION'	   	=> 'Out of date: ', 
+'PLUGIN_VERSION_NOTONLINE' 	=> 'bbDKP Plugin callback failed, cannot look up latest version.',
+
+'APPLY_TITLE' 			=> 'Форма заявки',
+'ARMORY_IMPORTER_TITLE' => 'Armory-Importer',
+'BBTIPS_TITLE' 			=> 'bbTips',
+'BOSSPROGRESS_TITLE' 	=> 'Bossprogress',
+'RAIDPLANNER_TITLE' 	=> 'RaidPlanner',
+'RAIDTRACKER_TITLE' 	=> 'RaidTracker',
 
 // Misc
 'ADJUSTMENT_VALUE' => 'Adjustment Value',

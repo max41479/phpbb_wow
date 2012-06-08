@@ -1,11 +1,11 @@
 <?php
 /**
- * View individual raid
- * 
- * @package bbDKP
- * @copyright 2009 bbdkp <https://github.com/bbDKP>
+ * @package bbDKP.module
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * 
+ * @version 1.2.7
  */
 
 /**
@@ -125,7 +125,7 @@ $template->assign_vars(array(
 	'S_SHOWTIME' 		=> ($config['bbdkp_timebased'] == '1') ? true : false,
 	'S_SHOWDECAY' 		=> ($config['bbdkp_decay'] == '1') ? true : false,
 	'S_SHOWEPGP' 		=> ($config['bbdkp_epgp'] == '1') ? true : false,
-	'F_RAID'			=> append_sid("{$phpbb_root_path}dkp.$phpEx" , 'page=listraids&amp;'. URI_RAID . '=' . request_var(URI_RAID, 0))
+	'F_RAID'			=> append_sid("{$phpbb_root_path}dkp.$phpEx" , 'page=viewraid&amp;'. URI_RAID . '=' . request_var(URI_RAID, 0))
 ));
 
 /**********************************************
@@ -133,17 +133,17 @@ $template->assign_vars(array(
  **********************************************/ 
 
 $sort_order = array (
-		0 => array ('member_name desc', 'member_name desc' ),
-		1 => array ('raid_value', 'raid_value desc' ), 
-		2 => array ('time_bonus', 'time_bonus desc' ), 
-		3 => array ('zerosum_bonus', 'zerosum_bonus desc' ),
-		4 => array ('raid_decay', 'raid_decay desc' ),
-		5 => array ('total desc', 'total desc' ),
+		0 => array ('member_name asc', 'member_name desc' ),
+		1 => array ('raid_value asc', 'raid_value desc' ), 
+		2 => array ('time_bonus asc', 'time_bonus desc' ), 
+		3 => array ('zerosum_bonus asc', 'zerosum_bonus desc' ),
+		4 => array ('raid_decay asc', 'raid_decay desc' ),
+		5 => array ('total asc', 'total desc' ),
 );
 $current_order = switch_order ($sort_order);	
 $sql_array = array(
 	'SELECT'    => 'm.member_id ,m.member_name, c.colorcode, c.imagename, l.name, c.class_id, 
-					m.member_gender_id, a.image_female_small, a.image_male_small, 
+					m.member_gender_id, a.image_female, a.image_male, 
 					r.raid_value, r.time_bonus, r.zerosum_bonus, 
 					r.raid_decay, (r.raid_value + r.time_bonus + r.zerosum_bonus - r.raid_decay) as total  ',
 	'FROM'      => array(
@@ -172,7 +172,7 @@ while ( $row = $db->sql_fetchrow ( $result ) )
 		'imagename' => $row['imagename'],
 		'classname' => $row['name'],
 		'class_id' 	=> $row['class_id'],
-		'raceimage' => (string) (($row['member_gender_id']==0) ? $row['image_male_small'] : $row['image_female_small']),
+		'raceimage' => (string) (($row['member_gender_id']==0) ? $row['image_male'] : $row['image_female']),
 		'member_name' => $row['member_name'],
 		'raid_value' => $row['raid_value'],
 		'time_bonus' => $row['time_bonus'],
@@ -297,7 +297,7 @@ $icurrent_order = switch_order ($isort_order, 'ui');
 $sql_array = array(
     'SELECT'    => 'i.item_id, i.item_name, i.item_gameid, i.member_id, i.item_zs, 
    				l.member_name, c.colorcode, c.imagename, l.member_gender_id, 
-   				a.image_female_small, a.image_male_small, i.item_date, i.raid_id, i.item_value, 
+   				a.image_female, a.image_male, i.item_date, i.raid_id, i.item_value, 
    				i.item_decay, i.item_value - i.item_decay as item_total',
     'FROM'      => array(
         CLASS_TABLE 		=> 'c', 
@@ -336,7 +336,7 @@ while ( $row = $db->sql_fetchrow ($result))
 		$item_name = $row['item_name'];
 	}
 		
-$race_image = (string) (($row['member_gender_id']==0) ? $row['image_male_small'] : $row['image_female_small']);
+$race_image = (string) (($row['member_gender_id']==0) ? $row['image_male'] : $row['image_female']);
 
 $template->assign_block_vars ( 'items_row', array (
 	'DATE' 			=> (! empty ( $row ['item_date'] )) ? $user->format_date($row['item_date']) : '&nbsp;', 
@@ -381,7 +381,7 @@ $classes = array();
 
 // item selection
 $sql_array = array(
-    'SELECT'    => ' c.class_id, c1.name, c.colorcode, c.imagename ',
+    'SELECT'    => ' c.game_id, c.class_id, c1.name, c.colorcode, c.imagename ',
     'FROM'      => array(
         CLASS_TABLE 		=> 'c', 
         MEMBER_LIST_TABLE 	=> 'l', 
@@ -390,7 +390,7 @@ $sql_array = array(
     'WHERE'     =>  "c.game_id = l.game_id  and c.class_id = l.member_class_id  
     				AND c1.attribute_id = l.member_class_id and c1.game_id = l.game_id
     				AND c1.language= '" . $config['bbdkp_lang'] . "' AND c1.attribute = 'class'",
-    'GROUP_BY'  => 'c.class_id',
+    'GROUP_BY'  => 'c.game_id, c.class_id, c1.name, c.colorcode, c.imagename',
     'ORDER_BY' => 'c1.name'
 );
 

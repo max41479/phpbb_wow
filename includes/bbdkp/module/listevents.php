@@ -1,11 +1,11 @@
 <?php
 /**
- * List all Events
- * 
- * @package bbDKP
- * @copyright (c) 2009 bbDKP <https://github.com/bbDKP>
+ * @package bbDKP.module
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * 
+ * @version 1.2.7
  */
 
 /**
@@ -35,7 +35,7 @@ $sql_array = array (
 		), 
 	'WHERE' => 'd.dkpsys_id = e.event_dkpid 
 				and r.event_id = e.event_id ',
-	'GROUP_BY' => 'dkpsys_name', 
+	'GROUP_BY' => 'dkpsys_id, dkpsys_name ', 
 	'ORDER_BY' => 'dkpsys_name'
 );
 
@@ -53,8 +53,8 @@ while ( $pool = $db->sql_fetchrow($dkppool_result) )
 
 	/*** get events ***/
 	$sql_array = array (
-		'SELECT' => ' e.event_dkpid, e.event_id, e.event_name, e.event_value,  e.event_color, 
-		e.event_imagename, count(r.raid_id) as raidcount, max(raid_start) as newest, min(raid_start) as oldest ', 
+		'SELECT' => ' e.event_dkpid, e.event_id, e.event_name, e.event_value,  e.event_color, e.event_imagename, 
+		COUNT(r.raid_id) as raidcount, MAX(raid_start) as newest, MIN(raid_start) as oldest ', 
 		'FROM' => array (
 			EVENTS_TABLE 		=> 'e',		
 			RAIDS_TABLE 		=> 'r', 

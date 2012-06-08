@@ -1,12 +1,14 @@
 <?php
 /**
- * list of Raids
- * 
- * @package bbDKP
- * @copyright 2009 bbdkp <https://github.com/bbDKP>
+ * @package bbDKP.module
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * 
+ * @version 1.2.7
  */
+ 
+ 
 /**
  * @ignore
  */
@@ -28,7 +30,8 @@ $sql_array = array(
 				RAIDS_TABLE => 'r',
 				), 
 	'WHERE'  => ' a.dkpsys_id = e.event_dkpid and e.event_id=r.event_id', 
-	'GROUP_BY'  => 'a.dkpsys_id'
+	'GROUP_BY'  => 'a.dkpsys_id, a.dkpsys_name, a.dkpsys_default', 
+	'ORDER_BY'  => 'a.dkpsys_name'
 ); 
 $sql = $db->sql_build_query('SELECT', $sql_array);
 $result = $db->sql_query ( $sql );
@@ -148,22 +151,22 @@ else
 }
 
 $sql_array = array (
-		'SELECT' => ' sum(ra.raid_value) as raid_value, sum(ra.time_bonus) as time_value, 
-					  sum(ra.zerosum_bonus) as zs_value, sum(ra.raid_decay) as raiddecay, 
-					  sum(ra.raid_value + ra.time_bonus  +ra.zerosum_bonus - ra.raid_decay) as total,
-					  count(ra.member_id) as attendees,  
-					  e.event_dkpid, e.event_id, e.event_name, e.event_color, 
+		'SELECT' => ' e.event_dkpid, e.event_id, e.event_name, e.event_color, 
 					  r.raid_id, r.raid_start, r.raid_note, 
-					  r.raid_added_by, r.raid_updated_by ', 
+					  r.raid_added_by, r.raid_updated_by, 
+					  SUM(ra.raid_value) as raid_value, SUM(ra.time_bonus) as time_value, 
+					  SUM(ra.zerosum_bonus) as zs_value, SUM(ra.raid_decay) as raiddecay, 
+					  SUM(ra.raid_value + ra.time_bonus  +ra.zerosum_bonus - ra.raid_decay) as total,
+					  COUNT(ra.member_id) as attendees ', 
 		'FROM' => array (
 			RAID_DETAIL_TABLE	=> 'ra' ,
 			RAIDS_TABLE 		=> 'r' , 
 			EVENTS_TABLE 		=> 'e',		
 			), 
 		'WHERE' => ' ra.raid_id = r.raid_id and r.event_id = e.event_id ',
-		'GROUP_BY' => 'e.event_dkpid, e.event_name,  
-					  r.raid_id,  r.raid_start, r.raid_note, 
-					  r.raid_added_by, r.raid_updated_by',	
+		'GROUP_BY' => 'e.event_dkpid, e.event_id, e.event_name, e.event_color, 
+					  r.raid_id, r.raid_start, r.raid_note, 
+					  r.raid_added_by, r.raid_updated_by ',	
 		'ORDER_BY' => $current_order ['sql'], 
 );
 	

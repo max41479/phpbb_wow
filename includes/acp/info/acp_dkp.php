@@ -29,7 +29,7 @@ class acp_dkp_info
 		return array(
 			'filename'	=> 'acp_dkp',
 			'title'		=> 'ACP_DKP_MAINPAGE',
-			'version'	=> '1.2.6',
+			'version'	=> '1.2.7',
 			'modes'		=> array(
 				'mainpage'				=> array('title' => 'ACP_DKP_PANEL', 	'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_MAINPAGE')),
 				'dkp_config'			=> array('title' => 'ACP_DKP_CONFIG', 	'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_MAINPAGE')),

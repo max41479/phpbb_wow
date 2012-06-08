@@ -1,12 +1,12 @@
 <?php
 /**
-* eqdkp help functions
-* 
-* @package bbDKP.includes
-* @version $Id$
-* @copyright (c) 2009 bbDKP 
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
-*/
+ * @package bbDKP.functions
+ * @link http://www.bbdkp.com
+ * @author Sajaki@gmail.com
+ * @copyright 2009 bbdkp
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @version 1.2.7
+ */
 
 /**
 * @ignore
@@ -275,7 +275,8 @@ function _memberraidcount($member_id, $start_date, $end_date, $query_by_pool, $d
 	$sql = $db->sql_build_query('SELECT', $sql_array);
 	
     $result = $db->sql_query($sql);
-    $individual_raid_count = (int) $db->sql_fetchfield('raidcount',0,$result);
+    $individual_raid_count = (int) $db->sql_fetchfield('raidcount');
+
     $db->sql_freeresult($result);
 
     return $individual_raid_count; 
@@ -321,7 +322,8 @@ function _totalraidcount($start_date, $end_date, $query_by_pool, $dkpsys_id, $al
 	
 	$sql = $db->sql_build_query('SELECT', $sql_array);
 	$result = $db->sql_query($sql);
-	$raid_count = (int) $db->sql_fetchfield('raidcount',0,$result);
+	$raid_count = (int) $db->sql_fetchfield('raidcount');
+
 	$db->sql_freeresult($result);
 	return $raid_count;
 		    		
@@ -339,7 +341,8 @@ function _get_joindate($member_id)
  	global $db;
 	$sql = 'SELECT member_joindate  FROM ' . MEMBER_LIST_TABLE . ' WHERE member_id = ' . $member_id; 
 	$result = $db->sql_query($sql,3600);
-	$joindate = $db->sql_fetchfield('member_joindate',0,$result);
+	$joindate = $db->sql_fetchfield('member_joindate');
+
 	$db->sql_freeresult($result);
 	return $joindate;
 	
