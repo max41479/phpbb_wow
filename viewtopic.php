@@ -1852,7 +1852,7 @@ function get_bbchar($bbresult)
 		
 		if ($poster_id != ANONYMOUS)
 		{
-			$bb_race_image = (string) (($row['member_gender_id']== 0) ? $row['image_male_small'] : $row['image_female_small']);
+			$bb_race_image = (string) (($row['member_gender_id']== 0) ? $row['image_male'] : $row['image_female']);
 			$bb_race_image = (strlen($bb_race_image) > 1) ? $phpbb_root_path . "images/race_images/" . $bb_race_image . ".png" : '';
 			$bb_class_image = (strlen($row['imagename']) > 1) ? $phpbb_root_path . "images/class_images/" . $row['imagename'] . ".png" : '';
 		
