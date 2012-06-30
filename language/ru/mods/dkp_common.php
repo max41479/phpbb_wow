@@ -251,7 +251,6 @@ $lang = array_merge($lang, array(
 'JOINDATE' => 'Guild Join date',
 'LAST' => 'Last',
 'LASTLOOT' => 'Last Loot',
-'LAST_VISIT' => 'Last Visit',
 'LOG_DATE_TIME' => 'Date/Time of this Log',
 'LOOT_FACTOR' => 'Loot Factor',
 'LOOTS' => 'Loots',
@@ -298,7 +297,6 @@ $lang = array_merge($lang, array(
 'SESSION_ID' => 'Session ID',
 
 'SUMMARY_DATES' => 'Raid Summary: %s to %s',
-'TIME' => 'Time',
 'TIME_BONUS' => 'Time bonus',
 'TOTAL' => 'Total',
 'TIMEVALUE' => 'Time Value',
