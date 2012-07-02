@@ -2,10 +2,10 @@
 /cache/*.html
 /cache/*.php
 /cache/queue.php.lock
-/composer.phar
-/config.php
-/config_dev.php
-/config_test.php
+composer.phar
+config.php
+config_dev.php
+config_test.php
 /ext/*
 /files/*
 /images/avatars/gallery/*
