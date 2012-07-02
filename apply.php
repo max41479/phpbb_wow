@@ -146,7 +146,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	$candidate_genderid = request_var('candidate_gender', 0);
 	$candidate_raceid = request_var('candidate_race_id', 0);
 	
-	//character class
+	//character race
 	$sql_array = array(
 		'SELECT'	=>	' r.race_id, r.image_female, r.image_male, l.name as race_name ', 	 
 		'FROM'		=> array(
@@ -190,6 +190,27 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 		$class_color_exists =  (strlen($row['colorcode']) > 1) ?  true : false;
 		$class_image = 	strlen($row['imagename']) > 1 ? $board_url . "images/class_images/" . $row['imagename'] . ".png" : '';
 		$class_image_exists =    (strlen($row['imagename']) > 1) ? true : false;
+	}
+	unset($row);
+	$db->sql_freeresult($result);
+	
+	$candidate_realmid = request_var('candidate_realm_id', 0);
+	//character realm
+	$sql_array = array(
+		'SELECT'	=>	're.realm_id, re.realm_name', 	 
+		'FROM'		=> array(
+				REALM_TABLE		=> 're',
+				),
+		'WHERE'		=> "re.game_id = '" . $candidate_game . "' 
+						AND re.realm_id = '". $candidate_realmid ."'
+						AND re.realm_lang = '" . $config['bbdkp_lang'] . "'",
+		);
+	$sql = $db->sql_build_query('SELECT', $sql_array);		
+	$result = $db->sql_query($sql);	
+	$row = $db->sql_fetchrow($result);
+	if(isset($row))
+	{
+		$candidate_realm = $row['realm_name']; 
 	}
 	unset($row);
 	$db->sql_freeresult($result);
@@ -639,13 +660,11 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
     // Realm dropdown
 	// reloading is done from ajax to prevent redraw
 	$sql_array = array(
-		'SELECT'	=>	' re.realm_id, l.name as re.realm_name',
+		'SELECT'	=>	're.realm_id, re.realm_name',
 		'FROM'		=>	array(
 							REALM_TABLE		=> 're',
-							BB_LANGUAGE		=> 'l', 
 						),
-		'WHERE'		=> " l.game_id = re.game_id  
-						AND re.game_id = '" . $gamepreset . "' 
+		'WHERE'		=> "re.game_id = '" . $gamepreset . "' 
 						AND re.realm_lang = '" . $config['bbdkp_lang'] . "'",
 	);
 	$sql = $db->sql_build_query('SELECT', $sql_array);
