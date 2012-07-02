@@ -5,4 +5,5 @@
 [installed]Auto Backup:						1.0.3				http://www.phpbb.com/customise/db/mod/auto_backup/
 [installed]BB3Spoiler:						rev.20120222		http://www.ppkbb3cker.ru/viewtopic.php?f=58&t=2958
 [installed]NV advanced last topic titles:	1.3.3				http://www.phpbb.com/customise/db/mod/last_post_topic_title/
+[installed]Non-latin Symbols in URL:		1.0.0				http://www.phpbbguru.net/community/topic30478.html
 [done]: bbcode shadow color choose by palette
