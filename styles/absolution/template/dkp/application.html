@@ -170,7 +170,7 @@ function check_form()
         return false;
     }
     
-    if (document.applyform.candidate_realm.value.length < 3)
+    if (document.applyform.candidate_realm_id.selectedIndex == 0)
     {
         alert('{LA_MSG_REALM_EMPTY}');
         return false;
