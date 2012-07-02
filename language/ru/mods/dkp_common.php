@@ -292,7 +292,6 @@ $lang = array_merge($lang, array(
 'RANK_DISTRIBUTION' => 'Rank Distribution',
 'RECORDED_RAID_HISTORY' => 'Raid History',
 'RECORDED_DROP_HISTORY' => 'Purchase History',
-'REASON' => 'Reason',
 'RESULT' => 'Result',
 'SESSION_ID' => 'Session ID',
 
