@@ -151,7 +151,7 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_ERROR_NAME'  =>  'Error : Name must be Alphabetic (a-zA-ZàäåâÅÂçÇéèëêïÏîÎæŒæÆÅóòÓÒöÖôÔøØüÜ are allowed). ',
 'APPLY_REQUIRED_LEVEL'  => 'Level is required. ', 
 'APPLY_REQUIRED_NAME'	=> 'Пожалуйста заполните поле "Игровой ник Вашего персонажа". ', 
-'APPLY_REQUIRED_REALM'	=> 'Пожалуйста заполните поле "Игровой мир Вашего персонажа". ', 
+'APPLY_REQUIRED_REALM'	=> 'Пожалуйста выберите игровой мир Вашего персонажа. ', 
 'APPLY_REQUIRED_SPEC'	=> 'Пожалуйста укажите специализацию Вашего персонажа". ',
 'APPLY_REQUIRED_CLASS'	=> 'Пожалуйста выберите класс Вашего персонажа". ', 
 'RETURN_APPLY'  =>  'Return to Application',
