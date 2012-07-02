@@ -146,7 +146,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	$candidate_genderid = request_var('candidate_gender', 0);
 	$candidate_raceid = request_var('candidate_race_id', 0);
 	
-	//character class
+	//character race
 	$sql_array = array(
 		'SELECT'	=>	' r.race_id, r.image_female, r.image_male, l.name as race_name ', 	 
 		'FROM'		=> array(
@@ -190,6 +190,27 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 		$class_color_exists =  (strlen($row['colorcode']) > 1) ?  true : false;
 		$class_image = 	strlen($row['imagename']) > 1 ? $board_url . "images/roster_classes/" . $row['imagename'] . ".png" : '';
 		$class_image_exists =    (strlen($row['imagename']) > 1) ? true : false;
+	}
+	unset($row);
+	$db->sql_freeresult($result);
+	
+	$candidate_realmid = request_var('candidate_realm_id', 0);
+	//character realm
+	$sql_array = array(
+		'SELECT'	=>	're.realm_id, re.realm_name', 	 
+		'FROM'		=> array(
+				REALM_TABLE		=> 're',
+				),
+		'WHERE'		=> "re.game_id = '" . $candidate_game . "' 
+						AND re.realm_id = '". $candidate_realmid ."'
+						AND re.realm_lang = '" . $config['bbdkp_lang'] . "'",
+		);
+	$sql = $db->sql_build_query('SELECT', $sql_array);		
+	$result = $db->sql_query($sql);	
+	$row = $db->sql_fetchrow($result);
+	if(isset($row))
+	{
+		$candidate_realm = $row['realm_name']; 
 	}
 	unset($row);
 	$db->sql_freeresult($result);
@@ -626,19 +647,11 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 		AND l.attribute_id = c.class_id  AND l.language= '" . $config['bbdkp_lang'] . "' AND l.attribute = 'class' ",					 
 	);
 	
-	$sql = $db->sql_build_query('SELECT', $sql_array);					
+	$sql = $db->sql_build_query('SELECT', $sql_array);
 	$result = $db->sql_query($sql);
 	while ( $row = $db->sql_fetchrow($result) )
 	{
-		if ( $row['class_min_level'] <= 1  ) 
-		{
-			 $option = ( !empty($row['class_name']) ) ? $row['class_name'] : '(None)';
-		}
-		else
-		{
-			 $option = ( !empty($row['class_name']) ) ? $row['class_name'] : '(None)';
-		}
-		
+		$option = ( !empty($row['class_name']) ) ? $row['class_name'] : '(None)';
 		$template->assign_block_vars('class_row', array(
 		'COLORCODE' => $row['colorcode'],
 		'VALUE' => $row['class_id'],
@@ -646,8 +659,30 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 		'OPTION'   => $option ));
 		
 	}
+	
+	
+    // Realm dropdown
+	// reloading is done from ajax to prevent redraw
+	$sql_array = array(
+		'SELECT'	=>	're.realm_id, re.realm_name',
+		'FROM'		=>	array(
+							REALM_TABLE		=> 're',
+						),
+		'WHERE'		=> "re.game_id = '" . $gamepreset . "' 
+						AND re.realm_lang = '" . $config['bbdkp_lang'] . "'",
+	);
+	$sql = $db->sql_build_query('SELECT', $sql_array);
+	$result = $db->sql_query($sql);
+	while ( $row = $db->sql_fetchrow($result) )
+	{
+		$template->assign_block_vars('realm_row', array(
+		'VALUE' => $row['realm_id'],
+		'SELECTED' => '',
+		'OPTION'   => ( !empty($row['realm_name']) ) ? $row['realm_name'] : '(None)'));
+		
+	}
 	$db->sql_freeresult($result);
-        	
+	
 	// Start assigning vars for main posting page ...
 	// main questionnaire 
 	$sql = "SELECT * FROM " . APPTEMPLATE_TABLE . ' ORDER BY qorder ASC';

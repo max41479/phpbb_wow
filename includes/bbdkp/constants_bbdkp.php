@@ -54,6 +54,7 @@ define('BB_LANGUAGE',	           $table_prefix . 'bbdkp_language');
 define('BOSSBASE',          	   $table_prefix . 'bbdkp_bosstable'); 	 
 define('ZONEBASE',         		   $table_prefix . 'bbdkp_zonetable');
 define('WELCOME_MSG_TABLE',        $table_prefix . 'bbdkp_welcomemsg');	  
+define('REALM_TABLE',      		   $table_prefix . 'bbdkp_realms');
 // plugin anchors
 
 // RAIDTRACKER
