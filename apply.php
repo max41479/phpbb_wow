@@ -188,7 +188,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 		$class_name =	$row['class_name']; 
 		$class_color =  (strlen($row['colorcode']) > 1) ? $row['colorcode'] : '';
 		$class_color_exists =  (strlen($row['colorcode']) > 1) ?  true : false;
-		$class_image = 	strlen($row['imagename']) > 1 ? $board_url . "images/class_images/" . $row['imagename'] . ".png" : '';
+		$class_image = 	strlen($row['imagename']) > 1 ? $board_url . "images/roster_classes/" . $row['imagename'] . ".png" : '';
 		$class_image_exists =    (strlen($row['imagename']) > 1) ? true : false;
 	}
 	unset($row);
@@ -231,9 +231,13 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	{
 		$apply_post .= '[b]' . $candidate_name . '[/b]' ;
 	}
+	if($class_image_exists )
+	{
+		$apply_post .= '[imgltr=right]' .$class_image . '[/imgltr] ';
+	}
 	$apply_post .= '<br />'; 
 
-	//Realm
+	// Realm
 	$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_REALM1'] . '[/color]' . '[color='. $config['bbdkp_apply_pacolor'] .']' . $candidate_realm . '[/color]' ;
 	$apply_post .= '<br />'; 
 
@@ -242,7 +246,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	$apply_post .= '<br />'; */
 	
 	// class
-	$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_CLASS'] . '[/color] ';
+	/*$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_CLASS'] . '[/color] ';
 	if($class_color_exists)
 	{
 		$apply_post .= ' [shadow=black][color='. $class_color .']' . $class_name . '[/color][/shadow]' ;
@@ -251,8 +255,8 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	{
 		$apply_post .= $class_name;
 	}
-	$apply_post .= '<br />'; 
-
+	$apply_post .= '<br />'; */
+	
 	//spec
 	$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_SPEC'] . '[/color]' . '[color='. $config['bbdkp_apply_pacolor'] .']' . $candidate_spec . '[/color]' ;
 	$apply_post .= '<br /><br />';
@@ -664,7 +668,7 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 				$onfocus =  ' onfocus="' . "setbg('#e5fff3');" . '"';
 				$onblur = ' onblur="setbg(' . "white)". '" ' ; 
 				
-				$type = '<textarea class="inputbox" style="width:50%; outline-color: #0067C4;" '. $onfocus . $onblur. 'name="templatefield_' . $row['qorder'] . '" rows="3" cols="76" 
+				$type = '<textarea class="inputbox" style="width:50%; height:65px; outline-color: #0067C4;" '. $onfocus . $onblur. 'name="templatefield_' . $row['qorder'] . '" rows="5" cols="76" 
 				tabindex="' . $row['qorder'] . '" onselect="storeCaret(this);" 
 				onclick="storeCaret(this);" 
 				onkeyup="storeCaret(this);" >'. $row['defaultt'] .'</textarea>';
@@ -746,6 +750,7 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 		'LA_MSG_LEVEL_EMPTY'  => $user->lang['APPLY_REQUIRED_LEVEL'],
 		'LA_MSG_REALM_EMPTY'  => $user->lang['APPLY_REQUIRED_REALM'],
 		'LA_MSG_CLASS_EMPTY'  => $user->lang['APPLY_REQUIRED_CLASS'],
+		'LA_MSG_SPEC_EMPTY'   => $user->lang['APPLY_REQUIRED_SPEC'],
 		
 		)
 	);

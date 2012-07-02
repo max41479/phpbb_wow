@@ -48,7 +48,7 @@ $lang = array_merge($lang, array(
 'UMIL_CACHECLEARED' => 'Template, Theme, Imageset caches cleared', 
 
 /***** Questionnaire ******/
-'APPLY_MENU' => 'Application Form',
+'APPLY_MENU' => 'Форма заявки',
 'APPLY_TITLE' => 'Форма заявки',
 'APPLY_INFO' => '[size=150]Welcome and thank you for choosing us as a possible home for your character. 
 To help us with your application please answer the questions below. Enter your character name exactly as it appears in the armory. [/size] ',
@@ -152,6 +152,7 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_REQUIRED_LEVEL'  => 'Level is required. ', 
 'APPLY_REQUIRED_NAME'	=> 'Пожалуйста заполните поле "Игровой ник Вашего персонажа". ', 
 'APPLY_REQUIRED_REALM'	=> 'Пожалуйста заполните поле "Игровой мир Вашего персонажа". ', 
+'APPLY_REQUIRED_SPEC'	=> 'Пожалуйста укажите специализацию Вашего персонажа". ',
 'APPLY_REQUIRED_CLASS'	=> 'Пожалуйста выберите класс Вашего персонажа". ', 
 'RETURN_APPLY'  =>  'Return to Application',
 

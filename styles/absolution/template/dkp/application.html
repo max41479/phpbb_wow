@@ -169,6 +169,12 @@ function check_form()
         alert('{LA_MSG_REALM_EMPTY}');
         return false;
     }
+
+    if (document.applyform.candidate_spec.value.length < 3)
+    {
+        alert('{LA_MSG_SPEC_EMPTY}');
+        return false;
+    }
 	
 	if (document.applyform.candidate_class_id.selectedIndex == 0)
     {
