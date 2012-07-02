@@ -61,7 +61,13 @@
 				<dl>
 					<dt><p>{L_APPLY_ACP_REALM}</p></dt>
 					<dd>
-						<input type="text" style="width:50%; outline-color: #0067C4;" name="candidate_realm" size="25" maxlength="25" class="input" />
+						<div>
+							<select style="outline-color: #0067C4;" id="candidate_class_id" name="candidate_class_id" class="input">
+								<!-- BEGIN realm_row -->
+									<option value="{realm_row.VALUE}"{realm_row.SELECTED}>{realm_row.OPTION}</option>
+								<!-- END realm_row -->
+							</select>
+						</div>
 						<span style="color:red">{L_MANDATORY}</span>
 					</dd>
 				</dl>
