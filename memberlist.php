@@ -981,6 +981,9 @@ switch ($mode)
 		$sort_key_text['m'] = $user->lang['SORT_RANK'];
 		$sort_key_sql['m'] = 'u.user_rank';
 
+		$sort_key_text['n'] = $user->lang['CHARACTER'];
+		$sort_key_sql['n'] = 'fd.pf_character';
+
 		$sort_dir_text = array('a' => $user->lang['ASCENDING'], 'd' => $user->lang['DESCENDING']);
 
 		$s_sort_key = '';
@@ -1461,12 +1464,25 @@ switch ($mode)
 		}
 
 		// Get us some users :D
-		$sql = "SELECT u.user_id
-			FROM " . USERS_TABLE . " u
-				$sql_from
-			WHERE u.user_type IN (" . USER_NORMAL . ', ' . USER_FOUNDER . ")
-				$sql_where
-			ORDER BY $order_by";
+		if(isset($sort_key_sql['n']))
+		{
+			$sql = "SELECT u.user_id
+				FROM (" . USERS_TABLE . " u
+					$sql_from)
+				LEFT JOIN " . PROFILE_FIELDS_DATA_TABLE . " fd ON (u.user_id = fd.user_id)
+				WHERE u.user_type IN (" . USER_NORMAL . ', ' . USER_FOUNDER . ")
+					$sql_where
+				ORDER BY $order_by";
+		}
+		else
+		{
+			$sql = "SELECT u.user_id
+				FROM " . USERS_TABLE . " u
+					$sql_from
+				WHERE u.user_type IN (" . USER_NORMAL . ', ' . USER_FOUNDER . ")
+					$sql_where
+				ORDER BY $order_by";
+		}
 		$result = $db->sql_query_limit($sql, $config['topics_per_page'], $start);
 
 		$user_list = array();
@@ -1510,6 +1526,7 @@ switch ($mode)
 					FROM ' . USERS_TABLE . '
 					WHERE ' . $db->sql_in_set('user_id', $user_list);
 			}
+			
 			$result = $db->sql_query($sql);
 
 			$id_cache = array();
@@ -1613,6 +1630,7 @@ switch ($mode)
 			'U_SORT_ACTIVE'			=> ($auth->acl_get('u_viewonline')) ? $sort_url . '&amp;sk=l&amp;sd=' . (($sort_key == 'l' && $sort_dir == 'a') ? 'd' : 'a') : '',
 			'U_SORT_RANK'			=> $sort_url . '&amp;sk=m&amp;sd=' . (($sort_key == 'm' && $sort_dir == 'a') ? 'd' : 'a'),
 			'U_LIST_CHAR'			=> $sort_url . '&amp;sk=a&amp;sd=' . (($sort_key == 'l' && $sort_dir == 'a') ? 'd' : 'a'),
+			'U_SORT_CHARACTER'		=> $sort_url . '&amp;sk=n&amp;sd=' . (($sort_key == 'n' && $sort_dir == 'a') ? 'd' : 'a'),
 
 			'S_SHOW_GROUP'		=> ($mode == 'group') ? true : false,
 			'S_VIEWONLINE'		=> $auth->acl_get('u_viewonline'),
