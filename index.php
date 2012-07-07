@@ -115,9 +115,9 @@ if ($config['load_birthdays'] && $config['allow_birthdays'] && $auth->acl_gets('
 
 // Assign index specific vars
 $template->assign_vars(array(
-	'TOTAL_POSTS'	=> sprintf($user->lang[$l_total_post_s], $total_posts),
-	'TOTAL_TOPICS'	=> sprintf($user->lang[$l_total_topic_s], $total_topics),
-	'TOTAL_USERS'	=> sprintf($user->lang[$l_total_user_s], $total_users),
+	'TOTAL_POSTS'	=> sprintf($user->lang[$l_total_post_s], number_format($total_posts)),
+	'TOTAL_TOPICS'	=> sprintf($user->lang[$l_total_topic_s], number_format($total_topics)),
+	'TOTAL_USERS'	=> sprintf($user->lang[$l_total_user_s], number_format($total_users)),
 	'NEWEST_USER'	=> sprintf($user->lang['NEWEST_USER'], get_username_string('full', $config['newest_user_id'], $config['newest_username'], $config['newest_user_colour'])),
 
 	'LEGEND'		=> $legend,

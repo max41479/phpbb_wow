@@ -995,8 +995,8 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 
 				'FORUM_TITLE'		=> $row['forum_name'],
 				'TOPIC_TITLE'		=> $topic_title,
-				'TOPIC_REPLIES'		=> $replies,
-				'TOPIC_VIEWS'		=> $row['topic_views'],
+				'TOPIC_REPLIES'		=> number_format($replies),
+				'TOPIC_VIEWS'		=> number_format($row['topic_views']),
 
 				'U_VIEW_TOPIC'		=> $view_topic_url,
 				'U_VIEW_FORUM'		=> append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $forum_id),

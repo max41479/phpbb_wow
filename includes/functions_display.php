@@ -442,7 +442,7 @@ function display_forums($root_data = '', $display_moderators = true, $return_mod
 		}
 
 		$l_post_click_count = ($row['forum_type'] == FORUM_LINK) ? 'CLICKS' : 'POSTS';
-		$post_click_count = ($row['forum_type'] != FORUM_LINK || $row['forum_flags'] & FORUM_FLAG_LINK_TRACK) ? $row['forum_posts'] : '';
+		$post_click_count = ($row['forum_type'] != FORUM_LINK || $row['forum_flags'] & FORUM_FLAG_LINK_TRACK) ? number_format($row['forum_posts']) : '';
 
 		$s_subforums_list = array();
 		foreach ($subforums_list as $subforum)
@@ -484,7 +484,7 @@ function display_forums($root_data = '', $display_moderators = true, $return_mod
 			'FORUM_ID'				=> $row['forum_id'],
 			'FORUM_NAME'			=> $row['forum_name'],
 			'FORUM_DESC'			=> generate_text_for_display($row['forum_desc'], $row['forum_desc_uid'], $row['forum_desc_bitfield'], $row['forum_desc_options']),
-			'TOPICS'				=> $row['forum_topics'],
+			'TOPICS'				=> number_format($row['forum_topics']),
 			$l_post_click_count		=> $post_click_count,
 			'FORUM_FOLDER_IMG'		=> $user->img($folder_image, $folder_alt),
 			'FORUM_FOLDER_IMG_SRC'	=> $user->img($folder_image, $folder_alt, false, '', 'src'),

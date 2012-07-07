@@ -1169,7 +1169,7 @@ while ($row = $db->sql_fetchrow($result))
 
 			$user_cache[$poster_id] = array(
 				'joined'		=> $user->format_date($row['user_regdate']),
-				'posts'			=> $row['user_posts'],
+				'posts'			=> number_format($row['user_posts']),
 				// BBDKP START
 				'bbchar'		=> $bbchar[$poster_id],
 				// BBDKP END

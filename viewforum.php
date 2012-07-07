@@ -665,8 +665,8 @@ if (sizeof($topic_list))
 			'LAST_POST_AUTHOR_FULL'		=> get_username_string('full', $row['topic_last_poster_id'], $row['topic_last_poster_name'], $row['topic_last_poster_colour']),
 
 			'PAGINATION'		=> topic_generate_pagination($replies, $view_topic_url),
-			'REPLIES'			=> $replies,
-			'VIEWS'				=> $row['topic_views'],
+			'REPLIES'			=> number_format($replies),
+			'VIEWS'				=> number_format($row['topic_views']),
 			'TOPIC_TITLE'		=> censor_text($row['topic_title']),
 			'TOPIC_TYPE'		=> $topic_type,
 
