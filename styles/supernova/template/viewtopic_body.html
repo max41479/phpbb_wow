@@ -173,7 +173,13 @@
 				<!-- IF not postrow.U_POST_AUTHOR --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ELSE -->{postrow.POST_AUTHOR_FULL}<!-- ENDIF -->
 			</dt>
 
-			<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd>{postrow.RANK_TITLE}<!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
+			<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG -->
+				<dd><!-- IF not postrow.RANK_IMG -->
+					{postrow.RANK_TITLE}<!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->
+				<!-- ELSE -->
+					{postrow.RANK_IMG}
+					<!-- ENDIF --></dd>
+			<!-- ENDIF -->
 
 		<dd>&nbsp;</dd>
 
