@@ -1,0 +1,161 @@
+<div class="forabg" >
+<span class="corners-top"><span></span></span>
+<ul class="topiclist">
+<li class="header">
+
+<div style="float: left; width:50%; white-space:nowrap;">
+      <h1 style ="color:#dfc065;"><!-- IF S_EVENT_IMAGE_EXISTS --><img src="{IMAGEPATH}" alt="{EVENTNAME}" /><!-- ENDIF --> {EVENTNAME}</h1>
+</div>
+</li>
+</ul>
+<span class="corners-bottom"><span></span></span>
+</div>
+
+<h2>{RECORDED_RAID_HISTORY}</h2>
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+    <div style="width:33%; white-space:nowrap; text-align:center; float:left; margin-left: auto;" class="bg2">
+    <strong>{L_AVERAGE}&nbsp;{L_ATTENDEES}&nbsp;:&nbsp;{AVERAGE_ATTENDEES}</strong>
+    </div>
+    <div style="width:33%; white-space:nowrap; text-align:center; float:left; margin-left: auto;" class="bg2">
+    <strong>{L_AVERAGE}&nbsp;{L_DROPS}&nbsp;:&nbsp;{AVERAGE_DROPS}</strong>
+    </div>
+    <div style="width:33%; white-space:nowrap; text-align:center; float:left; margin-left: auto;" class="bg2">
+    <strong>{L_TOTAL_EARNED}&nbsp;:&nbsp;</strong><span class= "positive">{TOTAL_EARNED}</span>
+    </div>  
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<div class="forumbg forumbg-table">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+<!-- IF RAIDPAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
+		<span>{RAIDPAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+<table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0"> 
+<thead>
+<tr>
+     <th style="text-align:left; width:15%;"><a href="{U_VIEW_EVENT}o={O_NOTE}">{L_NOTE}</a></th>
+	 <th style="text-align:left; width:3%">{L_RAID}</th>
+     <th style="text-align:left; width:10%"><a href="{U_VIEW_EVENT}o={O_DATE}">{L_DATE}</a></th>
+     <th style="text-align:center; width:5%; color:white">{L_ATTENDEES}</th>
+     <th style="text-align:center; width:5%; color:white">{L_DROPS}</th>
+     <th style="text-align:right; white-space:nowrap; width:12%"><a href="{U_VIEW_EVENT}o={O_VALUE}">{L_RAIDVALUE}</a></th>
+     <!-- IF S_SHOWTIME -->
+     <th style="text-align:right; white-space:nowrap; width:12%">{L_TIMEDKP}</th>
+     <!-- ENDIF -->
+     <!-- IF S_SHOWZS -->
+     <th style="text-align:right; white-space:nowrap; width:12%">{L_ZSVALUE}</th>
+     <!-- ENDIF -->
+     <!-- IF S_SHOWDECAY -->
+     <th style="text-align:right; white-space:nowrap; width:12%">{L_DECAY}</th>
+     <!-- ENDIF -->
+     <th style="text-align:right; white-space:nowrap; width:12%">{L_TOTAL}</th>
+</tr>
+</thead>
+<tfoot>
+  <tr style="text-align: center; white-space: nowrap; color:white;">
+	<th style="text-align:left; colspan=6; white-space: nowrap" >{VIEWEVENT_FOOTCOUNT}</th>
+ </tr>     
+</tfoot>
+<tbody>
+<!-- BEGIN raids_row -->
+<tr class="row bg1">  
+    <td style="text-align:left;"> {raids_row.NOTE}</td>
+    <td><a href="{raids_row.U_VIEW_RAID}"><img src="adm/images/glyphs/view.gif" width="16" height="16" alt="View" /></a></td>
+    <td style="text-align:left;">{raids_row.DATE}</td>
+    <td style="text-align:center;">{raids_row.ATTENDEES}</td>
+    <td style="text-align:center;">{raids_row.DROPS}</td>
+    
+    <td style="text-align:right;"><span class="positive">{raids_row.RAIDVALUE}</span></td>
+    <!-- IF S_SHOWTIME -->
+    <td style="text-align:right;"><span class="positive">{raids_row.TIMEVALUE}</span></td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <td style="text-align:right;"><span class="positive">{raids_row.ZSVALUE}</span></td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <td style="text-align:right;"><span class="negative">{raids_row.DECAYVALUE}</span></td>
+    <!-- ENDIF -->
+    <td style="text-align:right;"><span class="positive">{raids_row.TOTAL}</span></td>    
+
+</tr>
+<!-- END raids_row -->
+</tbody>
+
+</table>
+<!-- IF RAIDPAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
+		<span>{RAIDPAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->      
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+  
+<h2>{L_RECORDED_DROP_HISTORY}</h2>
+<div class="forumbg forumbg-table">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+<!-- IF ITEM_PAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
+		<span>{ITEM_PAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+<table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0"> 
+<thead>
+<tr valign="middle">
+	<th style="text-align:left; width:20%">{L_ITEM}</th>
+	<th style="text-align:left; width:20%;">{L_BUYER}</th>
+	<th style="text-align:left; width:3%">{L_RAID}</th>
+	<th style="text-align:left; width:10%">{L_DATE}</th>
+	<th style="text-align:right; width:15%">{L_SPENT}</th>
+	<!-- IF S_SHOWDECAY -->
+	<th style="text-align:right; width:15%">{L_DECAY}</th>
+	<!-- ENDIF -->
+	<th style="text-align:right; width:10%">{L_TOTAL}</th>
+</tr>
+</thead>
+<tfoot>
+  <tr style="text-align: center; white-space: nowrap; color:white;">
+	<th style="text-align:left; colspan=<!-- IF S_SHOWDECAY -->8<!-- ELSE -->9<!-- ENDIF -->; white-space: nowrap" >{ITEM_FOOTCOUNT}</th>
+ </tr>     
+</tfoot>
+<tbody>
+<!-- BEGIN items_row -->
+<tr class="row bg1" valign="middle">
+   
+   <td style="text-align:left;"><a href="{items_row.U_VIEW_ITEM}">{items_row.ITEMNAME}</a></td>
+   <td  style="text-align:left;"><!-- IF items_row.S_RACE_IMAGE_EXISTS --><img src="{items_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE -->&nbsp;<!-- ENDIF --><!-- IF items_row.S_CLASS_IMAGE_EXISTS --><img src="{items_row.CLASS_IMAGE}" alt="{items_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF -->
+   <strong><a style="color:{items_row.COLORCODE}" href="{items_row.U_VIEW_MEMBER}">{items_row.BUYER}</a></strong></td>
+   <td style="text-align:left;"><a href="{items_row.U_VIEW_RAID}"><img src="adm/images/glyphs/view.gif" width="16" height="16" alt="View" /></a></td>
+   <td style="text-align:left;">{items_row.DATE}</td>
+   <td style="text-align:right;"><span class="negative">{items_row.ITEMVALUE}</span>
+   <!-- IF S_SHOWZS -->
+    <input type="checkbox" READONLY DISABLED name="item[{items_row.ITEM_ID}]" value="1" {items_row.ITEM_ZS} /> 
+   <!-- ENDIF --></td>
+   <!-- IF S_SHOWDECAY -->      
+   <td style="text-align:right;"><span class="negative">{items_row.DECAYVALUE}</span></td>
+   <!-- ENDIF -->
+   <td style="text-align:right;"><span class="negative">{items_row.TOTAL}</span></td>
+</tr>
+<!-- END items_row -->
+</tbody>
+
+</table>
+<!-- IF ITEM_PAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
+		<span>{ITEM_PAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>

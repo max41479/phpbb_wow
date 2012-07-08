@@ -460,7 +460,6 @@ bbDKP (c) 2008, 2009 Sajaki, Malfate, Kapli, Hroar',
 
 'PLUGINS' => 	'Plugins',
 'PLUGINVERS'=> 	'Version',
-'AUTHOR'=> 		'Author',
 'MAINT'=> 		'Maintainer', 
 
 'DONATORS' => 'Unexpectedgreg, Bisa, Sniperpaladin, McTurk, Mizpah, Kapli, Hroar, Chrome, haqzore', 

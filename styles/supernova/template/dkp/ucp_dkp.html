@@ -1,0 +1,90 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>{L_UCP_DKP_CHARACTERS}</h2>
+
+
+<div class="panel">
+<div class="inner"><span class="corners-top"><span></span></span>
+
+<fieldset><!-- IF ERROR -->
+<p class="error">{ERROR}</p>
+<!-- ENDIF -->
+</fieldset>
+
+<!-- IF S_SHOW -->
+	<!-- IF  .members_row -->
+	
+	<div class="panel">
+	<div class="inner">
+
+	<!-- BEGIN members_row -->
+	<ul class ="topiclist">	
+		<li class="header">
+			<dl>
+				<dt>
+				<strong> <span style="color:{members_row.COLORCODE}">{members_row.NAME}</span>  </strong>
+				<br />
+				<!-- IF members_row.S_RACE_IMAGE_EXISTS --><img src="{members_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE --><!-- ENDIF -->
+				<!-- IF members_row.S_CLASS_IMAGE_EXISTS --><img src="{members_row.CLASS_IMAGE}" alt="{members_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF -->&nbsp;
+				({L_LEVEL} {members_row.LEVEL})
+				</dt>
+				<dd class="mark">
+				{L_EDIT}<br />
+				<a href="{members_row.U_EDIT}"><img title="Edit" alt="Edit" src="./images/icons/view.gif" /></a></dd>	
+			</dl>
+		</li>
+	</ul>
+	<ul class ="topiclist cplist">	
+		<!-- BEGIN dkp_row -->
+		<!-- IF dkp_row.S_ROW_COUNT is even -->
+		<li class="row bg1">
+		<!-- ELSE -->
+		<li class="row bg2">
+		<!-- ENDIF -->
+			<dl>
+			<dt style="width:40%"><a href="{members_row.dkp_row.U_VIEW_MEMBER}"><strong>{members_row.dkp_row.DKPSYS}</strong></a></dt>
+					<dd style="width:15%">{L_EARNED}: {members_row.dkp_row.EARNED} &nbsp;</dd>
+					<dd style="width:15%">{L_SPENT}: {members_row.dkp_row.SPENT}&nbsp;</dd>
+					<dd style="width:15%">{L_CURRENT}: {members_row.dkp_row.CURRENT}&nbsp;</dd>
+					<!-- IF S_SHOWEPGP --> 
+					<dd style="width:15%">{L_PR}: {members_row.dkp_row.PR}&nbsp;</dd>
+					<!-- ENDIF -->
+			</dl>
+			</li>
+		<!-- END dkp_row -->
+	</ul>
+	<!-- END members_row -->
+	</div>
+	</div>
+
+<!-- ENDIF -->
+
+<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- IF S_SHOW_BUTTONS -->
+<form id="characters" method="post" action="{U_ACTION}">
+<div class="panel">
+<div class="inner"><span class="corners-top"><span></span></span>
+
+<fieldset class="submit-buttons">
+<dl>
+	<dt><label for="dkpmember"></label>{L_CHARACTER_EXPLAIN}</dt>
+	<dd><select id="dkpmember" name="dkpmember">
+		{S_DKPMEMBER_OPTIONS}
+	</select></dd>
+</dl>
+	 <input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" /> {S_FORM_TOKEN}
+</fieldset>
+<!-- ENDIF --> 
+
+<!-- ELSE --> 
+<p class="error">{L_NO_CHARACTERS} </p><p><br /></p>
+<!-- ENDIF --> 
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+</form>
+
+
+<!-- INCLUDE ucp_footer.html -->

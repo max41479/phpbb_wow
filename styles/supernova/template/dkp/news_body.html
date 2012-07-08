@@ -1,0 +1,62 @@
+<!-- INCLUDE overall_header.html -->
+<div>
+<div style="float: left; width: 0%;  margin:0.5%">
+
+<!-- IF S_DISPLAY_MAINMENU -->
+<!-- INCLUDE dkp/block/mainmenu.html -->
+<!-- ENDIF -->
+
+<!-- IF S_DISPLAY_RT -->
+<!-- INCLUDE dkp/block/recent.html -->
+<!-- ENDIF -->
+
+</div>
+
+<div  style="float: left; width: 74%; margin:0.5%">
+<!-- IF S_DISPLAY_WELCOME -->
+<!-- INCLUDE dkp/block/welcomeblock.html -->
+<!-- ENDIF -->
+
+<!-- INCLUDE dkp/block/news.html -->
+
+</div>
+
+<div style="float: right; width: 23%; margin:0.5%">
+
+	<!-- IF S_DISPLAY_LOOT -->
+	<!-- INCLUDE dkp/block/lastloot.html -->
+	<br/>
+	<!-- ENDIF -->
+
+	<!-- IF S_DISPLAY_RECRUIT -->
+	<!-- INCLUDE recruit/recruit.html -->
+	<br/>
+
+	<!-- ENDIF -->
+
+	<!-- IF S_DISPLAY_RECRUIT_BBDKP -->
+	<!-- INCLUDE dkp/block/recruitment.html -->
+	<br/>
+	<!-- ENDIF -->
+
+	<!-- IF S_DISPLAY_LINKS -->
+	<!-- INCLUDE dkp/block/links.html -->		
+	<br/>
+	<!-- ENDIF -->
+
+	<div class="panel" style="background-color: #072443;">
+		<span class="corners-top">
+			<span></span>
+		</span>
+		<br/>
+		<center><a href="http://www.wowprogress.com/guild/eu/пиратская-бухта/Креатив/"><img alt="WoW Guild Rankings" src="http://wowprogress.com/guild_img/489321/out/type.site" border="0"/></a></center>
+		<br/>
+		<span class="corners-bottom">
+			<span></span>
+		</span>
+	</div>
+</div>
+<div style="clear:both;"></div>
+</div>
+
+<!-- INCLUDE overall_footer.html -->

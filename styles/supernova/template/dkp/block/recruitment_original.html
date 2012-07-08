@@ -1,0 +1,32 @@
+<!-- begin recruit  -->
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>	  
+<h3 style="text-align:center">{L_RECRUITMENT_BLOCK}</h3>
+
+<table width="100%" cellpadding="2" cellspacing="5" border="0" class="forumline">
+<tr>
+<!-- BEGIN status -->
+<th class="row1" align="center"><img src="{ROOT_PATH}/images/recruitblock_images/looking_icon.gif" alt="{L_CLASS}" title="{status.MESSAGE}" /></th>
+<!-- END status -->
+
+ <th style="text-align:center;"><img src="{ROOT_PATH}/images/recruitblock_images/tank_icon.png" alt="{L_TANK}" title="{L_TANK}" /></th>
+ <th style="text-align:center;"><img src="{ROOT_PATH}/images/recruitblock_images/dps_icon.png" alt="{L_DPS}" title="{L_DPS}" /></th>
+ <th style="text-align:center;"><img src="{ROOT_PATH}/images/recruitblock_images/healer_icon.png" alt="{L_HEAL}" title="{L_HEAL}" />
+</th>
+</tr>
+<!-- BEGIN rec -->
+	<tr style="text-align:center;">
+    <td class="row1"><span class="genmed"><a href="http://ru.wowhead.com/class={rec.CLASSID}"><img src="{ROOT_PATH}images/class_images/{rec.IMAGENAME}.png" alt="{rec.CLASS}" title="{rec.CLASS}" /></a></span></td>
+    <td class="row1" align="center"><span style="color:{rec.TANKCOLOR}"><strong><a href="{rec.TANKFORUM}"><img src="{ROOT_PATH}images/recruitblock_images/{rec.TANK}" alt="{rec.TANKTEXT}" title="{rec.TANKTEXT}" /></a></strong></span></td>
+    <td class="row1" align="center"><span style="color:{rec.DPSCOLOR}"><strong><a href="{rec.DPSFORUM}"><img src="{ROOT_PATH}images/recruitblock_images/{rec.DPS}" alt="{rec.DPSTEXT}" title="{rec.DPSTEXT}" /></a></strong></span></td>
+    <td class="row1" align="center"><span style="color:{rec.HEALCOLOR}"><strong><a href="{rec.HEALFORUM}"><img src="{ROOT_PATH}images/recruitblock_images/{rec.HEAL}" alt="{rec.HEALTEXT}" title="{rec.HEALTEXT}" /></a></strong></span></td>
+    </tr>
+<!-- END rec -->
+	<td class="cat" align="center" width="100%" colspan="4"><br /><form><font size="2"><input class="button1" type="button" value="Заявка" ONCLICK="window.location.href='{U_APPLY}'"/></form>
+	</td>
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!--  end recruit  -->

@@ -1,4 +1,4 @@
-/* proSilver Link Styles
+/* Link Styles
 ---------------------------------------- */
 
 /* Links adjustment to correctly display an order of rtl/ltr mixed content */
@@ -79,16 +79,35 @@ a.topictitle:active {
 	color: #898989;
 }
 
+/* Post body links *//*
+.postlink {
+	text-decoration: none;
+	color: #d2d2d2;
+	border-bottom: 1px solid #d2d2d2;
+	padding-bottom: 0;
+}
+*/
+/* .postlink:visited { color: #bdbdbd; } */
+/*
+.postlink:active {
+	color: #d2d2d2;
+}
 
+.postlink:hover {
+	background-color: #f6f6f6;
+	text-decoration: none;
+	color: #404040;
+}
+*/
 
-.signature a, .signature a:visited, .signature a:active, .signature a:hover {
+.signature a, .signature a:visited, .signature a:hover, .signature a:active {
 	border: none;
 	text-decoration: underline;
 	background-color: transparent;
 }
 
 /* Profile links */
-.postprofile a:link, .postprofile a:active, .postprofile a:visited, .postprofile dt.author a {
+.postprofile a:link, .postprofile a:visited, .postprofile dt.author a {
 	font-weight: bold;
 	color: #898989;
 	text-decoration: none;
@@ -98,6 +117,14 @@ a.topictitle:active {
 	text-decoration: underline;
 	color: #d3d3d3;
 }
+
+/* CSS spec requires a:link, a:visited, a:hover and a:active rules to be specified in this order. */
+/* See http://www.phpbb.com/bugs/phpbb3/59685 */
+.postprofile a:active {
+	font-weight: bold;
+	color: #898989;
+	text-decoration: none;
+}	
 
 
 /* Profile searchresults */	
@@ -194,4 +221,30 @@ a.right:hover {
 a.feed-icon-forum {
 	float: right;
 	margin: 3px;
+}
+
+.linklist li div {
+    position: absolute;
+    display: none;
+    background-color: #ECF3F7;
+    border: 1px outset #333333;
+    z-index: 2;
+    margin-left: -21px;
+    width: 187px;
+}
+ 
+.linklist li:hover div {
+    display: block;
+}
+ 
+.linklist li div a {
+    display: block;
+    text-align: left;
+    padding: 0 0 0 20px;
+    background-position: 3px 50%;
+    background-repeat: no-repeat;
+}
+ 
+.linklist li div a:hover {
+    background-color: #E1EBF2;
 }

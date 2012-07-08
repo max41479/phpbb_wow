@@ -178,7 +178,7 @@ dl.details dd {
 	border-color: #4692BF;
 }
 
-.pagination span a, .pagination span a:link, .pagination span a:visited, .pagination span a:active {
+.pagination span a, .pagination span a:link, .pagination span a:visited {
 	color: #5C758C;
 	background-color: #ECEDEE;
 	border-color: #B4BAC0;
@@ -188,6 +188,12 @@ dl.details dd {
 	border-color: #368AD2;
 	background-color: #368AD2;
 	color: #FFF;
+}
+
+.pagination span a:active {
+	color: #5C758C;
+	background-color: #ECEDEE;
+	border-color: #B4BAC0;
 }
 
 /* Pagination in viewforum for multipage topics */
@@ -299,17 +305,21 @@ a.topictitle:active {
 
 
 
-.signature a, .signature a:visited, .signature a:active, .signature a:hover {
+.signature a, .signature a:visited, .signature a:hover, .signature a:active {
 	background-color: transparent;
 }
 
 /* Profile links */
-.postprofile a:link, .postprofile a:active, .postprofile a:visited, .postprofile dt.author a {
+.postprofile a:link, .postprofile a:visited, .postprofile dt.author a {
 	color: #105289;
 }
 
 .postprofile a:hover, .postprofile dt.author a:hover {
 	color: #094C8A;
+}
+
+.postprofile a:active {
+	color: #105289;
 }
 
 /* Profile searchresults */	
@@ -645,7 +655,7 @@ fieldset.polls dd div {
 }
 
 .online {
-	background-image: url("{T_IMAGESET_LANG_PATH}/icon_user_online.gif");
+	background-image: url("{IMG_ICON_USER_ONLINE_SRC}");
 }
 
 /*  	
@@ -1043,3 +1053,19 @@ input.disabled {
 #tabs {margin-bottom: 1px;}
 
 a.postlink {text-decoration: underline;}
+
+/* Custom CSS Styles for Supernova
+--------------------------------------------- */
+
+#header-left {
+	float: left;
+	padding-left: 30px;	
+	padding-top: 20px;	
+	color: #ffffff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 25px; font-weight: 300; letter-spacing: 1px;	
+}
+
+#header-left span {
+	font-size: 15px; font-weight: 300; letter-spacing: 1px;
+}	

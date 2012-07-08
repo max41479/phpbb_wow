@@ -1,0 +1,80 @@
+<!-- IF S_SHOWLEAD -->
+<div class="panel" >
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+<table class="tablebg" style="width: 100%" border="0" cellspacing="4" cellpadding="0">
+<colgroup span="5">
+	<col width="20%"></col>
+	<col width="20%"></col>
+	<col width="20%"></col>
+	<col width="20%"></col>
+	<col width="20%"></col>
+</colgroup>
+
+<!-- BEGIN class -->
+
+<!-- IF class.S_ROW_COUNT % 5 == 0 -->
+  <tr class="bg1">
+<!-- ENDIF -->
+<td style="text-align:center;">
+<img src="{ROOT_PATH}images/class_images/{class.CLASSIMGPATH}" alt="pic" width="20" height="20"></img>
+<span style="color:{class.COLORCODE}"><strong>{class.CLASSNAME}</strong></span>
+
+<div class="post">
+<table style="width: 100%"  border="0" cellspacing="0" cellpadding="0">
+<colgroup span="2">
+	<col width="50%"></col>
+	<col width="50%"></col>
+</colgroup>
+<tbody>
+
+<!-- BEGIN dkp_row -->
+<tr class="bg1">
+<td>
+<a style="color:{class.COLORCODE}" href="{class.dkp_row.U_VIEW_MEMBER}"><strong>{class.dkp_row.NAME}</strong></a>
+</td>
+<td>
+<strong><span class="{class.dkp_row.DKPCOLOUR}" >
+ <!-- IF S_SHOWEPGP -->
+ {class.dkp_row.PR}
+ <!-- ELSE -->
+ {class.dkp_row.CURRENT}
+ <!-- ENDIF -->
+ </span>
+ </strong>
+</td>
+</tr>
+<!-- END dkp_row -->
+
+</tbody>
+</table>
+</div>
+
+</td>
+  <!-- IF class.S_ROW_COUNT % 5 == 0 -->
+   	  <!-- IF class.S_LAST_ROW -->
+    	<td colspan="5"></td> </tr>
+  	  <!-- ENDIF -->
+    <!-- ELSEIF class.S_ROW_COUNT % 5 == 1 -->
+       <!-- IF class.S_LAST_ROW -->
+    	 <td colspan="4"></td>  </tr>
+  	   <!-- ENDIF -->
+    <!-- ELSEIF class.S_ROW_COUNT % 5 == 2 -->
+       <!-- IF class.S_LAST_ROW -->
+        <td colspan="3"></td></tr>
+  	   <!-- ENDIF -->
+    <!-- ELSEIF class.S_ROW_COUNT % 5 == 3 -->
+       <!-- IF class.S_LAST_ROW -->
+         <td colspan="2"></td></tr>
+  	   <!-- ENDIF -->
+    <!-- ELSEIF class.S_ROW_COUNT % 5 == 4 -->
+         <td></td></tr>
+  	<!-- ENDIF -->  
+<!-- END class -->
+
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!-- ENDIF -->

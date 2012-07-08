@@ -1,0 +1,18 @@
+<!-- @version $Id: whoisonlineblock.html 839 2010-01-03 22:17:48Z Sajaki9 $ //-->
+<!--  begin whoisonlineblock  -->
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+<h3 style="text-align:center"><img src="{T_THEME_PATH}/images/dkp/<!-- IF S_USER_LOGGED_IN -->door_open.png<!-- ELSE -->door.png<!-- ENDIF -->" width="16" height="16" alt="" />{L_WHO_IS_ONLINE}</h3>
+<ul class="topiclist bg1">
+	<li><dl>
+		<dd style="border-left:0px">
+			<p style="margin: 0 5px 0 5px;">{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}
+			<!-- IF LEGEND --><br /><em>{L_LEGEND}: {LEGEND}</em><!-- ENDIF --></p>
+		</dd>
+	</dl></li>
+</ul>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!--  end whoisonlineblock  -->

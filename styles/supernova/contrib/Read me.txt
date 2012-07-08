@@ -1,4 +1,3 @@
-
   _____                                             
  / ____|                                            
 | (___  _   _ _ __   ___ _ __ _ __   _____   ____ _ 
@@ -8,13 +7,13 @@
              | |                                    
              |_|                                    
 
-Style version: 1.0.1
-for phpBB: 3.0.8                                      
+Style version: 1.0.3
+for phpBB: 3.0.10                                     
 
-Supernova phpBB3 Style by Christian Bullock
-http://www.christianbullock.com
+Supernova phpBB3 Style: Colette http://www.boardtalk.net 
+Supernova Origianlly by: Christian Bullock http://www.christianbullock.com
 
-
+For Supernova theme options please see template/sn_config.html
 Support given through phpBB.com only. 
 
 Please enjoy the style, and I welcome any feedback :)
@@ -23,11 +22,6 @@ Thanks.
 
 
 Icons from http://www.famfamfam.com/lab/icons/silk/
-
-
-If you would like more exposure for your forum, advertise it at:
-http://www.phpbbcommunities.com
-
 
 
 
