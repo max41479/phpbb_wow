@@ -24,7 +24,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'PEOPLESIGN_LANG'				=> 'en',
+	'PEOPLESIGN_LANG'				=> 'ru',
 	'CAPTCHA_PEOPLESIGN'			=> 'peoplesign:)',
 	'PEOPLESIGN_KEY'				=> 'Peoplesign Key',
 	'PEOPLESIGN_KEY_EXPLAIN'		=> 'This is your Peoplesign key. Visit <a href="http://www.peoplesign.com">peoplesign.com</a> to have it emailed to you.',
@@ -45,7 +45,7 @@ $lang = array_merge($lang, array(
 	'ERROR_VISITOR_IP'		=> 'invalid visitor_ip',
 	'ERROR_SERVER_STATUS'	=> 'Unexpected server status.',
 	'ERROR_BAD_RESPONSE'	=> 'Bad HTTP response from server.',
-	'ERROR_WRONG_ANSWER'	=> 'One of your responses below was not correct.',
+	'ERROR_WRONG_ANSWER'	=> 'Один из ваших ответов ниже неверен.',
 
 	// return codes
 	'CODE_INVALID_PRIVATE_KEY'		=> 'invalid_private_key',
