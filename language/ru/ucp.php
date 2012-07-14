@@ -558,4 +558,13 @@ $lang = array_merge($lang, array(
 	'NO_NONMEMBER'	=> 'Нет пустых групп',
 ));
 
+//Begin : Show Password Strength
+$lang = array_merge($lang, array(
+	'PS_VERY_WEAK'		=> 'Очень слабый',
+	'PS_WEAK'			=> 'Слабый',
+	'PS_GOOD'			=> 'Хороший',
+	'PS_STRONG'			=> 'Сильный',
+	'PS_VERY_STRONG'	=> 'Очень сильный',
+));
+//End : Show Password Strength
 ?>
