@@ -95,6 +95,7 @@ To help us with your application please answer the questions below. Enter your c
 'ACP_APPLY_HEADER'  		 => 'Title',
 'ACP_APPLY_QUESTION'  		 => 'Question',
 'ACP_APPLY_CONTENTS'  		 => 'Select Options',
+'ACP_APPLY_DEFAULTT'  		 => 'Defailt text',
 'ACP_APPLY_WHATGUILD'  		 => 'Select how candidate will be added to memberlist. ',
 'ACP_APPLY_WHATGUILD_EXPLAIN' => 'candidate will be added to lowest rank if added to guild.',
 'ACP_APPLY_GNONE'  			 => 'add to None',
