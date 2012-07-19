@@ -42,30 +42,30 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 
 /****** installer ********/
-'APPLY_INSTALL_MOD' =>  'Application Mod version %s installed successfully. ',
-'APPLY_UNINSTALL_MOD' =>  'Application Mod version %s uninstalled successfully. ',
-'APPLY_UPD_MOD' =>  'Application Mod updated successfully to version %s',
-'UMIL_CACHECLEARED' => 'Template, Theme, Imageset caches cleared', 
+'APPLY_INSTALL_MOD' =>  'Application Mod версия %s установлен успешно. ',
+'APPLY_UNINSTALL_MOD' =>  'Application Mod версии %s удален успешно. ',
+'APPLY_UPD_MOD' =>  'Application Mod успешно обновлен до версии %s',
+'UMIL_CACHECLEARED' => 'Кэш шаблонов, темы, набора картинок очищен', 
 
 /***** Questionnaire ******/
 'APPLY_MENU' => 'Форма заявки',
 'APPLY_TITLE' => 'Форма заявки',
 'APPLY_INFO' => '[size=150]Welcome and thank you for choosing us as a possible home for your character. 
 To help us with your application please answer the questions below. Enter your character name exactly as it appears in the armory. [/size] ',
-'APPLY_PUBLICQUESTION' => 'Visible Application ?', 
+'APPLY_PUBLICQUESTION' => 'Заявка видима ?', 
 'APPLY_REQUIRED'  => 'Вы должны заполнить все необходимые поля. ', 
 'MANDATORY'	=> 'Необходимо',	
-'APPLY_REALM' => 'Realm (blank for ',
+'APPLY_REALM' => 'Реалм (blank for ',
 'APPLY_NAME' => 'Игровой ник Вашего персонажа: ',
-'APPLY_QUESTION'  => 'Question ',
-'APPLY_ANSWER'  => 'Answer ',
+'APPLY_QUESTION'  => 'Вопрос ',
+'APPLY_ANSWER'  => 'Ответ ',
 'APPLY_REALM1' => 'Игровой мир Вашего персонажа: ',
-'APPLY_LEVEL'  => 'Level: ',
+'APPLY_LEVEL'  => 'Уровень: ',
 'APPLY_SPEC'  => 'Специализация: ',
 'APPLY_CLASS'  => 'Класс: ',
-'APPLY_RACE'  => 'Race: ',
-'APPLY_TALENT'  => 'Talent: ',
-'APPLY_PROFF'  =>  'Profession: ',
+'APPLY_RACE'  => 'Раса: ',
+'APPLY_TALENT'  => 'Талант: ',
+'APPLY_PROFF'  =>  'Профессия: ',
 
 /***** ACP Privacy settings *****/
 'APPLY_ACP_PRISETTING'		=> 'Privacy Settings',
@@ -82,20 +82,20 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_ACP_GUESTPOST_EXPLAIN' 	=> 'If you set Guest posting On, don’t forget to set "Enable visual confirmation for guest postings:" to "Yes".' ,  
 
 /***** ACP Armory settings *****/
-'APPLY_ACP_TEMPLATESETTING'	=> 'Template Settings',
-'APPLY_WELCOME'				=> 'Welcome message',
+'APPLY_ACP_TEMPLATESETTING'	=> 'Настройки шаблона',
+'APPLY_WELCOME'				=> 'Сообщение приветствия',
 'APPLY_WELCOME_EXPLAIN'		=> 'Message shown on top of Apply. supports bbcodes. ',
 'APPLY_ACP_CHARNAME' 		=> 'Игровой ник Вашего персонажа',
 'APPLY_ACP_REALM' 			=> 'Игровой мир Вашего персонажа',
-'APPLY_ACP_REGION' 			=> 'Region',
-'APPLY_ACP_APPTEMPLATEUPD'	=> 'Update Application template', 
+'APPLY_ACP_REGION' 			=> 'Регион',
+'APPLY_ACP_APPTEMPLATEUPD'	=> 'Обновить шаблон заявки', 
 
 /***** ACP template settings *****/
 'ACP_APPLY_MANDATORY'  		 => 'Mandatory',
-'ACP_APPLY_HEADER'  		 => 'Title',
-'ACP_APPLY_QUESTION'  		 => 'Question',
-'ACP_APPLY_CONTENTS'  		 => 'Select Options',
-'ACP_APPLY_DEFAULTT'  		 => 'Defailt text',
+'ACP_APPLY_HEADER'  		 => 'Заголовок',
+'ACP_APPLY_QUESTION'  		 => 'Вопрос',
+'ACP_APPLY_CONTENTS'  		 => 'Варианты выбора',
+'ACP_APPLY_DEFAULTT'  		 => 'Текст по умолчанию',
 'ACP_APPLY_WHATGUILD'  		 => 'Select how candidate will be added to memberlist. ',
 'ACP_APPLY_WHATGUILD_EXPLAIN' => 'candidate will be added to lowest rank if added to guild.',
 'ACP_APPLY_GNONE'  			 => 'add to None',
@@ -111,7 +111,6 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_ACP_TXTBOX' 			=> 'Textbox', 
 'APPLY_ACP_SELECTBOX' 		=> 'Selectbox',
 'APPLY_ACP_RADIOBOX' 		=> 'Radiobuttons',
-'APPLY_ACP_CHECKBOX' 		=> 'Checkboxes',
 'APPLY_ACP_CHECKBOX' 		=> 'Checkboxes',
 
 //warnings
@@ -130,7 +129,7 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_ACP_EXPLAINOPTIONS' 	=> 'Seperate Options with a comma "," with no spaces.',  
 
 /** ACP settings for posting template **/
-'APPLY_COLORSETTINGS' 		=> 'Apply Color Settings',
+'APPLY_COLORSETTINGS' 		=> 'Настройки цвета заявки',
 'APPLY_POST_ANSWERCOLOR' 	=> 'Posting Answers color',
 'APPLY_POST_QUESTIONCOLOR' 	=> 'Posting Questions color',
 'APPLY_FORMCOLOR'			=> 'Form Questions Color',
@@ -145,11 +144,10 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_CHAR_NAME' 	=> '[color=%s][b]Character name : [/b][/color]%s',
 'APPLY_CHAR_LEVEL' 	=> '[color=%s]Character level : [/color]%s',  
 'APPLY_CHAR_CLASS' 	=> '[color=%s]Character class : [/color]%s' ,
-'APPLY_CHAR_PROFF' 	=> '[color=%s][u]Professions :[/u][/color]
-%s',
+'APPLY_CHAR_PROFF' 	=> '[color=%s][u]Professions :[/u][/color]%s',
 'APPLY_CHAR_BUILD' 	=> '[color=%s][u]Talent build : [/u][/color]%s',
 'APPLY_CHAR_URL' => '[color=%s][/color][url=%s]Armory Link[/url]', 
-'APPLY_ERROR_NAME'  =>  'Error : Name must be Alphabetic (a-zA-ZàäåâÅÂçÇéèëêïÏîÎæŒæÆÅóòÓÒöÖôÔøØüÜ are allowed). ',
+'APPLY_ERROR_NAME'  =>  'Ошибка : Имя должно содержать только буквы (a-zA-Zа-яА-ЯàäåâÅÂçÇéèëêïÏîÎæŒæÆÅóòÓÒöÖôÔøØüÜ разрешены). ',
 'APPLY_REQUIRED_LEVEL'  => 'Level is required. ', 
 'APPLY_REQUIRED_NAME'	=> 'Пожалуйста заполните поле "Игровой ник Вашего персонажа". ', 
 'APPLY_REQUIRED_REALM'	=> 'Пожалуйста выберите игровой мир Вашего персонажа. ', 

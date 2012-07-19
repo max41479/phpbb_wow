@@ -151,7 +151,6 @@ $lang = array_merge($lang, array(
 'EARNED' => 'Earned',
 'FILTER' => 'Filter',
 'LASTRAID' => 'Last Raid',
-'LEVEL' => 'Level',
 'LISTMEMBERS_TITLE' => 'Member Standings',
 'MNOTFOUND' => 'Could not obtain member information', 
 'EMPTYRAIDNAME' => 'Raidname Not Found', 
