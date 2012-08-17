@@ -3,7 +3,7 @@
 *
 * @author admin@teksonicmods.com
 * @package acp_recruit_block.php
-* @version $Id: v2.0.1
+* @version $Id: v2.1.0
 * @copyright (c) Teksonic @ (www.teksonicmods.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -306,6 +306,9 @@ class acp_recruit_block
 					$warrior1				= request_var('warrior1', '');
 					$warrior2				= request_var('warrior2', '');
 					$warrior3				= request_var('warrior3', '');
+					$monk1				= request_var('monk1', '');
+					$monk2				= request_var('monk2', '');
+					$monk3				= request_var('monk3', '');
 					
 					$n_dk1					= request_var('n_dk1', '');
 					$n_dk2					= request_var('n_dk2', '');
@@ -337,6 +340,9 @@ class acp_recruit_block
 					$n_warrior1				= request_var('n_warrior1', '');
 					$n_warrior2				= request_var('n_warrior2', '');
 					$n_warrior3				= request_var('n_warrior3', '');
+					$n_monk1				= request_var('n_monk1', '');
+					$n_monk2				= request_var('n_monk2', '');
+					$n_monk3				= request_var('n_monk3', '');
 					
 					//Death Knight
 					$config_name = "dk1";
@@ -930,6 +936,65 @@ class acp_recruit_block
 							WHERE config_name = '".$config_name."'";
 						$db->sql_query($sql);
 					}
+					//monk
+					$config_name = "monk1";
+					$sql = 'UPDATE ' . RECRUIT_CLASS_TABLE . '
+							SET ' . $db->sql_build_array('UPDATE', array(
+							'config_name'	=> $config_name,
+							'config_value'	=> $monk1,
+							'class_num'		=> $n_monk1 )) . "
+							WHERE config_name = '".$config_name."'";
+					$db->sql_query($sql);
+					$config_name = "monk2";
+					$sql = 'UPDATE ' . RECRUIT_CLASS_TABLE . '
+							SET ' . $db->sql_build_array('UPDATE', array(
+							'config_name'	=> $config_name,
+							'config_value'	=> $monk2,
+							'class_num'		=> $n_monk2 )) . "
+							WHERE config_name = '".$config_name."'";
+					$db->sql_query($sql);
+					$config_name = "monk3";
+					$sql = 'UPDATE ' . RECRUIT_CLASS_TABLE . '
+							SET ' . $db->sql_build_array('UPDATE', array(
+							'config_name'	=> $config_name,
+							'config_value'	=> $monk3,
+							'class_num'		=> $n_monk3 )) . "
+							WHERE config_name = '".$config_name."'";
+					$db->sql_query($sql);
+					
+					$sql = 'SELECT * FROM ' . RECRUIT_CLASS_TABLE;
+					$result = $db->sql_query($sql);
+					while ($row = $db->sql_fetchrow($result))
+					{
+						if ((request_var('monk1', '') == 'None') && (request_var('monk2', '') == 'None') && (request_var('monk3', '') == 'None'))
+						{
+							$s_monk_v = '0';
+						}
+						else
+						{
+							$s_monk_v = '1';
+						}
+						$config_name = "show_monk_v";
+						$sql = 'UPDATE ' . RECRUIT_CONFIG_TABLE . '
+							SET ' . $db->sql_build_array('UPDATE', array(
+							'config_value'	=> $s_monk_v )) . "
+							WHERE config_name = '".$config_name."'";
+						$db->sql_query($sql);
+						if ((request_var('n_monk1', '') == 0) && (request_var('n_monk2', '') == 0) && (request_var('n_monk3', '') == 0))
+						{
+							$s_monk_n = '0';
+						}
+						else
+						{
+							$s_monk_n = '1';
+						}
+						$config_name = "show_monk_n";
+						$sql = 'UPDATE ' . RECRUIT_CONFIG_TABLE . '
+							SET ' . $db->sql_build_array('UPDATE', array(
+							'config_value'	=> $s_monk_n )) . "
+							WHERE config_name = '".$config_name."'";
+						$db->sql_query($sql);
+					}
 				}
 			
 				$sel_dk1_none						= '';
@@ -1091,6 +1156,22 @@ class acp_recruit_block
 				$sel_n_warrior3						= '';
 				$sel_n_warrior3						= '';
 				$sel_n_warrior3						= '';
+				
+				$sel_monk1_none					= '';
+				$sel_monk1_low					= '';
+				$sel_monk1_medium				= '';
+				$sel_monk1_high					= '';
+				$sel_monk2_none					= '';
+				$sel_monk2_low					= '';
+				$sel_monk2_medium				= '';
+				$sel_monk2_high					= '';
+				$sel_monk3_none					= '';
+				$sel_monk3_low					= '';
+				$sel_monk3_medium				= '';
+				$sel_monk3_high					= '';
+				$sel_n_monk3						= '';
+				$sel_n_monk3						= '';
+				$sel_n_monk3						= '';
 				
 				//Raid Show/Hide - Start
 				$sql = 'SELECT * FROM ' . RECRUIT_CLASS_TABLE;
@@ -1677,6 +1758,64 @@ class acp_recruit_block
 						}
 						$sel_warrior3_num = $row['class_num'];
 					}
+					//monk
+				if( $row['config_name'] === 'monk1' )
+					{
+					switch( $row['config_value'] )
+						{
+							case 'None':
+								$sel_monk1_none 		= "selected='selected'";
+								break;
+							case 'Low':
+								$sel_monk1_low 		= "selected='selected'";
+								break;
+							case 'Medium':
+								$sel_monk1_medium	 	= "selected='selected'";
+								break;
+							case 'High':
+								$sel_monk1_high	 	= "selected='selected'";
+								break;
+						}
+						$sel_monk1_num = $row['class_num'];
+					}
+				if( $row['config_name'] === 'monk2' )
+					{
+					switch( $row['config_value'] )
+						{
+							case 'None':
+								$sel_monk2_none 		= "selected='selected'";
+								break;
+							case 'Low':
+								$sel_monk2_low 		= "selected='selected'";
+								break;
+							case 'Medium':
+								$sel_monk2_medium	 	= "selected='selected'";
+								break;
+							case 'High':
+								$sel_monk2_high	 	= "selected='selected'";
+								break;
+						}
+						$sel_monk2_num = $row['class_num'];
+					}
+				if( $row['config_name'] === 'monk3' )
+					{
+					switch( $row['config_value'] )
+						{
+							case 'None':
+								$sel_monk3_none 		= "selected='selected'";
+								break;
+							case 'Low':
+								$sel_monk3_low 		= "selected='selected'";
+								break;
+							case 'Medium':
+								$sel_monk3_medium	 	= "selected='selected'";
+								break;
+							case 'High':
+								$sel_monk3_high	 	= "selected='selected'";
+								break;
+						}
+						$sel_monk3_num = $row['class_num'];
+					}
 				}
 				$db->sql_freeresult($result);
 				
@@ -1840,6 +1979,22 @@ class acp_recruit_block
 					'SEL_WARRIOR1_NUM'				=> $sel_warrior1_num,
 					'SEL_WARRIOR2_NUM'				=> $sel_warrior2_num,
 					'SEL_WARRIOR3_NUM'				=> $sel_warrior3_num,	
+
+					'SEL_MONK1_NONE'				=> $sel_monk1_none,
+					'SEL_MONK1_LOW'				=> $sel_monk1_low,
+					'SEL_MONK1_MEDIUM'			=> $sel_monk1_medium,
+					'SEL_MONK1_HIGH'				=> $sel_monk1_high,
+					'SEL_MONK2_NONE'				=> $sel_monk2_none,
+					'SEL_MONK2_LOW'				=> $sel_monk2_low,
+					'SEL_MONK2_MEDIUM'			=> $sel_monk2_medium,
+					'SEL_MONK2_HIGH'				=> $sel_monk2_high,
+					'SEL_MONK3_NONE'				=> $sel_monk3_none,
+					'SEL_MONK3_LOW'				=> $sel_monk3_low,
+					'SEL_MONK3_MEDIUM'			=> $sel_monk3_medium,
+					'SEL_MONK3_HIGH'				=> $sel_monk3_high,
+					'SEL_MONK1_NUM'				=> $sel_monk1_num,
+					'SEL_MONK2_NUM'				=> $sel_monk2_num,
+					'SEL_MONK3_NUM'				=> $sel_monk3_num,	
 
 					'U_ACTION'					=> $this->u_action,
 					));

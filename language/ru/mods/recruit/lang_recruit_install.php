@@ -4,7 +4,7 @@
 *
 * @author admin@teksonicmods.com
 * @package lang_recruit_install.php
-* @version $Id: v2.0.1
+* @version $Id: v2.1.0
 * @copyright (c) Teksonic @ (www.teksonicmods.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

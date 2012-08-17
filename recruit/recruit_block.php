@@ -3,7 +3,7 @@
 *
 * @author admin@teksonicmods.com
 * @package recruit_block.php
-* @version $Id: v2.0.1
+* @version $Id: v2.1.0
 * @copyright (c) Teksonic @ (www.teksonicmods.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -67,6 +67,9 @@ $template->assign_vars(array(
 		'WARRIOR1'			=> $class_config['warrior1'],
 		'WARRIOR2'			=> $class_config['warrior2'],
 		'WARRIOR3'			=> $class_config['warrior3'],
+		'MONK1'			=> $class_config['monk1'],
+		'MONK2'			=> $class_config['monk2'],
+		'MONK3'			=> $class_config['monk3'],
 		
 		
 		'N_DK1'				=> $class_num_config['dk1'],
@@ -99,6 +102,9 @@ $template->assign_vars(array(
 		'N_WARRIOR1'		=> $class_num_config['warrior1'],
 		'N_WARRIOR2'		=> $class_num_config['warrior2'],
 		'N_WARRIOR3'		=> $class_num_config['warrior3'],
+		'N_MONK1'		=> $class_num_config['monk1'],
+		'N_MONK2'		=> $class_num_config['monk2'],
+		'N_MONK3'		=> $class_num_config['monk3'],
 		
 		'L_DK1'				=> $class_config_lang['dk1'],
 		'L_DK2'				=> $class_config_lang['dk2'],

@@ -19,7 +19,7 @@ class recruit_version_check
 			'author'	=> 'Teksonic',
 			'title'		=> 'Recruitment Block',
 			'tag'		=> 'recruit_block',
-			'version'	=> '2.0.1',
+			'version'	=> '2.1.0',
 			'file'		=> array('dev.teksonicmods.com', 'ver', 'recruit_block.xml'),
 		);
 	}

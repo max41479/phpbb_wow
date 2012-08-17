@@ -211,6 +211,48 @@
 		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
 	</p>
 	</fieldset>
+<fieldset>
+    <legend>{L_MONK}</legend>
+        <dl>
+			<dt><label>{L_BREWMASTER}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="monk1" name="monk1">
+            	<option value="{L_NONE}" {SEL_MONK1_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_MONK1_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_MONK1_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_MONK1_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_monk1" id="n_monk1" value="{SEL_MONK1_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_MISTWEAVER}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="monk2" name="monk2">
+            	<option value="{L_NONE}" {SEL_MONK2_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_MONK2_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_MONK2_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_MONK2_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_monk2" id="n_monk2" value="{SEL_MONK2_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+         <dl>
+         </dl>
+            <dt><label>{L_WINDWALKER}:</label></dt>
+            <dd>{L_VALUE}:&nbsp;<select id="monk3" name="monk3">
+            	<option value="{L_NONE}" {SEL_MONK3_NONE}>{L_NONE}</option>
+				<option value="{L_LOW}" {SEL_MONK3_LOW}>{L_LOW}</option>
+                <option value="{L_MED}" {SEL_MONK3_MEDIUM}>{L_MED}</option>
+                <option value="{L_HIGH}" {SEL_MONK3_HIGH}>{L_HIGH}</option>
+                </select>
+                &nbsp;|&nbsp;
+                {L_NUM}:&nbsp;<input maxlength="2" size="2" type="text" name="n_monk3" id="n_monk3" value="{SEL_MONK3_NUM}" onkeypress="return isNumberKey(event)"/>&nbsp;&nbsp;{L_NUM_EXPLAIN}
+            </dd>
+		</dl>
+        <p class="quick">{L_SUBMIT_EXPLAIN}
+		<input class="button1" type="submit" name="update" value="{L_SUBMIT}" />
+	</p>
+	</fieldset>
      	<fieldset>
     <legend>{L_PALADIN}</legend>
         <dl>

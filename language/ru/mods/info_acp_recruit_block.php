@@ -3,7 +3,7 @@
 *
 * @author admin@teksonicmods.com
 * @package info_acp_recruit_block.php
-* @version $Id: v2.0.1
+* @version $Id: v2.1.0
 * @copyright (c) Teksonic @ (www.teksonicmods.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *

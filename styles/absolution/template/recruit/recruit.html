@@ -45,6 +45,15 @@
 			<td width="16px"><a href="<!-- IF REC_LINK == f_link -->{VIEWFORUM}{R_FORUM}<!-- ELSEIF REC_LINK == c_link -->{R_LINK}<!-- ENDIF -->" title="{L_FROST}: <!-- IF REC_LEVEL == 0 -->{MAGE3}<!-- ELSEIF REC_LEVEL == 1 -->{N_MAGE3}<!-- ELSEIF REC_LEVEL == 2 -->{MAGE3} ({N_MAGE3})<!-- ENDIF -->" class="rbtt"><img class="{MAGE3}" src="./recruit/images/tm_frost.png" alt="" /></a></td>
 		</tr>
 		<!-- ENDIF -->
+		<!-- IF S_MONK -->
+		<tr style="font-size: 10px;">
+			<!-- IF S_R_IMAGES == 1 --><td width="16px"><a href="{C_WH_CLASS_PATH}10"  target="_new"><img src="./recruit/images/c_monk.png" /></a></td><!-- ENDIF -->
+			<td><!-- IF S_CLASS_COLOR == 1 --><span class="cor_11"><!-- ELSEIF S_CLASS_COLOR == 0 --><span><!-- ENDIF -->&nbsp;{L_MONK}</span></td>
+			<td width="16px"><a href="<!-- IF REC_LINK == f_link -->{VIEWFORUM}{R_FORUM}<!-- ELSEIF REC_LINK == c_link -->{R_LINK}<!-- ENDIF -->" title="{L_BREWMASTER}: <!-- IF REC_LEVEL == 0 -->{MONK1}<!-- ELSEIF REC_LEVEL == 1 -->{N_MONK1}<!-- ELSEIF REC_LEVEL == 2 -->{MONK1} ({N_MONK1})<!-- ENDIF -->" class="rbtt"><img class="{MONK1}" src="./recruit/images/t_brewmaster.png" /></a></td>
+			<td width="16px"><a href="<!-- IF REC_LINK == f_link -->{VIEWFORUM}{R_FORUM}<!-- ELSEIF REC_LINK == c_link -->{R_LINK}<!-- ENDIF -->" title="{L_MISTWEAVER}: <!-- IF REC_LEVEL == 0 -->{MONK2}<!-- ELSEIF REC_LEVEL == 1 -->{N_MONK2}<!-- ELSEIF REC_LEVEL == 2 -->{MONK2} ({N_MONK2})<!-- ENDIF -->" class="rbtt"><img class="{MONK2}" src="./recruit/images/t_mistweaver.png" /></a></td>
+			<td width="16px"><a href="<!-- IF REC_LINK == f_link -->{VIEWFORUM}{R_FORUM}<!-- ELSEIF REC_LINK == c_link -->{R_LINK}<!-- ENDIF -->" title="{L_WINDWALKER}: <!-- IF REC_LEVEL == 0 -->{MONK3}<!-- ELSEIF REC_LEVEL == 1 -->{N_MONK3}<!-- ELSEIF REC_LEVEL == 2 -->{MONK3} ({N_MONK3})<!-- ENDIF -->" class="rbtt"><img class="{MONK3}" src="./recruit/images/t_windwalker.png" /></a></td>
+		</tr>
+		<!-- ENDIF -->
 		<!-- IF S_PALADIN -->
 		<tr style="font-size: 10px;">
 			<!-- IF S_R_IMAGES == 1 --><td width="16px"><a href="{C_WH_CLASS_PATH}2"  target="_new"><img src="./recruit/images/c_paladin.png" alt="" /></a></td><!-- ENDIF -->

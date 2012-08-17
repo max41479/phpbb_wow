@@ -3,7 +3,7 @@
 *
 * @author admin@teksonicmods.com
 * @package functions_recruit.php
-* @version $Id: v2.0.1
+* @version $Id: v2.1.0
 * @copyright (c) Teksonic @ (www.teksonicmods.com)
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
@@ -151,6 +151,15 @@ function rb_show_class()
 		{
 			$template->assign_var('S_MAGE', false);
 		}
+		//Monk
+		if ( ($recruit_config['show_monk_v'] == 1 || $recruit_config['show_monk_n'] == 1) || ($recruit_config['show_monk_v'] == 1 && $recruit_config['show_monk_n'] == 0) && ($recruit_config['show_monk_v'] == 0 && $recruit_config['show_monk_n'] == 1) )
+		{
+			$template->assign_var('S_MONK', true);
+		}
+		else if ($recruit_config['show_monk_v'] == 0 && $recruit_config['show_monk_n'] == 0)
+		{
+			$template->assign_var('S_MONK', false);
+		}
 		//Paladin
 		if ( ($recruit_config['show_paladin_v'] == 1 || $recruit_config['show_paladin_n'] == 1) || ($recruit_config['show_paladin_v'] == 1 && $recruit_config['show_paladin_n'] == 0) && ($recruit_config['show_paladin_v'] == 0 && $recruit_config['show_paladin_n'] == 1) )
 		{
@@ -208,21 +217,21 @@ function rb_show_class()
 		//None
 		if ($recruit_config['rec_level'] == 0 )
 		{
-			if ($recruit_config['show_dk_v'] == 0 && $recruit_config['show_druid_v'] == 0 && $recruit_config['show_hunter_v'] == 0 && $recruit_config['show_mage_v'] == 0 && $recruit_config['show_paladin_v'] == 0 && $recruit_config['show_priest_v'] == 0 && $recruit_config['show_rogue_v'] == 0 && $recruit_config['show_shaman_v'] == 0 && $recruit_config['show_warlock_v'] == 0 && $recruit_config['show_warrior_v'] == 0)
+			if ($recruit_config['show_dk_v'] == 0 && $recruit_config['show_druid_v'] == 0 && $recruit_config['show_hunter_v'] == 0 && $recruit_config['show_mage_v'] == 0 && $recruit_config['show_paladin_v'] == 0 && $recruit_config['show_priest_v'] == 0 && $recruit_config['show_rogue_v'] == 0 && $recruit_config['show_shaman_v'] == 0 && $recruit_config['show_warlock_v'] == 0 && $recruit_config['show_warrior_v'] == 0 && $recruit_config['show_monk_v'] == 0)
 			{
 			$template->assign_var('S_NONE', true);
 			}
 		}
 		else if ($recruit_config['rec_level'] == 1 ) 
 		{
-			if ($recruit_config['show_dk_n'] == 0 && $recruit_config['show_druid_n'] == 0 && $recruit_config['show_hunter_n'] == 0 && $recruit_config['show_mage_n'] == 0 && $recruit_config['show_paladin_n'] == 0 && $recruit_config['show_priest_n'] == 0 && $recruit_config['show_rogue_n'] == 0 && $recruit_config['show_shaman_n'] == 0 && $recruit_config['show_warlock_n'] == 0 && $recruit_config['show_warrior_n'] == 0)
+			if ($recruit_config['show_dk_n'] == 0 && $recruit_config['show_druid_n'] == 0 && $recruit_config['show_hunter_n'] == 0 && $recruit_config['show_mage_n'] == 0 && $recruit_config['show_paladin_n'] == 0 && $recruit_config['show_priest_n'] == 0 && $recruit_config['show_rogue_n'] == 0 && $recruit_config['show_shaman_n'] == 0 && $recruit_config['show_warlock_n'] == 0 && $recruit_config['show_warrior_n'] == 0 && $recruit_config['show_monk_n'] == 0)
 			{
 			$template->assign_var('S_NONE', true);
 			}
 		}
 		else if ($recruit_config['rec_level'] == 2 ) 
 		{
-			if ($recruit_config['show_dk_n'] == 0 && $recruit_config['show_druid_n'] == 0 && $recruit_config['show_hunter_n'] == 0 && $recruit_config['show_mage_n'] == 0 && $recruit_config['show_paladin_n'] == 0 && $recruit_config['show_priest_n'] == 0 && $recruit_config['show_rogue_n'] == 0 && $recruit_config['show_shaman_n'] == 0 && $recruit_config['show_warlock_n'] == 0 && $recruit_config['show_warrior_n'] == 0 && $recruit_config['show_dk_v'] == 0 && $recruit_config['show_druid_v'] == 0 && $recruit_config['show_hunter_v'] == 0 && $recruit_config['show_mage_v'] == 0 && $recruit_config['show_paladin_v'] == 0 && $recruit_config['show_priest_v'] == 0 && $recruit_config['show_rogue_v'] == 0 && $recruit_config['show_shaman_v'] == 0 && $recruit_config['show_warlock_v'] == 0 && $recruit_config['show_warrior_v'] == 0)
+			if ($recruit_config['show_dk_n'] == 0 && $recruit_config['show_druid_n'] == 0 && $recruit_config['show_hunter_n'] == 0 && $recruit_config['show_mage_n'] == 0 && $recruit_config['show_paladin_n'] == 0 && $recruit_config['show_priest_n'] == 0 && $recruit_config['show_rogue_n'] == 0 && $recruit_config['show_shaman_n'] == 0 && $recruit_config['show_warlock_n'] == 0 && $recruit_config['show_warrior_n'] == 0 && $recruit_config['show_dk_v'] == 0 && $recruit_config['show_druid_v'] == 0 && $recruit_config['show_hunter_v'] == 0 && $recruit_config['show_mage_v'] == 0 && $recruit_config['show_paladin_v'] == 0 && $recruit_config['show_priest_v'] == 0 && $recruit_config['show_rogue_v'] == 0 && $recruit_config['show_shaman_v'] == 0 && $recruit_config['show_warlock_v'] == 0 && $recruit_config['show_warrior_v'] == 0 && $recruit_config['show_monk_v'] == 0)
 			{
 			$template->assign_var('S_NONE', true);
 			}
