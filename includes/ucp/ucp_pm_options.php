@@ -328,23 +328,10 @@ function message_options($id, $mode, $global_privmsgs_rules, $global_rule_condit
 				trigger_error('RULE_ALREADY_DEFINED');
 			}
 
-			// Prevent users from flooding the rules table
-			$sql = 'SELECT COUNT(rule_id) AS num_rules
-				FROM ' . PRIVMSGS_RULES_TABLE . '
-				WHERE user_id = ' . (int) $user->data['user_id'];
-			$result = $db->sql_query($sql);
-			$num_rules = (int) $db->sql_fetchfield('num_rules');
-			$db->sql_freeresult($result);
-
-			if ($num_rules >= 5000)
-			{
-				trigger_error('RULE_LIMIT_REACHED');
-			}
-
 			$sql = 'INSERT INTO ' . PRIVMSGS_RULES_TABLE . ' ' . $db->sql_build_array('INSERT', $rule_ary);
 			$db->sql_query($sql);
 
-			// Set the user_message_rules bit
+			// Update users message rules
 			$sql = 'UPDATE ' . USERS_TABLE . '
 				SET user_message_rules = 1
 				WHERE user_id = ' . $user->data['user_id'];
@@ -391,7 +378,7 @@ function message_options($id, $mode, $global_privmsgs_rules, $global_rule_condit
 			$row = $db->sql_fetchrow($result);
 			$db->sql_freeresult($result);
 
-			// Unset the user_message_rules bit
+			// Update users message rules
 			if (!$row)
 			{
 				$sql = 'UPDATE ' . USERS_TABLE . '

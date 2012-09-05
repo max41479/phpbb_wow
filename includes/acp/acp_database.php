@@ -21,19 +21,12 @@ if (!defined('IN_PHPBB'))
 */
 class acp_database
 {
-	var $db_tools;
 	var $u_action;
 
 	function main($id, $mode)
 	{
 		global $cache, $db, $user, $auth, $template, $table_prefix;
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
-
-		if (!class_exists('phpbb_db_tools'))
-		{
-			require($phpbb_root_path . 'includes/db/db_tools.' . $phpEx);
-		}
-		$this->db_tools = new phpbb_db_tools($db);
 
 		$user->add_lang('acp/database');
 
@@ -57,7 +50,7 @@ class acp_database
 				{
 					case 'download':
 						$type	= request_var('type', '');
-						$table	= array_intersect($this->db_tools->sql_list_tables(), request_var('table', array('')));
+						$table	= request_var('table', array(''));
 						$format	= request_var('method', '');
 						$where	= request_var('where', '');
 
@@ -180,7 +173,8 @@ class acp_database
 					break;
 
 					default:
-						$tables = $this->db_tools->sql_list_tables();
+						include($phpbb_root_path . 'includes/functions_install.' . $phpEx);
+						$tables = get_tables($db);
 						asort($tables);
 						foreach ($tables as $table_name)
 						{

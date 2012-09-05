@@ -110,6 +110,7 @@ $lang = array_merge($lang, array(
 
 	'POST_IP'				=> 'IP/Хост',
 
+	'RANK'					=> 'Звание',
 	'REAL_NAME'				=> 'Имя получателя',
 	'RECIPIENT'				=> 'Получатель',
 	'REMOVE_FOE'			=> 'Убрать из недругов',
