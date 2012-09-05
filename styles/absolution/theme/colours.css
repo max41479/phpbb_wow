@@ -694,6 +694,10 @@ fieldset.polls dd div {
 	margin-top: -5px;
 }
 
+.online dt {
+   margin-top: 5px;
+}
+
 /*  	
 --------------------------------------------------------------
 Colours and backgrounds for buttons.css
@@ -922,12 +926,6 @@ dl.mini dt {
 /* PM Message history */
 .current {
 	color: #000000 !important;
-}
-
-/* PM panel adjustments */
-.pm-panel-header,
-#cp-main .pm-message-nav {
-	border-bottom-color: #A4B3BF;
 }
 
 /* PM marking colours */
