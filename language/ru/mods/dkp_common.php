@@ -391,7 +391,6 @@ $lang = array_merge($lang, array(
 'OF_RAIDS' => '%d',
 'OF_RAIDS_CHAR' => '%s', 
 'OR' => 'or',
-'POWERED_BY' => 'Powered by',
 'REQUIRED_FIELD_NOTE' => 'Items marked with a * are required fields.',
 'SELECT_EXISTING' => 'Select Existing',
 'UPDATED' => 'Updated',
