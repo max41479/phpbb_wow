@@ -257,7 +257,6 @@ $lang = array_merge($lang, array(
 'LOW' => 'Low',  
 'MANAGE' => 'Manage',
 'MEDIUM' => 'Medium',
-'HIGH' => 'High',
 'MEMBER' => 'Member',
 'NA' => 'N/A', 
 'NETADJUSTMENT' => 'Net Adjustment', 
