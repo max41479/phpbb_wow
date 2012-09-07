@@ -25,7 +25,7 @@ if (!defined('IN_PHPBB'))
 */
 
 // phpBB Version
-define('PHPBB_VERSION', '3.0.10');
+define('PHPBB_VERSION', '3.0.11');
 
 // QA-related
 // define('PHPBB_QA', 1);
@@ -171,7 +171,7 @@ define('ATTACHMENT_CATEGORY_QUICKTIME', 6); // Quicktime/Mov files
 define('BBCODE_UID_LEN', 8);
 
 // Number of core BBCodes
-define('NUM_CORE_BBCODES', 13);
+define('NUM_CORE_BBCODES', 12);
 
 // BBCode hard limit
 define('BBCODE_LIMIT', 1511);

@@ -278,7 +278,7 @@ if (!empty($_EXTRA_URL))
 	foreach ($_EXTRA_URL as $url_param)
 	{
 		$url_param = explode('=', $url_param, 2);
-		$s_hidden_fields[$url_param[0]] = $url_param[1];
+		$s_search_hidden_fields[$url_param[0]] = $url_param[1];
 	}
 }
 
@@ -665,8 +665,8 @@ if (sizeof($topic_list))
 			'LAST_POST_AUTHOR_FULL'		=> get_username_string('full', $row['topic_last_poster_id'], $row['topic_last_poster_name'], $row['topic_last_poster_colour']),
 
 			'PAGINATION'		=> topic_generate_pagination($replies, $view_topic_url),
-			'REPLIES'			=> number_format($replies),
-			'VIEWS'				=> number_format($row['topic_views']),
+			'REPLIES'			=> $replies,
+			'VIEWS'				=> $row['topic_views'],
 			'TOPIC_TITLE'		=> censor_text($row['topic_title']),
 			'TOPIC_TYPE'		=> $topic_type,
 

@@ -1,4 +1,4 @@
-/* proSilver Content Styles
+/* Content Styles
 ---------------------------------------- */
 
 ul.topiclist {
@@ -399,12 +399,6 @@ p.author {
 	line-height: 140%;
 	overflow: hidden;
 	width: 100%;
-	max-height: 250px;
-	max-width: 750px;
-}
-
-.signature img {
-	max-width: 600px; 
 }
 
 dd .signature {
