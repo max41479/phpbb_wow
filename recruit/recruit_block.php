@@ -22,11 +22,12 @@ $user->add_lang('mods/recruit/lang_recruit_block');
 $recruit_config = recruit_config();
 $class_config = class_config();
 $class_num_config = class_num_config();
+$class_config_lang = class_config_lang();
 rb_show_class();
 
 $template->assign_vars(array(
 		//Misc Info
-		'C_WH_CLASS_PATH'	=> "http://www.wowhead.com/class=",
+		'C_WH_CLASS_PATH'	=> "http://ru.wowhead.com/class=",
 		'VIEWFORUM'			=> "{$phpbb_root_path}viewforum.php?f=",
 		'S_CLASS_COLOR'		=> $recruit_config['class_colors'],
 		'S_R_IMAGES'		=> $recruit_config['show_images'],
