@@ -22,12 +22,11 @@ $user->add_lang('mods/recruit/lang_recruit_block');
 $recruit_config = recruit_config();
 $class_config = class_config();
 $class_num_config = class_num_config();
-$class_config_lang = class_config_lang();
 rb_show_class();
 
 $template->assign_vars(array(
 		//Misc Info
-		'C_WH_CLASS_PATH'	=> "http://ru.wowhead.com/class=",
+		'C_WH_CLASS_PATH'	=> "http://www.wowhead.com/class=",
 		'VIEWFORUM'			=> "{$phpbb_root_path}viewforum.php?f=",
 		'S_CLASS_COLOR'		=> $recruit_config['class_colors'],
 		'S_R_IMAGES'		=> $recruit_config['show_images'],
@@ -43,6 +42,7 @@ $template->assign_vars(array(
 		'DRUID1'			=> $class_config['druid1'],
 		'DRUID2'			=> $class_config['druid2'],
 		'DRUID3'			=> $class_config['druid3'],
+		'DRUID4'			=> $class_config['druid4'],
 		'HUNTER1'			=> $class_config['hunter1'],
 		'HUNTER2'			=> $class_config['hunter2'],
 		'HUNTER3'			=> $class_config['hunter3'],
@@ -78,6 +78,7 @@ $template->assign_vars(array(
 		'N_DRUID1'			=> $class_num_config['druid1'],
 		'N_DRUID2'			=> $class_num_config['druid2'],
 		'N_DRUID3'			=> $class_num_config['druid3'],
+		'N_DRUID4'			=> $class_num_config['druid4'],
 		'N_HUNTER1'			=> $class_num_config['hunter1'],
 		'N_HUNTER2'			=> $class_num_config['hunter2'],
 		'N_HUNTER3'			=> $class_num_config['hunter3'],
@@ -105,37 +106,6 @@ $template->assign_vars(array(
 		'N_MONK1'		=> $class_num_config['monk1'],
 		'N_MONK2'		=> $class_num_config['monk2'],
 		'N_MONK3'		=> $class_num_config['monk3'],
-		
-		'L_DK1'				=> $class_config_lang['dk1'],
-		'L_DK2'				=> $class_config_lang['dk2'],
-		'L_DK3'				=> $class_config_lang['dk3'],
-		'L_DRUID1'			=> $class_config_lang['druid1'],
-		'L_DRUID2'			=> $class_config_lang['druid2'],
-		'L_DRUID3'			=> $class_config_lang['druid3'],
-		'L_HUNTER1'			=> $class_config_lang['hunter1'],
-		'L_HUNTER2'			=> $class_config_lang['hunter2'],
-		'L_HUNTER3'			=> $class_config_lang['hunter3'],
-		'L_MAGE1'			=> $class_config_lang['mage1'],
-		'L_MAGE2'			=> $class_config_lang['mage2'],
-		'L_MAGE3'			=> $class_config_lang['mage3'],
-		'L_PALADIN1'		=> $class_config_lang['paladin1'],
-		'L_PALADIN2'		=> $class_config_lang['paladin2'],
-		'L_PALADIN3'		=> $class_config_lang['paladin3'],
-		'L_PRIEST1'			=> $class_config_lang['priest1'],
-		'L_PRIEST2'			=> $class_config_lang['priest2'],
-		'L_PRIEST3'			=> $class_config_lang['priest3'],
-		'L_ROGUE1'			=> $class_config_lang['rogue1'],
-		'L_ROGUE2'			=> $class_config_lang['rogue2'],
-		'L_ROGUE3'			=> $class_config_lang['rogue3'],
-		'L_SHAMAN1'			=> $class_config_lang['shaman1'],
-		'L_SHAMAN2'			=> $class_config_lang['shaman2'],
-		'L_SHAMAN3'			=> $class_config_lang['shaman3'],
-		'L_WARLOCK1'		=> $class_config_lang['warlock1'],
-		'L_WARLOCK2'		=> $class_config_lang['warlock2'],
-		'L_WARLOCK3'		=> $class_config_lang['warlock3'],
-		'L_WARRIOR1'		=> $class_config_lang['warrior1'],
-		'L_WARRIOR2'		=> $class_config_lang['warrior2'],
-		'L_WARRIOR3'		=> $class_config_lang['warrior3'],
 		
 ));
 ?>

@@ -282,6 +282,7 @@ class acp_recruit_block
 					$druid1					= request_var('druid1', '');
 					$druid2					= request_var('druid2', '');
 					$druid3					= request_var('druid3', '');
+					$druid4					= request_var('druid4', '');
 					$hunter1				= request_var('hunter1', '');
 					$hunter2				= request_var('hunter2', '');
 					$hunter3				= request_var('hunter3', '');
@@ -316,6 +317,7 @@ class acp_recruit_block
 					$n_druid1				= request_var('n_druid1', '');
 					$n_druid2				= request_var('n_druid2', '');
 					$n_druid3				= request_var('n_druid3', '');
+					$n_druid4				= request_var('n_druid4', '');
 					$n_hunter1				= request_var('n_hunter1', '');
 					$n_hunter2				= request_var('n_hunter2', '');
 					$n_hunter3				= request_var('n_hunter3', '');
@@ -430,12 +432,20 @@ class acp_recruit_block
 							'class_num'		=> $n_druid3 )) . "
 							WHERE config_name = '".$config_name."'";
 					$db->sql_query($sql);
+					$config_name = "druid4";
+					$sql = 'UPDATE ' . RECRUIT_CLASS_TABLE . '
+							SET ' . $db->sql_build_array('UPDATE', array(
+							'config_name'	=> $config_name,
+							'config_value'	=> $druid4,
+							'class_num'		=> $n_druid4 )) . "
+							WHERE config_name = '".$config_name."'";
+					$db->sql_query($sql);
 					
 					$sql = 'SELECT * FROM ' . RECRUIT_CLASS_TABLE;
 					$result = $db->sql_query($sql);
 					while ($row = $db->sql_fetchrow($result))
 					{
-						if ((request_var('druid1', '') == 'None') && (request_var('druid2', '') == 'None') && (request_var('druid3', '') == 'None'))
+						if ((request_var('druid1', '') == 'None') && (request_var('druid2', '') == 'None') && (request_var('druid3', '') == 'None') && (request_var('druid4', '') == 'None'))
 						{
 							$s_druid_v = '0';
 						}
@@ -449,7 +459,7 @@ class acp_recruit_block
 							'config_value'	=> $s_druid_v )) . "
 							WHERE config_name = '".$config_name."'";
 						$db->sql_query($sql);
-						if ((request_var('n_druid1', '') == 0) && (request_var('n_druid2', '') == 0) && (request_var('n_druid3', '') == 0))
+						if ((request_var('n_druid1', '') == 0) && (request_var('n_druid2', '') == 0) && (request_var('n_druid3', '') == 0) && (request_var('n_druid4', '') == 0))
 						{
 							$s_druid_n = '0';
 						}
@@ -1025,6 +1035,10 @@ class acp_recruit_block
 				$sel_druid3_low						= '';
 				$sel_druid3_medium					= '';
 				$sel_druid3_high					= '';
+				$sel_druid4_none					= '';
+				$sel_druid4_low						= '';
+				$sel_druid4_medium					= '';
+				$sel_druid4_high					= '';
 				$sel_n_druid3						= '';
 				$sel_n_druid3						= '';
 				$sel_n_druid3						= '';
@@ -1293,6 +1307,25 @@ class acp_recruit_block
 								break;
 						}
 						$sel_druid3_num = $row['class_num'];
+					}
+				if( $row['config_name'] === 'druid4' )
+					{
+					switch( $row['config_value'] )
+						{
+							case 'None':
+								$sel_druid4_none 		= "selected='selected'";
+								break;
+							case 'Low':
+								$sel_druid4_low 		= "selected='selected'";
+								break;
+							case 'Medium':
+								$sel_druid4_medium	 	= "selected='selected'";
+								break;
+							case 'High':
+								$sel_druid4_high	 	= "selected='selected'";
+								break;
+						}
+						$sel_druid4_num = $row['class_num'];
 					}
 				//Hunter
 				if( $row['config_name'] === 'hunter1' )
@@ -1848,9 +1881,14 @@ class acp_recruit_block
 					'SEL_DRUID3_LOW'				=> $sel_druid3_low,
 					'SEL_DRUID3_MEDIUM'				=> $sel_druid3_medium,
 					'SEL_DRUID3_HIGH'				=> $sel_druid3_high,
+					'SEL_DRUID4_NONE'				=> $sel_druid4_none,
+					'SEL_DRUID4_LOW'				=> $sel_druid4_low,
+					'SEL_DRUID4_MEDIUM'				=> $sel_druid4_medium,
+					'SEL_DRUID4_HIGH'				=> $sel_druid4_high,
 					'SEL_DRUID1_NUM'				=> $sel_druid1_num,
 					'SEL_DRUID2_NUM'				=> $sel_druid2_num,
 					'SEL_DRUID3_NUM'				=> $sel_druid3_num,
+					'SEL_DRUID4_NUM'				=> $sel_druid4_num,
 					
 					'SEL_HUNTER1_NONE'				=> $sel_hunter1_none,
 					'SEL_HUNTER1_LOW'				=> $sel_hunter1_low,
@@ -1978,8 +2016,8 @@ class acp_recruit_block
 					'SEL_WARRIOR3_HIGH'				=> $sel_warrior3_high,
 					'SEL_WARRIOR1_NUM'				=> $sel_warrior1_num,
 					'SEL_WARRIOR2_NUM'				=> $sel_warrior2_num,
-					'SEL_WARRIOR3_NUM'				=> $sel_warrior3_num,	
-
+					'SEL_WARRIOR3_NUM'				=> $sel_warrior3_num,
+					
 					'SEL_MONK1_NONE'				=> $sel_monk1_none,
 					'SEL_MONK1_LOW'				=> $sel_monk1_low,
 					'SEL_MONK1_MEDIUM'			=> $sel_monk1_medium,

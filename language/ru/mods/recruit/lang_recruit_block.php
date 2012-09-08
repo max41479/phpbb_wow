@@ -42,6 +42,7 @@ $lang = array_merge($lang, array(
 	'FROST'								=> 'Лед',	
 	'BALANCE'							=> 'Баланс',
 	'FERAL'								=> 'Сила зверя',
+	'GUARDIAN'							=> 'Страж',
 	'RESTORATION'						=> 'Исцеление',	
 	'BEASTMASTERY'						=> 'Повелитель зверей',
 	'MARKSMANSHIP'						=> 'Стрельба',
