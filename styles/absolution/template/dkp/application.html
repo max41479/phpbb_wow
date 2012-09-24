@@ -78,7 +78,7 @@
 						<div>
 							<select style="outline-color: #0067C4;" id="candidate_class_id" name="candidate_class_id" class="input">
 								<!-- BEGIN class_row -->
-									<option <!-- IF class_row.VALUE == 10 -->disabled="disabled" <!-- ENDIF -->style="background-color: #072443; color: {class_row.COLORCODE}" <!-- IF class_row.COLORCODE <> '#008467' -->value="{class_row.VALUE}"<!-- ENDIF -->{class_row.SELECTED}>{class_row.OPTION}</option>
+									<option style="background-color: #072443; color: {class_row.COLORCODE}" value="{class_row.VALUE}"{class_row.SELECTED}>{class_row.OPTION}</option>
 								<!-- END class_row -->
 							</select>
 							<select style="display:none;" name="game_id" class="input" onchange="return GetClassRace(this.value)">
