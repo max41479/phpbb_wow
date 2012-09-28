@@ -12,7 +12,6 @@ if (!defined('IN_PHPBB'))
 {
    exit;
 }
-
 if (!function_exists('generate_text_for_display')) 
 {
 	include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
@@ -188,7 +187,7 @@ while ( $news = $db->sql_fetchrow($result) )
     $db->sql_freeresult($result2);
     
 	$template->assign_block_vars('news_row', array( 
-		'DATE' => date('F j, Y', $news['topic_time']),
+		'DATE' => $user->format_date($news['topic_time']),
 		'HEADLINE' 	=> censor_text($news['topic_title']), 
 		'AUTHOR' 	=> get_username_string('full', $news['topic_poster'], $news['topic_first_poster_name'], $news['topic_first_poster_colour']), 
 		'LINK'		=> append_sid("{$phpbb_root_path}viewtopic.$phpEx", 'f=' . $news['forum_id'] . '&amp;t=' . $news['topic_id']), 

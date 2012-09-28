@@ -489,6 +489,14 @@ dd.topics span, dd.posts span, dd.views span {
 	-webkit-border-radius: 0px 0px 5px 5px; 
 }
 
+#wrap-portal {
+	background: #F0F6FB;
+	min-width: 960px !important;
+	border-radius: 0px 0px 5px 5px; 
+	-moz-border-radius: 0px 0px 5px 5px; 
+	-webkit-border-radius: 0px 0px 5px 5px; 
+}
+
 .vtouter {
 	background-color: #e6f0f9;
 	border: 1px solid #c3dbf0;

@@ -392,3 +392,9 @@ div.tickLabel {
 	font-size: 11px;
 }
 
+/* index background*/
+.panel_index {
+	margin-bottom: 4px;
+	padding: 0 10px;
+	background-color: #F0F6FB;
+}

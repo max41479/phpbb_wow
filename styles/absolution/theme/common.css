@@ -107,6 +107,12 @@ p.right {
 	min-width: 650px;
 }
 
+#wrap-portal {
+	margin: 0 auto;
+	padding: 0;
+	min-width: 650px;
+}
+
 #simple-wrap {
 	padding: 6px 10px;
 }

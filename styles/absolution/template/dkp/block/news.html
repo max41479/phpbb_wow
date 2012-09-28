@@ -1,5 +1,5 @@
 <!--  begin news  -->
-<div class="panel">
+<div class="panel_index">
 	<div class="inner">
 		<span class="corners-top">
 			<span></span>
@@ -12,10 +12,7 @@
 				<div class="postbody" style="width: 100%">
 					<h4 class="first">{news_row.ATTACH_ICON_IMG}<a href="{news_row.LINK}"><strong>{news_row.HEADLINE}</strong></a></h4>
 					<ul class="linklist">
-						<li>{L_NEWS_POST_BY_AUTHOR} : {news_row.AUTHOR} &raquo;&nbsp;{news_row.DATE}<a href="{news_row.LINK}"></a>
-							<span> &raquo;&nbsp;<a href="{news_row.LINK}" title="{L_VIEW_COMMENTS}">{L_COMMENT}: {news_row.MORE}</a></span>
-						</li>
-						<li class="rightside">{L_INFORUM}: <strong><a href="{news_row.U_VIEWFORUM}">{INFORUMNAME}</a></strong>
+						<li> &nbsp;{news_row.DATE}<a href="{news_row.LINK}"></a>
 						</li>
 					</ul>
 					<div class="content">
@@ -43,13 +40,14 @@
 					<div class="rightside">
 						<a href="#wrap" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a>
 					</div>
+					<hr class="dashed" />
 				</div>
 				<span></span>
 			</div>
 		</div>
 		<br />
 		<!-- END news_row -->
-		<hr class="dashed" />
+
 		<span class="corners-bottom">
 			<span></span>
 		</span>
