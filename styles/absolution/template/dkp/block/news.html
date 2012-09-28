@@ -10,9 +10,9 @@
 			<div class="inner">
 				<span></span>
 				<div class="postbody" style="width: 100%">
-					<h4 class="first">{news_row.ATTACH_ICON_IMG}<a href="{news_row.LINK}"><strong>{news_row.HEADLINE}</strong></a></h4>
+					<h4 class="first">{news_row.ATTACH_ICON_IMG}<a href="{news_row.LINK}"><span style="font-size: 130%; font-family: Arial, Helvetica, sans-serif;">{news_row.HEADLINE}</span></a></h4>
 					<ul class="linklist">
-						<li> &nbsp;{news_row.DATE}<a href="{news_row.LINK}"></a>
+						<li>{news_row.DATE}<a href="{news_row.LINK}"></a>
 						</li>
 					</ul>
 					<div class="content">
@@ -38,7 +38,7 @@
 					<div class="leftside">
 					</div>
 					<div class="rightside">
-						<a href="#wrap" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a>
+						<a href="<!-- IF SCRIPT_NAME eq 'portal' -->#wrap-portal<!-- ELSE -->#wrap<!-- ENDIF -->" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a>
 					</div>
 					<hr class="dashed" />
 				</div>
