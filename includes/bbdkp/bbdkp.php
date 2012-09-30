@@ -5,7 +5,7 @@
  * @author Sajaki@gmail.com
  * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @version 1.2.7
+ * @version 1.2.8-PL1
  */
 
 /**
@@ -28,37 +28,91 @@ global $phpbb_root_path;
 class bbDKP_Admin
 {
     // General vars
-    var $url_id       = 0;                // ID from _GET 
-    var $fv           = NULL;             // Form Validation
-    var $time         = 0;                // Current time   
-    var $bbtips		  = false; 
     
-function bbDKP_Admin()
-{
-    if(!defined("EMED_BBDKP"))
-    {
-        trigger_error ( $user->lang['BBDKPDISABLED'] , E_USER_WARNING );
-    }
-    
-    global $phpbb_root_path, $phpEx, $config, $user; 
-    
-    $boardtime = array(); 
-    $boardtime = getdate(time() + $user->timezone + $user->dst - date('Z'));
-    $this->time = $boardtime[0]; 
-    $this->fv = new Form_Validate;
-    
-    if (isset($config['bbdkp_plugin_bbtips_version']))
-    {	
-    	//check if config value and parser file exist.
-    	if($config['bbdkp_plugin_bbtips_version'] >= '0.3.1' && file_exists($phpbb_root_path. 'includes/bbdkp/bbtips/parse.' . $phpEx))
-    	{
-    		$this->bbtips = true;
-    	}
+	/**
+	 * points to url constant
+	 *
+	 * @var string
+	 */
+    public $url_id = 0;
 
-    }
-   
+    /**
+     * Form Validation
+     *
+     * @var string
+     */
+    public $fv = NULL;
     
-}
+    /**
+     * bbDKP time
+     *
+     * @var int
+     */
+    public $time = 0;
+
+    /**
+     * is bbTips installed
+     *
+     * @var bool
+     */
+    public $bbtips = false; 
+    
+    /**
+     * supported games
+     *
+     * @var array
+     */
+    public $games; 
+    
+	public function __construct()
+	{
+		global $user;
+		
+		$user->add_lang ( array ('mods/dkp_admin' ) );
+		$user->add_lang ( array ('mods/dkp_common' ) );
+			    if(!defined("EMED_BBDKP"))
+	    {
+	        trigger_error ( $user->lang['BBDKPDISABLED'] , E_USER_WARNING );
+	    }
+	    
+	    global $phpbb_root_path, $phpEx, $config, $user; 
+	    
+	    $this->games = array (
+			'wow' => $user->lang ['WOW'], 
+			'lotro' => $user->lang ['LOTRO'], 
+			'eq' => $user->lang ['EQ'], 
+			'daoc' => $user->lang ['DAOC'], 
+			'vanguard' => $user->lang ['VANGUARD'], 
+			'eq2' => $user->lang ['EQ2'], 
+			'warhammer' => $user->lang ['WARHAMMER'], 
+			'aion' => $user->lang ['AION'], 
+			'FFXI' => $user->lang ['FFXI'], 
+			'rift' => $user->lang ['RIFT'], 
+			'swtor' => $user->lang ['SWTOR'], 
+			'lineage2' => $user->lang ['LINEAGE2'],
+	    	'tera' => $user->lang ['TERA'],
+	    	'gw2' => $user->lang ['GW2'],
+	     
+	    
+	    );
+	    
+	    $boardtime = array(); 
+	    $boardtime = getdate(time() + $user->timezone + $user->dst - date('Z'));
+	    $this->time = $boardtime[0]; 
+	    $this->fv = new Form_Validate;
+	    
+	    if (isset($config['bbdkp_plugin_bbtips_version']))
+	    {	
+	    	//check if config value and parser file exist.
+	    	if($config['bbdkp_plugin_bbtips_version'] >= '0.3.1' && file_exists($phpbb_root_path. 'includes/bbdkp/bbtips/parse.' . $phpEx))
+	    	{
+	    		$this->bbtips = true;
+	    	}
+	
+	    }
+	   
+	    
+	}
     
 /**  
 * makes an entry in the bbdkp log table
@@ -73,7 +127,7 @@ function bbDKP_Admin()
 * log_result	varchar(255)	utf8_bin		No			 	 	 	 	 	 	 
 * log_userid	mediumint(8)	UNSIGNED	No	0	
 */	 	 	 	 	 	 	
-    function log_insert($values = array())
+    public function log_insert($values = array())
     {
         global $db, $user;
         $log_fields = array('log_date', 'log_type', 'log_action', 'log_ipaddress', 'log_sid', 'log_result', 'log_userid');
@@ -131,7 +185,7 @@ function bbDKP_Admin()
  	 * 
  	 * @return $group_key
 	 */
-    function gen_group_key($part1, $part2, $part3)
+    public function gen_group_key($part1, $part2, $part3)
     {
         // Get the first 10-11 digits of each md5 hash
         $part1 = substr(md5($part1), 0, 10);
@@ -204,6 +258,7 @@ function bbDKP_Admin()
 			
 			if (curl_errno ( $curl )) 
 			{
+				$errnum = curl_errno ($curl);
 				/*
                       CURLE_OK = 0,
                       CURLE_UNSUPPORTED_PROTOCOL,     1
@@ -215,7 +270,6 @@ function bbDKP_Admin()
                       CURLE_COULDNT_CONNECT,          7
                       CURLE_FTP_WEIRD_SERVER_REPLY,   8
                     */
-		       
 				switch ($errnum) 
 				{
 				    case "0" :
@@ -361,7 +415,7 @@ function bbDKP_Admin()
 	* Checks if SimpleXML can accept 3 parameters
 	* @access private
 	**/
-	function _allowSimpleXMLOptions()
+	public function _allowSimpleXMLOptions()
 	{
 		$parts = explode('.', phpversion());
 		return ($parts[0] == 5 && $parts[1] >= 1) ? true : false;
@@ -371,7 +425,7 @@ function bbDKP_Admin()
 	* Determines if we can use SimpleXML
 	* @access private
 	**/
-	function _useSimpleXML()
+	public function _useSimpleXML()
 	{
 		$parts = explode('.', phpversion());
 		return ($parts[0] == 5) ? true : false;
@@ -381,7 +435,7 @@ function bbDKP_Admin()
 	 * if the user is using php 5.1 then strip CDATA from xml
 	 * @access private
 	 */
-	function _removeCData($xml) 
+	public function _removeCData($xml) 
 	{
 	    $new_xml = NULL;
 	    preg_match_all("/\<\!\[CDATA \[(.*)\]\]\>/U", $xml, $args);

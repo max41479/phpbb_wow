@@ -13,12 +13,12 @@ if (! defined('IN_PHPBB'))
 
 /**  begin recruitment block ***/
 $color = array(
-	array(0 , $user->lang['NA'], "#000000" , "rec.png") , 
+	array(0 , $user->lang['NA'], "#000000" , "") , 
 	array(1 , $user->lang['CLOSED'] , "#AAAAAA" , "rec_closed.png") , 
 	array(2 , $user->lang['LOW'] , "#FFBB44" , "rec_low.png") , 
 	array(3 , $user->lang['MEDIUM'] ,"#FF3300" ,"rec_med.png") , 
 	array(4 ,$user->lang['HIGH'] ,"#AA00AA" ,"rec_high.png"));
-		
+
 if ($config['bbdkp_recruitment'] == 1)
 {
 	$template->assign_block_vars('status', array(
@@ -54,15 +54,19 @@ if ($config['bbdkp_recruitment'] == 1)
 			'TANKCOLOR' => $color[$row['tank']][2] , 
 			'TANKFORUM' => append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $rec_forum_id) , 
 			'TANKTEXT' => $color[$row['tank']][1] , 
-			'TANK' => $color[$row['tank']][3] , 
+			'TANK' => $color[$row['tank']][3] ,
+			'S_TANK' => ((int) $row['tank'] == 0) ? false: true, 
 			'DPSCOLOR' => $color[$row['dps']][2] , 
 			'DPSFORUM' => append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $rec_forum_id) , 
 			'DPSTEXT' => $color[$row['dps']][1] , 
 			'DPS' => $color[$row['dps']][3] , 
+			'S_DPS' => ((int) $row['dps'] == 0) ? false: true,
 			'HEALCOLOR' => $color[$row['heal']][2] , 
 			'HEALFORUM' => append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $rec_forum_id) , 
 			'HEALTEXT' => $color[$row['heal']][1] , 
-			'HEAL' => $color[$row['heal']][3]));
+			'HEAL' => $color[$row['heal']][3],
+			'S_HEAL' => ((int)  $row['heal'] == 0) ? false: true,	
+		));
 	}
 	$db->sql_freeresult($result);
 }

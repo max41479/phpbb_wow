@@ -28,7 +28,7 @@ class acp_dkp_mdkp_info
 		return array(
 			'filename'	=> 'acp_dkp_mdkp',
 			'title'		=> 'ACP_DKP_MDKP',
-			'version'	=> '1.2.7',
+			'version'	=> '1.2.8',
 			'modes'		=> array(
 				'mm_editmemberdkp'	=> array('title' => 'ACP_DKP_EDITMEMBERDKP',  'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_MDKP'), 'display' => false ),
 				'mm_listmemberdkp'	=> array('title' => 'ACP_DKP_LISTMEMBERDKP', 'auth' => 'acl_a_dkp',  'cat' => array('ACP_DKP_MDKP'), 'display' => true),

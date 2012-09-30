@@ -5,7 +5,7 @@
  * @author Sajaki@gmail.com
  * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @version 1.2.7
+ * @version 1.2.8
  */
 
 /**
@@ -351,18 +351,18 @@ class acp_dkp_sys extends bbDKP_Admin
 	 * very unusually you need to run this. 
 	 *
 	 */
-	public function syncdkpsys()
+	public function syncdkpsys($mode = 1)
 	{
 		global $user, $db, $phpbb_admin_path, $phpEx, $config;
 		$link = '<br /><a href="' . append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_sys&amp;mode=listdkpsys" ) . '"><h3>'. $user->lang['RETURN_DKPPOOLINDEX'].'</h3></a>';
 		
 		/* start transaction */
-		$db->sql_transaction('begin');
 		
 		/* reinintialise the dkp points table */
 		$sql = "DELETE from " . MEMBER_DKP_TABLE;
 		$db->sql_query ($sql);
 
+		$db->sql_transaction('begin');
 		/* select adjustments */
 		$sql = "SELECT adjustment_dkpid, member_id, SUM(adjustment_value) AS adjustment_value
 			FROM " . ADJUSTMENTS_TABLE . ' 
@@ -436,6 +436,8 @@ class acp_dkp_sys extends bbDKP_Admin
 			$result = $db->sql_query ($sql);
 			$count = $db->sql_fetchfield('count', false, $result);
 			$db->sql_freeresult ( $result);
+			
+			//this will be zero at first loop
 			if($count ==1)
 			{
 				$sql =  'SELECT * FROM ' . MEMBER_DKP_TABLE . ' WHERE member_id = ' . $member_id . ' 
@@ -596,8 +598,12 @@ class acp_dkp_sys extends bbDKP_Admin
 		'log_type' 		=> $log_action ['header'], 
 		'log_action' 	=> $log_action ) );
 		
-		$message = sprintf($user->lang['ADMIN_DKPPOOLSYNC_SUCCESS'] , $dkpcorr  + $dkpspentcorr);
-		trigger_error ( $message . $this->link , E_USER_NOTICE );
+		if ($mode==1)
+		{
+			//otherwise do silent sync
+			$message = sprintf($user->lang['ADMIN_DKPPOOLSYNC_SUCCESS'] , $dkpcorr  + $dkpspentcorr + $dkpadded);
+			trigger_error ( $message . $this->link , E_USER_NOTICE );
+		}
 				
 	}
 

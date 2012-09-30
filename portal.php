@@ -14,6 +14,7 @@
 * @ignore
 */
 define('IN_PHPBB', true);
+define('IN_BBDKP', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
@@ -57,6 +58,11 @@ else
 include($phpbb_root_path . 'includes/bbdkp/block/whoisonline.' . $phpEx);
 
 // variable blocks - these depend on acp
+if ($config['bbdkp_portal_newmembers'] == 1)
+{
+	include($phpbb_root_path . 'includes/bbdkp/block/newmembers.' . $phpEx);
+}
+
 if ($config['bbdkp_portal_welcomemsg'] == 1)
 {
 	include($phpbb_root_path . 'includes/bbdkp/block/welcomeblock.' . $phpEx);

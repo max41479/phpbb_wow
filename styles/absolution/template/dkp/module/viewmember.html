@@ -42,7 +42,6 @@
     <!-- IF S_SHOWZS -->
     <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_ZEROSUM}</strong>: <span class="positive">{ZEROSUM} {POINTNAME}</span></h4></td>
     <!-- ENDIF -->
-    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"></td>
     <!-- IF S_SHOWDECAY -->
     <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_RAIDDECAY}</strong>: <span class="negative">{RAIDDECAY} {POINTNAME}</span></h4></td>
     <!-- ENDIF -->
@@ -54,31 +53,31 @@
   <tr>
 	<td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_SPENT}</strong>: <span class="negative">{SPENT} {POINTNAME}</span></h4></td>
     <!-- IF S_SHOWTIME -->
-    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"></td>
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
     <!-- ENDIF -->
     <!-- IF S_SHOWZS -->
-    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"></td>
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
     <!-- ENDIF -->
-	<td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"></td>
 	<!-- IF S_SHOWDECAY  -->
 	<td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_ITEMDECAY}</strong>: <span class="positive">{ITEMDECAY} {POINTNAME}</span></h4></td>
 	<!-- ENDIF -->
     <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_TOTAL} {L_SPENT}</strong>: <span class="negative">{GPNET} {POINTNAME}</span></h4></td>
     </tr>
-    
+ </table>
+ 
+<table width="100%" border="0" cellspacing="1" cellpadding="2"> 
     <tr>
 	<td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_ADJUSTMENT}</strong>: <span class="{C_ADJUSTMENT}">{ADJUSTMENT} {POINTNAME}</span></h4></td>
 	<!-- IF S_SHOWTIME -->
-	<td></td>
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
 	<!-- ENDIF -->
 	<!-- IF S_SHOWZS -->
-	<td></td>
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
 	<!-- ENDIF -->
-	<td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"></td>
 	<!-- IF S_SHOWDECAY -->
 	<td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_ADJDECAY}</strong>: <span class="positive">{ADJDECAY} {POINTNAME}</span></h4></td>
 	<!-- ENDIF -->
-	
+	<td style="width:18%; white-space:nowrap; text-align:center;"></td>	
 	</tr>
 </table>
 <span class="corners-bottom"><span></span></span>
@@ -90,14 +89,13 @@
 
 <table width="100%" border="0" cellspacing="1" cellpadding="2">
   <tr>
-  	
+    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_TOTAL} {L_CURRENT}</strong>: <span class="{C_CURRENT}">{CURRENT} {POINTNAME}</span></h4></td>  	
     <!-- IF S_SHOWTIME -->
-    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"></td>
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
     <!-- ENDIF -->
     <!-- IF S_SHOWZS -->
-    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"></td>
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
     <!-- ENDIF -->
-    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_TOTAL} {L_CURRENT}</strong>: <span class="{C_CURRENT}">{CURRENT} {POINTNAME}</span></h4></td>
     <!-- IF S_SHOWDECAY -->
     <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_DECAY}</strong>: <span class="{C_TOTAL_DECAY}">{TOTAL_DECAY} {POINTNAME}</span></h4></td>
 	<!-- ENDIF -->

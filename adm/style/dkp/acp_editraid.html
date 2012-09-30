@@ -224,7 +224,7 @@ function durationcalc()
 	<dl>
 		<dt><label>{L_EVENT}:</label></dt>
     <dd>
-	    <select id="event_id" onchange="javascript:switch_event_val();" >
+	    <select id="event_id" name="event_id" onchange="javascript:switch_event_val();" >
 			<!-- BEGIN events_row -->
 			<option value="{events_row.VALUE}"{events_row.SELECTED}>{events_row.OPTION}</option>
 			<!-- END events_row -->
@@ -235,28 +235,28 @@ function durationcalc()
 	<dl>
 		<dt><label>{L_RAIDSTART}:</label></dt>
 		<dd>
-			<select id="d" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF -->>{S_RAIDSTARTDATE_DAY_OPTIONS}</select>
-			<select id="mo" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTARTDATE_MONTH_OPTIONS}</select> 
-			<select id="Y" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTARTDATE_YEAR_OPTIONS}</select>
+			<select id="d" name="d" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF -->>{S_RAIDSTARTDATE_DAY_OPTIONS}</select>
+			<select id="mo" name="mo"<!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTARTDATE_MONTH_OPTIONS}</select> 
+			<select id="Y" name="Y"  <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTARTDATE_YEAR_OPTIONS}</select>
 	   </dd>
 	   		<dd>
-			<select id="sh" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTART_H_OPTIONS}</select>
-			<select id="smi" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTART_MI_OPTIONS}</select> 
-			<select id="ss" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF -->  >{S_RAIDSTART_S_OPTIONS}</select>
+			<select id="sh" name="sh"<!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTART_H_OPTIONS}</select>
+			<select id="smi" name="smi"<!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDSTART_MI_OPTIONS}</select> 
+			<select id="ss" name="ss"<!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF -->  >{S_RAIDSTART_S_OPTIONS}</select>
 		</dd>
 	</dl>
 
 	<dl>
 		<dt><label>{L_RAIDEND}:</label></dt>
 		<dd>
-			<select id="ed" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDENDDATE_DAY_OPTIONS}</select>
-			<select id="emo" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF -->  >{S_RAIDENDDATE_MONTH_OPTIONS}</select> 
-			<select id="eY" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDENDDATE_YEAR_OPTIONS}</select>
+			<select id="ed" name="ed"<!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDENDDATE_DAY_OPTIONS}</select>
+			<select id="emo" name="emo"<!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF -->  >{S_RAIDENDDATE_MONTH_OPTIONS}</select> 
+			<select id="eY" name="eY" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDENDDATE_YEAR_OPTIONS}</select>
 	   </dd>
 	   	<dd>
-			<select id="eh" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDEND_H_OPTIONS}</select>
-			<select id="emi" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDEND_MI_OPTIONS}</select> 
-			<select id="es" <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDEND_S_OPTIONS}</select>
+			<select id="eh" name="eh"  <!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDEND_H_OPTIONS}</select>
+			<select id="emi" name="emi"<!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDEND_MI_OPTIONS}</select> 
+			<select id="es" name="es"<!-- IF S_SHOWTIME --> onchange="javascript:update_timebonus();" <!-- ELSE --> onchange="javascript:durationcalc();"   <!-- ENDIF --> >{S_RAIDEND_S_OPTIONS}</select>
 		</dd>
 	</dl>
 	
@@ -310,8 +310,8 @@ function durationcalc()
 
  	 <dl>
 	    <dt><label for="attendee_id">{L_MEMBER}:</label>{L_ATTENDEEADD_EXPLAIN}</dt>
-	    <dd><select id="attendee_id">{S_MEMBERLIST_OPTIONS}</select> 
-		<input type="submit" name="addattendee" value="{L_ADD_ATTENDEE}" class="button1" /></dd>
+	    <dd><select name="attendee_id" id="attendee_id">{S_MEMBERLIST_OPTIONS}</select> 
+		<input type="submit" name="addattendee" id="addattendee"value="{L_ADD_ATTENDEE}" class="button1" /></dd>
 	 </dl>
 	 
 <!-- ENDIF -->
@@ -424,7 +424,7 @@ function durationcalc()
 	<tbody>
 	  <!-- BEGIN items_row -->
 	  <!-- IF items_row.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
-	    <td  style="text-align:left; width:7%"  nowrap="nowrap" ><!-- IF items_row.S_RACE_IMAGE_EXISTS --><img src="{items_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE -->&nbsp;<!-- ENDIF --><!-- IF items_row.S_CLASS_IMAGE_EXISTS --><img src="{items_row.CLASS_IMAGE}" alt="{items_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF --></td>
+	    <td style="text-align:left; width:7%"  nowrap="nowrap" ><!-- IF items_row.S_RACE_IMAGE_EXISTS --><img src="{items_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE -->&nbsp;<!-- ENDIF --><!-- IF items_row.S_CLASS_IMAGE_EXISTS --><img src="{items_row.CLASS_IMAGE}" alt="{items_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF --></td>
 	    <td style="text-align:left; width:25%"><strong><a style="color:{items_row.COLORCODE}" href="{items_row.U_VIEW_ATTENDEE}">{items_row.BUYER}</a></strong></td>
 	    <td style="text-align:left; width:25%"><a href="{items_row.U_VIEW_ITEM}">{items_row.ITEMNAME}</a></td>
 	    <td style="text-align:right; width:15%" class="positive">{items_row.ITEMVALUE}</td>

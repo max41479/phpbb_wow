@@ -10,11 +10,13 @@
 <span class="corners-bottom"><span></span></span>
 </div>
 
+<!-- BEGIN dkpsys_row -->
+
+<h2>{dkpsys_row.NAME}</h2>
 <div class="forumbg forumbg-table">
 <div class="inner">
 <span class="corners-top"><span></span></span>
-
-<table  class="table1" cellspacing="0">
+<table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0">
 <thead>
 	<tr>
     <th style="width:60%; white-space:nowrap; text-align:left;"></th>
@@ -24,46 +26,38 @@
     <th style="width:10%; white-space:nowrap; text-align:left;">{L_VALUE}</th>
   </tr>
 </thead>
-</table>
-
-<!-- BEGIN dkpsys_row -->
-<table  class="table1" cellspacing="1">
-<thead>
-	<tr>
-  	<th style="text-align: left; white-space: nowrap; color:white;"  colspan="5"><h4>{dkpsys_row.NAME}</h4></th>
-	</tr>
-</thead>
-<!-- BEGIN events_row -->
+<tfoot>
 <tr>
-
-  <tr class="row bg1">
-    <td style="width:60%; white-space:nowrap; text-align:left;"><img src="{ROOT_PATH}/images/icons/view.gif" width="16" height="16" alt="View" /> <a style="color:{dkpsys_row.events_row.EVENTCOLOR}" href="{dkpsys_row.events_row.U_VIEW_EVENT}"> <strong>{dkpsys_row.events_row.NAME}</strong></a></td>
-    <td style="width:10%; white-space:nowrap; text-align:left;">{dkpsys_row.events_row.RAIDCOUNT}</td>
-    <td style="width:10%; white-space:nowrap; text-align:left;">{dkpsys_row.events_row.OLDEST}</td>
-    <td style="width:10%; white-space:nowrap; text-align:left;">{dkpsys_row.events_row.NEWEST}</td>
-    <td style="width:10%; white-space:nowrap; text-align:left;">{dkpsys_row.events_row.VALUE}</td>
-  </tr>
+<th style="text-align: left; white-space: nowrap; color:white;" colspan="0">{dkpsys_row.EVENTCOUNT}</th>
 </tr>
+</tfoot>
+	
+<!-- BEGIN events_row -->
+ <!-- IF dkpsys_row.events_row.S_ROW_COUNT is even -->
+  <tr class="row bg1">
+  <!-- ELSE -->
+  <tr class="row bg2">
+	<!-- ENDIF -->
+    <td><img src="{ROOT_PATH}/images/icons/view.gif" width="16" height="16" alt="View" /> <a style="color:{dkpsys_row.events_row.EVENTCOLOR}" href="{dkpsys_row.events_row.U_VIEW_EVENT}"> <strong>{dkpsys_row.events_row.NAME}</strong></a></td>
+    <td>{dkpsys_row.events_row.RAIDCOUNT}</td>
+    <td>{dkpsys_row.events_row.OLDEST}</td>
+    <td>{dkpsys_row.events_row.NEWEST}</td>
+    <td>{dkpsys_row.events_row.VALUE}</td>
+ </tr>
 <!-- END events_row -->
 </table>
-<!-- END dkpsys_row -->
-
-<table  class="table1" cellspacing="1">
-<tfoot>
-	<tr>
-  	<th style="text-align: left; white-space: nowrap; color:white;" colspan="5">{LISTEVENTS_FOOTCOUNT}</th>
-	</tr>
-</tfoot>
-</table>
-
-
 <span class="corners-bottom"><span></span></span>
 </div>
 </div>
 
-<!-- IF EVENT_PAGINATION -->  
 <div class="pagination">
-	<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{EVENT_PAGINATION}<br /><br /></span>
+	<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{dkpsys_row.S_ON_PAGE}</a><span>{dkpsys_row.EVENT_PAGINATION}<br /></span>
 </div>
+
+<!-- IF EVENT_PAGINATION -->  
 <!-- ENDIF -->
+<br />
+<!-- END dkpsys_row -->
+
+
 

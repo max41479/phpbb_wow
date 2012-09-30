@@ -4,12 +4,21 @@
 <li class="header">
 
 <div style="float: left; width:50%; white-space:nowrap;">
-      <h1 style ="color:#dfc065;"><!-- IF S_EVENT_IMAGE_EXISTS --><img src="{IMAGEPATH}" alt="{EVENTNAME}" /><!-- ENDIF --> {EVENTNAME}</h1>
+      <h1 style ="color:#dfc065;">
+      <img src="{IMAGEPATH}" alt="{EVENTNAME}" />
+	  {EVENTNAME}</h1>
 </div>
 </li>
 </ul>
 <span class="corners-bottom"><span></span></span>
 </div>
+
+
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+<!-- IF .raids_row -->
 
 <h2>{RECORDED_RAID_HISTORY}</h2>
 <div class="panel">
@@ -155,6 +164,13 @@
 		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
 		<span>{ITEM_PAGINATION}<br /><br /></span>
 </div>
+<!-- ENDIF -->
+
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!-- ELSE -->
+<p class= "error">{L_NO_DATA}</p>
 <!-- ENDIF -->
 <span class="corners-bottom"><span></span></span>
 </div>

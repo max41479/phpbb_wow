@@ -5,7 +5,7 @@
  * @author Sajaki@gmail.com
  * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @version 1.2.7
+ * @version 1.2.8-PL1
  */
 
 /**
@@ -27,8 +27,8 @@ if (! defined ( 'EMED_BBDKP' ))
 class acp_dkp_game extends bbDKP_Admin
 {
 
-	var $u_action;
-	private $games;
+	public $u_action;
+	
 	private $link;
 	/** 
 
@@ -42,26 +42,12 @@ class acp_dkp_game extends bbDKP_Admin
 	{
 		global $db, $user, $template;
 		global $config, $phpbb_root_path, $phpbb_admin_path, $phpEx;
-		$user->add_lang ( array ('mods/dkp_admin' ) );
-		$user->add_lang ( array ('mods/dkp_common' ) );
+		$user->add_lang (array ('mods/dkp_admin'));
+		$user->add_lang (array ('mods/dkp_common'));
 		$this->link = '<br /><a href="' . append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_game&amp;mode=listgames" ) . '"><h3>' . $user->lang ['RETURN_DKPINDEX'] . '</h3></a>';
 		
 		$form_key = 'acp_dkp_game';
 		add_form_key ( $form_key );
-		
-		$this->games = array (
-			'wow' => $user->lang ['WOW'], 
-			'lotro' => $user->lang ['LOTRO'], 
-			'eq' => $user->lang ['EQ'], 
-			'daoc' => $user->lang ['DAOC'], 
-			'vanguard' => $user->lang ['VANGUARD'], 
-			'eq2' => $user->lang ['EQ2'], 
-			'warhammer' => $user->lang ['WARHAMMER'], 
-			'aion' => $user->lang ['AION'], 
-			'FFXI' => $user->lang ['FFXI'], 
-			'rift' => $user->lang ['RIFT'], 
-			'swtor' => $user->lang ['SWTOR'], 
-			'lineage2' => $user->lang ['LINEAGE2'] );
 		
 		switch ($mode)
 		{
@@ -532,7 +518,7 @@ class acp_dkp_game extends bbDKP_Admin
 	 */
 	function add_class()
 	{
-		global $db, $user, $config;
+		global $db, $user, $config, $cache;
 		
 		//user pressed add or update in list
 		$game_id = request_var ( 'game_id', '' );
@@ -596,7 +582,7 @@ class acp_dkp_game extends bbDKP_Admin
 	 */
 	function class_delete()
 	{
-		global $db, $user, $phpbb_admin_path, $phpbb_root_path, $phpEx;
+		global $cache, $config, $db, $user, $phpbb_admin_path, $phpbb_root_path, $phpEx;
 		//unique key
 		$class_id = request_var ( 'id', 0 );
 		$game_id = request_var ( 'game_id', '' );
@@ -693,7 +679,7 @@ class acp_dkp_game extends bbDKP_Admin
 	 */
 	function add_race()
 	{
-		global $db, $user, $cache;
+		global $db, $user, $cache, $config;
 
 		$game_id = request_var ( 'game_id', request_var ( 'hidden_game_id', '' ) );
 		$id = request_var ( 'race_id', 0 );

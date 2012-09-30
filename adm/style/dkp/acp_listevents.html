@@ -16,8 +16,13 @@
 <table cellspacing="1">
 <thead>
   <tr>
+    <th style="text-align:left; width:10%"><a href="{U_LIST_EVENTS}o={O_STATUS}">{L_ACTIVE}</a> <br/>
+    <span class="small"><a href="#" onclick="marklist('acp_listevents', 'activate_id', true); return false;">{L_MARK_ALL}</a> <br/>
+	<a href="#" onclick="marklist('acp_listevents', 'activate_id', false); return false;">{L_UNMARK_ALL}</a></span>
+	</th>
+    <th style="text-align:left; width:5%">{L_ID}<br/>
     <th style="text-align:left; width:20%"><a href="{U_LIST_EVENTS}&amp;o={O_DKPSYS}&amp;start={START}">{L_POOL}</a></th>
-    <th style="text-align:left; width:40%"><a href="{U_LIST_EVENTS}&amp;o={O_NAME}&amp;start={START}">{L_EVENT_NAME}</a></th>
+    <th style="text-align:left; width:30%"><a href="{U_LIST_EVENTS}&amp;o={O_NAME}&amp;start={START}">{L_EVENT_NAME}</a></th>
     <th style="text-align:left; width:20%">{L_EVENT_IMAGE}</th>
     <th style="text-align:center; width:20%; white-space: nowrap"><a href="{U_LIST_EVENTS}&amp;o={O_VALUE}&amp;start={START}">{L_VALUE}</a></th>
   	<th style="text-align:center; width:5%">{L_ACTION}</th>
@@ -30,6 +35,8 @@
   <!-- ELSE -->
   <tr class="row2">
   <!-- ENDIF -->
+  	<td style="text-align:center; white-space: nowrap"><input type="checkbox" name="activate_ids[{events_row.EVENT_ID}]" value="{events_row.EVENT_ID}" {events_row.S_EVENT_STATUS} /></td>
+    <td>{events_row.EVENT_ID}</td>
     <td><strong>{events_row.DKPSYS_EVENT}</strong></td>
     <td><a style="color:{events_row.COLOR}" href="{events_row.U_VIEW_EVENT}"><strong>{events_row.NAME}</strong></a></td>
     <td><!-- IF events_row.S_EVENT_IMAGE_EXISTS -->  <img src="{events_row.IMAGEPATH}" alt="{events_row.NAME}" /><!-- ENDIF --> </td>
@@ -40,20 +47,24 @@
   </tr>
   <!-- END events_row -->
   <tr>
-    <th colspan="5" class="footer">{LISTEVENTS_FOOTCOUNT}</th>
+    <th colspan="0" class="footer">{LISTEVENTS_FOOTCOUNT}</th>
   </tr>
   </tbody>
 </table>
 
-<!-- IF EVENT_PAGINATION -->
-<div class="pagination">
-		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> &bull; <span>{EVENT_PAGINATION}</span>
-</div>
-<!-- ENDIF -->
-
 <fieldset class="quick" style="float: {S_CONTENT_FLOW_BEGIN};">
+	<input type="hidden" name="idlist" value="{IDLIST}" />
+	<input class="button2" type="submit" name="deactivate" value="{L_CHANGE_STATUS}" />
 	<input class="button2" name="eventadd" type="submit" value="{L_ADD}" />
 </fieldset>
+
+<!-- IF EVENT_PAGINATION -->
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> <span>{EVENT_PAGINATION}</span>
+</div>
+</fieldset>
+<!-- ENDIF -->
 </div>
 </form>
 

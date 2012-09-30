@@ -64,12 +64,6 @@
   </dl> 
   <!-- ENDIF -->
     <hr/>
-    
-    <dl>
-    <dt><label for="earned">{L_EARNED}:</label></dt>
-		<dd><input type="text" name="earned"  id="earned" size="20" maxlength="14" value="{EARNED}" class="input" /> 
-		/ {L_SHOULD_BE}: <span class="positive">{CORRECT_EARNED}</span></dd>
-  </dl> 
    <!-- IF S_SHOWDECAY -->    
     <dl>
     <dt><label for="rdecay">{L_DECAY}:</label></dt>
@@ -77,6 +71,12 @@
 		/ {L_SHOULD_BE}: <span class="negative">{CORRECT_RAIDDECAY}</span></dd>
   </dl> 
   <!-- ENDIF -->  
+    
+    <dl>
+  <dt><label for="earned">{L_EARNED}:</label></dt>
+		<dd><input type="text" name="earned"  id="earned" size="20" maxlength="14" value="{EARNED}" class="input" /> 
+		/ {L_SHOULD_BE}: <span class="positive">{CORRECT_EARNED}</span></dd>
+  </dl> 
   <dl>
     <dt><label>{L_ADJUSTMENT}:</label></dt>
 	<dd>{ADJUSTMENT}</dd>
@@ -98,7 +98,7 @@
   <dl>
     <dt><label for="idecay">{L_DECAY}:</label></dt>
 	<dd><input type="text" id="idecay" name="idecay" size="20" maxlength="14" value="{ITEMDECAY}" class="input" /> 
-	/ {L_SHOULD_BE}: <span class="positive"><strong>{CORRECT_ITEMDECAY}</span></dd>
+	/ {L_SHOULD_BE}: <span class="positive"><strong>{CORRECT_ITEMDECAY}</strong></span></dd>
   </dl> 
   <!-- ENDIF -->      
   <!-- IF S_SHOWEPGP -->
@@ -110,8 +110,8 @@
 <hr/>  
   <!-- IF S_SHOWEPGP -->
   <dl>
-    <dt><label for="er">{L_ER}:</label></dt>
-	<dd><span><strong>{ER}</strong></span></dd>
+    <dt><label for="er">{L_PR}:</label></dt>
+	<dd><span><strong>{PR}</strong></span></dd>
   </dl>
   <!-- ENDIF -->
   <dl>

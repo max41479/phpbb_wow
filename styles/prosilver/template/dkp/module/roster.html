@@ -58,7 +58,8 @@ list layout
 <thead>
 <tr>
 	<th style="text-align: left; width: 15%"><a href="{O_NAME}">{L_NAME}</a></th>
-	<th style="text-align: left; width: 10%"><a href="{O_RANK}">{L_RANK}</a></th>
+	<th style="text-align: left; width: 7%"><a href="{O_GAME}">{L_GAME}</a></th>
+	<th style="text-align: left; width: 7%"><a href="{O_RANK}">{L_RANK}</a></th>
     <th style="text-align: center;width: 5%"><a href="{O_LEVEL}">{L_LEVEL}</a></th>
  	<th style="text-align: left;width: 15%"><a href="{O_RACE}">{L_RACE}</a></th>
  	<th style="text-align: left;width: 15%"><a href="{O_CLASS}">{L_CLASS}</a></th>
@@ -77,6 +78,7 @@ list layout
 		<td style="text-align: left;">
 		<a style="white-space: nowrap; color:{members_row.COLORCODE}" href="{members_row.U_VIEW_MEMBER}"><strong>{members_row.NAME}</strong></a>
 		</td>
+		<td style="text-align:left;">{members_row.GAME}</td>
 		<td style="text-align:left;">{members_row.RANK}</td>
     	<td style="text-align:center;">{members_row.LVL}</td>
 		<td style="text-align: left;"><!-- IF members_row.S_RACE_IMAGE_EXISTS --><img src="{members_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE --><!-- ENDIF -->{members_row.RACE}</td>		

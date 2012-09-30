@@ -5,7 +5,7 @@
  * @author Sajaki@gmail.com
  * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @version 1.2.7
+ * @version 1.2.8
  */
 			
 /**
@@ -191,6 +191,13 @@ class ucp_dkp
 	{
 		global $db, $auth, $user, $template, $config, $phpbb_root_path;
 		
+		// Include the base class
+		if (!class_exists('bbDKP_Admin'))
+		{
+			require("{$phpbb_root_path}includes/bbdkp/bbdkp.$phpEx");
+		}
+		$bbdkp = new bbDKP_Admin();
+
 		// Attach the language file
 		$user->add_lang('mods/dkp_common');
 		$user->add_lang(array('mods/dkp_admin'));
@@ -347,23 +354,9 @@ class ucp_dkp
 			}
 		}
 		
-		//game
-		$games = array(
-			'wow'        => $user->lang['WOW'], 
-			'lotro'      => $user->lang['LOTRO'], 
-			'eq'         => $user->lang['EQ'], 
-			'daoc'       => $user->lang['DAOC'], 
-			'vanguard' 	 => $user->lang['VANGUARD'],
-			'eq2'        => $user->lang['EQ2'],
-			'warhammer'  => $user->lang['WARHAMMER'],
-			'aion'       => $user->lang['AION'],
-			'FFXI'       => $user->lang['FFXI'],
-			'rift'       => $user->lang['RIFT'],
-			'swtor'      => $user->lang['SWTOR'],
-			'lineage2'   => $user->lang['LINEAGE2']
-         );
+
         $installed_games = array();
-        foreach($games as $gameid => $gamename)
+        foreach($bbdkp->games as $gameid => $gamename)
         {
         	//add value to dropdown when the game config value is 1
         	if ($config['bbdkp_games_' . $gameid] == 1)

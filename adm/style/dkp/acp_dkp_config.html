@@ -150,6 +150,30 @@
     <dt><label for="bbdkp_user_elimit">{L_EVENTS_PER_PAGE}:</label></dt>
     <dd><input type="text" name="bbdkp_user_elimit" id="bbdkp_user_elimit" size="20" maxlength="30" value="{USER_ELIMIT}" class="input" />{FV_DEFAULT_ELIMIT}</dd>
   </dl>
+  <dl>
+    <dt><label for="event_viewall">{L_EVENT_VIEWALL}:</label><br />{L_EVENT_VIEWALL_EXPLAIN}</dt>
+    <dd>
+    <input type="radio" id="event_viewall" name="event_viewall" value="1"{EVENT_VIEWALL_YES_CHECKED} /> {L_YES}&nbsp;&nbsp;
+    <input type="radio" name="event_viewall" value="0"{EVENT_VIEWALL_NO_CHECKED} /> {L_NO}
+   </dd>
+
+  </dl>
+</fieldset>
+
+<fieldset>
+<legend>{L_MENU_RAIDS}</legend>
+ <dl>
+    <dt><label for="bbdkp_user_rlimit">{L_RAIDS_PER_PAGE}:</label></dt>
+    <dd><input type="text" name="bbdkp_user_rlimit" id="bbdkp_user_rlimit" size="20" maxlength="30" value="{USER_RLIMIT}" class="input" />{FV_DEFAULT_RLIMIT}</dd>
+  </dl>
+</fieldset>
+
+ <fieldset>
+ <legend>{L_MENU_ITEMHIST}</legend>
+   <dl>
+    <dt><label for="bbdkp_user_ilimit">{L_ITEMS_PER_PAGE}:</label></dt>
+    <dd><input type="text" name="bbdkp_user_ilimit" id="bbdkp_user_ilimit" size="20" maxlength="30" value="{USER_ILIMIT}" class="input" />{FV_DEFAULT_ILIMIT}</dd>
+  </dl>
 </fieldset>
 
 <fieldset>
@@ -176,24 +200,6 @@
   <dl>
     <dt><label for="bbdkp_inactive_point_adj">{L_INACTIVE_POINT_ADJ}:</label><br />{L_INACTIVE_POINT_ADJ_NOTE}</dt>
     <dd><input type="text" name="bbdkp_inactive_point_adj" id="bbdkp_inactive_point_adj" size="20" maxlength="30" value="{INACTIVE_POINT}" class="input" /></dd>
-  </dl>
-</fieldset>
-
- 
- <fieldset>
- <legend>{L_MENU_ITEMHIST}</legend>
-  
-   <dl>
-    <dt><label for="bbdkp_user_ilimit">{L_ITEMS_PER_PAGE}:</label></dt>
-    <dd><input type="text" name="bbdkp_user_ilimit" id="bbdkp_user_ilimit" size="20" maxlength="30" value="{USER_ILIMIT}" class="input" />{FV_DEFAULT_ILIMIT}</dd>
-  </dl>
-</fieldset>
- 
-<fieldset>
-<legend>{L_MENU_RAIDS}</legend>
- <dl>
-    <dt><label for="bbdkp_user_rlimit">{L_RAIDS_PER_PAGE}:</label></dt>
-    <dd><input type="text" name="bbdkp_user_rlimit" id="bbdkp_user_rlimit" size="20" maxlength="30" value="{USER_RLIMIT}" class="input" />{FV_DEFAULT_RLIMIT}</dd>
   </dl>
 </fieldset>
 

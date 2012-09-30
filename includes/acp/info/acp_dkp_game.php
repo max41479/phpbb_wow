@@ -39,7 +39,7 @@ class acp_dkp_game_info
 		return array(
 			'filename'	=> 'acp_dkp_game',
 			'title'		=> 'ACP_DKP_GAME',
-			'version'	=> '1.2.7',
+			'version'	=> '1.2.8',
 			'modes'		=> array(
 				'listgames'		=> array('title' => 'ACP_DKP_GAME_LIST',  'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_GAME') , 'display' => true),
 				'addfaction'	=> array('title' => 'ACP_DKP_FACTION_ADD',   'auth' => 'acl_a_dkp', 'cat' => array('ACP_DKP_GAME') , 'display' => false),

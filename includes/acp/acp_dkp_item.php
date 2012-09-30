@@ -5,7 +5,7 @@
  * @author Sajaki@gmail.com
  * @copyright 2009 bbdkp
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @version 1.2.7
+ * @version 1.2.8
  */
 
 /**
@@ -344,7 +344,8 @@ class acp_dkp_item extends bbDKP_Admin
 		{
 			$loottime = $row['raid_start'];
 		}
-	
+		$db->sql_freeresult ( $result );
+		
 		//
 		// Generate random group key
 		$group_key = $this->gen_group_key ( $item_name, $loottime, $raid_id + rand(10,100) );
@@ -390,9 +391,7 @@ class acp_dkp_item extends bbDKP_Admin
 		// Success message
 		//
 		$success_message = sprintf ( $user->lang ['ADMIN_ADD_ITEM_SUCCESS'], $item_name, implode ( ', ', $item_buyers  ), $itemvalue );
-		
 		$this->link = '<br /><a href="' . append_sid ( "{$phpbb_admin_path}index.$phpEx", "i=dkp_raid&amp;mode=editraid&amp;". URI_RAID . "=" .$raid_id ) . '"><h3>'.$user->lang['RETURN_RAID'].'</h3></a>';
-		
 		trigger_error ( $success_message . $this->link, E_USER_NOTICE );
 	}
 
