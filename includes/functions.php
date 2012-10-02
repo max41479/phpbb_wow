@@ -4606,8 +4606,33 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		}
 	}
 
+	//max41479 stream online check
+	$json_file = @file_get_contents("http://api.justin.tv/api/stream/list.json?channel=max41479");
+	$json_array = json_decode($json_file, true);
+	if (empty($json_array))
+	{
+		$stream1 = 'off';
+	}else if (strtolower($json_array[0]['name']) == strtolower("live_user_max41479")) 
+	{
+		$stream1 = 'on';
+	}
+	
+	//ammot stream online check
+	$json_file = @file_get_contents("http://api.own3d.tv/rest/live/status.json?liveid=391646");
+	$json_array = json_decode($json_file, true);
+    if (($json_array['live_is_live']) == ("1")) 
+	{
+        $stream2 = 'on';
+    }else
+	{
+       	$stream2 = 'off';
+    }
+
+
 	// The following assigns all _common_ variables that may be used at any point in a template.
 	$template->assign_vars(array(
+		'STREAM1'						=> $stream1, //max41479
+		'STREAM2'						=> $stream2, //Ammoth
 		'SITENAME'						=> $config['sitename'],
 		'SITE_DESCRIPTION'				=> $config['site_desc'],
 		'PAGE_TITLE'					=> $page_title,

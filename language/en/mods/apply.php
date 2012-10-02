@@ -5,7 +5,7 @@
 * @package bbDkp
 * @copyright (c) 2009 bbDkp <http://code.google.com/p/bbdkp/>
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @version $Id$
+* @version 1.3.7
 * 
 */
  
@@ -41,12 +41,6 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 
-/****** installer ********/
-'APPLY_INSTALL_MOD' =>  'Application Mod version %s installed successfully. ',
-'APPLY_UNINSTALL_MOD' =>  'Application Mod version %s uninstalled successfully. ',
-'APPLY_UPD_MOD' =>  'Application Mod updated successfully to version %s',
-'UMIL_CACHECLEARED' => 'Template, Theme, Imageset caches cleared', 
-
 /***** Questionnaire ******/
 'APPLY_MENU' => 'Application Form',
 'APPLY_TITLE' => 'Application Form',
@@ -65,20 +59,9 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_RACE'  => 'Race: ',
 'APPLY_TALENT'  => 'Talent: ',
 'APPLY_PROFF'  =>  'Profession: ',
-
-/***** ACP Privacy settings *****/
-'APPLY_ACP_PRISETTING'		=> 'Privacy Settings',
-'APPLY_ACP_FORUM_PUB'		=> 'Recruitment forum (Public) ',
-'APPLY_ACP_FORUM_PRI'		=> 'Recruitment forum (Private) ',
-'APPLY_ACP_FORUM_PRI_EXPLAIN'	=> 'Set Group forum permission of Guests and Applicants to: <br />"Post"->"Can start new topics"->"Yes",<br/> "Can read forum" -> "No" ',
-'APPLY_ACP_FORUM_PREF'		=> 'User preference (Private or Public) ',
-'APPLY_ACP_FORUM_PREF_EXPLAIN'		=> 'decides in which forum the application will be published.',
-'APPLY_ACP_FORUM_CHOICE' =>  'Allow User to choose Privacy setting ?',
-'APPLY_ACP_FORUM_CHOICE_EXPLAIN' =>  'If your guild does not allow public applications, set this to "No"',
-'APPLY_ACP_PUBLIC'			=> 'Public',
-'APPLY_ACP_PRIVATE'			=> 'Private',
-'APPLY_ACP_GUESTPOST' 		=> 'Can guests posts? :',
-'APPLY_ACP_GUESTPOST_EXPLAIN' 	=> 'If you set Guest posting On, don’t forget to set "Enable visual confirmation for guest postings:" to "Yes".' ,  
+'TEMPLATE'	=> 'Template', 
+'CONFIRM_DELETE_TEMPLATE'	=> 'Please confirm deletion of template %s. ', 
+'ALERT_TEMPLATENAME_EMPTY'	=> 'Template name can’t be empty',
 
 /***** ACP Armory settings *****/
 'APPLY_ACP_TEMPLATESETTING'	=> 'Template Settings',
@@ -87,30 +70,37 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_ACP_CHARNAME' 		=> 'Character name',
 'APPLY_ACP_REALM' 			=> 'Realm',
 'APPLY_ACP_REGION' 			=> 'Region',
-'APPLY_ACP_APPTEMPLATEUPD'	=> 'Update Application template', 
+'APPLY_ACP_APPTEMPLATELIST'	=> 'Application templates', 
+'APPLY_ACP_APPTEMPLATELIST_EXPLAIN'	=> 'the template ID is needed as a parameter for apply.php : for example template id 7 is called by url http://www.myguild.org/apply.php?template_id=7; make as many links on your forum as you have templates. ',
+'TEMPLATE_ID'				=> 'Template ID', 
 
 /***** ACP template settings *****/
+'APPLY_ACP_FORUM_PREF_EXPLAIN'		=> 'decides in which forum the application will be published. Set up the forum acccess priveleges beforehand.',
+'APPLY_ACP_FORUM_PUB'		=> 'Forum',
+'APPLY_ACP_PUBLIC'			=> 'Public',
+'APPLY_ACP_GUESTPOST' 		=> 'Can guests posts? :',
+'APPLY_ACP_GUESTPOST_EXPLAIN' 	=> 'If you set Guest posting On, don’t forget to set "Enable visual confirmation for guest postings:" to "Yes".' ,  
 'ACP_APPLY_MANDATORY'  		 => 'Mandatory',
 'ACP_APPLY_HEADER'  		 => 'Title',
 'ACP_APPLY_QUESTION'  		 => 'Question',
 'ACP_APPLY_CONTENTS'  		 => 'Select Options',
-'ACP_APPLY_WHATGUILD'  		 => 'Select how candidate will be added to memberlist. ',
-'ACP_APPLY_WHATGUILD_EXPLAIN' => 'candidate will be added to lowest rank if added to guild.',
+'ACP_APPLY_WHATGUILD_EXPLAIN' 	 => 'Select the Guild to which a candidate will be added.',
 'ACP_APPLY_GNONE'  			 => 'add to None',
 'ACP_APPLY_GSEL'  			 => 'add to selected guild',
 
 'ACP_DKP_APPLY_EXPLAIN'  	=> 'Here you can set all preferences of the Recruitment Mod',
-'APPLY_ACP_APPTEMPLATENEW'  => 'Application template New item', 
+'APPLY_ACP_APPTEMPLATELINES'  => 'Template lines', 
 'APPLY_CHGMAND' 			=> 'Change Questionnaire here. ',
-'APPLY_CHGMAND_EXPLAIN' 	=> 'Change the type mandatory check, question type, Title and question. The two first questions are reserved. <br /> In case of a Selectbox, radiobutton or checkbox, separate the options with a comma "," with no spaces.(ex. 1,2,3,4,5") ',
+'APPLY_CHGMAND_EXPLAIN' 	=> 'Change the type mandatory check, question type (Inputbox, Textbox, Textbox with bbcode buttons, selectbox, radiobuttons or checkboxes), Title and question.  <br /> In case of a Selectbox, radiobutton or checkbox, separate the options with a comma "," with no spaces.(ex. 1,2,3,4,5") ',
 'APPLY_ACP_NEWQUESTION' 	=> 'Enter new questions here.',
-'APPLY_ACP_NEWQUESTION_EXPLAIN' => 'Check if mandatory, select the type, enter the title, question. <br /> Separate the checkbox, radiobutton, or selectbox options with a comma "," with no spaces.', 
+'APPLY_ACP_NEWQUESTION_EXPLAIN' => 'Check if mandatory, select the type (Inputbox, Textbox, Textbox with bbcode buttons, Selectbox, Radiobuttons or Checkboxes), enter the title, question. <br /> Separate the checkbox, radiobutton, or selectbox options with a comma "," with no spaces.', 
 'APPLY_ACP_INPUTBOX' 		=> 'Inputbox',	
 'APPLY_ACP_TXTBOX' 			=> 'Textbox', 
+'APPLY_ACP_TXTBOXBBCODE'	=> 'Textbox with bbcode',
 'APPLY_ACP_SELECTBOX' 		=> 'Selectbox',
 'APPLY_ACP_RADIOBOX' 		=> 'Radiobuttons',
 'APPLY_ACP_CHECKBOX' 		=> 'Checkboxes',
-'APPLY_ACP_CHECKBOX' 		=> 'Checkboxes',
+
 
 //warnings
 'APPLY_ACP_RETURN' 			=> '<h3>Return to Application config.</h3>',
@@ -123,9 +113,12 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_ACP_QUESTUPD' 		=> 'Apply Questions Updated',
 //addnew
 'APPLY_ACP_ORDQUEST' 		=> 'You need to fill out order, question and options before adding.',
-'APPLY_ACP_QUESTNOTADD' 	=> 'ERROR : New question not saved !', 
-'APPLY_ACP_QUESTNADD' 		=> 'New question Saved !',   
+'APPLY_ACP_QUESTNOTADD' 	=> 'ERROR : New question not added !', 
+'APPLY_ACP_QUESTNADD' 		=> 'New question added.',   
 'APPLY_ACP_EXPLAINOPTIONS' 	=> 'Seperate Options with a comma "," with no spaces.',  
+'APPLY_ACP_TEMPLATEADD' 	=> 'New template added.', 
+'REQUIRED'					=> 'Required', 
+
 
 /** ACP settings for posting template **/
 'APPLY_COLORSETTINGS' 		=> 'Apply Color Settings',
@@ -150,6 +143,39 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_REQUIRED_LEVEL'  => 'Level is required. ', 
 'APPLY_REQUIRED_NAME'	=> 'Name is required. ', 
 'RETURN_APPLY'  =>  'Return to Application',
+
+/** installer **/
+'APPLY_INSTALL_MOD' =>  'Application Mod version %s installed successfully. ',
+'APPLY_UNINSTALL_MOD' =>  'Application Mod version %s uninstalled successfully. ',
+'APPLY_UPD_MOD' =>  'Application Mod updated successfully to version %s',
+'UMIL_CACHECLEARED' => 'Template, Theme, Imageset caches cleared', 
+'APPLY'		=> 'Apply', 
+'ERROR_MINIMUM133' => 'Minimum version required for upgrades is 1.3.3',
+'DEFAULT_Q1' => 'Can you tell us abit about yourself please ?', 
+'DEFAULT_Q2' => 'Please list your alts.', 
+'DEFAULT_Q3' => 'Reason for leaving your current guild ?', 
+'DEFAULT_Q4' => 'What can you bring to us and what do you expect ?', 
+'DEFAULT_Q5' => 'Comment on your build, Glyph set, gear.', 
+'DEFAULT_Q6' => 'Describe your raid experience ', 
+'DEFAULT_Q7' => 'link to your raid logs.', 
+'DEFAULT_Q8' => 'Check the days you’re available', 
+'DEFAULT_Q9' => 'Can you agree with our raid times 7:30pm to 11pm Server time (UTC+1) ?', 
+'DEFAULT_Q10' => 'Is it good enough to maintain a high FPS? what’s the spec ?', 
+'DEFAULT_Q11' => 'Are you underage ? Check yes or no', 
+'DEFAULT_H1' => 'Personal Info',  
+'DEFAULT_H2' => 'Alts',  
+'DEFAULT_H3' => 'Guild history',  
+'DEFAULT_H4' => 'Motivation',  
+'DEFAULT_H5' => 'Build, Glyphs, Gear',  
+'DEFAULT_H6' => 'Raid experience ',  
+'DEFAULT_H7' => 'Ranks and WOL logs',  
+'DEFAULT_H8' => 'Raid Days',  
+'DEFAULT_H9' => 'Raid times',  
+'DEFAULT_H10' => 'Computer/Connection info',  
+'DEFAULT_H11' => 'Age',  
+'DEFAULT_O8' => 'monday,tuesday,wednesday,thursday,friday,saturday,sunday',  
+'DEFAULT_O11' => 'yes,no',  
+
 
 ));
 

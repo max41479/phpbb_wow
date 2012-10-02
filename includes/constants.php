@@ -279,6 +279,8 @@ define('ZEBRA_TABLE',				$table_prefix . 'zebra');
 // Additional tables
 define('APPTEMPLATE_TABLE',			$table_prefix . 'bbdkp_apptemplate');
 define('APPHEADER_TABLE',			$table_prefix . 'bbdkp_apphdr');
+define('APPTEMPLATELIST_TABLE',		$table_prefix . 'bbdkp_apptemplatelist');
+
 //Recruitment Block
 //----- START ----- 
 define('RECRUIT_CONFIG_TABLE',			'rt_recruit_config');

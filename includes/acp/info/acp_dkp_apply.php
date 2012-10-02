@@ -4,7 +4,7 @@
 * Application form created by Kapli (bbDKP developer)
 *
 * @package bbDkp.acp
-* @version $Id$
+* @version 137
 * @copyright (c) 2009 bbdkp http://code.google.com/p/bbdkp/
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 * 
@@ -28,7 +28,7 @@ class acp_dkp_apply_info
 		return array(
 			'filename'	=> 'acp_dkp_apply',
 			'title'		=> 'ACP_DKP_APPLY',
-			'version'	=> '1.3.3',
+			'version'	=> '1.3.7',
 			'modes'		=> array(
 					'apply_settings'	=> array(
 						'title' => 'ACP_DKP_APPLY', 

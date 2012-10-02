@@ -3,12 +3,14 @@
 * Application form created by Kapli (bbDKP developer)
 * 
 * @package bbDKP
-* @copyright (c) 2009 bbDkp <http://code.google.com/p/bbdkp/>
+* @copyright (c) 2009 bbDkp https://github.com/bbDKP/Apply
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 * @author Kapli, Malfate, Sajaki, Blazeflack, Twizted
-* 
+* @version 1.3.6
 */
 
+
+// do not change below this line
 /**
 * @ignore
 */ 
@@ -19,6 +21,9 @@ include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_posting.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 include($phpbb_root_path . 'includes/message_parser.' . $phpEx);
+
+// set apply template id from $_GET: 
+$template_id = request_var('template_id', 1);
 
 // Start session management
 $user->session_begin();
@@ -48,7 +53,7 @@ if ($config['enable_post_confirm'] && !$user->data['is_registered'])
 }
 
 //check if visitor can access the form
-$post_data = check_apply_form_access();
+$post_data = check_apply_form_access($template_id);
 
 //request variables
 $submit	= (isset($_POST['post'])) ? true : false;
@@ -97,9 +102,11 @@ if ($submit)
 	$db->sql_freeresult($result);
 
 	$candidate_name = utf8_normalize_nfc(request_var('candidate_name', ' ', true));
+	
 	// check for validate name. name can only be alphanumeric without spaces or special characters
+	// this is to keep gibberish out of our dkpmember database
 	//if this preg_match returns true then there is something other than letters
-   if (preg_match('/[^a-zA-Zа-яёàäåâÅÂçÇéèëËêÊïÏîÎíÍìÌæŒæÆÅóòÓÒöÖôÔøØüÜ\s]+/iu', $candidate_name  ))
+   if (preg_match('/[^a-zA-ZàäåâÅÂçÇéèëËêÊïÏîÎíÍìÌæŒæÆÅóòÓÒöÖôÔøØüÜ\s]+/', $candidate_name  ))
    {
 	  $error[] = $user->lang['APPLY_ERROR_NAME']. $candidate_name . ' ';  
    }
@@ -107,18 +114,18 @@ if ($submit)
 	if (!sizeof($error))
 	{
 		// continue to posting
-		make_apply_posting($post_data, $current_time, $candidate_name);
+		make_apply_posting($post_data, $current_time, $candidate_name, $template_id);
 	}
-	
 	
 }
 
-fill_application_form($form_key, $post_data, $submit, $error, $captcha, 'apptemplate_personal');
+fill_application_form($form_key, $post_data, $submit, $error, $captcha, $template_id);
+
 /**
  * post application on forum
  *
  */
-function make_apply_posting($post_data, $current_time, $candidate_name)
+function make_apply_posting($post_data, $current_time, $candidate_name, $template_id)
 {
 	global $auth, $config, $db, $user, $phpbb_root_path, $phpEx;
 	
@@ -127,26 +134,34 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	switch ($config['bbdkp_apply_gchoice'])
 	{
 		case '1':
-			$candidate_guild_id = request_var('candidate_guild_id', 0);
+			// add to template defined guild
+			$sql = "SELECT guild_id from " . APPTEMPLATELIST_TABLE . " WHERE template_id  = " . $template_id;
+			$result = $db->sql_query($sql);	
+			$candidate_guild_id = $db->sql_fetchfield('guild_id');
+			$db->sql_freeresult($result);
+			
 			$sql = "SELECT max(rank_id) as rank_id from " . MEMBER_RANKS_TABLE . " WHERE rank_id < 90 and guild_id = " . $candidate_guild_id;
 			$result = $db->sql_query($sql);	
 			$candidate_rank_id = max((int) $db->sql_fetchfield('rank_id'), 0);
 			$db->sql_freeresult($result);
 			break;
 		case '0':
+			// do not add to guild
 		default:
 			$candidate_guild_id = 0;
 			$candidate_rank_id = 99;
 			break;
 	}
-    $candidate_realm = trim(utf8_normalize_nfc(request_var('candidate_realm', $config['bbdkp_apply_realm'], true))); 
+	
+    $candidate_realm = utf8_normalize_nfc(request_var('candidate_realm', $config['bbdkp_apply_realm'], true)); 
 	$candidate_level = utf8_normalize_nfc(request_var('candidate_level', ' ', true));
+	$candidate_armory_link = utf8_normalize_nfc(request_var('candidate_armory_link', ' ', true));
 	$candidate_spec = utf8_normalize_nfc(request_var('candidate_spec', ' ', true));
 	$candidate_game = request_var('game_id', '');
 	$candidate_genderid = request_var('candidate_gender', 0);
 	$candidate_raceid = request_var('candidate_race_id', 0);
 	
-	//character race
+	//character class
 	$sql_array = array(
 		'SELECT'	=>	' r.race_id, r.image_female, r.image_male, l.name as race_name ', 	 
 		'FROM'		=> array(
@@ -170,6 +185,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	$db->sql_freeresult($result);
 	
 	$candidate_classid = request_var('candidate_class_id', 0);
+	
 	//character class
 	$sql_array = array(
 		'SELECT'	=>	' c.class_armor_type AS armor_type , c.colorcode, c.imagename,  c.class_id, l.name as class_name ', 	 
@@ -258,38 +274,60 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	}
 	$apply_post .= '<br />'; 
 
-	// Realm
+	//Realm
 	$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_REALM1'] . '[/color]' . '[color='. $config['bbdkp_apply_pacolor'] .']' . $candidate_realm . '[/color]' ;
 	$apply_post .= '<br />'; 
 
 	// level
 	/*$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_LEVEL'] . '[/color]' . '[color='. $config['bbdkp_apply_pacolor'] .']' . $candidate_level. '[/color]' ;
-	$apply_post .= '<br />'; */
+	$apply_post .= '<br />'; 
 	
 	// class
-	/*$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_CLASS'] . '[/color] ';
+	$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_CLASS'] . '[/color] ';
+	if($class_image_exists )
+	{
+		$apply_post .= '[img]' .$class_image . '[/img] ';
+	}
 	if($class_color_exists)
 	{
-		$apply_post .= ' [shadow=black][color='. $class_color .']' . $class_name . '[/color][/shadow]' ;
+		$apply_post .= ' [color='. $class_color .']' . $class_name . '[/color]' ;
 	}
 	else
 	{
 		$apply_post .= $class_name;
 	}
-	$apply_post .= '<br />'; */
+	$apply_post .= '<br />'; 
+
+	//race
+	$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_RACE'] . '[/color] ';
+	if($race_image_exists )
+	{
+		$apply_post .= '[img]' .$race_image . '[/img] ';
+	}
+	if($class_color_exists)
+	{
+		$apply_post .= ' [color='. $class_color .']' . $race_name . '[/color]' ;
+	}
+	else
+	{
+		$apply_post .= $race_name;
+	}
+	$apply_post .= '<br />';*/
 	
+	// armory link
+	$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_ARMORY_LINK'] . '[/color]' . '[color='. $config['bbdkp_apply_pacolor'] .'][url=' . $candidate_armory_link. ']Armory link[/url][/color]' ;
+	$apply_post .= '<br />'; 
+
 	//spec
 	$apply_post .= '[color='. $config['bbdkp_apply_pqcolor'] .']' . $user->lang['APPLY_SPEC'] . '[/color]' . '[color='. $config['bbdkp_apply_pacolor'] .']' . $candidate_spec . '[/color]' ;
 	$apply_post .= '<br /><br />';
-
 	
 	// Motivation	
 	$apply_post .= '[size=150][b]' .$user->lang['APPLY_CHAR_MOTIVATION'] . '[/b][/size]';
 	$apply_post .= '<br /><br />';
 	
-	//$apply_post .= '[list]';
 	// complete with formatted questions and answers
-	$sql = "SELECT * FROM " . APPTEMPLATE_TABLE . ' ORDER BY qorder' ;
+	$sql = "SELECT * FROM " . APPTEMPLATE_TABLE . ' WHERE template_id = ' . $template_id .'  ORDER BY qorder' ;
 	$result = $db->sql_query_limit($sql, 100, 0);
 	while ( $row = $db->sql_fetchrow($result) )
 	{
@@ -321,6 +359,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 					break;
 				case 'Inputbox':
 				case 'Textbox':
+				case 'Textboxbbcode':					
 				case 'Selectbox':					
 				case 'Radiobuttons':			
 					$fieldcontents = utf8_normalize_nfc(request_var('templatefield_' . $row['qorder'], ' ', true));	
@@ -328,7 +367,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 					$apply_post .= '[size=120][color='. $config['bbdkp_apply_pqcolor'] .'][b]' . $row['question'] . ': [/b][/color][/size]';
 					$apply_post .= '<br />';
 					 
-					$apply_post .=	'[color='. $config['bbdkp_apply_pacolor'] .'] ' . $fieldcontents . '[/color]';
+					$apply_post .=	$fieldcontents;
 					
 					$apply_post .= '<br /><br />'; 
 					break;
@@ -339,8 +378,6 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 		}
 	}
 	$db->sql_freeresult($result);
-
-	//$apply_post .= '[/list]';
 	
 	// variables to hold the parameters for submit_post
 	$poll = $uid = $bitfield = $options = ''; 
@@ -349,6 +386,8 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 	generate_text_for_storage($apply_post, $uid, $bitfield, $options, true, true, true);
 
 	// subject & username
+
+	//$post_data['post_subject'] = utf8_normalize_nfc(request_var('headline', $user->data['username'], true));
 	$post_data['post_subject']	= $candidate_name . " - "  . $class_name . " - ". $candidate_spec . " - ". $candidate_realm;
 	$post_data['username']	= $user->data['username'];
 	
@@ -384,15 +423,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name)
 		//submit post
 		$post_url = submit_post('post', $post_data['post_subject'], $post_data['username'], POST_NORMAL, $poll, $data);
 		
-		//if we're posting to private forum then redirect to portal, else redirect to post
-		if($post_data['forum_id'] == $config['bbdkp_apply_forum_id_private'])
-		{
-			$redirect_url = append_sid("{$phpbb_root_path}portal.$phpEx"); 
-		}
-		else
-		{
-			$redirect_url = $post_url;
-		}
+		$redirect_url = $post_url;
 			
 		if ($config['enable_post_confirm'] && (isset($captcha) && $captcha->is_solved() === true))
 		{
@@ -481,7 +512,7 @@ function register_bbdkp(dkp_character $candidate)
  *  build Application form 
  *
  */
-function fill_application_form($form_key, $post_data, $submit, $error, $captcha, $apptemplate)
+function fill_application_form($form_key, $post_data, $submit, $error, $captcha, $template_id)
 {
 	global $user, $template, $config, $phpbb_root_path, $phpEx, $auth, $db;
 	
@@ -526,91 +557,34 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 		}
 	}
 	
-	//get the hightest guildid with members
-	$sql_array = array(
-	    'SELECT'    => 'a.id, a.name, a.realm, a.region ',
-	    'FROM'      => array(
-	        GUILD_TABLE => 'a',
-	        MEMBER_LIST_TABLE => 'b'
-	    ),
-	    'WHERE'     =>  'a.id = b.member_guild_id and id != 0',
-	    'GROUP_BY'  =>  'a.id, a.name, a.realm, a.region', 
-	    'ORDER_BY'	=>  'a.id ASC'
-	);
-	$sql = $db->sql_build_query('SELECT', $sql_array);
-	$result = $db->sql_query($sql);
-
+	// get list of possible games */ 
+	if (!class_exists('bbDKP_Admin'))
+	{
+		require("{$phpbb_root_path}includes/bbdkp/bbdkp.$phpEx");
+	}
+	$bbdkp = new bbDKP_Admin();
+	$installed_games = array();
 	$i=0;
-	$guild_id = 0;
-	while ( $row = $db->sql_fetchrow($result) )
+	foreach($bbdkp->games as $gameid => $gamename)
 	{
-		$guild_id = (int) $row['id']; 
-		$i+=1;
-	}
-	$db->sql_freeresult($result);
-	
-	if($i==1)
-	{
-		//only one guild, take this one
-		$template->assign_vars(array(
-		'GUILD_ID'				=> $guild_id,
-		'S_SHOW_GUILDSELECT'	=> false,
-		));
-				
-	}
-	elseif($i>1)
-	{
-		//multiple guilds, show a dropdown.
-		$template->assign_var('S_SHOW_GUILDSELECT',true);
-		$result = $db->sql_query($sql);
-		while ( $row = $db->sql_fetchrow($result) )
+		if ($config['bbdkp_games_' . $gameid] == 1)
 		{
-			$template->assign_block_vars('guild_row', array(
-			'VALUE' => $row['id'],
-			'SELECTED' =>  '',
-			'OPTION'   => $row['name'] . ', ' . $row['realm'] . '-' . strtolower($row['region'])
+			$installed_games[$gameid] = $gamename;
+			
+			if($i==0) $gamepreset =  $gameid;	
+			$i+=1;
+			
+			$template->assign_block_vars('game_row', array(
+				'VALUE' => $gameid,
+				'SELECTED' => ((isset($member['game_id']) ? $member['game_id'] : '') == $gameid ) ? ' selected="selected"' : '',
+				'OPTION'   => $gamename, 
 			));
 		}
-		$db->sql_freeresult($result);
+			
 	}
-	else 
-	{
-		trigger_error($user->lang['APPLY_NO_GUILD']);
-	}
-	
-	
-	//game
-	$games = array(
-		'aion'       => $user->lang['AION'],
-		'daoc'       => $user->lang['DAOC'], 
-		'eq'         => $user->lang['EQ'], 
-		'eq2'        => $user->lang['EQ2'],
-		'FFXI'       => $user->lang['FFXI'],
-		'lotro'      => $user->lang['LOTRO'], 
-		'rift'       => $user->lang['RIFT'],
-		'swtor'      => $user->lang['SWTOR'], 
-		'vanguard' 	 => $user->lang['VANGUARD'],
-		'warhammer'  => $user->lang['WARHAMMER'],
-		'wow'        => $user->lang['WOW'], 
-      );
-    $installed_games = array();
-    foreach($games as $gameid => $gamename)
-    {
-     	//add value to dropdown when the game config value is 1
-     	if ($config['bbdkp_games_' . $gameid] == 1)
-     	{
-     		$template->assign_block_vars('game_row', array(
-				'VALUE' => $gameid,
-				'SELECTED' => ( (isset($member['game_id']) ? $member['game_id'] : '') == $gameid ) ? ' selected="selected"' : '',
-				'OPTION'   => $gamename, 
-		));
-      		$installed_games[] = $gameid; 
-    	} 
-    }
      
 	// Race dropdown
 	// reloading is done from ajax to prevent redraw
-    $gamepreset = $installed_games[0];
 	$sql_array = array(
 	'SELECT'	=>	'  r.race_id, l.name as race_name ', 
 	'FROM'		=> array(
@@ -647,11 +621,11 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 		AND l.attribute_id = c.class_id  AND l.language= '" . $config['bbdkp_lang'] . "' AND l.attribute = 'class' ",					 
 	);
 	
-	$sql = $db->sql_build_query('SELECT', $sql_array);
+	$sql = $db->sql_build_query('SELECT', $sql_array);					
 	$result = $db->sql_query($sql);
 	while ( $row = $db->sql_fetchrow($result) )
 	{
-		$option = ( !empty($row['class_name']) ) ? $row['class_name'] : '(None)';
+		$option = ( !empty($row['class_name']) ) ? $row['class_name'] : '(None)';		
 		$template->assign_block_vars('class_row', array(
 		'COLORCODE' => $row['colorcode'],
 		'VALUE' => $row['class_id'],
@@ -660,8 +634,7 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 		
 	}
 	
-	
-    // Realm dropdown
+	// Realm dropdown
 	// reloading is done from ajax to prevent redraw
 	$sql_array = array(
 		'SELECT'	=>	're.realm_id, re.realm_name',
@@ -682,94 +655,74 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 		
 	}
 	$db->sql_freeresult($result);
-	
+             	
 	// Start assigning vars for main posting page ...
 	// main questionnaire 
-	$sql = "SELECT * FROM " . APPTEMPLATE_TABLE . ' ORDER BY qorder ASC';
-
+	$sql = "SELECT a.id, a.qorder, a.header, a.question, a.category, a.type, a.mandatory, a.options, a.template_id, a.lineid, b.template_name, b.forum_id 
+		FROM " . APPTEMPLATE_TABLE . ' a, ' . 
+			APPTEMPLATELIST_TABLE . ' b 
+			WHERE a.template_id = b.template_id 
+			AND a.template_id = ' . $template_id . '
+			ORDER BY a.qorder ASC ';
 	$result = $db->sql_query($sql);
 					
 	while ( $row = $db->sql_fetchrow($result) )
 	{
+		$template->assign_block_vars('apptemplate', array(
+				'QORDER'			=> $row['qorder'],
+				'S_MANDATORY'		=> ($row['mandatory'] =='True') ? true:false ,
+				'TITLE'				=> $row['header'],
+				'QUESTION'			=> $row['question'],
+				'TYPE'   			=> $row['type'],
+				'FORUM_ID'			=> $row['forum_id'], 
+				'DOMNAME'			=> 'templatefield_' . $row['qorder'],
+				'CATEGORY'			=> $row['category'],
+				'TABINDEX'			=> $row['qorder'],
+				)
+		);
+		
 		switch($row['type'])
 		{
-			case 'Inputbox':
-				$type = '<input class="text" style="width:50%; outline-color: #0067C4;" 
-				type="text" name="templatefield_' . $row['qorder'] . '" 
-				size="40" maxlength="60" tabindex="' . $row['qorder'] . '" />';
-				break;
-				
-			case 'Textbox':
-				$onfocus =  ' onfocus="' . "setbg('#e5fff3');" . '"';
-				$onblur = ' onblur="setbg(' . "white)". '" ' ; 
-				
-				$type = '<textarea class="inputbox" style="width:50%; height:65px; outline-color: #0067C4;" '. $onfocus . $onblur. 'name="templatefield_' . $row['qorder'] . '" rows="5" cols="76" 
-				tabindex="' . $row['qorder'] . '" onselect="storeCaret(this);" 
-				onclick="storeCaret(this);" 
-				onkeyup="storeCaret(this);" >'. $row['defaultt'] .'</textarea>';
-				break;
-				
 			case 'Selectbox':
-			    $type = '<select class="inputbox" name="templatefield_' . $row['qorder'] . '" tabindex="' . $row['qorder'] . '">';
-			    $type .= '<option value="">----------------</option>';
 			         $select_option = explode(',', $row['options']);
-			         foreach($select_option as $value) 
+			         foreach($select_option as  $key =>  $value) 
 			         {
-			             $type .='<option value="'. $value .'">'. $value .'</option>';
+			         	$template->assign_block_vars('apptemplate.selectboxoptions', array(
+		         			'KEY'		=> $value,
+		         			'VALUE'		=> $value,
+			         	));
 			         }           
-			    $type .= '</select>';             
 				break;
-				
 			case 'Radiobuttons':
-			    $radio_option = explode(',', $row['options']);
-			  
-			    $type = '';
-			    foreach($radio_option as $value) 
-			    {
-			       $type .='<input type="radio" name="templatefield_'. $row['qorder'] .'" value="'. $value .'"/>&nbsp;'. $value .'&nbsp;&nbsp;';
-			    }           
+				$radio_option = explode(',', $row['options']);
+				foreach($radio_option as $key => $value)
+				{
+					$template->assign_block_vars('apptemplate.radiobuttonoptions', array(
+							'KEY'		=> $value,
+							'VALUE'		=> $value,
+					));
+				}
 				break;
-				
 			case 'Checkboxes':
-		        $check_option = explode(',', $row['options']);
-		         
-		        $type = '';
-		        foreach($check_option as $value) 
-		        {
-		           $type .='<input type="checkbox" name="templatefield_'. $row['qorder'] .'[]" value="'. $value .'"/>&nbsp;'. $value .'&nbsp;&nbsp;';
-		        }           
+				$check_option = explode(',', $row['options']);
+				foreach($check_option as  $key => $value)
+				{
+					$template->assign_block_vars('apptemplate.checkboxoptions', array(
+							'KEY'		=> $value,
+							'VALUE'		=> $value,
+					));
+				}
 				break;
 		}
-		
-		$mandatory = '';
-		
-		if ( $row['mandatory'] == 'True' )
-		{
-			$mandatory = '&nbsp;<span style="color:red">' . $user->lang['MANDATORY']. '</span>';
-		}
-		$template->assign_block_vars('apptemplate', array(
-			'QORDER'		=> $row['qorder'],
-			'TITLE'			=> $row['header'],
-			'QUESTION'		=> $row['question'],
-			'OPTIONS'		=> $row['options'],
-			'TYPE'			=> $type,
-			'MANDATORY'		=> $mandatory,
-			'CATEGORY'		=> $row['category'],
-			'DEFAULTT'		=> $row['defaultt'])
-		);
 	}
 	$db->sql_freeresult($result);
 	
 	$form_enctype = (@ini_get('file_uploads') == '0' || strtolower(@ini_get('file_uploads')) == 'off' || !$config['allow_attachments'] || !$auth->acl_get('u_attach') || !$auth->acl_get('f_attach', $post_data['forum_id'])) ? '' : ' enctype="multipart/form-data"';
 	add_form_key($form_key);
 	
-	
 	// assign global template vars to questionnaire
 	$template->assign_vars(array(
 		'WELCOME_MSG'			=> $welcome_message,	
-		'S_SHOW_FORUMCHOICE'	=> ( $config['bbdkp_apply_forumchoice'] == '1' ) ? TRUE : FALSE,
-		'PUBLIC_YES_CHECKED' 	=> ( $config['bbdkp_apply_visibilitypref'] == '1' ) ? ' checked="checked"' : '',
-		'PUBLIC_NO_CHECKED'  	=> ( $config['bbdkp_apply_visibilitypref'] == '0' ) ? ' checked="checked"' : '', 
 		'MALE_CHECKED'			=> ' checked="checked"',
 		'L_POST_A'				=> $page_title,
 		'ERROR'					=> (sizeof($error)) ? implode('<br />', $error) : '',
@@ -782,11 +735,7 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 		'LA_ALERT_AJAX'		  => $user->lang['ALERT_AJAX'],
 		'LA_ALERT_OLDBROWSER' => $user->lang['ALERT_OLDBROWSER'],
 		'LA_MSG_NAME_EMPTY'	  => $user->lang['APPLY_REQUIRED_NAME'],
-		'LA_MSG_LEVEL_EMPTY'  => $user->lang['APPLY_REQUIRED_LEVEL'],
-		'LA_MSG_REALM_EMPTY'  => $user->lang['APPLY_REQUIRED_REALM'],
-		'LA_MSG_CLASS_EMPTY'  => $user->lang['APPLY_REQUIRED_CLASS'],
-		'LA_MSG_SPEC_EMPTY'   => $user->lang['APPLY_REQUIRED_SPEC'],
-		
+		'LA_MSG_LEVEL_EMPTY'  => $user->lang['APPLY_REQUIRED_LEVEL'],	
 		)
 	);
 		
@@ -807,39 +756,15 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
  *
  * @return array $post_data
  */
-function check_apply_form_access()
+function check_apply_form_access($template_id)
 {
 	global $auth, $db, $config, $user;		
 	
 	$user->add_lang(array('posting'));
-	//find out which forum we will be posting to
-	if($config['bbdkp_apply_forumchoice'] == '1')
-	{
-		//user can choose
-		if(request_var('publ', 1) == 1 )
-		{
-			// if user made choice for public or if it is a guest then get public forumid 
-			$forum_id = $config['bbdkp_apply_forum_id_public'];
-		}
-		else 
-		{
-			$forum_id = $config['bbdkp_apply_forum_id_private'];
-		}
-	}
-	else
-	{
-		//fetch forum from $config
-		if($config['bbdkp_apply_visibilitypref'] == '1')  
-		{
-			$forum_id = $config['bbdkp_apply_forum_id_public'];
-		}
-		else 
-		{
-			$forum_id = $config['bbdkp_apply_forum_id_private'];
-		}
-	}
 	
-	$sql = 'SELECT * FROM ' . FORUMS_TABLE . ' WHERE forum_id = ' . $forum_id;
+	$sql = 'SELECT a.* FROM ' . FORUMS_TABLE . ' a, ' . APPTEMPLATELIST_TABLE .' b 
+				WHERE a.forum_id = b.forum_id 
+				AND b.template_id = ' . $template_id;
 	$result = $db->sql_query($sql);
 	$post_data = $db->sql_fetchrow($result);
 	$db->sql_freeresult($result);
@@ -856,7 +781,7 @@ function check_apply_form_access()
 	// check authorisations
 	$is_authed = false;
 	// user has posting permission to the forum ?  
-	if ($auth->acl_get('f_post', $forum_id))
+	if ($auth->acl_get('f_post', $post_data['forum_id']))
 	{
 		//user is authorised for the forum
 		$is_authed = true;
@@ -896,3 +821,76 @@ function check_apply_form_access()
 		
 	
 }
+
+/**
+ * sends a personal message with the contents of the form
+ */
+function pm_sendform($message, $user_id = 2, $sender_id = 2)
+{
+	global $user, $config;
+	global $phpEx, $phpbb_root_path;
+
+	include_once($phpbb_root_path . 'includes/functions_privmsgs.' . $phpEx);
+	include_once($phpbb_root_path . 'includes/message_parser.' . $phpEx);
+	$sender = $this->get_user_info($sender_id);
+	
+	$message_parser = new parse_message(); 
+  
+	$data=array();
+	$messenger->template('raidplan_delete', $row['user_lang']);
+	$subject =  '[' . $user->lang['RAIDPLANNER']  . '] ' . 
+	$user->lang['DELRAID'] . ': ' . $this->eventlist->events[$this->event_type]['event_name'] . ' ' . 
+	$user->format_date($this->start_time, $config['rp_date_time_format'], true);
+	 
+	$userids = array($this->poster);
+	$rlname = array();
+	user_get_id_name($userids, $rlname);
+	 
+	$messenger->assign_vars(array(
+			'RAIDLEADER'		=> $rlname[$this->poster],
+			'USERNAME'			=> htmlspecialchars_decode($row['username']),
+			'EVENT_SUBJECT'		=> $subject,
+			'EVENT'				=> $this->eventlist->events[$this->event_type]['event_name'],
+			'INVITE_TIME'		=> $user->format_date($this->invite_time, $config['rp_date_time_format'], true),
+			'START_TIME'		=> $user->format_date($this->start_time, $config['rp_date_time_format'], true),
+			'END_TIME'			=> $user->format_date($this->end_time, $config['rp_date_time_format'], true),
+			'TZ'				=> $user->lang['tz'][(int) $user->data['user_timezone']],
+			'U_RAIDPLAN'		=> generate_board_url() . "/dkp.$phpEx?page=planner&amp;view=raidplan&amp;raidplanid=".$this->id
+	));
+		
+	$messenger->msg = trim($messenger->tpl_obj->assign_display('body'));
+	$messenger->msg = str_replace("\r\n", "\n", $messenger->msg);
+		
+	$messenger->msg = utf8_normalize_nfc($messenger->msg);
+	$uid = $bitfield = $options = ''; // will be modified by generate_text_for_storage
+	$allow_bbcode = $allow_smilies = $allow_urls = true;
+	generate_text_for_storage($messenger->msg, $uid, $bitfield, $options, $allow_bbcode, $allow_urls, $allow_smilies);
+	$messenger->msg = generate_text_for_display($messenger->msg, $uid, $bitfield, $options);
+
+	$data = array(
+			'address_list'      => array('u' => array($row['user_id'] => 'to')),
+			'from_user_id'      => $user->data['user_id'],
+			'from_username'     => $user->data['username'],
+			'icon_id'           => 0,
+			'from_user_ip'      => $user->data['user_ip'],
+
+			'enable_bbcode'     => true,
+			'enable_smilies'    => true,
+			'enable_urls'       => true,
+			'enable_sig'        => true,
+				
+			'message'           => $messenger->msg,
+			'bbcode_bitfield'   => $this->bbcode['bitfield'],
+			'bbcode_uid'        => $this->bbcode['uid'],
+	);
+		
+	if($config['rp_pm_rpchange'] == 1 &&  (int) $row['user_allow_pm'] == 1)
+	{
+		// send a PM
+		submit_pm('post',$subject, $data, false);
+	}
+	
+
+}
+
+
