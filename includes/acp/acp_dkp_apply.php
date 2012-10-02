@@ -204,6 +204,7 @@ class acp_dkp_apply extends bbDkp_Admin
                 			'QUESTION'       => $row['question'] ,
                 			'MANDATORY'      => $row['mandatory'] ,
                 			'OPTIONS'        => $row['options'] ,
+							'DEFAULTT'		 => $row['defaultt'],
                 			'CHECKED'        => $checked,
                 			'ID'			 => $row['id'] ,
                 			'U_APPQUESTIONMOVE_UP'		 => append_sid("{$phpbb_admin_path}index.$phpEx", "i=dkp_apply&amp;mode=apply_settings&amp;appquestionmove_up=1&amp;id={$row['id']}"),
@@ -389,6 +390,7 @@ class acp_dkp_apply extends bbDkp_Admin
                         'options'   	=> utf8_normalize_nfc (request_var('app_add_options', ' ', true )),                    
                     	'template_id'	=> request_var('applytemplate_id', 0), 
                     	'lineid'		=> $maxline_id,  
+						'defaultt'       	=> utf8_normalize_nfc (request_var('app_add_defaultt', ' ', true )),
                     );
                     
                     // insert new question
