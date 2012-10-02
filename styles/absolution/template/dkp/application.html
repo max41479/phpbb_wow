@@ -432,7 +432,7 @@ function classracestateChanged()
 					<!-- IF apptemplate.TYPE == $TYPE_INPUTBOX -->
 						<input style="outline-color: #0067C4;" class="inputbox" type="text" name="{apptemplate.DOMNAME}" size="40" maxlength="60" tabindex="{apptemplate.TABINDEX}" />	
 					<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOX -->
-						<textarea style="outline-color: #0067C4;" class="inputbox" name="{apptemplate.DOMNAME}" rows="2" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>
+						<textarea style="outline-color: #0067C4;" class="inputbox" name="{apptemplate.DOMNAME}" rows="2" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" >{apptemplate.DEFAULTT}</textarea>
 					<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOXBBCODE -->
 						<div id="colour_palette{apptemplate.TABINDEX}" style="display: none;">
 							<dl style="clear: left;">
@@ -491,7 +491,7 @@ function classracestateChanged()
 							<!-- BEGIN custom_tags -->
 								<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle2({custom_tags.BBCODE_ID}, '{apptemplate.DOMNAME}')" title="{custom_tags.BBCODE_HELPLINE}" /><!-- END custom_tags -->
 						</div>
-						<textarea style="outline-color: #0067C4;" class="text" name="{apptemplate.DOMNAME}" rows="3" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>	
+						<textarea style="outline-color: #0067C4;" class="text" name="{apptemplate.DOMNAME}" rows="3" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" >{apptemplate.DEFAULTT}</textarea>	
 					<!-- ELSEIF apptemplate.TYPE == $TYPE_SELECTBOX -->
 						<select class="inputbox" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}">
 							<option value="">----------------</option>

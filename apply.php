@@ -106,7 +106,7 @@ if ($submit)
 	// check for validate name. name can only be alphanumeric without spaces or special characters
 	// this is to keep gibberish out of our dkpmember database
 	//if this preg_match returns true then there is something other than letters
-   if (preg_match('/[^a-zA-ZàäåâÅÂçÇéèëËêÊïÏîÎíÍìÌæŒæÆÅóòÓÒöÖôÔøØüÜ\s]+/', $candidate_name  ))
+   if (preg_match('/[^a-zA-Zа-яёàäåâÅÂçÇéèëËêÊïÏîÎíÍìÌæŒæÆÅóòÓÒöÖôÔøØüÜ\s]+/iu', $candidate_name  ))
    {
 	  $error[] = $user->lang['APPLY_ERROR_NAME']. $candidate_name . ' ';  
    }
@@ -658,7 +658,7 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
              	
 	// Start assigning vars for main posting page ...
 	// main questionnaire 
-	$sql = "SELECT a.id, a.qorder, a.header, a.question, a.category, a.type, a.mandatory, a.options, a.template_id, a.lineid, b.template_name, b.forum_id 
+	$sql = "SELECT a.id, a.qorder, a.header, a.question, a.category, a.type, a.mandatory, a.options, a.template_id, a.lineid, a.defaultt, b.template_name, b.forum_id 
 		FROM " . APPTEMPLATE_TABLE . ' a, ' . 
 			APPTEMPLATELIST_TABLE . ' b 
 			WHERE a.template_id = b.template_id 
@@ -678,6 +678,7 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 				'DOMNAME'			=> 'templatefield_' . $row['qorder'],
 				'CATEGORY'			=> $row['category'],
 				'TABINDEX'			=> $row['qorder'],
+				'DEFAULTT'			=> $row['defaultt']
 				)
 		);
 		
