@@ -52,6 +52,7 @@ $lang = array_merge($lang, array(
 'INFORUM'	=> 'Размещено в', 
 'DKP'	=> 'DKP', 
 'NEWS' => 'Новости',
+'APPLY_TITLE'	=> 'Форма заявки',
 'COMMENT' => 'Комментарии',
 'VIEW_COMMENTS'	=> 'Просмотр комментариев',
 'LIST_NEWS' => 'List News',
