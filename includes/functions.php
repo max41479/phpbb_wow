@@ -4611,10 +4611,10 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 	$json_array = json_decode($json_file, true);
 	if (empty($json_array))
 	{
-		$stream1 = 'off';
+		$stream1 = false;
 	}else if (strtolower($json_array[0]['name']) == strtolower("live_user_max41479")) 
 	{
-		$stream1 = 'on';
+		$stream1 = true;
 	}
 	
 	//ammot stream online check
@@ -4622,10 +4622,10 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 	$json_array = json_decode($json_file, true);
     if (($json_array['live_is_live']) == ("1")) 
 	{
-        $stream2 = 'on';
+        $stream2 = true;
     }else
 	{
-       	$stream2 = 'off';
+       	$stream2 = false;
     }
 
 
