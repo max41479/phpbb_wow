@@ -66,7 +66,7 @@ $lang = array_merge($lang, array(
 	
 	//Talents
 	'BLOOD'								=> 'Кровь',
-	'UNHOLY'							=> 'Нечастивость',
+	'UNHOLY'							=> 'Нечестивость',
 	'FROST'								=> 'Лед',	
 	'BALANCE'							=> 'Баланс',
 	'FERAL'								=> 'Сила зверя',
