@@ -925,7 +925,6 @@ So the loot would go to player 2 <br />',
 'RACE_IMAGE_EXPLAIN' => 'race imagename, without extension. png file should exist in /images/race_images',
 
 'RESULTS' => '%d Results (%s)',
-'SEARCH' => 'Search',
 'SEARCH_MEMBERS' => 'Search Members', 
 'SHOW3DARMORY' => 'Show the WoW Character in 3D', 
 'SHOULD_BE' => 'Should be',
