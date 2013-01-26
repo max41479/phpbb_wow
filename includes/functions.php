@@ -4637,7 +4637,6 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 	// The following assigns all _common_ variables that may be used at any point in a template.
 	$template->assign_vars(array(
 		'STREAM1'						=> twitch_checker("max41479"), //max41479
-		'STREAM2'						=> own3d_checker("391646"), //ammoth (391646)
 		'STREAM3'						=> twitch_checker("tonyhowk2"), //Zluchnik
 		'SITENAME'						=> $config['sitename'],
 		'SITE_DESCRIPTION'				=> $config['site_desc'],
