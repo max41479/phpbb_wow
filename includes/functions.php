@@ -4606,45 +4606,39 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		}
 	}
 	
-	//max41479 stream online check
-	$json_file = file_get_contents("http://api.justin.tv/api/stream/list.json?channel=max41479");
-	$json_array = json_decode($json_file, true);
-	if (empty($json_array))
+	function twitch_checker($user)
 	{
-		$stream1 = false;
-	}else if (strtolower($json_array[0]['name']) == strtolower("live_user_max41479")) 
-	{
-		$stream1 = true;
-	}
-	
-	//zluchnik stream online check
-	$json_file = file_get_contents("http://api.justin.tv/api/stream/list.json?channel=tonyhowk2");
-	$json_array = json_decode($json_file, true);
-	if (empty($json_array))
-	{
-		$stream3 = false;
-	}else if (strtolower($json_array[0]['name']) == strtolower("live_user_tonyhowk2")) 
-	{
-		$stream3 = true;
+		$json_file = file_get_contents("http://api.justin.tv/api/stream/list.json?channel=$user");
+		$json_array = json_decode($json_file, true);
+		if (empty($json_array))
+		{
+			$stream_online = false;
+		}else if (strtolower($json_array[0]['name']) == strtolower("live_user_$user")) 
+		{
+			$stream_online = true;
+		}
+		return $stream_online;
 	}
 
-	//ammot stream online check
-	$json_file = file_get_contents("http://api.own3d.tv/rest/live/status.json?liveid=391646");
-	$json_array = json_decode($json_file, true);
-	if (($json_array['live_is_live']) == ("1")) 
+	function own3d_checker($user)
 	{
-		$stream2 = true;
-	}else
-	{
-		$stream2 = false;
+		$json_file = file_get_contents("http://api.own3d.tv/rest/live/status.json?liveid=$user");
+		$json_array = json_decode($json_file, true);
+		if (($json_array['live_is_live']) == ("1")) 
+		{
+			$stream_online = true;
+		}else
+		{
+			$stream_online = false;
+		}
+		return $stream_online;
 	}
-
 
 	// The following assigns all _common_ variables that may be used at any point in a template.
 	$template->assign_vars(array(
-		'STREAM1'						=> $stream1, //max41479
-		'STREAM2'						=> $stream2, //ammoth
-		'STREAM3'						=> $stream3, //zlucnik
+		'STREAM1'						=> twitch_checker("max41479"), //max41479
+		'STREAM2'						=> own3d_checker("391646"), //ammoth (391646)
+		'STREAM3'						=> twitch_checker("tonyhowk2"), //Zluchnik
 		'SITENAME'						=> $config['sitename'],
 		'SITE_DESCRIPTION'				=> $config['site_desc'],
 		'PAGE_TITLE'					=> $page_title,
