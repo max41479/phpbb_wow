@@ -482,7 +482,7 @@ dd.topics span, dd.posts span, dd.views span {
 
 #wrap {
 	background: #FFFFFF;
-	min-width: 1038px !important;
+	min-width: 1042px !important;
 	border-radius: 0px 0px 5px 5px; 
 	-moz-border-radius: 0px 0px 5px 5px; 
 	-webkit-border-radius: 0px 0px 5px 5px; 
@@ -490,7 +490,7 @@ dd.topics span, dd.posts span, dd.views span {
 
 #wrap-portal {
 	background: #F0F6FB;
-	min-width: 1038px !important;
+	min-width: 1042px !important;
 	border-radius: 0px 0px 5px 5px; 
 	-moz-border-radius: 0px 0px 5px 5px; 
 	-webkit-border-radius: 0px 0px 5px 5px; 
