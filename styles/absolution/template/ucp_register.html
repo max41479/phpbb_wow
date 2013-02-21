@@ -62,9 +62,12 @@
 		<dt><label for="tz">{L_TIMEZONE}:</label></dt>
 		<dd><select name="tz" id="tz" tabindex="7" class="autowidth">{S_TZ_OPTIONS}</select></dd>
 	</dl>
+	<!-- IF S_PFCM_ENABLED --><!-- INCLUDE registration_profile_options.html --><!-- ENDIF -->
 
 	<!-- IF .profile_fields -->
+		<!-- IF not (S_PFCM_ENABLED and S_PROFILE_OPTIONS) -->
 		<dl><dd><strong>{L_ITEMS_REQUIRED}</strong></dd></dl>
+		<!-- ENDIF -->
 
 	<!-- BEGIN profile_fields -->
 		<dl>

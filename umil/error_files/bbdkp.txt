@@ -1,8 +1,0 @@
-bbDKP
-PHP Version: 5.2.17
-DBMS: MySQL(i) 5.5.21
-phpBB3 Version: 3.0.10
-
-Tables install for version 1.2.6
-SQL ERROR Specified key was too long; max key length is 1000 bytes
-

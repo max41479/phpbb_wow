@@ -176,6 +176,14 @@ function user_add($user_row, $cp_data = false)
 		'user_type'			=> $user_row['user_type'],
 	);
 
+	//Begin: Profile Fields Control MOD
+	if (!function_exists('register_user_function'))
+	{
+		include($phpbb_root_path . 'includes/functions_profile_control.' . $phpEx);
+	}
+	register_user_function($sql_ary, $user_row);
+	//End: Profile Fields Control MOD
+
 	// These are the additional vars able to be specified
 	$additional_vars = array(
 		'user_permissions'	=> '',

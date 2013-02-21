@@ -1,0 +1,175 @@
+<!-- INCLUDE overall_header.html -->
+
+<a name="maincontent"></a>
+<!-- IF S_EDIT_PROFILE -->
+
+	<a href="{U_BACK}" style="float: {S_CONTENT_FLOW_END};">&laquo; {L_BACK}</a>
+
+	<h1>{L_ACP_PROFILE_CONTROL}</h1>
+
+	<p>{L_ACP_PROFILE_CONTROL_EXPLAIN}</p>
+
+	<form id="acp_profile_fields" method="post" action="{U_ACTION}">
+
+	<fieldset>
+		<dl>
+			<dt><label>{L_PROFILE_FIELD_NAME}:</label><br /><span>{L_PROFILE_FIELD_NAME_EXPLAIN}</span></dt>
+			<dd><strong>{S_FIELD_NAME}</strong></dd>
+		</dl>
+
+			<legend>{L_VISIBILITY_OPTION}</legend>
+		<dl>
+			<dt><label for="field_option_none">{L_DISPLAY_ON_PROFILE}:</label><br /><span>{L_DISPLAY_ON_PROFILE_EXPLAIN}</span></dt>
+			<dd><input type="radio" class="radio" id="field_option_none" name="field_option" value="1"<!-- IF not S_SHOW_ON_REG and not S_FIELD_REQUIRED --> checked="checked"<!-- ENDIF --> /></dd>
+		</dl>			
+		<dl>
+			<dt><label for="field_show_on_reg">{L_DISPLAY_ON_REGISTRATION}:</label><br /><span>{L_DISPLAY_ON_REGISTRATION_EXPLAIN}</span></dt>
+			<dd><input type="radio" class="radio" id="field_show_on_reg" name="field_option" value="2"<!-- IF S_SHOW_ON_REG --> checked="checked"<!-- ENDIF --> /></dd>
+		</dl>
+		<dl>
+			<dt><label for="field_required">{L_REQUIRED_PROFILE_FIELD}:</label><br /><span>{L_REQUIRED_PROFILE_FIELD_EXPLAIN}</span></dt>
+			<dd><input type="radio" class="radio" id="field_required" name="field_option" value="3"<!-- IF S_FIELD_REQUIRED --> checked="checked"<!-- ENDIF --> /></dd>
+		</dl>
+		
+		<input type="hidden" name="config_name" size="0" value="{S_CONFIG_NAME}" />
+	</fieldset>
+	<fieldset class="quick">
+			<input class="button1" type="submit" id="submit" name="save" value="{L_SAVE}" />
+			{S_HIDDEN_FIELDS}
+			{S_FORM_TOKEN}
+	</fieldset>
+
+	</form>			
+
+<!-- ELSE -->
+	<h1>{L_ACP_PROFILE_CONTROL}</h1>
+
+	<p>{L_ACP_PROFILE_CONTROL_EXPLAIN}</p>
+
+	
+	<form id="acp_profile_fields" method="post" action="{U_ACTION}">
+	
+		<table cellspacing="1">
+		<thead>
+		<tr>
+			<th style="width: 40%; text-align: left;">{L_PROFILE_FIELD_NAME}</th>
+			<th style="width: 10%; text-align: center;">{L_REQUIRED}</th>
+			<th style="width: 20%; text-align: center;">{L_PROFILE_UCP_REGS}</th>			
+			<th style="width: 20%; text-align: center;">{L_OPTIONS}</th>
+			<th style="width: 10%; text-align: center;">{L_EDIT}</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr class="row1">
+				<td style="text-align: left;"><!-- IF S_ICQ_ACTIVE -->{L_UCP_ICQ}<!-- ELSE --><span style="color:red"><del>{L_UCP_ICQ}</del></span><!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_ICQ_REQUIRED -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_ICQ_AT_REGISTER -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><a href="{U_ICQ_ACTIVATE_DEACTIVATE}">{L_ICQ_ACTIVATE_DEACTIVATE}</a></td>
+				<td style="text-align: center;">&nbsp;<!-- IF S_ICQ_ACTIVE --><a href="{U_EDIT_ICQ}" title="{L_EDIT}"><img src="{EDIT_FIELD}" alt="{L_EDIT}"/></a><!-- ELSE --><img src="{EDIT_FIELD}" title="{L_ACTIVATE_FIRST}" alt="{L_EDIT}"/><!-- ENDIF -->&nbsp;</td>
+		</tr>		
+		<tr class="row2">
+				<td style="text-align: left;"><!-- IF S_AIM_ACTIVE -->{L_UCP_AIM}<!-- ELSE --><span style="color:red"><del>{L_UCP_AIM}</del></span><!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_AIM_REQUIRED -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_AIM_AT_REGISTER -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><a href="{U_AIM_ACTIVATE_DEACTIVATE}">{L_AIM_ACTIVATE_DEACTIVATE}</a></td>
+				<td style="text-align: center;">&nbsp;<!-- IF S_AIM_ACTIVE --><a href="{U_EDIT_AIM}" title="{L_EDIT}"><img src="{EDIT_FIELD}" alt="{L_EDIT}"/></a><!-- ELSE --><img src="{EDIT_FIELD}" title="{L_ACTIVATE_FIRST}" alt="{L_EDIT}"/><!-- ENDIF -->&nbsp;</td>
+		</tr>		
+		<tr class="row1">
+				<td style="text-align: left;"><!-- IF S_MSNM_ACTIVE -->{L_UCP_MSNM}<!-- ELSE --><span style="color:red"><del>{L_UCP_MSNM}</del></span><!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_MSNM_REQUIRED -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_MSNM_AT_REGISTER -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><a href="{U_MSNM_ACTIVATE_DEACTIVATE}">{L_MSNM_ACTIVATE_DEACTIVATE}</a></td>
+				<td style="text-align: center;">&nbsp;<!-- IF S_MSNM_ACTIVE --><a href="{U_EDIT_MSNM}" title="{L_EDIT}"><img src="{EDIT_FIELD}" alt="{L_EDIT}"/></a><!-- ELSE --><img src="{EDIT_FIELD}" title="{L_ACTIVATE_FIRST}" alt="{L_EDIT}"/><!-- ENDIF -->&nbsp;</td>
+		</tr>	
+		<tr class="row2">
+				<td style="text-align: left;"><!-- IF S_YIM_ACTIVE -->{L_UCP_YIM}<!-- ELSE --><span style="color:red"><del>{L_UCP_YIM}</del></span><!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_YIM_REQUIRED -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_YIM_AT_REGISTER -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><a href="{U_YIM_ACTIVATE_DEACTIVATE}">{L_YIM_ACTIVATE_DEACTIVATE}</a></td>
+				<td style="text-align: center;">&nbsp;<!-- IF S_YIM_ACTIVE --><a href="{U_EDIT_YIM}" title="{L_EDIT}"><img src="{EDIT_FIELD}" alt="{L_EDIT}"/></a><!-- ELSE --><img src="{EDIT_FIELD}" title="{L_ACTIVATE_FIRST}" alt="{L_EDIT}"/><!-- ENDIF -->&nbsp;</td>
+		</tr>
+		<tr class="row1">
+				<td style="text-align: left;"><!-- IF S_JABBER_ACTIVE -->{L_UCP_JABBER}<!-- ELSE --><span style="color:red"><del>{L_UCP_JABBER}</del></span><!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_JABBER_REQUIRED -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_JABBER_AT_REGISTER -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><a href="{U_JABBER_ACTIVATE_DEACTIVATE}">{L_JABBER_ACTIVATE_DEACTIVATE}</a></td>
+				<td style="text-align: center;">&nbsp;<!-- IF S_JABBER_ACTIVE --><a href="{U_EDIT_JABBER}" title="{L_EDIT}"><img src="{EDIT_FIELD}" alt="{L_EDIT}"/></a><!-- ELSE --><img src="{EDIT_FIELD}" title="{L_ACTIVATE_FIRST}" alt="{L_EDIT}"/><!-- ENDIF -->&nbsp;</td>
+		</tr>		
+		<tr class="row2">
+				<td style="text-align: left;"><!-- IF S_WEBSITE_ACTIVE -->{L_WEBSITE}<!-- ELSE --><span style="color:red"><del>{L_WEBSITE}</del></span><!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_WEBSITE_REQUIRED -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_WEBSITE_AT_REGISTER -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><a href="{U_WEBSITE_ACTIVATE_DEACTIVATE}">{L_WEBSITE_ACTIVATE_DEACTIVATE}</a></td>
+				<td style="text-align: center;">&nbsp;<!-- IF S_WEBSITE_ACTIVE --><a href="{U_EDIT_WEBSITE}" title="{L_EDIT}"><img src="{EDIT_FIELD}" alt="{L_EDIT}"/></a><!-- ELSE --><img src="{EDIT_FIELD}" title="{L_ACTIVATE_FIRST}" alt="{L_EDIT}"/><!-- ENDIF -->&nbsp;</td>
+		</tr>
+		<tr class="row1">
+				<td style="text-align: left;"><!-- IF S_LOCATION_ACTIVE -->{L_LOCATION}<!-- ELSE --><span style="color:red"><del>{L_LOCATION}</del></span><!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_LOCATION_REQUIRED -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_LOCATION_AT_REGISTER -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><a href="{U_LOCATION_ACTIVATE_DEACTIVATE}">{L_LOCATION_ACTIVATE_DEACTIVATE}</a></td>
+				<td style="text-align: center;">&nbsp;<!-- IF S_LOCATION_ACTIVE --><a href="{U_EDIT_LOCATION}" title="{L_EDIT}"><img src="{EDIT_FIELD}" alt="{L_EDIT}"/></a><!-- ELSE --><img src="{EDIT_FIELD}" title="{L_ACTIVATE_FIRST}" alt="{L_EDIT}"/><!-- ENDIF -->&nbsp;</td>
+		</tr>		
+		<tr class="row2">
+				<td style="text-align: left;"><!-- IF S_OCCUPATION_ACTIVE -->{L_OCCUPATION}<!-- ELSE --><span style="color:red"><del>{L_OCCUPATION}</del></span><!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_OCCUPATION_REQUIRED -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_OCCUPATION_AT_REGISTER -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><a href="{U_OCCUPATION_ACTIVATE_DEACTIVATE}">{L_OCCUPATION_ACTIVATE_DEACTIVATE}</a></td>
+				<td style="text-align: center;">&nbsp;<!-- IF S_OCCUPATION_ACTIVE --><a href="{U_EDIT_OCCUPATION}" title="{L_EDIT}"><img src="{EDIT_FIELD}" alt="{L_EDIT}"/></a><!-- ELSE --><img src="{EDIT_FIELD}" title="{L_ACTIVATE_FIRST}" alt="{L_EDIT}"/><!-- ENDIF -->&nbsp;</td>
+		</tr>
+
+		<tr class="row1">
+				<td style="text-align: left;"><!-- IF S_INTERESTS_ACTIVE -->{L_INTERESTS}<!-- ELSE --><span style="color:red"><del>{L_INTERESTS}</del></span><!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_INTERESTS_REQUIRED -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_INTERESTS_AT_REGISTER -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><a href="{U_INTERESTS_ACTIVATE_DEACTIVATE}">{L_INTERESTS_ACTIVATE_DEACTIVATE}</a></td>
+				<td style="text-align: center;">&nbsp;<!-- IF S_INTERESTS_ACTIVE --><a href="{U_EDIT_INTERESTS}" title="{L_EDIT}"><img src="{EDIT_FIELD}" alt="{L_EDIT}"/></a><!-- ELSE --><img src="{EDIT_FIELD}" title="{L_ACTIVATE_FIRST}" alt="{L_EDIT}"/><!-- ENDIF -->&nbsp;</td>
+		</tr>		
+		<tr class="row2">
+				<td style="text-align: left;"><!-- IF S_BIRTHDAY_ACTIVE -->{L_BIRTHDAY}<!-- ELSE --><span style="color:red"><del>{L_BIRTHDAY}</del></span><!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_BIRTHDAY_REQUIRED -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><!-- IF S_BIRTHDAY_AT_REGISTER -->{L_YES}<!-- ELSE -->{L_NO}<!-- ENDIF --></td>
+				<td style="text-align: center;"><a href="{U_BIRTHDAY_ACTIVATE_DEACTIVATE}">{L_BIRTHDAY_ACTIVATE_DEACTIVATE}</a></td>
+				<td style="text-align: center;">&nbsp;<!-- IF S_BIRTHDAY_ACTIVE --><a href="{U_EDIT_BIRTHDAY}" title="{L_EDIT}"><img src="{EDIT_FIELD}" alt="{L_EDIT}"/></a><!-- ELSE --><img src="{EDIT_FIELD}" title="{L_ACTIVATE_FIRST}" alt="{L_EDIT}"/><!-- ENDIF -->&nbsp;</td>
+		</tr>		
+
+		</tbody>
+	</table>
+	
+	<p>&nbsp;</p>
+	<fieldset class="tabulated">
+	<table cellspacing="1">
+	<tbody>
+
+	<tr class="row1">
+		<td style="text-align: left;"><span style="font-size: 12px; font-weight: bold;">{L_PROFILE_UPDATE_REMINDER}:</span> <br /><span>{L_PROFILE_UPDATE_REMINDER_EXPLAIN}</span></td>
+		<td style="text-align: center;">
+	<p class="quick">
+	{S_HIDDEN_FIELDS}
+	<input class="button1" type="submit" name="reminder-reset" value="{L_RUN}" />
+	<input type="hidden" name="action" value="" />
+	{S_FORM_TOKEN}
+	</p>
+		</td>
+	</tr>
+	<tr class="row2">	
+		<td style="text-align: left;"><label for="ucp_prof_rem_enable"><span style="font-size: 12px; font-weight: bold;">{L_PROFILE_UPDATE_ENABLE}:</span></label><br /><span>{L_PROFILE_UPDATE_ENABLE_EXPLAIN}</span></td>
+		<td style="text-align: right;"><label><input type="radio" class="radio" name="ucp_prof_rem_enable" value="1"<!-- IF S_UPDATE_ENABLE --> id="ucp_prof_rem_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="ucp_prof_rem_enable" value="0"<!-- IF not S_UPDATE_ENABLE --> id="ucp_prof_rem_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></td>
+	</tr>
+	<tr class="row1">	
+		<td style="text-align: left;"><label for="pfcm_enable"><span style="font-size: 12px; font-weight: bold;">{L_PFCM_ENABLE}:</span></label><br /><span>{L_PFCM_ENABLE_EXPLAIN}</span></td>
+		<td style="text-align: right;"><label><input type="radio" class="radio" name="pfcm_enable" value="1"<!-- IF S_PFCM_ENABLE --> id="pfcm_enable" checked="checked"<!-- ENDIF --> /> {L_YES}</label>
+			<label><input type="radio" class="radio" name="pfcm_enable" value="0"<!-- IF not S_PFCM_ENABLE --> id="pfcm_enable" checked="checked"<!-- ENDIF --> /> {L_NO}</label></td>
+	</tr>
+	</tbody>
+	</table>
+		<p class="quick">
+	{S_HIDDEN_FIELDS}
+	<input class="button1" type="submit" name="reminder" value="{L_SUBMIT}" />
+	<input type="hidden" name="action" value="" />
+	{S_FORM_TOKEN}
+	</p>
+	</fieldset>		
+	</form>
+<!-- ENDIF -->
+<!-- INCLUDE overall_footer.html -->

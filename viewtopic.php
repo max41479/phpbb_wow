@@ -17,6 +17,9 @@ $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 include($phpbb_root_path . 'includes/bbcode.' . $phpEx);
+//Begin: Profile Fields Control MOD
+include($phpbb_root_path . 'includes/functions_profile_control.' . $phpEx);
+//Begin: Profile Fields Control MOD
 
 // Start session management
 $user->session_begin();
@@ -1632,6 +1635,10 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 	{
 		$postrow = array_merge($postrow, $cp_row['row']);
 	}
+
+	// Begin: Profile Fields Control MOD
+	profile_fields_variables($postrow, $user_cache[$poster_id]);
+	// End: Profile Fields Control MOD
 
 	// Dump vars into template
 	$template->assign_block_vars('postrow', $postrow);

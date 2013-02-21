@@ -178,10 +178,14 @@ class ucp_register
 			'tz'				=> request_var('tz', (float) $timezone),
 		);
 
+		//Begin: Profile Fields Control MOD
+		ucp_register_data($data);
+		//End: Profile Fields Control MOD
+
 		// Check and initialize some variables if needed
 		if ($submit)
 		{
-			$error = validate_data($data, array(
+			$error = validate_data($data, array_merge(validate_profile_fields_register(), array(
 				'username'			=> array(
 					array('string', false, $config['min_name_chars'], $config['max_name_chars']),
 					array('username', '')),
@@ -195,7 +199,11 @@ class ucp_register
 				'email_confirm'		=> array('string', false, 6, 60),
 				'tz'				=> array('num', false, -14, 14),
 				'lang'				=> array('language_iso_name'),
-			));
+			))
+
+			//Begin: Profile Fields Control MOD
+			);
+			//End: Profile Fields Control MOD
 
 			if (!check_form_key('ucp_register'))
 			{
@@ -298,6 +306,10 @@ class ucp_register
 					'user_inactive_reason'	=> $user_inactive_reason,
 					'user_inactive_time'	=> $user_inactive_time,
 				);
+
+				//Begin: Profile Fields Control MOD
+				ucp_register_user_row($user_row, $data);
+				//End: Profile Fields Control MOD
 
 				if ($config['new_member_post_limit'])
 				{
@@ -470,6 +482,10 @@ class ucp_register
 			'S_HIDDEN_FIELDS'	=> $s_hidden_fields,
 			'S_UCP_ACTION'		=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=register'),
 		));
+
+		//Begin: Profile Fields Control MOD
+		$template->assign_vars(ucp_register_template($data));
+		//End: Profile Fields Control MOD
 
 		//
 		$user->profile_fields = array();

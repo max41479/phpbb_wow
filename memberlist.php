@@ -16,6 +16,9 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+// Begin: Profile Fields Control MOD
+include($phpbb_root_path . 'includes/functions_profile_control.' . $phpEx);
+// End: Profile Fields Control MOD
 
 // Start session management
 $user->session_begin();
@@ -571,6 +574,10 @@ switch ($mode)
 
 		$template->assign_vars(show_profile($member, $user_notes_enabled, $warn_user_enabled));
 
+		// Begin: Profile Fields Control MOD
+		$template->assign_vars(user_profile_fields($member, $user_id));
+		// End: Profile Fields Control MOD
+
 		// Custom Profile Fields
 		$profile_fields = array();
 		if ($config['load_cpf_viewprofile'])
@@ -637,6 +644,10 @@ switch ($mode)
 			'U_REMOVE_FRIEND'	=> ($friend && $friends_enabled) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;remove=1&amp;usernames[]=' . $user_id) : '',
 			'U_REMOVE_FOE'		=> ($foe && $foes_enabled) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'i=zebra&amp;remove=1&amp;mode=foes&amp;usernames[]=' . $user_id) : '',
 		));
+
+		// Begin: Profile Fields Control MOD           
+		$template->assign_vars(memberlist_profile_fields($member));
+		// End: Profile Fields Control MOD
 
 		if (!empty($profile_fields['row']))
 		{
@@ -1559,6 +1570,11 @@ switch ($mode)
 					$cp_row = (isset($profile_fields_cache[$user_id])) ? $cp->generate_profile_fields_template('show', false, $profile_fields_cache[$user_id]) : array();
 				}
 
+				// Begin: Profile Fields Control MOD
+				$row['user_website'] = ($config['ucp_website'] || !$config['pfcm_enable']) ? $row['user_website'] : '';
+				$row['user_from'] = ($config['ucp_location'] || !$config['pfcm_enable']) ? $row['user_from'] : '';
+				// End: Profile Fields Control MOD
+
 				$memberrow = array_merge(show_profile($row), array(
 					'ROW_NUMBER'		=> $i + ($start + 1),
 
@@ -1629,6 +1645,12 @@ switch ($mode)
 			'S_ORDER_SELECT'	=> $s_sort_dir,
 			'S_MODE_ACTION'		=> $pagination_url)
 		);
+		// Begin: Profile Fields Control MOD
+		$template->assign_vars(array(
+			'S_WWW_ENABLED'			=> (($config['ucp_website'] && $config['pfcm_enable']) || !$config['pfcm_enable']) ? true : false,
+			'S_LOCATION_ENABLED'		=> (($config['ucp_location'] && $config['pfcm_enable']) || !$config['pfcm_enable']) ? true : false,
+			));
+		// End: Profile Fields Control MOD
 }
 
 // Output the page

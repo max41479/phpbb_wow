@@ -1,0 +1,66 @@
+<!-- IF S_PFCM_ENABLED and S_PROFILE_OPTIONS -->
+	<tr>
+		<td class="row2" colspan="2"><span class="gensmall">{L_ITEMS_REQUIRED}</span></td>
+	</tr>
+<!-- ENDIF -->
+<!-- IF S_USER_REG_ICQ -->
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_UCP_ICQ}:<!-- IF ICQ_REQUIRE --> *<!-- ENDIF --> </b></td>
+		<td class="row2"><input class="post" type="text" name="icq" size="25" maxlength="15" value="{ICQ}" /></td>
+	</tr>
+<!-- ENDIF -->
+<!-- IF S_USER_REG_AIM -->	
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_UCP_AIM}:<!-- IF AIM_REQUIRE --> *<!-- ENDIF --> </b></td>
+		<td class="row2"><input class="post" type="text" name="aim" size="25" maxlength="255" value="{AIM}" /></td>
+	</tr>
+<!-- ENDIF -->
+<!-- IF S_USER_REG_MSNM -->	
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_UCP_MSNM}:<!-- IF MSNM_REQUIRE --> *<!-- ENDIF --> </b></td>
+		<td class="row2"><input class="post" type="text" name="msn" size="25" maxlength="255" value="{MSN}" /></td>
+	</tr>
+<!-- ENDIF -->
+<!-- IF S_USER_REG_YIM -->
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_UCP_YIM}:<!-- IF YIM_REQUIRE --> *<!-- ENDIF --> </b></td>
+		<td class="row2"><input class="post" type="text" name="yim" size="25" maxlength="255" value="{YIM}" /></td>
+	</tr>
+<!-- ENDIF -->
+<!-- IF S_USER_REG_JABBER -->
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_UCP_JABBER}:<!-- IF JABBER_REQUIRE --> *<!-- ENDIF --> </b></td>
+		<td class="row2"><input class="post" type="text" name="jabber" size="25" maxlength="255" value="{JABBER}" /></td>
+	</tr>
+<!-- ENDIF -->
+<!-- IF S_USER_REG_WEBSITE -->	
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_WEBSITE}:<!-- IF WEBSITE_REQUIRE --> *<!-- ENDIF --> </b></td>
+		<td class="row2"><input class="post" type="text" name="website" size="25" maxlength="255" value="{WEBSITE}" /></td>
+	</tr>
+<!-- ENDIF -->
+<!-- IF S_USER_REG_LOCATION -->	
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_LOCATION}:<!-- IF LOCATION_REQUIRE --> *<!-- ENDIF --> </b></td>
+		<td class="row2"><input class="post" type="text" name="location" size="25" maxlength="100" value="{LOCATION}" /></td>
+	</tr>
+<!-- ENDIF -->	
+<!-- IF S_USER_REG_OCCUPATION -->	
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_OCCUPATION}:<!-- IF OCCUPATION_REQUIRE --> *<!-- ENDIF --> </b></td>
+		<td class="row2"><textarea class="post" name="occupation" rows="3" cols="25">{OCCUPATION}</textarea></td>
+	</tr>
+<!-- ENDIF -->
+<!-- IF S_USER_REG_INTERESTS -->	
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_INTERESTS}:<!-- IF INTERESTS_REQUIRE --> *<!-- ENDIF --> </b></td>
+		<td class="row2"><textarea class="post" name="interests" rows="3" cols="25">{INTERESTS}</textarea></td>
+	</tr>
+<!-- ENDIF -->
+
+<!-- IF S_USER_BIRTHDAY -->
+	<tr> 
+		<td class="row1" width="35%"><b class="genmed">{L_BIRTHDAY}:<!-- IF BIRTHDAY_REQUIRE --> *<!-- ENDIF --> </b><br /><span class="gensmall">{L_BIRTHDAY_EXPLAIN}</span></td>
+		<td class="row2"><span class="genmed">{L_DAY}:</span> <select name="bday_day">{S_BIRTHDAY_DAY_OPTIONS}</select> <span class="genmed">{L_MONTH}:</span> <select name="bday_month">{S_BIRTHDAY_MONTH_OPTIONS}</select> <span class="genmed">{L_YEAR}:</span> <select name="bday_year">{S_BIRTHDAY_YEAR_OPTIONS}</select></td>
+	</tr>
+<!-- ENDIF -->
