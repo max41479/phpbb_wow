@@ -4,9 +4,8 @@
  * @author Nathan Guse (EXreaction) http://lithiumstudios.org
  * @author David Lewis (Highway of Life) highwayoflife@gmail.com
  * @package umil
- * @version $Id$
  * @copyright (c) 2008 phpBB Group
- * @license http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
  *
  */
 
@@ -18,7 +17,7 @@ if (!defined('IN_PHPBB'))
 	exit;
 }
 
-define('UMIL_VERSION', '1.0.5-dev');
+define('UMIL_VERSION', '1.0.5');
 
 /**
 * Multicall instructions
@@ -199,7 +198,7 @@ class umil
 
 			// Check to see if a newer version is available.
 			$info = $this->version_check('version.phpbb.com', '/umil', ((defined('PHPBB_QA')) ? 'umil_qa.txt' : 'umil.txt'));
-			if (is_array($info) && isset($info[0]) && isset($info[1]))
+			if (is_array($info) && isset($info[0]) && isset($info[1]) && defined('DEBUG'))
 			{
 				if (version_compare(UMIL_VERSION, $info[0], '<'))
 				{
@@ -572,7 +571,7 @@ class umil
 		}
 
 		$style_id = (int) $style_id;
-		$type = (string) $type; // Prevent PHP bug.
+		$type = (is_array($type)) ? '' : strval($type); // only pass strings to switch()
 
 		switch ($type)
 		{
@@ -1518,6 +1517,12 @@ class umil
 	*/
 	function permission_exists($auth_option, $global = true)
 	{
+		// forum permissions shouldn't be set globally
+		if (strpos($auth_option, 'f_') === 0)
+		{
+			$global = false;
+		}
+
 		if ($global)
 		{
 			$type_sql = ' AND is_global = 1';
@@ -1563,6 +1568,12 @@ class umil
 		}
 
 		$this->umil_start('PERMISSION_ADD', $auth_option);
+
+		// forum permissions shouldn't be set globally
+		if (strpos($auth_option, 'f_') === 0)
+		{
+			$global = false;
+		}
 
 		if ($this->permission_exists($auth_option, $global))
 		{
@@ -1628,6 +1639,12 @@ class umil
 		}
 
 		$this->umil_start('PERMISSION_REMOVE', $auth_option);
+
+		// forum permissions shouldn't be set globally
+		if (strpos($auth_option, 'f_') === 0)
+		{
+			$global = false;
+		}
 
 		if (!$this->permission_exists($auth_option, $global))
 		{
@@ -2136,16 +2153,15 @@ class umil
 			include("{$phpbb_root_path}includes/functions_install.$phpEx");
 		}
 
-		
-		/* This function has had numerous problems and is currently broken, so until phpBB uses it I will not be anymore*/
-		/*if (method_exists($this->db_tools, 'sql_create_table'))
+		/*
+		* This function has had numerous problems and is currently broken, so until phpBB uses it I will not be anymore
+		if (method_exists($this->db_tools, 'sql_create_table'))
 		{
 			// Added in 3.0.5
 			$this->db_tools->sql_create_table($table_name, $table_data);
 		}
 		else
-		{
-		*/
+		{*/
 			$available_dbms = get_available_dbms($dbms);
 
 			$sql_query = $this->create_table_sql($table_name, $table_data);
@@ -2155,9 +2171,7 @@ class umil
 			{
 				$this->db->sql_query($sql);
 			}
-		/*
-		}
-		*/
+		//}
 
 		return $this->umil_end();
 	}

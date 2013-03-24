@@ -21,56 +21,69 @@ function check_addtemplate()
 
 <p>{L_ACP_DKP_APPLY_EXPLAIN}</p>
 
-<form method="post" action="{F_ADD_CONFIG}" id="acp_apply">
+<form method="post" action="{F_ADD_CONFIG}" id="acp_applytemplates">
 
+<h2>{L_APPLY_ACP_APPTEMPLATELIST}</h2>
 <fieldset>
-<legend>{L_APPLY_ACP_APPTEMPLATELIST}</legend>
 
 <dl>
-	<dt style= "width: 100%"><label>{L_TEMPLATE_ID}:</label>{L_APPLY_ACP_APPTEMPLATELIST_EXPLAIN}</dt>
+	<dt style= "width: 100%">{L_APPLY_ACP_APPTEMPLATELIST_EXPLAIN}</dt>
 </dl>
 
-<dl>
-	<dt style= "width: 100%"><label>{L_FORUM}:</label>{L_APPLY_ACP_FORUM_PREF_EXPLAIN}</dt>
-</dl>
-
-
-<dl>
-	<dt style= "width: 100%"><label>{L_GUILD}:</label>{L_ACP_APPLY_WHATGUILD_EXPLAIN}</dt>
-</dl>
-
+	<!-- IF .apptemplatelist -->
 	<table cellspacing="1" style="width:60%">
 	<thead>
 	  <tr>
+	    <th style="text-align:left; width: 5%; white-space: nowrap;">{L_TEMPLATE_ID}</th>
+	    <th style="text-align:left; width: 30%; white-space: nowrap;">{L_NAME}</th>
+	    <th style="text-align:left; width: 30%; white-space: nowrap;">{L_FORUM}</th>
+	    <th style="text-align:left; width: 30%; white-space: nowrap;">{L_GUILD}</th>
 	    <th style="text-align:left; width: 5%; white-space: nowrap;">{L_ACTION}</th>
-	    <th style="text-align:left; width: 5%; white-space: nowrap; color:#FF3333">{L_TEMPLATE_ID}</th>
-	    <th style="text-align:left; width: 19%; white-space: nowrap;">{L_NAME}</th>
-	    <th style="text-align:left; width: 70%; white-space: nowrap;">{L_FORUM}</th>
-	    <th>{L_GUILD}</th>
 	  </tr>
-	  </thead>
+	</thead>
 	<tbody>
 	  <!-- BEGIN apptemplatelist -->
 	  <!-- IF apptemplatelist.S_ROW_COUNT is even --> <tr class="row1"><!-- ELSE --> <tr class="row2"><!-- ENDIF -->
-	    <td>
-			<a href="{apptemplatelist.U_DELETE_TEMPLATE}">{ICON_DELETE}</a>
-		</td>
-	    <td><strong>{apptemplatelist.ID}</strong></td>
-	    <td><strong>{apptemplatelist.TEMPLATE_NAME}</strong></td>
+	    <td style="text-align:center; color:#FF3333"> <strong>{apptemplatelist.ID}</strong></td>
+	    <td>{apptemplatelist.TEMPLATE_NAME}</td>
 	    <td>
     		{apptemplatelist.FORUMID}
     	</td>
     	<td>
        		{apptemplatelist.GUILDNAME}
     	</td>
+	    <td>
+			<a href="{apptemplatelist.U_DELETE_TEMPLATE}">{ICON_DELETE}</a>
+			<a href="{apptemplatelist.U_EDIT_TEMPLATE}">{ICON_EDIT}</a>
+		</td>
 	  </tr>
 	  <!-- END apptemplatelist -->
-
+	  </tbody>
+	  </table>
+	
+	
+	<br />
+	<!-- ENDIF -->
+	
+	
+<dl>
+	<dt style= "width: 100%"><label>{L_FORUM}:</label>{L_APPLY_ACP_FORUM_PREF_EXPLAIN}</dt>
+	<dt style= "width: 100%"><label>{L_GUILD}:</label>{L_ACP_APPLY_WHATGUILD_EXPLAIN}</dt>
+</dl>
+	
+	<table cellspacing="1" style="width:60%">
+	<thead>
+	  <tr>
+	    <th style="text-align:left; width: 5%; white-space: nowrap;">{L_ACTION}</th>
+	    <th style="text-align:left; width: 19%; white-space: nowrap;">{L_NAME}</th>
+	    <th style="text-align:left; width: 70%; white-space: nowrap;">{L_FORUM}</th>
+	    <th>{L_GUILD}</th>
+	  </tr>
+	</thead>
+	<tbody>
 	  <tr class="row3">
 	    <td>
 			<input type="submit" name="apptemplateadd" id="apptemplateadd" value="{L_ADD}" class="button1" onclick="return check_addtemplate();"/>
-		</td>
-		<td>
 		</td>
 	    <td><input type="text" name="template_name" id="template_name" size="50" maxlength="50" class="input" /></td>
 	    <td>
@@ -95,34 +108,34 @@ function check_addtemplate()
 </fieldset>
 </form>
 
+
 <!-- IF .apptemplatelist -->
-<form method="post" action="{F_ADD_CONFIG}" id="acp_apply">
+<form method="post" action="{F_ADD_CONFIG}" id="acp_applylines">
 
+<h2>{L_APPLY_ACP_TEMPLATELINES}</h2>
 <fieldset>
-	
-<legend>{L_APPLY_ACP_APPTEMPLATELINES}</legend>
 
-<input type="hidden" name="template_id_hidden" value="{TEMPLATE_ID}" />
+<input type="hidden" name="apptemplate_id_hidden" value="{TEMPLATE_ID}" />
 
-    <select name="applytemplate_id" id="applytemplate_id" class="input" onchange="javascript:form.submit();" >
-	<!-- BEGIN apptemplatelist -->
-   		 <option value="{apptemplatelist.ID}" {apptemplatelist.SELECTED} >{apptemplatelist.TEMPLATE_NAME}</option><!-- END apptemplatelist -->
-  	</select>
+<select name="applytemplate_id" id="applytemplate_id" class="input" onchange="javascript:form.submit();" >
+<!-- BEGIN apptemplatelist -->
+<option value="{apptemplatelist.ID}" {apptemplatelist.SELECTED} >{apptemplatelist.TEMPLATE_NAME}</option><!-- END apptemplatelist -->
+</select>
+
 <dl>
-	<dt style= "width: 100%"><label>{L_APPLY_CHGMAND}</label><br/>{L_APPLY_CHGMAND_EXPLAIN}</dt>
+	<dt style= "width: 100%"><label>{L_APPLY_CHGMAND}</label><br/>{L_APPLY_CHGMAND_EXPLAIN}{L_APPLY_CHGCHAR_EXPLAIN}</dt>
 </dl>
 
 <!-- IF .apptemplate -->
-<table cellspacing="1">
+<table cellspacing="1" style="width:99%">
 	<thead>
 	<tr>
-	<th style="width:8%; text-align:left">{L_TEMPLATE}</th>
-	<th style="width:8%; text-align:left">{L_ACTION}</th>
+	<th style="width:3%; text-align:center">{L_ACP_APPLY_QORDER}</th>
+	<th style="width:8%; text-align:center">{L_ACTION}</th>
     <th style="width:17%; text-align:left">{L_TYPE}</th>
     <th style="width:20%; text-align:center">{L_ACP_APPLY_HEADER}</th>
-    <th style="width:20%; text-align:center">{L_ACP_APPLY_QUESTION}</th>
+    <th style="width:20%; text-align:center">{L_ACP_APPLY_QUESTION} {L_ACP_APPLY_QUESTION_SHOW}</th>
     <th style="width:20%; text-align:center">{L_ACP_APPLY_CONTENTS}</th>
-	<th style="width:20%; text-align:center">{L_ACP_APPLY_DEFAULTT}</th>
   </tr>
   </thead>
   
@@ -133,36 +146,38 @@ function check_addtemplate()
 	  <!-- ELSE -->
 	  <tr class="row2">
 	  <!-- ENDIF -->
-	  	<td style="width:10%; text-align:left">{apptemplate.TEMPLATE}</td>
-	    <td style="width:5%; text-align:center">
-	    <!-- IF apptemplate.QORDER <= 1 and not PREVIOUS_PAGE -->{ICON_MOVE_UP_DISABLED}<!-- ELSE --><a href="{apptemplate.U_APPQUESTIONMOVE_UP}">{ICON_MOVE_UP}</a><!-- ENDIF -->
+	  	<td style="width:5%; text-align:center">{apptemplate.QORDER}</td>
+	    <td style="width:10%; text-align:center">
+	    <!-- IF apptemplate.QORDER == 0 and not PREVIOUS_PAGE -->{ICON_MOVE_UP_DISABLED}
+	    <!-- ELSE --><a href="{apptemplate.U_APPQUESTIONMOVE_UP}">{ICON_MOVE_UP}</a> <!-- ENDIF -->
+	    
 		<!-- IF apptemplate.S_LAST_ROW and not NEXT_PAGE --> {ICON_MOVE_DOWN_DISABLED}
 		<!-- ELSE --><a href="{apptemplate.U_APPQUESTIONMOVE_DOWN}">{ICON_MOVE_DOWN}</a>
 		<!-- ENDIF --><a href="{apptemplate.U_APPQUESTIONDELETE}">{ICON_DELETE}</a>
 		</td>
-	    <td style="width:20%; text-align:left">
-	    <input type="checkbox" name="q_mandatory[{apptemplate.ID}]" value="True" {apptemplate.DISABLED} {apptemplate.CHECKED} />&nbsp;
-	    	<select name="q_type[{apptemplate.ID}]" class="input" {apptemplate.DISABLED}>
+	    
+	    <td style="width:19%; text-align:left">
+	    <input  type="checkbox" name="q_mandatory[{apptemplate.ID}]" {apptemplate.DISABLED} {apptemplate.CHECKED} />&nbsp;
+	    	<select style="width:70%;" name="q_type[{apptemplate.ID}]" class="input" {apptemplate.DISABLED}>
 				<!-- BEGIN template_type -->
 				<option value="{template_type.TYPE}"{template_type.SELECTED}>{template_type.VALUE}</option>
 				<!-- END template_type -->
 			</select>
 		</td>
-	    <td style="width:20%; text-align:center; overflow:ellipsis">
-	    <textarea style="width:100%; resize:none;" rows="2" cols="10"  
-	    class="text" name="q_header[{apptemplate.ID}]">{apptemplate.HEADER}</textarea></td>
-	    
-	    <td style="width:20%; text-align:center; overflow:ellipsis">
-	    <textarea style="width:100%; resize:none;" rows="2" cols="10"
-	    class="text" name="q_question[{apptemplate.ID}]" >{apptemplate.QUESTION}</textarea></td>
-	    
-	    <td style="width:20%; text-align:center; overflow:ellipsis">
-	    <textarea style="width:95%; resize:none;" rows="2" cols="10"
-	    class="text" name="q_options[{apptemplate.ID}]" >{apptemplate.OPTIONS}</textarea></td>
 		
-		<td style="width:20%; text-align:center; overflow:ellipsis">
-	    <textarea style="width:95%; resize:none;" rows="2" cols="10"
-	    class="text" name="q_defaultt[{apptemplate.ID}]" >{apptemplate.DEFAULTT}</textarea></td>
+	    <td style="width:22%; text-align:center; overflow:ellipsis">
+	    <textarea style="width:97%; resize:none; {apptemplate.TITLEINVISIBLE}" rows="2" cols="10"  
+	    class="text" name="q_header[{apptemplate.ID}]"  >{apptemplate.HEADER}</textarea></td>
+	    
+	    <td style="width:22%; text-align:center; overflow:ellipsis">
+	    <textarea style="width:80%; resize:none; {apptemplate.QUESTIONINVISIBLE}" rows="2" cols="10"
+	    class="text" name="q_question[{apptemplate.ID}]" >{apptemplate.QUESTION}</textarea>
+	    <input style="{apptemplate.QUESTIONINVISIBLE}" type="checkbox" name="q_question_mandatory[{apptemplate.ID}]" {apptemplate.DISABLED} {apptemplate.QMANDATORY_CHECKED} />
+	    </td>
+	    
+	    <td style="width:22%; text-align:center; overflow:ellipsis">
+	    <textarea style="width:97%; resize:none; {apptemplate.OPTIONINVISIBLE} {apptemplate.QUESTIONINVISIBLE}" rows="2" cols="10" {apptemplate.OPTIONDISABLED} 
+	    class="text" name="q_options[{apptemplate.ID}]" >{apptemplate.OPTIONS}</textarea></td>
 	  </tr>
 	  <!-- END apptemplate -->
 	  </tbody>
@@ -172,23 +187,19 @@ function check_addtemplate()
 	</p>
 <!-- ENDIF -->
 	
-<table cellspacing="1">
+<table cellspacing="1" style="width:99%">
 	<thead>
 	<tr>
-    <th style="width:5%; text-align:left">{L_REQUIRED}</th>
-    <th style="width:25%; text-align:left">{L_TYPE}</th>
-    <th style="width:20%; text-align:left">{L_ACP_APPLY_HEADER}</th>
-    <th style="width:20%; text-align:left">{L_ACP_APPLY_QUESTION}</th>
-    <th style="width:20%; text-align:left">{L_ACP_APPLY_CONTENTS}</th>
-	<th style="width:20%; text-align:left">{L_ACP_APPLY_DEFAULTT}</th>
+    <th style="width:34%; text-align:left">{L_TYPE}</th>
+    <th style="width:22%; text-align:left">{L_ACP_APPLY_HEADER}</th>
+    <th style="width:22%; text-align:left">{L_ACP_APPLY_QUESTION} {L_ACP_APPLY_QUESTION_SHOW}</th>
+    <th style="width:22%; text-align:left">{L_ACP_APPLY_CONTENTS}</th>
   </tr>
   </thead>
   <tbody>
 	  <tr class="row3">
-	  	<td>
-         	<input type="checkbox" name="app_add_mandatory" value="True" />&nbsp;
-	  	</td>
 	    <td>
+         	<input type="checkbox" name="app_add_mandatory" value="True" />&nbsp;
          	<select name="app_add_type" class="input" id="app_add_type">
 				<!-- BEGIN template_type -->
 				<option value="{template_type.TYPE}"{template_type.SELECTED}>{template_type.VALUE}</option>
@@ -197,20 +208,17 @@ function check_addtemplate()
 	    </td>
 	    
 	    <td>
-	      <textarea style="width:100%; resize:none;" rows="2" cols="10"
+	      <textarea style="width:97%; resize:none;" rows="2" cols="10"
 	    	class="text" name="app_add_title" onclick="this.value ='';" onblur="if(this.value == '') { this.value = '{L_ACP_APPLY_HEADER}' };" >{L_ACP_APPLY_HEADER}</textarea>
 	    </td>
 	    <td>
-	      <textarea style="width:100%; resize:none;" rows="2" cols="10"
+	      <textarea style="width:80%; resize:none;" rows="2" cols="10"
 	    	class="text" name="app_add_question" onclick="this.value ='';" onblur="if(this.value == '') { this.value = '{L_ACP_APPLY_QUESTION}' };" >{L_ACP_APPLY_QUESTION}</textarea>
+	      <input type="checkbox" name="app_add_question_mandatory" id="app_add_question_mandatory"/>	
 	    </td>
 	    <td>
-	   	      <textarea style="width:100%; resize:none;" rows="2" cols="10"
+	   	      <textarea style="width:97%; resize:none;" rows="2" cols="10"
 	    	class="text" name="app_add_options" ></textarea>
-	    </td>
-	    <td>
-	   	      <textarea style="width:100%; resize:none;" rows="2" cols="10"
-	    	class="text" name="app_add_defaultt" ></textarea>
 	    </td>
 	    
 	  </tr>
@@ -220,86 +228,10 @@ function check_addtemplate()
 <p class="quick">
 	<input type="submit" name="appformquestionadd" id="appformquestionadd" value="{L_ADD}" class="button1" />
 </p>
-<!-- ENDIF -->
-</fieldset>
-
-<fieldset>
-<legend>{L_APPLY_ACP_TEMPLATESETTING}</legend>
-<br />  
-	<dl>
-		<dt><label>{L_APPLY_WELCOME}:</label><br />{L_APPLY_WELCOME_EXPLAIN}</dt>
-		<dd>
-		<textarea name="welcome_message" rows="3" cols="60" style=" font-size: 100%; width: 99%" class="input">{WELCOME_MESSAGE}</textarea>
-		</dd>
-	</dl>
-	<dl>
-	   <dt><label for="realm">{L_APPLY_REALM1}</label></dt>
-	   <dd><input type="text" name="realm" id="realm" size="20" maxlength="30" value="{REALM}" class="input" /></dd>
-	</dl>
-	
-	<dl>
-	 <dt><label>{L_APPLY_ACP_REGION}</label></dt>
-	 <dd>
-	 <select name="region" class="input" id="region">
-	    <!-- BEGIN region -->
-	   <option value="{region.VALUE}"{region.SELECTED}>{region.OPTION}</option>
-	   <!-- END region -->
-	   </select>
-	   </dd>
-	</dl>
-	  
-   <dl>
-    <dt><label>{L_APPLY_ACP_GUESTPOST}</label><br/>{L_APPLY_ACP_GUESTPOST_EXPLAIN}</dt>
-    <dd>
-    <select name="guests" class="input" id="guests">
-       <!-- BEGIN guests -->
-      <option value="{guests.VALUE}"{guests.SELECTED}>{guests.OPTION}</option>
-      <!-- END guests -->
-     </select>
-     </dd>
-  </dl>
-	   
-	<p class="quick">
-		<input type="submit" name="appformsettings" value="{L_UPDATE}" class="button1" />
-	</p>
-
-</fieldset>
-
-<script type="text/javascript" charset="utf-8">
- $(document).ready(function() {
-   $('#nojquery').hide();
-   $('#picker').farbtastic('#applyquestioncolor');
- });
-</script>
-
-<fieldset>
-<legend>{L_APPLY_COLORSETTINGS}</legend>
-<dl>
-	<dt><label>{L_APPLY_POSTCOLOR}</label><br /><br />{L_APPLY_POSTCOLOR_EXPLAIN}</dt>
-	<dd>
-		<table style=" border-width: 0px;"> 
-		<tr>
-			<td >
-			<span id="nojquery" style="color: red; font-size: 1.4em">{L_JQUERY_MISSING}</span>
-			  <span id="picker"></span>
-	       	</td>
-       		<td>
-			<span class="form-item"><input type="text" id="applyquestioncolor" name="applyquestioncolor" value="#123456" /></span>
-    	 	</td>
-	     </tr>
-		</table>
-	</dd>
-</dl>
-<p class="quick">
-    <select name="app_textcolors" class="input" id="app_textcolors">
-             <option value="postqcolor">{L_APPLY_POST_QUESTIONCOLOR}</option>
-             <option value="postacolor">{L_APPLY_POST_ANSWERCOLOR}</option>
-             <option value="formqcolor">{L_APPLY_FORMCOLOR}</option>
-    </select>
-    <input type="submit" name="updatecolor" value="{L_UPDATE}" class="button1" />
-</p>
 <span>{S_FORM_TOKEN}</span>
 </fieldset>
 </form>
+
+<!-- ENDIF -->
 
 <!-- INCLUDE dkp/overall_footer.html -->

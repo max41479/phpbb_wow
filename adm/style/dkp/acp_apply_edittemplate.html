@@ -1,0 +1,96 @@
+<!-- INCLUDE overall_header.html -->
+
+<script  type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+   $('#nojquery').hide();
+   $('#picker1').farbtastic('#postqcolor');
+   $('#picker2').farbtastic('#postacolor');
+ });
+
+function check_form()
+{
+	 if (document.getElementById('template_name').value.length < 1)
+     {
+        alert('{MSG_ID_EMPTY}');
+        return false;
+     }
+     return true;
+}
+//]]>
+</script>
+
+<a name="maincontent"></a>
+
+<h1>{L_ACP_DKP_APPLY_TEMPLATE_EDIT} {TEMPLATE_ID}</h1>
+<p>{L_ACP_DKP_APPLY_TEMPLATE_EDIT_EXPLAIN} </p>
+
+<form id="acp_edittemplate" method="post" action="{U_ACTION}" onsubmit="return check_form(this)">
+<div>
+<input type="hidden" name="template_id" value="{TEMPLATE_ID}" />
+<fieldset>
+<legend>{L_TEMPLATE}</legend>
+    
+ 	 <dl>
+		<dt><label for="template_name">{L_NAME}: {TEMPLATE_NAME}</label></dt>
+		<dd><input class="medium" type="text" id="apptemplate_name" name="apptemplate_name" value="{TEMPLATE_NAME}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="applyforum_id">{L_FORUM}: {FORUMNAME}</label></dt>
+		<dd>
+		     <select name="applyforum_id" id="applyforum_id" class="input" >
+    			{TEMPLATEFORUM_OPTIONS}
+    	 	</select>
+     	</dd>
+     </dl>
+     
+     <dl>
+     <dt><label for="candidate_guild_id">{L_GUILD}: {GUILDNAME}</label></dt>
+     
+     	<dd>
+     		<select id="candidate_guild_id" name="candidate_guild_id" class="input">
+       			<!-- BEGIN guild_row -->
+       				<option value="{guild_row.VALUE}"{guild_row.SELECTED}>{guild_row.OPTION}</option>
+        		<!-- END guild_row -->
+    		</select>
+    		
+     	</dd>
+     </dl>
+     
+	<dl>
+		<dt><label>{L_APPLY_WELCOME}:</label><br />{L_APPLY_WELCOME_EXPLAIN}</dt>
+		<dd>
+		<textarea name="welcome_message" rows="3" cols="60" style=" font-size: 100%; width: 99%" class="input">{WELCOME_MESSAGE}</textarea>
+		</dd>
+	</dl>
+
+
+	<dl>
+		<dt><label>{L_APPLY_POST_QUESTIONCOLOR}</label><br />{L_APPLY_POSTQUESTIONCOLOR_EXPLAIN}</dt>
+		<dd>
+			<span id="nojquery" style="color: red; font-size: 1.4em">{L_JQUERY_MISSING}</span>
+			<span id="picker1"></span>
+			<span class="form-item"><input type="text" id="postqcolor" name="postqcolor" value="{POSTQCOLOR}" /></span>
+		</dd>
+	</dl>
+	
+	<dl>
+		<dt><label>{L_APPLY_POST_ANSWERCOLOR}</label><br />{L_APPLY_POSTANSWERCOLOR_EXPLAIN}</dt>
+		<dd>		
+			<span id="picker2"></span>
+			<span class="form-item"><input type="text" id="postacolor" name="postacolor" value="{POSTACOLOR}" /></span>
+		</dd>
+	</dl>
+
+
+</fieldset>
+   
+<fieldset class="quick" style="float: {S_CONTENT_FLOW_END};">
+   {S_FORM_TOKEN}
+    <input type="submit" name="update" value="{L_UPDATE}" class="button1" /> 
+    
+	</fieldset>
+</div>
+</form>
+
+<!-- INCLUDE dkp/overall_footer.html -->

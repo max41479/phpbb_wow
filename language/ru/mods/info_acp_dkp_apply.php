@@ -5,7 +5,7 @@
  * @package bbDkp
  * @copyright 2009 bbdkp <http://code.google.com/p/bbdkp/>
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License
- * @version 1.3.7
+ * @version 1.4
  * 
  */
 
@@ -27,6 +27,8 @@ if (empty($lang) || !is_array($lang))
 $lang = array_merge($lang, array(
 	'ACP_DKP_APPLY'	=> 'Apply',
 	'ACP_DKP_APPLY_EXPLAIN'	=> 'Here you can change the Recruitment template and forum settings. ', 
+	'ACP_DKP_APPLY_TEMPLATE_EDIT' => "Edit Template",
+	'ACP_DKP_APPLY_TEMPLATE_EDIT_EXPLAIN' => "Here you can edit the Applytemplate parameters.",
 
 
 

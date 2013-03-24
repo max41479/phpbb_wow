@@ -1,0 +1,8 @@
+Recruitment Application
+PHP Version: 5.3.18
+DBMS: MySQL(i) 5.5.28
+phpBB3 Version: 3.0.11
+
+Добавление новой переменной конфигурации: bbdkp_apply_gchoice
+Ошибка: Переменная конфигурации bbdkp_apply_gchoice уже существует.
+

@@ -66,6 +66,9 @@ define('REALM_TABLE',      		   $table_prefix . 'bbdkp_realms');
 // RAIDPLANNER
 
 // APPLY
-
+define('APPTEMPLATE_TABLE',			$table_prefix . 'bbdkp_apptemplate');
+define('APPHEADER_TABLE',			$table_prefix . 'bbdkp_apphdr');
+define('APPTEMPLATELIST_TABLE',			$table_prefix . 'bbdkp_apptemplatelist');
+	
 
 ?>

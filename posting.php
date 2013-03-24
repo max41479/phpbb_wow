@@ -41,6 +41,20 @@ $cancel		= (isset($_POST['cancel']) && !isset($_POST['save'])) ? true : false;
 
 $refresh	= (isset($_POST['add_file']) || isset($_POST['delete_file']) || isset($_POST['full_editor']) || isset($_POST['cancel_unglobalise']) || $save || $load) ? true : false;
 $mode		= ($delete && !$preview && !$refresh && $submit) ? 'delete' : request_var('mode', '');
+//apply
+if($mode =='post')
+{
+	$result = $db->sql_query ( 'SELECT * FROM ' . APPTEMPLATELIST_TABLE . ' ORDER BY template_id');
+	while ( $row = $db->sql_fetchrow ( $result ) )
+	{
+		if((int) $row ['forum_id'] === $forum_id)
+		{
+			redirect(append_sid ( "{$phpbb_root_path}apply.$phpEx", 'template_id='. $row ['template_id'] ));
+		}
+	}
+	$db->sql_freeresult ( $result) ;
+}
+//end apply
 
 $error = $post_data = array();
 $current_time = time();

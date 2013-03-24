@@ -5,7 +5,7 @@
 * @package bbDkp
 * @copyright (c) 2009 bbDkp <http://code.google.com/p/bbdkp/>
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
-* @version 1.3.7
+* @version 1.4.1
 * 
 */
  
@@ -41,61 +41,71 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, array(
 
-/***** Questionnaire ******/
-'APPLY_MENU' => 'Форма заявки',
-'APPLY_TITLE' => 'Форма заявки',
-'APPLY_INFO' => '[size=150]Welcome and thank you for choosing us as a possible home for your character. 
-To help us with your application please answer the questions below. Enter your character name exactly as it appears in the armory. [/size] ',
-'APPLY_PUBLICQUESTION' => 'Заявка видима ?', 
-'APPLY_REQUIRED'  => 'Вы должны заполнить все необходимые поля. ', 
-'MANDATORY'	=> 'Необходимо',	
-'APPLY_REALM' => 'Реалм (blank for ',
-'APPLY_NAME' => 'Игровой ник Вашего персонажа: ',
-'APPLY_QUESTION'  => 'Вопрос ',
-'APPLY_ANSWER'  => 'Ответ ',
-'APPLY_REALM1' => 'Игровой мир Вашего персонажа: ',
-'APPLY_LEVEL'  => 'Уровень: ',
-'APPLY_ARMORY_LINK'  => 'Армори: ',
-'APPLY_SPEC'  => 'Специализация: ',
-'APPLY_CLASS'  => 'Класс: ',
-'APPLY_RACE'  => 'Раса: ',
-'APPLY_TALENT'  => 'Талант: ',
-'APPLY_PROFF'  =>  'Профессия: ',
-'TEMPLATE'	=> 'Template', 
-'CONFIRM_DELETE_TEMPLATE'	=> 'Please confirm deletion of template %s. ', 
-'ALERT_TEMPLATENAME_EMPTY'	=> 'Template name can’t be empty',
-
-/***** ACP Armory settings *****/
-'APPLY_ACP_TEMPLATESETTING'	=> 'Настройки шаблона',
-'APPLY_WELCOME'				=> 'Сообщение приветствия',
-'APPLY_WELCOME_EXPLAIN'		=> 'Message shown on top of Apply. supports bbcodes. ',
-'APPLY_ACP_CHARNAME' 		=> 'Игровой ник Вашего персонажа',
-'APPLY_ACP_REALM' 			=> 'Игровой мир Вашего персонажа',
-'APPLY_ACP_REGION' 			=> 'Регион',
-'APPLY_ACP_APPTEMPLATELIST'	=> 'Application templates', 
-'APPLY_ACP_APPTEMPLATELIST_EXPLAIN'	=> 'the template ID is needed as a parameter for apply.php : for example template id 7 is called by url http://www.myguild.org/apply.php?template_id=7; make as many links on your forum as you have templates. ',
-'TEMPLATE_ID'				=> 'Template ID', 
-
 /***** ACP template settings *****/
+'ACP_DKP_APPLY_EXPLAIN'  	=> 'Here you can set all preferences of the Recruitment Mod',
 'APPLY_ACP_FORUM_PREF_EXPLAIN'		=> 'decides in which forum the application will be published. Set up the forum acccess priveleges beforehand.',
+'APPLY_WELCOME'				=> 'Welcome message',
+'APPLY_WELCOME_EXPLAIN'		=> 'Message shown on top of this template. supports bbcodes. ',
 'APPLY_ACP_FORUM_PUB'		=> 'Forum',
 'APPLY_ACP_PUBLIC'			=> 'Public',
 'APPLY_ACP_GUESTPOST' 		=> 'Can guests posts? :',
 'APPLY_ACP_GUESTPOST_EXPLAIN' 	=> 'If you set Guest posting On, don’t forget to set "Enable visual confirmation for guest postings:" to "Yes".' ,  
 'ACP_APPLY_MANDATORY'  		 => 'Mandatory',
-'ACP_APPLY_HEADER'  		 => 'Заголовок',
-'ACP_APPLY_QUESTION'  		 => 'Вопрос',
-'ACP_APPLY_CONTENTS'  		 => 'Варианты выбора',
-'ACP_APPLY_DEFAULTT'  		 => 'Текст по умолчанию',
-'ACP_APPLY_WHATGUILD_EXPLAIN' 	 => 'Select the Guild to which a candidate will be added.',
-'ACP_APPLY_GNONE'  			 => 'add to None',
-'ACP_APPLY_GSEL'  			 => 'add to selected guild',
+'ACP_APPLY_HEADER'  		 => 'Title',
+'ACP_APPLY_QUESTION'  		 => 'Question',
+'ACP_APPLY_QUESTION_SHOW'  		 => '(check to show)',
+'ACP_APPLY_CONTENTS'  		 => 'Select Options',
+'ACP_APPLY_GSEL'  			 => 'Check to add to selected guild',
+'ACP_APPLY_QORDER'			 => 'Order', 
+'ACP_APPLY_WHATGUILD_EXPLAIN'  => 'Adds character to indicated guild', 
+'ACP_APPLY_TEMPLATEEDIT_SUCCESS'  	=> 'Template %s edited successfully',
+'APPLY_ACP_APPTEMPLATELIST_EXPLAIN'	=> 'The Apply form can either be called by simply making a new post in the forum or directly by calling url http://www.domain.tld/apply.php?template_id=7; make as many links on your forum as you have templates. ',
+'TEMPLATE_ID'				=> 'Template ID', 
+'APPLY_ACP_APPTEMPLATELIST' => 'Templates', 
+
+/***** ACP templatelines *****/
+'APPLY_ACP_TEMPLATELINES'  => 'Template lines', 
+'APPLY_CHGCHAR_EXPLAIN' 	=> 'Choose between game, region, realm, name, class, race, gender',
+'APPLY_ACP_CHARNAME' 		=> 'Character name',
+'APPLY_ACP_REALM' 			=> 'Region, Realm',
+'APPLY_ACP_REGION' 			=> 'Region',
+'APPLY_GAME' => 'Game, Race, Class',
+'APPLY_REGION' => 'Realm, Region',
+'APPLY_NAME' => 'Name',
+'APPLY_LEVEL'  => 'Level',
+'APPLY_CLASS'  => 'Class',
+'APPLY_RACE'  => 'Race',
+'APPLY_TALENT'  => 'Talent',
+'APPLY_PROFF'  =>  'Profession',
+'APPLY_GENDER'  =>  'Gender',
+'EU'  =>  'Europe',
+'US'  =>  'America',
+'KR'  =>  'Korea',
+'TW'  =>  'Taiwan',
+'CN'  =>  'China',
+'SEA'  => 'Oceania',
 
 
-'ACP_DKP_APPLY_EXPLAIN'  	=> 'Here you can set all preferences of the Recruitment Mod',
-'APPLY_ACP_APPTEMPLATELINES'  => 'Template lines', 
+/***** Questionnaire ******/
+'APPLY_MENU' => 'Application Form',
+'APPLY_TITLE' => 'Application Form',
+'APPLY_INFO' => '[size=150]Welcome and thank you for choosing us as a possible home for your character. 
+To help us with your application please answer the questions below. Enter your character name exactly as it appears in the armory. [/size] ',
+'APPLY_PUBLICQUESTION' => 'Visible Application ?', 
+'APPLY_REQUIRED'  => 'You need to fill in : %s', 
+'MANDATORY'	=> '*',	
+'APPLY_QUESTION'  => 'Question ',
+'APPLY_ANSWER'  => 'Answer ',
+'TEMPLATE'	=> 'Template', 
+'CONFIRM_DELETE_TEMPLATE'	=> 'Please confirm deletion of template %s. ', 
+'ALERT_TEMPLATENAME_EMPTY'	=> 'Template name can’t be empty',
+'ALERT_NOTEMPLATE'	=> 'No Apply template found',
+'ALERT_NOQUESTIONS'	=> 'No questions found for template %s',
+'APPLY_ACP_APPTEMPLATELINES'  => 'Application Template lines',
+
+/***** ACP Armory settings *****/
 'APPLY_CHGMAND' 			=> 'Change Questionnaire here. ',
-'APPLY_CHGMAND_EXPLAIN' 	=> 'Change the type mandatory check, question type (Inputbox, Textbox, Textbox with bbcode buttons, selectbox, radiobuttons or checkboxes), Title and question.  <br /> In case of a Selectbox, radiobutton or checkbox, separate the options with a comma "," with no spaces.(ex. 1,2,3,4,5") ',
+'APPLY_CHGMAND_EXPLAIN' 	=> 'Change the type mandatory check, question type (h3 Title, Inputbox, Textbox, Textbox with bbcode buttons, selectbox, radiobuttons or checkboxes), Title and question.  <br /> If Selectbox, radiobutton or checkbox, separate the options with a comma "," with no spaces.(ex. 1,2,3,4,5") ',
 'APPLY_ACP_NEWQUESTION' 	=> 'Enter new questions here.',
 'APPLY_ACP_NEWQUESTION_EXPLAIN' => 'Check if mandatory, select the type (Inputbox, Textbox, Textbox with bbcode buttons, Selectbox, Radiobuttons or Checkboxes), enter the title, question. <br /> Separate the checkbox, radiobutton, or selectbox options with a comma "," with no spaces.', 
 'APPLY_ACP_INPUTBOX' 		=> 'Inputbox',	
@@ -104,7 +114,7 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_ACP_SELECTBOX' 		=> 'Selectbox',
 'APPLY_ACP_RADIOBOX' 		=> 'Radiobuttons',
 'APPLY_ACP_CHECKBOX' 		=> 'Checkboxes',
-
+'APPLY_ACP_TITLE'			=> 'Title', 
 
 //warnings
 'APPLY_ACP_RETURN' 			=> '<h3>Return to Application config.</h3>',
@@ -125,30 +135,28 @@ To help us with your application please answer the questions below. Enter your c
 
 
 /** ACP settings for posting template **/
-'APPLY_COLORSETTINGS' 		=> 'Настройки цвета заявки',
+'APPLY_COLORSETTINGS' 		=> 'Apply Color Settings',
 'APPLY_POST_ANSWERCOLOR' 	=> 'Posting Answers color',
 'APPLY_POST_QUESTIONCOLOR' 	=> 'Posting Questions color',
 'APPLY_FORMCOLOR'			=> 'Form Questions Color',
 'APPLY_POSTCOLOR'			=> 'Apply Posting and Application Form Colors',
-'APPLY_POSTCOLOR_EXPLAIN' 	=> 'Color of texts used in the Form and Recruitment post. If you use a dark Style, you can vary the text color to be used here.',
+'APPLY_POSTQUESTIONCOLOR_EXPLAIN' 	=> 'Color of texts used in the questions of the posted Apply Form.',
+'APPLY_POSTANSWERCOLOR_EXPLAIN' 	=> 'Color of texts used in the answers of the posted Apply Form.',
 
 /** posting template **/
-'APPLY_CHAR_OVERVIEW' 		=> 'Персонаж',
-'APPLY_CHAR_MOTIVATION' 	=> 'Мотивация',
-'APPLY_CHAR_PERSONAL' 		=> 'Личные данные',
+'APPLY_CHAR_OVERVIEW' 		=> 'Character',
+'APPLY_CHAR_MOTIVATION' 	=> 'Motivation',
 
 'APPLY_CHAR_NAME' 	=> '[color=%s][b]Character name : [/b][/color]%s',
 'APPLY_CHAR_LEVEL' 	=> '[color=%s]Character level : [/color]%s',  
 'APPLY_CHAR_CLASS' 	=> '[color=%s]Character class : [/color]%s' ,
-'APPLY_CHAR_PROFF' 	=> '[color=%s][u]Professions :[/u][/color]%s',
+'APPLY_CHAR_PROFF' 	=> '[color=%s][u]Professions :[/u][/color]
+%s',
 'APPLY_CHAR_BUILD' 	=> '[color=%s][u]Talent build : [/u][/color]%s',
 'APPLY_CHAR_URL' => '[color=%s][/color][url=%s]Armory Link[/url]', 
-'APPLY_ERROR_NAME'  =>  'Ошибка : Имя должно содержать только буквы (a-zA-Zа-яА-ЯàäåâÅÂçÇéèëêïÏîÎæŒæÆÅóòÓÒöÖôÔøØüÜ разрешены). ',
+'APPLY_ERROR_NAME'  =>  'Error : Name must be Alphabetic. ',
 'APPLY_REQUIRED_LEVEL'  => 'Level is required. ', 
-'APPLY_REQUIRED_NAME'	=> 'Пожалуйста заполните поле "Игровой ник Вашего персонажа". ', 
-'APPLY_REQUIRED_REALM'	=> 'Пожалуйста выберите игровой мир Вашего персонажа. ', 
-'APPLY_REQUIRED_SPEC'	=> 'Пожалуйста укажите специализацию Вашего персонажа". ',
-'APPLY_REQUIRED_CLASS'	=> 'Пожалуйста выберите класс Вашего персонажа". ', 
+'APPLY_REQUIRED_NAME'	=> 'Name is required. ', 
 'RETURN_APPLY'  =>  'Return to Application',
 
 /** installer **/
@@ -158,32 +166,35 @@ To help us with your application please answer the questions below. Enter your c
 'UMIL_CACHECLEARED' => 'Template, Theme, Imageset caches cleared', 
 'APPLY'		=> 'Apply', 
 'ERROR_MINIMUM133' => 'Minimum version required for upgrades is 1.3.3',
-'DEFAULT_Q1' => 'Can you tell us abit about yourself please ?', 
-'DEFAULT_Q2' => 'Please list your alts.', 
-'DEFAULT_Q3' => 'Reason for leaving your current guild ?', 
-'DEFAULT_Q4' => 'What can you bring to us and what do you expect ?', 
-'DEFAULT_Q5' => 'Comment on your build, Glyph set, gear.', 
-'DEFAULT_Q6' => 'Describe your raid experience ', 
-'DEFAULT_Q7' => 'link to your raid logs.', 
-'DEFAULT_Q8' => 'Check the days you’re available', 
-'DEFAULT_Q9' => 'Can you agree with our raid times 7:30pm to 11pm Server time (UTC+1) ?', 
-'DEFAULT_Q10' => 'Is it good enough to maintain a high FPS? what’s the spec ?', 
+
+'DEFAULT_Q1' => 'What can you bring to us and what do you expect ?', 
+'DEFAULT_Q2' => 'Comment on your build, Glyph set, gear.', 
+'DEFAULT_Q3' => 'Describe your raid experience ', 
+'DEFAULT_Q4' => 'Reason for leaving your current guild ?', 
+'DEFAULT_Q5' => 'link to your raid logs.', 
+'DEFAULT_Q6' => 'Please list your alts.', 
+'DEFAULT_Q7' => 'Check the days you’re available', 
+'DEFAULT_Q8' => 'Can you agree with our raid times 7:30pm to 11pm Server time (UTC+1) ?', 
+'DEFAULT_Q9' => 'Is it good enough to maintain a high FPS? what’s the spec ?', 
+'DEFAULT_Q10' => 'Can you tell us abit about yourself please ?', 
 'DEFAULT_Q11' => 'Are you underage ? Check yes or no', 
-'DEFAULT_H1' => 'Personal Info',  
-'DEFAULT_H2' => 'Alts',  
-'DEFAULT_H3' => 'Guild history',  
-'DEFAULT_H4' => 'Motivation',  
-'DEFAULT_H5' => 'Build, Glyphs, Gear',  
-'DEFAULT_H6' => 'Raid experience ',  
-'DEFAULT_H7' => 'Ranks and WOL logs',  
-'DEFAULT_H8' => 'Raid Days',  
-'DEFAULT_H9' => 'Raid times',  
-'DEFAULT_H10' => 'Computer/Connection info',  
+
+'DEFAULT_H1' => 'Motivation',  
+'DEFAULT_H2' => 'Build, and Gear',  
+'DEFAULT_H3' => 'Raiding Experience',  
+'DEFAULT_H4' => 'Guild history',  
+'DEFAULT_H5' => 'Ranks & logs',  
+'DEFAULT_H6' => 'Alts',  
+'DEFAULT_H7' => 'Raiding Schedule',  
+'DEFAULT_H8' => 'Raid times',  
+'DEFAULT_H9' => 'Computer Specifications',  
+'DEFAULT_H10' => 'Person information',  
 'DEFAULT_H11' => 'Age',  
+
 'DEFAULT_O8' => 'monday,tuesday,wednesday,thursday,friday,saturday,sunday',  
 'DEFAULT_O11' => 'yes,no',  
 
-
+'MEMBER_COMMENT' => 'Candidate'
 ));
 
 ?>
