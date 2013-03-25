@@ -155,7 +155,7 @@ class acp_dkp_apply extends bbDkp_Admin
 				else
 				{
 					//display form
-					$applytemplate_id = request_var ( 'template_id', 0 );
+					$applytemplate_id = request_var ( 'template_id', 1 );
 					
 					//general template parameters
 					$result = $db->sql_query ( 'SELECT * FROM ' . APPTEMPLATELIST_TABLE . ' WHERE template_id = ' . $applytemplate_id);

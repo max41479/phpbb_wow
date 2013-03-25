@@ -326,7 +326,7 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 				// reloading is done from ajax to prevent redraw
 				$sql_array = array(
 					'SELECT'	=>	' c.class_id, l.name as class_name, c.class_hide,
-					  c.class_min_level, class_max_level, c.class_armor_type , c.imagename ',
+					  c.class_min_level, class_max_level, c.class_armor_type, c.imagename, c.colorcode ',
 					'FROM'		=> array(
 							CLASS_TABLE		=> 'c',
 							BB_LANGUAGE		=> 'l',
@@ -339,18 +339,9 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 				$result1 = $db->sql_query($sql);
 				while ( $row1 = $db->sql_fetchrow($result1) )
 				{
-					if ( $row1['class_min_level'] <= 1  )
-					{
-						$option = ( !empty($row1['class_name']) ) ? $row1['class_name'] . "
-			 		Level (". $row1['class_min_level'] . " - ".$row1['class_max_level'].")" : '(None)';
-					}
-					else
-					{
-						$option = ( !empty($row1['class_name']) ) ? $row1['class_name'] . "
-			 		Level ". $row1['class_min_level'] . "+" : '(None)';
-					}
-				
+					$option = ( !empty($row1['class_name']) ) ? $row1['class_name'] . "" : '(None)';
 					$template->assign_block_vars('apptemplate.class_row', array(
+							'COLORCODE' => $row1['colorcode'],
 							'VALUE' => $row1['class_id'],
 							'SELECTED' => '',
 							'OPTION'   => $option ));
@@ -360,6 +351,46 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 				
 				
 				break; 
+			case 'regionrealm':
+					if (!class_exists('bbDKP_Admin'))
+					{
+						require("{$phpbb_root_path}includes/bbdkp/bbdkp.$phpEx");
+					}
+					$bbdkp = new bbDKP_Admin();
+						$installed_games = array();
+						$i=0;
+					foreach($bbdkp->games as $gameid => $gamename)
+					{
+						if ($config['bbdkp_games_' . $gameid] == 1)
+						{
+							$installed_games[$gameid] = $gamename;
+								
+							if($i==0) $gamepreset =  $gameid;
+							$i+=1;
+						}
+							
+					}
+					// Realm dropdown
+					// reloading is done from ajax to prevent redraw
+					$sql_array = array(
+						'SELECT'	=>	're.realm_id, re.name as realm_name', 	 
+						'FROM'		=> array(
+								REALM_TABLE		=> 're',
+								),
+						'WHERE'		=> "re.game_id = '" . $gamepreset . "' 
+										AND re.language = '" . $config['bbdkp_lang'] . "'",
+						);
+					$sql = $db->sql_build_query('SELECT', $sql_array);
+					$result1 = $db->sql_query($sql);
+					while ( $row1 = $db->sql_fetchrow($result1) )
+					{
+						$template->assign_block_vars('apptemplate.realm_row', array(
+							'OPTION'   => ( !empty($row1['realm_name']) ) ? $row1['realm_name'] : '(None)')
+						);
+						
+					}         
+					$db->sql_freeresult($result1);
+				break;
 			case 'Selectbox':
 			         $select_option = explode(',', $row['options']);
 			         foreach($select_option as  $key =>  $value) 
@@ -594,7 +625,9 @@ function build_candidate(dkp_character &$candidate, apply_post &$apply_post )
 			$candidate->achievements =$blizzard['achievementPoints']; 
 			$candidate->portraitimg = sprintf('http://%s.battle.net/static-render/%s/%s', $candidate->region, $candidate->region, $blizzard['thumbnail']);
 			//example  http://eu.battle.net/static-render/eu/argent-dawn/232/56689128-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg
-			$candidate->url = sprintf('http://%s.battle.net/wow/en/', $candidate->region) . 'character/' . urlencode($candidate->realm). '/' . urlencode($candidate->name) . '/simple';
+			$candidate->url = sprintf('http://%s.battle.net/wow/en/', $candidate->region) . 'character/' . rawurlencode($candidate->realm). '/' . urlencode($candidate->name) . '/simple';
+			$candidate->wowprogressurl = sprintf('http://www.wowprogress.com/character/%s/', $candidate->region) . rawurlencode(str_replace(" ", "-", $candidate->realm)). '/' . urlencode($candidate->name);
+			$candidate->wowheroesurl = sprintf('http://www.wow-heroes.com/character/%s/', $candidate->region) . rawurlencode($candidate->realm). '/' . urlencode($candidate->name) . '/';
 			//guild
 			$candidate->guild = $blizzard['guild']['name'] . '@' . $blizzard['guild']['realm'];
 
@@ -737,7 +770,7 @@ function build_candidate(dkp_character &$candidate, apply_post &$apply_post )
 		$candidate->class =	$row['class_name'];
 		$candidate->class_color =  (strlen($row['colorcode']) > 1) ? $row['colorcode'] : '';
 		$candidate->class_color_exists =  (strlen($row['colorcode']) > 1) ?  true : false;
-		$candidate->class_image = 	strlen($row['imagename']) > 1 ? $board_url . "images/class_images/" . $row['imagename'] . ".png" : '';
+		$candidate->class_image = 	strlen($row['imagename']) > 1 ? $board_url . "images/roster_classes/" . $row['imagename'] . ".png" : '';
 		$candidate->class_image_exists =    (strlen($row['imagename']) > 1) ? true : false;
 	}
 	
@@ -799,7 +832,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 		{
 			case 'title':
 					
-				$apply_post->message .= $newline . '[color=#FFF][size=150][b]' . strtoupper($row['header']) . ' [/b][/size][/color]' . $newline;
+				$apply_post->message .= $newline . '[color=#1a1a1a][size=150][b]' . strtoupper($row['header']) . ' [/b][/size][/color]' . $newline . $newline;
 				break;
 					
 			case 'charname':
@@ -808,119 +841,32 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 					if ($candidate->game =='wow')
 					{
 						//display portrait image
-						$apply_post->message .= '[img]'. $candidate->portraitimg .'[/img]';
+						$apply_post->message .= '[imgltr=left]'. $candidate->portraitimg .'[/imgltr]';
 					}
 						
-					if($candidate->race_image_exists )
+/*					if($candidate->race_image_exists )
 					{
 						$apply_post->message .= '[img]' .$candidate->race_image . '[/img] ';
 					}
-						
+*/						
 					if($candidate->class_image_exists )
 					{
-						$apply_post->message .= '[img]' .$candidate->class_image  . '[/img]';
+						$apply_post->message .= '[imgltr=right]' .$candidate->class_image  . '[/imgltr]';
 					}
 
 					if ($candidate->game =='wow')
 					{
-						$apply_post->message .= $newline .'[size=150][url=' . $candidate->url  . '][b][color='. $candidate->class_color .']'. $candidate->name . '[/color][/b][/url][/size]';
-						$apply_post->message .= $newline . '[color='. $candidate->class_color .']';
-						$apply_post->message .= $candidate->level . ' ';
-						$apply_post->message .= $candidate->race . ' ';
-						$apply_post->message .= $candidate->talent1['role'] . ' ' . $candidate->talent1['spec'] . ' ';
-						$apply_post->message .= $candidate->class . ' ';
-						$apply_post->message .= '[/color] ' ;
-						$apply_post->message .= '[color='. $apply_post->answercolor .']';
-						$apply_post->message .= $candidate->region . '/' . $candidate->realm;
-						$apply_post->message .= $newline . 'Guild: ' . $candidate->guild;
-						$apply_post->message .= '[/color]';
+						$apply_post->message .= $newline . '[shadow=black][size=150][b][color='. $candidate->class_color .']'. $candidate->name . '[/color][/b][/size][/shadow]';
+						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']';
+						$apply_post->message .= $user->lang['APPLY_ACP_REALM'] . ':[/color][/b] ';
+						$apply_post->message .= '[color='. $apply_post->answercolor .']' . $candidate->region . '/' . $candidate->realm . '[/color]';
+						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']Гильдия: [/color][/b][color='. $apply_post->answercolor .']' . $candidate->guild . '[/color]';
+						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']Ссылки: [/color][/b]';
+						$apply_post->message .= ' [url=' . $candidate->url  . ']' . '[img]http://guild-creative.ru/forum/images/wow.ico[/img][/url]';
+						$apply_post->message .= ' [url=' . $candidate->wowprogressurl  . ']' . '[img]http://guild-creative.ru/forum/images/wowprogress.ico[/img][/url]';
+						$apply_post->message .= ' [url=' . $candidate->wowheroesurl  . ']'. '[img]http://guild-creative.ru/forum/images/wowheroes.ico[/img][/url]';
 
-						$apply_post->message .= $newline .$newline .'[color=#FFF][size=120][b]Stats[/b][/size][/color]';
-
-						$apply_post->message .= '[color='. $apply_post->answercolor .']';
-
-						$apply_post->message .= $newline . 'Achievement points: [size=110]' . $candidate->achievements . '[/size]';
-
-						$apply_post->message .= $newline . 'Average Ilvl: ' . $candidate->averageItemLevel;
-						$apply_post->message .= $newline . 'Average equipped Ilvl: ' . $candidate->averageItemLevelEquipped;
-
-						$apply_post->message .= $newline . 'Health: ' . $candidate->health;
-
-						// mastery
-						$apply_post->message .= $newline . 'Mastery: ' . $candidate->mastery . ', Rating ' . $candidate->masteryRating  ;
-
-						switch ($candidate->class)
-						{
-							case 'Druid':
-							case 'Mage':
-							case 'Paladin':
-							case 'Priest':
-							case 'Warlock':
-								// this is spellpower, maximum mana
-								$apply_post->message .= $newline . 'Mana Pool: ' . $candidate->power;
-								$apply_post->message .= $newline . 'SpellPower: ' . $candidate->spellPower;
-						}
-
-
-						switch ($candidate->class)
-						{
-							case 'Druid':
-							case 'Mage':
-							case 'Paladin':
-							case 'Priest':
-							case 'Shaman':
-							case 'Warlock':
-								// intellect
-								$apply_post->message .= $newline . 'Intellect: ' . $candidate->int;
-									
-						}
-
-							
-						switch ($candidate->class)
-						{
-							case 'Druid':
-							case 'Paladin':
-							case 'Priest':
-								// Spirit
-								$apply_post->message .= $newline . 'Spirit: ' . $candidate->spr;
-						}
-
-						switch ($candidate->class)
-						{
-							case 'Warrior':
-							case 'Paladin':
-							case 'Death Knight':
-								$apply_post->message .= $newline . 'Strength: ' . $candidate->str;
-						}
-
-						switch ($candidate->class)
-						{
-							case 'Hunter':
-							case 'Rogue':
-							case 'Shaman':
-							case 'Druid':
-							case 'Monk':
-								$apply_post->message .= $newline . 'Agility: ' . $candidate->agi;
-						}
-
-						$apply_post->message .= $newline . 'Stamina: ' . $candidate->sta;
-
-						switch ($candidate->talent1['role'])
-						{
-							case 'Defense':
-								$apply_post->message .= $newline . 'Armor: ' . $candidate->armor;
-								$apply_post->message .= $newline . 'Dodge: ' . $candidate->dodge . ', Rating: '. $candidate->dodgeRating ;
-								$apply_post->message .= $newline . 'Parry: ' . $candidate->parry. ', Rating: '. $candidate->parryRating ;
-								$apply_post->message .= $newline . 'Block: ' . $candidate->block. ', Rating: '. $candidate->blockRating;
-								break;
-						}
-
-						$apply_post->message .= $newline . 'Hit: ' . $candidate->hitRating . ', Pct: ' . $candidate->hitPercent;
-						$apply_post->message .= $newline . 'Expertise: ' . $candidate->expertiseRating;
-						$apply_post->message .= $newline . 'Crit: ' . $candidate->crit . ', Rating: '. $candidate->critRating ;
-						$apply_post->message .= $newline . 'Haste: ' . $candidate->hasteRating;
-
-						$apply_post->message .= '[/color]';
+						$apply_post->message .= $newline . $newline;
 
 
 					}
@@ -956,6 +902,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 						$apply_post->message .= $candidate->class . ' ';
 						$apply_post->message .= $newline . $candidate->realm;
 						$apply_post->message .= '[/color]';
+						$apply_post->message .= $newline . $newline;
 							
 
 
@@ -1029,7 +976,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 	// subject & username
 
 	//$post_data['post_subject'] = utf8_normalize_nfc(request_var('headline', $user->data['username'], true));
-	$post_subj	= (string) $candidate->name . " - " . $candidate->level . " " . $candidate->race . " ". $candidate->class;
+	$post_subj	= (string) $candidate->name . " - " . $candidate->class . " " . $candidate->talent1['spec'] . "/" . $candidate->talent2['spec'] . " " . $candidate->realm ;
 
 	// Store message, sync counters
 

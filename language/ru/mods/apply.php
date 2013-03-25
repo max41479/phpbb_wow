@@ -66,8 +66,8 @@ $lang = array_merge($lang, array(
 /***** ACP templatelines *****/
 'APPLY_ACP_TEMPLATELINES'  => 'Template lines', 
 'APPLY_CHGCHAR_EXPLAIN' 	=> 'Choose between game, region, realm, name, class, race, gender',
-'APPLY_ACP_CHARNAME' 		=> 'Character name',
-'APPLY_ACP_REALM' 			=> 'Region, Realm',
+'APPLY_ACP_CHARNAME' 		=> 'Имя персонажа',
+'APPLY_ACP_REALM' 			=> 'Игровой мир Вашего персонажа',
 'APPLY_ACP_REGION' 			=> 'Region',
 'APPLY_GAME' => 'Game, Race, Class',
 'APPLY_REGION' => 'Realm, Region',

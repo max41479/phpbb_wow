@@ -356,36 +356,36 @@ apply plugin for bbDKP
 </script>
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
 
-<h2>{L_APPLY_TITLE}</h2>
+<center><h2>{L_APPLY_TITLE}</h2></center>
 <div class="panel bg1" >
 <div class="inner"  >
 <span class="corners-top"><span></span></span>
-{WELCOME_MSG}
+<center>{WELCOME_MSG}</center>
 <!-- IF ERROR -->
 <fieldset class="fields1">
 <center><span class="genmed1 error">{ERROR}</span></center>
 </fieldset>
 <!-- ENDIF -->
-<span class="corners-bottom"><span></span></span>
-</div>
-</div>
 
 <form action="{S_POST_ACTION}" method="post" id="applyform" onsubmit="return check_form(this)" {S_FORM_ENCTYPE}>
-
-<div class="post bg1" >
-<div class="inner"  >
-<span class="corners-top"><span></span></span>
-
-<fieldset class="fields2">	
 
 <!-- BEGIN apptemplate -->
 
 <!-- IF apptemplate.TYPE == $TYPE_TITLE -->
-<br /><h3>{apptemplate.TITLE}</h3>	
+</fieldset>
+<span class="corners-bottom"><span></span></span>					
+</div>					
+</div>					
+<hr />					
+<div class="post bg1" >
+<div class="inner"  >
+<span class="corners-top"><span></span></span>
+<fieldset class="fields1">	
+<center><h3>{apptemplate.TITLE}</h3></center>	
 <!-- ELSE -->
 <dl>
 <!-- IF apptemplate.TYPE == $TYPE_GAMERACECLASS -->
-	<dt><strong>{L_GAME}</strong></dt>
+	<dt><strong>{L_CLASS}</strong></dt>
 <!-- ELSEIF apptemplate.TYPE == $TYPE_CHARNAME -->
 	<dt><strong>{L_APPLY_ACP_CHARNAME}</strong></dt>
 <!-- ELSEIF apptemplate.TYPE == $TYPE_REGIONREALM -->
@@ -401,10 +401,11 @@ apply plugin for bbDKP
 	<dd><!-- IF apptemplate.S_SHOWQUESTION -->{apptemplate.QUESTION}<!-- ENDIF -->
 	
 	<!-- IF apptemplate.TYPE == $TYPE_INPUTBOX -->
-		<input class="text" style="width:300px;" type="text" name="{apptemplate.DOMNAME}" size="40" maxlength="60" tabindex="{apptemplate.TABINDEX}" />	
+		<br>
+		<input style="outline-color: #0067C4;" class="inputbox" type="text" name="{apptemplate.DOMNAME}" size="40" maxlength="60" tabindex="{apptemplate.TABINDEX}" />	
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOX -->
-		<br/ >
-		<textarea class="text" name="{apptemplate.DOMNAME}" rows="2" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>
+		<br>
+		<textarea style="outline-color: #0067C4;" class="text" name="{apptemplate.DOMNAME}" rows="2" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOXBBCODE -->
 		<div id="colour_palette{apptemplate.TABINDEX}" style="display: none;">
 			<dl style="clear: left;">
@@ -463,10 +464,10 @@ apply plugin for bbDKP
 			<!-- BEGIN custom_tags -->
 				<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle2({custom_tags.BBCODE_ID}, '{apptemplate.DOMNAME}')" title="{custom_tags.BBCODE_HELPLINE}" /><!-- END custom_tags -->
 		</div>
-		<textarea class="text" name="{apptemplate.DOMNAME}" rows="3" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>	
+		<textarea style="outline-color: #0067C4;" class="text" name="{apptemplate.DOMNAME}" rows="3" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>	
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_SELECTBOX -->
 		<br/ >
-		<select class="inputbox" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}">
+		<select style="outline-color: #0067C4;" class="inputbox" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}">
 			<option value="">----------------</option>
 			<!-- BEGIN selectboxoptions -->
 			<option value="{apptemplate.selectboxoptions.KEY}">{apptemplate.selectboxoptions.VALUE}</option><!-- END selectboxoptions -->
@@ -481,31 +482,34 @@ apply plugin for bbDKP
 			<input type="checkbox" name="{apptemplate.DOMNAME}[]" tabindex="{apptemplate.TABINDEX}" value="{apptemplate.checkboxoptions.KEY}"/>&nbsp;{apptemplate.checkboxoptions.VALUE}&nbsp;&nbsp;<!-- END checkboxoptions -->	
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_GAMERACECLASS -->
 
-			<select name="game_id" class="input" onchange="return GetClassRace(this.value)">
+			<select style="display:none" name="game_id" class="input" onchange="return GetClassRace(this.value)">
 	        <!-- BEGIN game_row -->
 			<option value="{apptemplate.game_row.VALUE}"{apptemplate.game_row.SELECTED}>{apptemplate.game_row.OPTION}</option>
 	        <!-- END game_row -->
 			</select>
-	      <label for="candidate_race_id">{L_RACE}:</label>
-			<select id="candidate_race_id" name="candidate_race_id" class="input">
+
+			<select style="display:none" id="candidate_race_id" name="candidate_race_id" class="input">
 			<!-- BEGIN race_row -->
 			<option value="{apptemplate.race_row.VALUE}"{apptemplate.race_row.SELECTED}>{apptemplate.race_row.OPTION}</option>
 	        <!-- END race_row -->
 	        </select>
-	   		<!-- IF S_RACE_IMAGE_EXISTS --> <br/><img src="{RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE -->&nbsp;<!-- ENDIF -->
-		  <label for="candidate_class_id">{L_CLASS}:</label>
-		  <select id="candidate_class_id" name="candidate_class_id" class="input">
+		  <select style="outline-color: #0067C4;" id="candidate_class_id" name="candidate_class_id" class="input">
 	       <!-- BEGIN class_row -->
-	        <option value="{apptemplate.class_row.VALUE}"{apptemplate.class_row.SELECTED}>{apptemplate.class_row.OPTION}</option>
+	        <option style="background-color: #072443; color: {apptemplate.class_row.COLORCODE}" value="{apptemplate.class_row.VALUE}"{apptemplate.class_row.SELECTED}>{apptemplate.class_row.OPTION}</option>
 	        <!-- END class_row -->
 	        </select>
-		    <!-- IF S_CLASS_IMAGE_EXISTS --><br/><img src="{CLASS_IMAGE}" alt="" /><!-- ELSE -->&nbsp;<!-- ENDIF -->
+
 		
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_CHARNAME -->
-		<input type="text" name="candidate_name" size="25" maxlength="25" class="input" />
+		<input style="outline-color: #0067C4;" type="text" name="candidate_name" size="25" maxlength="25" class="inputbox" />
 	
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_REGIONREALM -->
-		<input type="text" name="candidate_realm" size="25" maxlength="25" class="input" />
+		<select style="outline-color: #0067C4;" name="candidate_realm">
+			<!-- BEGIN realm_row -->
+				<option value="{apptemplate.realm_row.OPTION}">{apptemplate.realm_row.OPTION}</option>
+			<!-- END realm_row -->
+		</select>
+
 	
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_LEVEL -->
 		<input type="text" name="candidate_level" size="3" maxlength="3" value="{MEMBER_LEVEL}" class="input" />
