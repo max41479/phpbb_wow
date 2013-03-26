@@ -285,4 +285,11 @@ define('RECRUIT_CONFIG_TABLE',			'rt_recruit_config');
 define('RECRUIT_CLASS_TABLE',			'rt_recruit_class');
 //----- END -----
 
+//Begin: Profile Fields Control MOD
+define('PROFILE_FIELD_DISABLED', 0);
+define('PROFILE_FIELD_ENABLED', 1);
+define('PROFILE_DISPLAY_REGISTRATION', 2);
+define('PROFILE_REQUIRE_REGISTRATION', 3);
+//End: Profile Fields Control MOD
+
 ?>

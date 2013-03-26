@@ -4788,6 +4788,17 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 	header('Cache-Control: private, no-cache="set-cookie"');
 	header('Expires: 0');
 	header('Pragma: no-cache');
+	
+	//Begin: Profile Fields Control MOD
+	if ((isset($config['pfcm_enable'])) ? $config['pfcm_enable'] && $config['ucp_prof_rem_enable'] && !$user->data['user_profile_reminder'] : false)
+	{
+		if (!function_exists('update_proofile_fields'))
+		{
+			include($phpbb_root_path . 'includes/functions_profile_control.' . $phpEx);
+		}
+		update_proofile_fields();
+	}
+	//End: Profile Fields Control MOD
 
 	if (!empty($user->data['is_bot']))
 	{

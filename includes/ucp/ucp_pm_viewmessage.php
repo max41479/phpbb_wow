@@ -237,6 +237,10 @@ function view_message($id, $mode, $folder_id, $msg_id, $folder, $message_row)
 		'U_FORWARD_PM'		=> ($config['forward_pm'] && $auth->acl_get('u_sendpm') && $auth->acl_get('u_pm_forward')) ? "$url&amp;mode=compose&amp;action=forward&amp;f=$folder_id&amp;p=" . $message_row['msg_id'] : '')
 	);
 
+	// Begin: Profile Fields Control MOD
+	$template->assign_vars(pm_view_profile_fields($user_info, $author_id));
+	// End: Profile Fields Control MOD
+
 	// Display not already displayed Attachments for this post, we already parsed them. ;)
 	if (isset($attachments) && sizeof($attachments))
 	{

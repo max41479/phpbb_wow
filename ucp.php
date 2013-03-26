@@ -17,6 +17,9 @@ $phpEx = substr(strrchr(__FILE__, '.'), 1);
 require($phpbb_root_path . 'common.' . $phpEx);
 require($phpbb_root_path . 'includes/functions_user.' . $phpEx);
 require($phpbb_root_path . 'includes/functions_module.' . $phpEx);
+//Begin: Profile Fields Control MOD
+include($phpbb_root_path . 'includes/functions_profile_control.' . $phpEx);
+//Begin: Profile Fields Control MOD
 
 // Basic parameter data
 $id 	= request_var('i', '');

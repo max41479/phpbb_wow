@@ -324,6 +324,10 @@ class ucp_profile
 						));
 					}
 
+					// Begin: Profile Fields Control MOD
+					ucp_validate_data($validate_array);
+					// End: Profile Fields Control MOD
+
 					$error = validate_data($data, $validate_array);
 
 					// validate custom profile fields
@@ -432,6 +436,10 @@ class ucp_profile
 					'OCCUPATION'=> $data['occupation'],
 					'INTERESTS'	=> $data['interests'],
 				));
+
+				//Begin: Profile Fields Control MOD
+				$template->assign_vars(ucp_profile_fields());
+				//End: Profile Fields Control MOD
 
 				// Get additional profile fields and assign them to the template block var 'profile_fields'
 				$user->get_profile_fields($user->data['user_id']);
