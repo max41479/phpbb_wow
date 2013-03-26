@@ -647,6 +647,21 @@ function build_candidate(dkp_character &$candidate, apply_post &$apply_post )
 			$candidate->item_mainHand= $blizzard['items']['mainHand']['id'];
 			
 			//talents
+			if (isset($blizzard['talents'][0]['selected']))
+			{
+				$candidate->primary['spec'] = $blizzard['talents'][0]['spec']['name'];
+				$candidate->primary['role'] = $blizzard['talents'][0]['spec']['role'];
+				$candidate->secondary['spec'] = $blizzard['talents'][1]['spec']['name'];
+				$candidate->secondary['role'] = $blizzard['talents'][1]['spec']['role'];
+			}
+			else
+			{
+				$candidate->primary['spec'] = $blizzard['talents'][1]['spec']['name'];
+				$candidate->primary['role'] = $blizzard['talents'][1]['spec']['role'];
+				$candidate->secondary['spec'] = $blizzard['talents'][0]['spec']['name'];
+				$candidate->secondary['role'] = $blizzard['talents'][0]['spec']['role'];
+			}
+
 			$candidate->talent1['spec'] = $blizzard['talents'][0]['spec']['name'];
 			$candidate->talent1['role'] = $blizzard['talents'][0]['spec']['role'];
 			$candidate->talent2['spec'] = $blizzard['talents'][1]['spec']['name'];
@@ -856,16 +871,18 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 
 					if ($candidate->game =='wow')
 					{
-						$apply_post->message .= $newline . '[shadow=black][size=150][b][color='. $candidate->class_color .']'. $candidate->name . '[/color][/b][/size][/shadow]';
+						$board_url = generate_board_url() . '/';
+						$apply_post->message .= '[shadow=black][size=150][b][color='. $candidate->class_color .']'. $candidate->name . '[/color][/b][/size][/shadow]';
+						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']Main/off specs: [/color][/b]';
+						$apply_post->message .= '[color='. $apply_post->answercolor .']' . $candidate->primary['spec'] . '/' . $candidate->secondary['spec'] . '[/color]';
 						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']';
 						$apply_post->message .= $user->lang['APPLY_ACP_REALM'] . ':[/color][/b] ';
 						$apply_post->message .= '[color='. $apply_post->answercolor .']' . $candidate->region . '/' . $candidate->realm . '[/color]';
 						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']Гильдия: [/color][/b][color='. $apply_post->answercolor .']' . $candidate->guild . '[/color]';
 						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']Ссылки: [/color][/b]';
-						$apply_post->message .= ' [url=' . $candidate->url  . ']' . '[img]http://guild-creative.ru/forum/images/wow.ico[/img][/url]';
-						$apply_post->message .= ' [url=' . $candidate->wowprogressurl  . ']' . '[img]http://guild-creative.ru/forum/images/wowprogress.ico[/img][/url]';
-						$apply_post->message .= ' [url=' . $candidate->wowheroesurl  . ']'. '[img]http://guild-creative.ru/forum/images/wowheroes.ico[/img][/url]';
-
+						$apply_post->message .= ' [url=' . $candidate->url  . ']' . '[img]' . $board_url . 'images/wow.ico[/img][/url]';
+						$apply_post->message .= ' [url=' . $candidate->wowprogressurl  . ']' . '[img]' . $board_url . 'images/wowprogress.ico[/img][/url]';
+						$apply_post->message .= ' [url=' . $candidate->wowheroesurl  . ']'. '[img]' . $board_url . 'images/wowheroes.ico[/img][/url]';
 						$apply_post->message .= $newline . $newline;
 
 
@@ -976,7 +993,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 	// subject & username
 
 	//$post_data['post_subject'] = utf8_normalize_nfc(request_var('headline', $user->data['username'], true));
-	$post_subj	= (string) $candidate->name . " - " . $candidate->class . " " . $candidate->talent1['spec'] . "/" . $candidate->talent2['spec'] . " " . $candidate->realm ;
+	$post_subj	= (string) $candidate->name . " - " . $candidate->class . " - " . $candidate->primary['spec'] ." - " . $candidate->realm ;
 
 	// Store message, sync counters
 

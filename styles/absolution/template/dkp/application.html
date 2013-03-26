@@ -383,9 +383,9 @@ apply plugin for bbDKP
 <fieldset class="fields1">	
 <center><h3>{apptemplate.TITLE}</h3></center>	
 <!-- ELSE -->
-<dl>
+<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --><dl><!-- ENDIF -->
 <!-- IF apptemplate.TYPE == $TYPE_GAMERACECLASS -->
-	<dt><strong>{L_CLASS}</strong></dt>
+
 <!-- ELSEIF apptemplate.TYPE == $TYPE_CHARNAME -->
 	<dt><strong>{L_APPLY_ACP_CHARNAME}</strong></dt>
 <!-- ELSEIF apptemplate.TYPE == $TYPE_REGIONREALM -->
@@ -398,7 +398,7 @@ apply plugin for bbDKP
 	<dt><strong>{apptemplate.TITLE}</strong></dt>
 <!-- ENDIF -->
 	
-	<dd><!-- IF apptemplate.S_SHOWQUESTION -->{apptemplate.QUESTION}<!-- ENDIF -->
+	<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --><dd><!-- ENDIF --><!-- IF apptemplate.S_SHOWQUESTION -->{apptemplate.QUESTION}<!-- ENDIF -->
 	
 	<!-- IF apptemplate.TYPE == $TYPE_INPUTBOX -->
 		<br>
@@ -493,7 +493,7 @@ apply plugin for bbDKP
 			<option value="{apptemplate.race_row.VALUE}"{apptemplate.race_row.SELECTED}>{apptemplate.race_row.OPTION}</option>
 	        <!-- END race_row -->
 	        </select>
-		  <select style="outline-color: #0067C4;" id="candidate_class_id" name="candidate_class_id" class="input">
+		  <select style="display:none; outline-color: #0067C4;" id="candidate_class_id" name="candidate_class_id" class="input">
 	       <!-- BEGIN class_row -->
 	        <option style="background-color: #072443; color: {apptemplate.class_row.COLORCODE}" value="{apptemplate.class_row.VALUE}"{apptemplate.class_row.SELECTED}>{apptemplate.class_row.OPTION}</option>
 	        <!-- END class_row -->
@@ -523,8 +523,9 @@ apply plugin for bbDKP
 	<span style="color:red">{L_MANDATORY}</span>
 	<!-- ENDIF -->
 	
-	</dd>
+	<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --></dd>
 </dl>
+<!-- ENDIF -->
 <!-- ENDIF -->
 
 <!-- END apptemplate -->
