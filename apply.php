@@ -625,7 +625,7 @@ function build_candidate(dkp_character &$candidate, apply_post &$apply_post )
 			$candidate->achievements =$blizzard['achievementPoints']; 
 			$candidate->portraitimg = sprintf('http://%s.battle.net/static-render/%s/%s', $candidate->region, $candidate->region, $blizzard['thumbnail']);
 			//example  http://eu.battle.net/static-render/eu/argent-dawn/232/56689128-avatar.jpg?alt=/wow/static/images/2d/avatar/1-0.jpg
-			$candidate->url = sprintf('http://%s.battle.net/wow/en/', $candidate->region) . 'character/' . rawurlencode($candidate->realm). '/' . urlencode($candidate->name) . '/advanced';
+			$candidate->url = sprintf('http://%s.battle.net/wow/ru/', $candidate->region) . 'character/' . rawurlencode($candidate->realm). '/' . urlencode($candidate->name) . '/advanced';
 			$candidate->wowprogressurl = sprintf('http://www.wowprogress.com/character/%s/', $candidate->region) . rawurlencode(str_replace(" ", "-", $candidate->realm)). '/' . urlencode($candidate->name);
 			$candidate->wowheroesurl = sprintf('http://www.wow-heroes.com/character/%s/', $candidate->region) . rawurlencode($candidate->realm). '/' . urlencode($candidate->name) . '/';
 			//guild
