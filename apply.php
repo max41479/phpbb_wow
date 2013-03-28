@@ -1018,7 +1018,6 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 			'post_time' 		=> $current_time,
 			'poster_ip'			=> $user->ip,
 			'forum_name'		=> '',
-			'post_edit_locked'	=> 1,
 			'enable_indexing'	=> true,
 			'post_approved'        => 1,
 	);
