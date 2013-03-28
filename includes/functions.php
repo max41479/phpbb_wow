@@ -3503,15 +3503,15 @@ function get_preg_expression($mode)
 			return '([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*(?:[\w\!\#$\%\'\*\+\-\/\=\?\^\`{\|\}\~]|&amp;)+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,63})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)';
 		break;
 
-		case 'bbcode_htm':
-			return array(
-				'#<!\-\- e \-\-><a href="mailto:(.*?)">.*?</a><!\-\- e \-\->#',
-				'#<!\-\- l \-\-><a (?:class="[\w-]+" )?href="(.*?)(?:(&amp;|\?)sid=[0-9a-f]{32})?">.*?</a><!\-\- l \-\->#',
-				'#<!\-\- ([mw]) \-\-><a (?:class="[\w-]+" )?href="(.*?)">.*?</a><!\-\- \1 \-\->#',
-				'#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/.*? \/><!\-\- s\1 \-\->#',
-				'#<!\-\- .*? \-\->#s',
-				'#<.*?>#s',
-			);
+      case 'bbcode_htm':
+         return array(
+            '#<!\-\- e \-\-><a href="mailto:(.*?)">.*?</a><!\-\- e \-\->#',
+            '#<!\-\- l \-\-><a (?:class="[\w-]+" )?href="(.*?)(?:(&amp;|\?)sid=[0-9a-f]{32})?" onclick="window\.open\(this\.href\);return false;">.*?</a><!\-\- l \-\->#',
+            '#<!\-\- ([mw]) \-\-><a (?:class="[\w-]+" )?href="(.*?)" onclick="window\.open\(this\.href\);return false;">.*?</a><!\-\- \1 \-\->#',
+            '#<!\-\- s(.*?) \-\-><img src="\{SMILIES_PATH\}\/.*? \/><!\-\- s\1 \-\->#',
+            '#<!\-\- .*? \-\->#s',
+            '#<.*?>#s',
+         );
 		break;
 
 		// Whoa these look impressive!
