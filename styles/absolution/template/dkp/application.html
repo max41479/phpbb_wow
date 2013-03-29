@@ -354,8 +354,14 @@ apply plugin for bbDKP
 
 // ]]>
 </script>
+  <script type="text/javascript">
+   function confirmation(f) {
+    if (confirm("А Вы сохранились в армори в мейн спеке?\nhttp://eu.battle.net/wow/ru/")) 
+       f.submit();
+   }
+  </script>
+  
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
-
 <center><h2>{L_APPLY_TITLE}</h2></center>
 <div class="panel bg1" >
 <div class="inner"  >
@@ -367,7 +373,7 @@ apply plugin for bbDKP
 </fieldset>
 <!-- ENDIF -->
 
-<form action="{S_POST_ACTION}" method="post" id="applyform" onsubmit="return check_form(this)" {S_FORM_ENCTYPE}>
+<form action="{S_POST_ACTION}" method="post" id="applyform" name="applyform" onsubmit="confirmation(this);return false;" {S_FORM_ENCTYPE}>
 
 <!-- BEGIN apptemplate -->
 
