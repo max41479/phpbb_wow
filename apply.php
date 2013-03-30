@@ -984,6 +984,20 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 		}
 	}
 	$db->sql_freeresult($result);
+	
+	$topic_icon = 0;
+	switch ($candidate->primary['role'])
+	{
+		case 'DPS':
+			$topic_icon = 13;
+			break;
+		case 'HEALING':
+			$topic_icon = 12;
+			break;
+		case 'TANK':
+			$topic_icon = 11;
+			break;
+	}
 
 	// variables to hold the parameters for submit_post
 	$poll = $uid = $bitfield = $options = '';
@@ -1002,7 +1016,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 			'topic_first_post_id'	=> 0,
 			'topic_last_post_id'	=> 0,
 			'topic_attachment'		=> 0,
-			'icon_id'			=> false,
+			'icon_id'			=> $topic_icon,
 			'enable_bbcode'		=> true,
 			'enable_smilies'	=> true,
 			'enable_urls'		=> true,
