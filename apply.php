@@ -166,7 +166,20 @@ if ($submit)
    {
 	  $error[] = $user->lang['APPLY_ERROR_NAME']. $candidate_name . ' ';  
    }
-	 
+	// check if character status is 'Character not found' 
+	if(!class_exists('apply_post'))
+	{
+		include($phpbb_root_path . 'includes/bbdkp/apply/dkp_character.' . $phpEx);
+	}
+	$apply_post = new apply_post();
+	$candidate = new dkp_character();
+	$candidate->name =  $candidate_name;
+	build_candidate($candidate, $apply_post);
+	if($blizzarderror  == 1)
+	{
+		$error[] = $user->lang['APPLY_ERROR_CHAR_NOT_FOUND']. $candidate_name . ' '; 
+	}
+	
 	if (!sizeof($error))
 	{
 		// continue to posting
@@ -535,7 +548,7 @@ function check_apply_form_access($template_id)
  */
 function build_candidate(dkp_character &$candidate, apply_post &$apply_post )
 {
-	global $config, $db, $user, $phpbb_root_path, $phpEx; 
+	global $config, $db, $user, $phpbb_root_path, $phpEx, $blizzarderror; 
 
 	$board_url = generate_board_url() . '/';
 	

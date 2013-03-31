@@ -155,6 +155,7 @@ To help us with your application please answer the questions below. Enter your c
 'APPLY_CHAR_BUILD' 	=> '[color=%s][u]Talent build : [/u][/color]%s',
 'APPLY_CHAR_URL' => '[color=%s][/color][url=%s]Armory Link[/url]', 
 'APPLY_ERROR_NAME'  =>  'Error : Name must be Alphabetic. ',
+'APPLY_ERROR_CHAR_NOT_FOUND'  =>  'Error : Character not found. ',
 'APPLY_REQUIRED_LEVEL'  => 'Level is required. ', 
 'APPLY_REQUIRED_NAME'	=> 'Name is required. ', 
 'RETURN_APPLY'  =>  'Return to Application',
