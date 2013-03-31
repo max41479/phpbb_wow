@@ -629,7 +629,14 @@ function build_candidate(dkp_character &$candidate, apply_post &$apply_post )
 			$candidate->wowprogressurl = sprintf('http://www.wowprogress.com/character/%s/', $candidate->region) . rawurlencode(str_replace(" ", "-", $candidate->realm)). '/' . urlencode($candidate->name);
 			$candidate->wowheroesurl = sprintf('http://www.wow-heroes.com/character/%s/', $candidate->region) . rawurlencode($candidate->realm). '/' . urlencode($candidate->name) . '/';
 			//guild
-			$candidate->guild = $blizzard['guild']['name'];
+			if (isset($blizzard['guild']['name']))
+			{
+				$candidate->guild = $blizzard['guild']['name'];
+			}
+			else
+			{
+				$candidate->guild = 'Без гильдии';
+			}
 
 			//gear
 			$candidate->averageItemLevel = $blizzard['items']['averageItemLevel'];
