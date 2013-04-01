@@ -175,9 +175,9 @@ if ($submit)
 	$candidate = new dkp_character();
 	$candidate->name =  $candidate_name;
 	build_candidate($candidate, $apply_post);
-	if($blizzarderror  == 1)
+	if($blizzarderror  !== 0)
 	{
-		$error[] = $user->lang['APPLY_ERROR_CHAR_NOT_FOUND']. $candidate_name . ' '; 
+		$error[] = 'Error : ' . $blizzarderror . ' (' . $candidate_name . ')'; 
 	}
 	
 	if (!sizeof($error))
@@ -750,6 +750,10 @@ function build_candidate(dkp_character &$candidate, apply_post &$apply_post )
 			$candidate->rangedHitRating	=$blizzard['stats']['rangedHitRating'];
 			$candidate->pvpPower	=$blizzard['stats']['pvpPower'];
 			$candidate->pvpPowerRating	=$blizzard['stats']['pvpPowerRating'];
+		}
+		else
+		{
+			$blizzarderror = $blizzard['reason'];
 		}
 		
 	}

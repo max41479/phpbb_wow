@@ -149,8 +149,10 @@ abstract class Resource
 		
 		$data = $this->Curl->makeRequest($url, 'GET');
 		$data['response']['error'] = '';
-		$data['response']['reason'] = '';
-		
+		if (!isset($data['response']['reason']))
+		{
+			$data['response']['reason'] = '';
+		}
 		//cURL returned an error code
 		if ($this->Curl->errno !== CURLE_OK) 
 		{
