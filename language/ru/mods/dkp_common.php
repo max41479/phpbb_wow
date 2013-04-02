@@ -150,6 +150,7 @@ $lang = array_merge($lang, array(
 'GUILDROSTER' => 'Guild Roster',
 'CLASS' 	  => 'Класс',
 'LVL' 		  => 'Level',
+'LEVEL' 		  => 'Уровень',
 'ACHIEV'	  => 'Achievements', 
 
 //listmembers

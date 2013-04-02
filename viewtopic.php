@@ -1655,7 +1655,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 				'BBCLASS'		=> $memberdata['bbclass'],
 				'BBCLASSIMG'	=> $memberdata['bbclassimg'],
 				'BBLEVEL'		=> $memberdata['bblevel'],
-				'U_VIEW_BBMEMBER' => append_sid ( "{$phpbb_root_path}dkp.$phpEx", 'page=viewmember' . '&amp;' . URI_NAMEID . '=' .  $memberid ),
+				'U_VIEW_BBMEMBER' => 'http://eu.battle.net/wow/ru/character/Booty-bay/' . $memberdata['bbmembername'] . '/advanced',
 		
 			));
 		}

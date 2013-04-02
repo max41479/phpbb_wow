@@ -668,7 +668,7 @@ class acp_dkp_mm extends bbDKP_Admin
 							'member_guild_realm' => $row['realm'] , 
 							'member_guild_region' => $row['region'] , 
 							'member_armory_url' => $row['member_armory_url'] , 
-							'member_portrait_url' => $phpbb_root_path . $row['member_portrait_url'] , 
+							'member_portrait_url' => $row['member_portrait_url'] , 
 							'phpbb_user_id' => $row['phpbb_user_id'] , 
 							'member_status' => $row['member_status'] , 
 							'game_id' => $row['game_id'] , 

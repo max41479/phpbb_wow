@@ -1,0 +1,128 @@
+<!-- INCLUDE overall_header.html -->
+<a name="maincontent"></a>
+<h1>{L_TITLE}</h1>
+
+<!-- IF S_RSTYLE == 1 -->
+
+<form method="post" action="{F_ROSTER}" name="post">
+<fieldset><legend>{L_SETTINGS}</legend>
+<dl>
+	<dt><label for="armory_id">{L_ARMORY_SELECTION}</label></dt>
+	<dd>
+	<select name="armory_id" class="input">
+		<!-- BEGIN armorylist_row -->
+       		<option value="{armorylist_row.VALUE}"{armorylist_row.SELECTED}>{armorylist_row.OPTION}</option>
+        <!-- END armorylist_row -->
+	</select>
+	</dd>
+</dl>
+
+<dl>
+	<dt><label for="site_id">{L_SITE}:</label></dt>
+	<dd><select name="site_id" class="input">
+		<!-- BEGIN site_row -->
+       <option value="{site_row.VALUE}"{site_row.SELECTED}>{site_row.OPTION}</option>
+        <!-- END site_row -->
+	</select></dd>
+</dl>
+
+<dl>
+	<dt><label for="realm_name">{L_REALM_NAME}:</label></dt>
+	<dd><input class="medium" type="text" id="realm_name" name="realm_name" value="{REALM_NAME}" /></dd>
+</dl>
+
+<dl>
+	<dt><label for="min_level">{L_MINIMUMLEVEL}</label></dt>
+	<dd><input class="medium" type="text" id="min_lvldl" name="min_level" value="{MIN_LVLDL}" /></dd>
+</dl>
+
+<dl>
+    <dt><label for="achi">{L_GETACHI}:</label><br />{L_GETACHI_EXPLAIN}</dt>
+    <dd>
+     <input type="radio" name="achi" value="1"<!-- IF F_ACHISACTIVATE == 1 --> checked="checked"<!-- ENDIF --> /> {L_ON}&nbsp;&nbsp;
+     <input type="radio" name="achi" value="0"<!-- IF F_ACHISACTIVATE == 0 --> checked="checked"<!-- ENDIF --> /> {L_OFF}
+   </dd>
+</dl>
+ 
+ 
+<p class="quick">
+	<input type="submit" name="armoryconfig" value="{L_SUBMIT}" class="button1" />
+</p>
+
+</fieldset>
+
+<fieldset><legend>{L_ARMORY_DOWNLOAD}</legend>
+<p>{L_ACP_DKP_ARMORY_EXPLAIN1}</p>
+
+<dl>
+    <dt><label for="guild_id_existing">{L_GUILD_EXISTING}:</label>
+    <br />
+    	{L_ACP_DKP_ARMORY_EXPLAIN2}
+    </dt>
+    
+  		<dd><select name="guild_id_existing" class="input">
+       <!-- BEGIN guild_row -->
+       <option value="{guild_row.VALUE}"{guild_row.SELECTED}>{guild_row.OPTION}</option>
+        <!-- END guild_row -->
+      </select></dd>
+</dl>
+<dl>
+	<dt><label for="guild_name">{L_GUILD_NAME}:</label>
+	    <br />
+    	{L_ACP_DKP_ARMORY_EXPLAIN3}
+    	</dt>
+	<dd><input class="medium" type="text" id="guild_name"
+		name="guild_name" value="{F_GUILD_NAME}" /></dd>
+</dl>
+
+<p class="quick">
+	<input type="submit" name="downloadguild" value="{L_DOWNLOAD_GUILD}" class="button1" />
+</p>
+
+</fieldset>
+
+<fieldset><legend>{L_ARMORY_DOWNLOAD_CHAR}</legend>
+<p>{L_ACP_DKP_ARMORY_EXPLAIN4}</p>
+<br />
+<dl>
+    <dt><label for="member_char_name">{L_CHAR_EXISTING}:</label>
+    <br />
+    	{L_ACP_DKP_ARMORY_EXPLAIN5}
+    </dt>
+    
+  		<dd><select name="member_char_name" class="input">
+      <!-- BEGIN member_row -->
+       <option value="{member_row.VALUE}"{member_row.SELECTED}>{member_row.OPTION}</option>
+      <!-- END member_row -->
+      </select></dd>
+</dl>
+<dl>
+	<dt><label for="char_name">{L_CHAR_NAME}:</label>
+	   <br />
+    {L_ACP_DKP_ARMORY_EXPLAIN6}
+    	</dt>
+	<dd><input class="medium" type="text" id="char_name"
+		name="char_name" value="{CHAR_NAME}" /></dd>
+</dl>
+
+<p class="quick"><input type="submit" name="downloadchar"
+	value="{L_DOWNLOAD_CHAR}" class="button1" />
+</p>
+</fieldset>
+</form>
+
+<!-- ENDIF -->
+
+<!-- IF S_RSTYLE == 3 -->
+<fieldset>
+<dl>
+	<dt><label>{L_ARMORY_SELECTION}</label></dt>
+	<dd>{ARMORY_SELECTION}</dd>
+</dl>
+
+</fieldset>
+<!-- ENDIF -->
+
+
+
+<!-- INCLUDE dkp/overall_footer.html -->
