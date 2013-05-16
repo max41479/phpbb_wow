@@ -1,0 +1,17 @@
+<!-- IF S_KEYCAPTCHA_AVAILABLE -->
+	<tr>
+		<th colspan="2" valign="middle">{L_KEYCAPTCHA_TASK_HEADER}</th>
+	</tr>
+	<tr>
+		<td class="row1" width = "50%"><b class="genmed">{L_KEYCAPTCHA_TASK_HEADER}:</b><br /><span class="gensmall">{L_KEYCAPTCHA_TASK_EXPLAIN}</span></td>
+		<td class="row2">
+			{KEYCAPTCHA_CODE}
+			<input type="hidden" name="kc_response_field" id="kc_response_field" value="false" />
+			<noscript>
+				{L_KEYCAPTCHA_MESSAGE_NOSCRIPT}
+			</noscript>
+		</td>
+	</tr>
+<!-- ELSE -->
+	{L_KEYCAPTCHA_MESSAGE_NA}
+<!-- ENDIF -->
