@@ -1,61 +1,59 @@
 <!--  begin news  -->
-<div class="panel_index">
-	<div class="inner">
-		<center><img src="{PHPBB_ROOT_PATH}images/news.png" alt="lenta.png"/></center>
-		<br />
-		<!-- BEGIN news_row -->
-		<div class="post bg2" style="margin-bottom: 0px">
-			<div class="inner">
-				<span></span>
-				<div class="postbody" style="width: 100%">
-					<h4 class="first">{news_row.ATTACH_ICON_IMG}<a href="{news_row.LINK}"><span style="font-size: 130%; font-family: Arial, Helvetica, sans-serif;">{news_row.HEADLINE}</span></a></h4>
-					<ul class="linklist">
-						<li>{news_row.DATE}<a href="{news_row.LINK}"></a>
-						</li>
-					</ul>
-					<div class="content">
-						<br />
-						{news_row.MESSAGE}
-					</div>
-
-					<!-- IF news_row.S_HAS_ATTACHMENTS -->
-						<dl class="attachbox">
-							<dt>{L_ATTACHMENTS}</dt>
-							<!-- BEGIN attachment -->
-								<dd>{news_row.attachment.DISPLAY_ATTACHMENT}</dd>
-							<!-- END attachment -->
-						</dl>
-					<!-- ENDIF -->
-
-					<!-- IF news_row.EDITED_MESSAGE or news_row.EDIT_REASON -->
-						<div class="notice">{news_row.EDITED_MESSAGE}
-							<!-- IF news_row.EDIT_REASON --><br /><strong>{L_REASON}:</strong> <em>{news_row.EDIT_REASON}</em><!-- ENDIF -->
-						</div>
-					<!-- ENDIF -->
-
-					<div class="leftside">
-					</div>
-					<div class="rightside">
-						<a href="<!-- IF SCRIPT_NAME eq 'portal' -->#wrap-portal<!-- ELSE -->#wrap<!-- ENDIF -->" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a>
-					</div>
-					<hr class="dashed" />
+<div class="inner">
+	<center><img src="{PHPBB_ROOT_PATH}images/news.png" alt="lenta.png"/></center>
+	<br />
+	<!-- BEGIN news_row -->
+	<div class="post bg2" style="margin-bottom: 0px">
+		<div class="inner">
+			<span></span>
+			<div class="postbody" style="width: 100%">
+				<h4 class="first">{news_row.ATTACH_ICON_IMG}<a href="{news_row.LINK}"><span style="font-size: 130%; font-family: Arial, Helvetica, sans-serif;">{news_row.HEADLINE}</span></a></h4>
+				<ul class="linklist">
+					<li>{news_row.DATE}<a href="{news_row.LINK}"></a>
+					</li>
+				</ul>
+				<div class="content">
+					<br />
+					{news_row.MESSAGE}
 				</div>
-				<span></span>
-			</div>
-		</div>
-		<br />
-		<!-- END news_row -->
 
-		<!-- IF NEWS_PAGINATION -->  
-			<div class="pagination">
-				 <span>
-					{TOTALNEWS} &bull; {NEWS_PAGINATION}
-					<br />
-					<br />
-				 </span>
+				<!-- IF news_row.S_HAS_ATTACHMENTS -->
+					<dl class="attachbox">
+						<dt>{L_ATTACHMENTS}</dt>
+						<!-- BEGIN attachment -->
+							<dd>{news_row.attachment.DISPLAY_ATTACHMENT}</dd>
+						<!-- END attachment -->
+					</dl>
+				<!-- ENDIF -->
+
+				<!-- IF news_row.EDITED_MESSAGE or news_row.EDIT_REASON -->
+					<div class="notice">{news_row.EDITED_MESSAGE}
+						<!-- IF news_row.EDIT_REASON --><br /><strong>{L_REASON}:</strong> <em>{news_row.EDIT_REASON}</em><!-- ENDIF -->
+					</div>
+				<!-- ENDIF -->
+
+				<div class="leftside">
+				</div>
+				<div class="rightside">
+					<a href="<!-- IF SCRIPT_NAME eq 'portal' -->#wrap-portal<!-- ELSE -->#wrap<!-- ENDIF -->" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a>
+				</div>
+				<hr class="dashed" />
 			</div>
-		<!-- ENDIF -->
+			<span></span>
+		</div>
 	</div>
+	<br />
+	<!-- END news_row -->
+
+	<!-- IF NEWS_PAGINATION -->  
+		<div class="pagination">
+			 <span>
+				{TOTALNEWS} &bull; {NEWS_PAGINATION}
+				<br />
+				<br />
+			 </span>
+		</div>
+	<!-- ENDIF -->
 </div>
 <br />
 <br />
