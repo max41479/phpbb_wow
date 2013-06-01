@@ -33,6 +33,24 @@
   </dl>
   
   <dl>
+    <dt><label for="lang">{L_DEFAULT_REGION_LANG}:</label></dt>
+    <dd>
+			<select id="lang" name="lang" class="input">
+			<optgroup label="{L_REGIONEU}">
+			<!-- BEGIN lang_eu_row -->
+	    		 <option value="{lang_eu_row.VALUE}"{lang_eu_row.SELECTED}>{lang_eu_row.OPTION}</option>
+			<!-- END lang_eu_row -->
+			</optgroup>
+			<optgroup label="{L_REGIONUS}">
+			<!-- BEGIN lang_us_row -->
+	    		 <option value="{lang_us_row.VALUE}"{lang_us_row.SELECTED}>{lang_us_row.OPTION}</option>
+			<!-- END lang_us_row -->
+			</optgroup>
+	    	</select>
+       </dd>
+  </dl>
+  
+  <dl>
     <dt><label>{L_BBDKP_STARTED}:</label></dt>
     <dd><input type="text" name="bbdkp_start_dd" id="bbdkp_start_dd" size="2" maxlength="2" value="{EQDKP_START_DD}" class="input" />
         <input type="text" name="bbdkp_start_mm" id="bbdkp_start_mm" size="2" maxlength="2" value="{EQDKP_START_MM}" class="input" />

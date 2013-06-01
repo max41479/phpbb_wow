@@ -116,7 +116,7 @@ class Character extends Resource
 	 * @param (array) $fields
 	 * @return mixed
 	 */
-	public function getCharacter($name = '', $realm = '', $fields=array()) 
+	public function getCharacter($name = '', $realm = '', $fields=array(), $locale = 'en_GB') 
 	{
 		global $user;
 		$user->add_lang ( array ('mods/wowapi' ));
@@ -140,7 +140,7 @@ class Character extends Resource
 		$field_str = '';
 		if (is_array($fields) && count($fields) > 0) 
 		{
-			$field_str = 'fields=' . implode(',', $fields);
+			$field_str = implode(',', $fields);
 			//check if correct keys were requested
 			$keys = $this->getFields();
 			if (count( array_intersect($fields, $keys)) == 0 )
@@ -149,7 +149,10 @@ class Character extends Resource
 			}
 			
 			$data = $this->consume( $realm. '/'. $name , array(
-				'data' => $field_str
+				'data'		=> array(
+					'fields'	=> $field_str, 
+					'locale'	=> $locale
+				)
 			));
 			
 		}

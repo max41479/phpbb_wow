@@ -743,6 +743,7 @@ class acp_dkp extends bbDKP_Admin
 					set_config('bbdkp_guildtag', utf8_normalize_nfc(request_var('guildtag', '', true)), true);
 					set_config('bbdkp_default_realm', utf8_normalize_nfc(request_var('realm', '', true)), true);
 					set_config('bbdkp_default_region', utf8_normalize_nfc(request_var('region', '', true)), true);
+					set_config('bbdkp_default_region_lang', utf8_normalize_nfc(request_var('lang', '', true)), true);
 					set_config('bbdkp_dkp_name', utf8_normalize_nfc(request_var('dkp_name', '', true)), true);
 					$day = request_var('bbdkp_start_dd', 0);
 					$month = request_var('bbdkp_start_mm', 0);
@@ -833,6 +834,36 @@ class acp_dkp extends bbDKP_Admin
 						'VALUE' => $regionid , 
 						'SELECTED' => ($regionid == $config['bbdkp_default_region']) ? ' selected="selected"' : '' , 
 						'OPTION' => $regionvalue));
+				}
+				
+				// Default Region language (EU)
+				$langs = array(
+					'en_GB' => $user->lang['REGION_EU_LANG_EN_GB'],
+					'es_ES' => $user->lang['REGION_EU_LANG_ES_ES'],
+					'fr_FR' => $user->lang['REGION_EU_LANG_FR_FR'],
+					'ru_RU' => $user->lang['REGION_EU_LANG_RU_RU'],
+					'de_DE' => $user->lang['REGION_EU_LANG_DE_DE'],
+					'pt_PT' => $user->lang['REGION_EU_LANG_PT_PT'],
+					'it_IT' => $user->lang['REGION_EU_LANG_IT_IT']);
+				foreach ($langs as $langid => $langvalue)
+				{
+					$template->assign_block_vars('lang_eu_row', array(
+						'VALUE' => $langid , 
+						'SELECTED' => ($langid == $config['bbdkp_default_region_lang']) ? ' selected="selected"' : '' , 
+						'OPTION' => $langvalue));
+				}
+				
+				// Default Region language (US)
+				$langs = array(
+					'en_US' => $user->lang['REGION_US_LANG_EN_US'],
+					'es_MX' => $user->lang['REGION_US_LANG_ES_MX'],
+					'pt_BR' => $user->lang['REGION_US_LANG_PT_BR']);
+				foreach ($langs as $langid => $langvalue)
+				{
+					$template->assign_block_vars('lang_us_row', array(
+						'VALUE' => $langid , 
+						'SELECTED' => ($langid == $config['bbdkp_default_region_lang']) ? ' selected="selected"' : '' , 
+						'OPTION' => $langvalue));
 				}
 				
 				//roster layout

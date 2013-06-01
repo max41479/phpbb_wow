@@ -137,7 +137,7 @@ abstract class Resource
 				{
 					$optfields .= $key.'='.$value.'&';
 				}
-				$optfields = rtrim($data, '&');
+				$optfields = rtrim($optfields, '&');
 			} 
 			else 
 			{

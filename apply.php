@@ -610,7 +610,8 @@ function build_candidate(dkp_character &$candidate, apply_post &$apply_post )
 		$params = array('guild', 'stats', 'professions', 'items', 'progression', 'talents');
 	
 		///$params = array('guild','stats','talents','items','reputation','titles','professions');
-		$blizzard = $api->Character->getCharacter($candidate->name, $candidate->realm, $params);
+		$locale = $config['bbdkp_default_region_lang'];
+		$blizzard = $api->Character->getCharacter($candidate->name, $candidate->realm, $params, $locale);
 		$blizzarderror = 0;
 	
 		if(!is_array($blizzard))
