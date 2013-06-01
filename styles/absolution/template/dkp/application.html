@@ -356,6 +356,7 @@ apply plugin for bbDKP
 </script>  
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
 <center><h2>{L_APPLY_TITLE}</h2></center>
+<form action="{S_POST_ACTION}" method="post" id="applyform" name="applyform" onsubmit="return confirm('А Вы сохранились в армори в мейн спеке?\nhttp://eu.battle.net/wow/ru/');" {S_FORM_ENCTYPE}>
 <div class="panel bg1" >
 <div class="inner"  >
 <span class="corners-top"><span></span></span>
@@ -365,13 +366,6 @@ apply plugin for bbDKP
 <center><span class="genmed1 error">{ERROR}</span></center>
 </fieldset>
 <!-- ENDIF -->
-
-<form action="{S_POST_ACTION}" method="post" id="applyform" name="applyform" onsubmit="return confirm('А Вы сохранились в армори в мейн спеке?\nhttp://eu.battle.net/wow/ru/');" {S_FORM_ENCTYPE}>
-
-<!-- BEGIN apptemplate -->
-
-<!-- IF apptemplate.TYPE == $TYPE_TITLE -->
-</fieldset>
 <span class="corners-bottom"><span></span></span>					
 </div>					
 </div>					
@@ -380,6 +374,8 @@ apply plugin for bbDKP
 <div class="inner"  >
 <span class="corners-top"><span></span></span>
 <fieldset class="fields1">	
+<!-- BEGIN apptemplate -->
+<!-- IF apptemplate.TYPE == $TYPE_TITLE -->
 <center><h3>{apptemplate.TITLE}</h3></center>	
 <!-- ELSE -->
 <!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --><dl><!-- ENDIF -->
