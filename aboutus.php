@@ -7,9 +7,10 @@ include($phpbb_root_path . 'common.' . $phpEx);
 // Start session management
 $user->session_begin();
 $auth->acl($user->data);
-$user->setup();
- 
-page_header('О нас');
+$user->setup('common');
+
+$page_title = $user->lang['ABOUTUS'];
+page_header($page_title);
  
 $template->set_filenames(array(
     'body' => 'aboutus_body.html',

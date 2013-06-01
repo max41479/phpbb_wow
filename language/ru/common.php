@@ -40,6 +40,7 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
+	'ABOUTUS'				=> 'О гильдии',
 	'TRANSLATION_INFO'	=> '<a href=\'http://www.phpbbguru.net/\'>Русская поддержка phpBB</a>',
 	'APPLY'             => 'Заявка',
 	'DIRECTION'			=> 'ltr',

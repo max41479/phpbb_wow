@@ -63,7 +63,7 @@ apply plugin for bbDKP
 		} 
 		else 
 		{
-			insert_text('[*]');
+			insert_text2('[*]', textarea_name);
 			document.forms[form_name].elements[textarea_name].focus();
 		}
 	}
@@ -107,7 +107,7 @@ apply plugin for bbDKP
 		var new_pos = caret_pos + bbopen.length;		
 
 		// Open tag
-		insert_text2(bbopen + bbclose);
+		insert_text2((bbopen + bbclose), textarea_name);
 
 		// Center the cursor when we don't have a selection
 		// Gecko and proper browsers
@@ -439,9 +439,9 @@ apply plugin for bbDKP
 			<!-- IF S_BBCODE_QUOTE -->
 				<input type="button" class="button2" accesskey="q" name="addbbcode6" value="Quote" style="width: 50px" onclick="bbstyle2(6, '{apptemplate.DOMNAME}')" title="{L_BBCODE_Q_HELP}" />
 			<!-- ENDIF -->
-			<input type="button" class="button2" accesskey="c" name="addbbcode8" value="Code" style="width: 40px" onclick="bbstyle2(8, '{apptemplate.DOMNAME}')" title="{L_BBCODE_C_HELP}" />
+			<input type="button" class="button2" accesskey="c" name="addbbcode8" value="Code" style="width: 45px" onclick="bbstyle2(8, '{apptemplate.DOMNAME}')" title="{L_BBCODE_C_HELP}" />
 			<input type="button" class="button2" accesskey="l" name="addbbcode10" value="List" style="width: 40px" onclick="bbstyle2(10, '{apptemplate.DOMNAME}')" title="{L_BBCODE_L_HELP}" />
-			<input type="button" class="button2" accesskey="o" name="addbbcode12" value="List=" style="width: 40px" onclick="bbstyle2(12, '{apptemplate.DOMNAME}')" title="{L_BBCODE_O_HELP}" />
+			<input type="button" class="button2" accesskey="o" name="addbbcode12" value="List=" style="width: 45px" onclick="bbstyle2(12, '{apptemplate.DOMNAME}')" title="{L_BBCODE_O_HELP}" />
 			<input type="button" class="button2" accesskey="t" name="addlitsitem" value="[*]" style="width: 40px" onclick="bbstyle2(-1, '{apptemplate.DOMNAME}')" title="{L_BBCODE_LISTITEM_HELP}" />
 			<!-- IF S_BBCODE_IMG -->
 				<input type="button" class="button2" accesskey="p" name="addbbcode14" value="Img" style="width: 40px" onclick="bbstyle2(14, '{apptemplate.DOMNAME}')" title="{L_BBCODE_P_HELP}" />
@@ -452,7 +452,7 @@ apply plugin for bbDKP
 			<!-- IF S_BBCODE_FLASH -->
 				<input type="button" class="button2" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle2(18, '{apptemplate.DOMNAME}')" title="{L_BBCODE_D_HELP}" />
 			<!-- ENDIF -->
-			<select name="addbbcode20" onchange="bbfontstyle2('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]', '{apptemplate.DOMNAME}' );this.form.addbbcode20.selectedIndex = 2;" title="{L_FONT_SIZE}">
+			<select name="{apptemplate.BBDOMNAME}" onchange="bbfontstyle2('[size=' + this.form.{apptemplate.BBDOMNAME}.options[this.form.{apptemplate.BBDOMNAME}.selectedIndex].value + ']', '[/size]', '{apptemplate.DOMNAME}'); this.form.{apptemplate.BBDOMNAME}.selectedIndex = 2;" title="{L_FONT_SIZE}">
 				<option value="50">{L_FONT_TINY}</option>
 				<option value="85">{L_FONT_SMALL}</option>
 				<option value="100" selected="selected">{L_FONT_NORMAL}</option>

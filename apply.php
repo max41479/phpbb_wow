@@ -278,6 +278,7 @@ function fill_application_form($form_key, $post_data, $submit, $error, $captcha,
 				'S_SHOWQUESTION'	=> ((int) $row['showquestion'] == 1) ? true:false,
 				'DOMNAME'			=> 'templatefield_' . $row['qorder'],
 				'TABINDEX'			=> $row['qorder'],
+				'BBDOMNAME'			=> 'addbbcode_' . $row['qorder'],
 				)
 		);
 		
