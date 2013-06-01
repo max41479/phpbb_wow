@@ -397,10 +397,10 @@ apply plugin for bbDKP
 	
 	<!-- IF apptemplate.TYPE == $TYPE_INPUTBOX -->
 		<br>
-		<input style="outline-color: #0067C4;" class="inputbox" type="text" name="{apptemplate.DOMNAME}" size="40" maxlength="60" tabindex="{apptemplate.TABINDEX}" />	
+		<input class="inputbox applyform" type="text" name="{apptemplate.DOMNAME}" size="40" maxlength="60" tabindex="{apptemplate.TABINDEX}" />	
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOX -->
 		<br>
-		<textarea style="outline-color: #0067C4;" class="text" name="{apptemplate.DOMNAME}" rows="2" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>
+		<textarea class="text applyform" name="{apptemplate.DOMNAME}" rows="2" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOXBBCODE -->
 		<div id="colour_palette{apptemplate.TABINDEX}" style="display: none;">
 			<dl style="clear: left;">
@@ -459,10 +459,10 @@ apply plugin for bbDKP
 			<!-- BEGIN custom_tags -->
 				<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle2({custom_tags.BBCODE_ID}, '{apptemplate.DOMNAME}')" title="{custom_tags.BBCODE_HELPLINE}" /><!-- END custom_tags -->
 		</div>
-		<textarea style="outline-color: #0067C4;" class="text" name="{apptemplate.DOMNAME}" rows="3" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>	
+		<textarea class="text applyform" name="{apptemplate.DOMNAME}" rows="3" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>	
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_SELECTBOX -->
 		<br/ >
-		<select style="outline-color: #0067C4;" class="inputbox" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}">
+		<select class="inputbox applyform" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}">
 			<option value="">----------------</option>
 			<!-- BEGIN selectboxoptions -->
 			<option value="{apptemplate.selectboxoptions.KEY}">{apptemplate.selectboxoptions.VALUE}</option><!-- END selectboxoptions -->
@@ -496,10 +496,10 @@ apply plugin for bbDKP
 
 		
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_CHARNAME -->
-		<input style="outline-color: #0067C4;" type="text" name="candidate_name" size="25" maxlength="25" class="inputbox" />
+		<input type="text" name="candidate_name" size="25" maxlength="25" class="inputbox applyform" />
 	
 	<!-- ELSEIF apptemplate.TYPE == $TYPE_REGIONREALM -->
-		<select style="outline-color: #0067C4;" name="candidate_realm">
+		<select class="applyform" name="candidate_realm">
 			<!-- BEGIN realm_row -->
 				<option value="{apptemplate.realm_row.OPTION}">{apptemplate.realm_row.OPTION}</option>
 			<!-- END realm_row -->

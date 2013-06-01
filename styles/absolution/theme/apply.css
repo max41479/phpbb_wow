@@ -19,3 +19,7 @@ fieldset.fields2 dl dt
 	font-family: Verdana,Helvetica,Arial,sans-serif;
     font-size: 1.1em;
 }
+
+input.applyform, select.applyform, textarea.applyform {
+	outline-color: #0067C4;
+}
