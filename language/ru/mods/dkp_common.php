@@ -121,6 +121,14 @@ $lang = array_merge($lang, array(
 'LINK23T' => 'Warcraft Pets', 
 'LINK24' => '//wowcasual.info', 
 'LINK24T' => 'WoW Casual', 
+'LINK25' => '//www.icy-veins.com', 
+'LINK25T' => 'Icy Veins', 
+'LINK26' => '//www.tankspot.com', 
+'LINK26T' => 'TankSpot', 
+'LINK27' => '//www.wowbestinslot.com', 
+'LINK27T' => 'WoW BIS Gear Rankings', 
+'LINK28' => '//www.simulationcraft.org', 
+'LINK28T' => 'SimulationCraft', 
 
 // Main Menu
 'MENU' => 'Menu', 
