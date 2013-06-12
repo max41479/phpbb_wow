@@ -120,6 +120,18 @@ dl.icon dt {
 	background-position: 5px 95%;		/* Position of topic icon */
 }
 
+dl.forumicon {
+	min-height: 35px;
+	background-position: 10px 50%;		/* Position of folder icon */
+	background-repeat: no-repeat;
+}
+
+dl.forumicon dt {
+	padding-left: 61px;
+	background-repeat: no-repeat;
+	 background-position: left 42px center;
+}
+
 dd.posts, dd.topics, dd.views {
 	width: 8%;
 	text-align: center;
