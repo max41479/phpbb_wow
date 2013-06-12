@@ -9,7 +9,8 @@
 			<div class="postbody" style="width: 100%">
 				<h4 class="first">{news_row.ATTACH_ICON_IMG}<a href="{news_row.LINK}"><span style="font-size: 130%; font-family: Arial, Helvetica, sans-serif;">{news_row.HEADLINE}</span></a></h4>
 				<ul class="linklist">
-					<li>{news_row.DATE}<a href="{news_row.LINK}"></a>
+					<li>{L_NEWS_POST_BY_AUTHOR} : {news_row.AUTHOR} &raquo;&nbsp;{news_row.DATE}<a href="{news_row.LINK}"></a>
+						<span> &raquo;&nbsp;<a href="{news_row.LINK}" title="{L_VIEW_COMMENTS}">{L_COMMENT}: {news_row.MORE}</a></span>
 					</li>
 				</ul>
 				<div class="content">

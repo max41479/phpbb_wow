@@ -392,3 +392,26 @@ div.tickLabel {
 	font-size: 11px;
 }
 
+.portal_block {
+	background-color: #ECF1F3;
+	padding: 10px;
+	font-size: 10px;
+	color: #FFFFFF;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+ 	-webkit-border-radius: 5px;
+}
+
+.portal_block a {
+	color: #E6E6E6;
+	font-size: 10px;
+}
+
+.portal_block a:hover {
+	color: #0070FF;
+}
+
+.portal_block h3 {
+	color: #FFFFFF;
+	margin-top: 5px;
+}
