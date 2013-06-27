@@ -4605,54 +4605,9 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 			$s_search_hidden_fields[$url_param[0]] = $url_param[1];
 		}
 	}
-	
-	function twitch_checker($user)
-	{
-		$json_file = file_get_contents("http://api.justin.tv/api/stream/list.json?channel=$user");
-		$json_array = json_decode($json_file, true);
-		if (empty($json_array))
-		{
-			$stream_online = false;
-		}else if (strtolower($json_array[0]['name']) == strtolower("live_user_$user")) 
-		{
-			$stream_online = true;
-		}
-		return $stream_online;
-	}
-
-	function own3d_checker($user)
-	{
-		$json_file = file_get_contents("http://api.own3d.tv/rest/live/status.json?liveid=$user");
-		$json_array = json_decode($json_file, true);
-		if (($json_array['live_is_live']) == ("1")) 
-		{
-			$stream_online = true;
-		}else
-		{
-			$stream_online = false;
-		}
-		return $stream_online;
-	}
-	
-	function cybergame_checker($user)
-	{
-		$json_file = file_get_contents("http://api.cybergame.tv/w/streams2.php?channel=$user");
-		$json_array = json_decode($json_file, true);
-		if (($json_array['online']) == ("1")) 
-		{
-			$stream_online = true;
-		}else
-		{
-			$stream_online = false;
-		}
-		return $stream_online;
-	}
 
 	// The following assigns all _common_ variables that may be used at any point in a template.
 	$template->assign_vars(array(
-		'STREAM1'						=> twitch_checker("max41479"), //max41479
-		'STREAM2'						=> cybergame_checker("shakor"), //shakor
-		'STREAM3'						=> twitch_checker("tonyhowk2"), //Zluchnik
 		'SITENAME'						=> $config['sitename'],
 		'SITE_DESCRIPTION'				=> $config['site_desc'],
 		'PAGE_TITLE'					=> $page_title,
@@ -4704,7 +4659,6 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'U_PRIVACY'				=> append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=privacy'),
 		'U_RESTORE_PERMISSIONS'	=> ($user->data['user_perm_from'] && $auth->acl_get('a_switchperm')) ? append_sid("{$phpbb_root_path}ucp.$phpEx", 'mode=restore_perm') : '',
 		'U_FEED'				=> generate_board_url() . "/feed.$phpEx",
-		'U_APPLY'            => append_sid("{$phpbb_root_path}apply.$phpEx"),
 
 		'S_USER_LOGGED_IN'		=> ($user->data['user_id'] != ANONYMOUS) ? true : false,
 		'S_AUTOLOGIN_ENABLED'	=> ($config['allow_autologin']) ? true : false,
