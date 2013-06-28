@@ -999,7 +999,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 						$apply_post->message .= '[size=100][color='. $apply_post->questioncolor .'][b]' . $row['question'] . ': [/b][/color][/size]';
 						$apply_post->message .= $newline;
 					}
-					$apply_post->message .= '[color='. $apply_post->answercolor .']';
+					$apply_post->message .= '[color='. $apply_post->answercolor .'] ';
 					$apply_post->message .=	$fieldcontents;
 					$apply_post->message .= '[/color]';
 					$apply_post->message .= $newline . $newline;
