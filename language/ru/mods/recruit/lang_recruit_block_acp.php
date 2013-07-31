@@ -92,9 +92,9 @@ $lang = array_merge($lang, array(
 	'DESTRUCTION'						=> 'Разрушение',	
 	'ARMS'								=> 'Оружие',
 	'FURY'								=> 'Неистовство',
-	'BREWMASTER'						=> 'Brewmaster',	
-	'WINDWALKER'						=> 'Windwalker',
-	'MISTWEAVER'						=> 'Mistweaver',
+	'BREWMASTER'						=> 'Хмелевар',	
+	'WINDWALKER'						=> 'Танцующий с ветром',
+	'MISTWEAVER'						=> 'Ткач туманов',
 	)
 );
 /**
