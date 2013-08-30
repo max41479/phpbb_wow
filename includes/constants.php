@@ -277,7 +277,8 @@ define('WORDS_TABLE',				$table_prefix . 'words');
 define('ZEBRA_TABLE',				$table_prefix . 'zebra');
 
 // Additional tables
-
+define('STREAMS_TABLE',				$table_prefix . 'streams');
+define('STREAM_PLATFORMS_TABLE',	$table_prefix . 'stream_platforms');
 
 //Recruitment Block
 //----- START ----- 

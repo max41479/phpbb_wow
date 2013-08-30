@@ -1,0 +1,76 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>{L_STREAM_EDITING}</h2>
+
+<form id="characters" method="post" action="">
+<!-- IF S_SHOW -->
+	<div class="panel">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<!-- IF S_ADD -->
+			<p>{L_ADD_STREAM}</p>
+			<!-- ELSE -->
+			<p>{L_UPDATE_STREAM}</p>
+			<!-- ENDIF -->
+			<fieldset>
+				<dl>
+					<dt>
+						<label for="stream_platform_id">{L_STREAM_PLATFORM}</label>
+					</dt>
+					<dd>
+						<select name="stream_platform_id" id="stream_platform_id">
+							<!-- BEGIN stream_platform_row -->
+								<option value="{stream_platform_row.VALUE}"{stream_platform_row.SELECTED}>{stream_platform_row.OPTION}</option>
+							<!-- END stream_platform_row -->
+						</select>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="stream_channel_name">{L_CHANNEL_NAME}</label>
+						<br />
+						<span>{L_CHANNEL_NAME_EXPLAIN}</span>
+					</dt>
+					<dd>
+						<input type="text" name="stream_channel_name" id="stream_channel_name" maxlength="25" value="{STREAM_CHANNEL_NAME}" class="inputbox">
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="stream_description">{L_STREAM_DESCRIPTION_TITLE}</label>
+					</dt>
+					<dd>
+						<textarea name="stream_description" id="stream_description" class="inputbox" rows="3" cols="30">{STREAM_DESCRIPTION}</textarea>
+					</dd>
+				</dl>
+				<dl>
+					<dt>
+						<label for="associated_thread">{L_STREAM_LINK}</label>
+					</dt>
+					<dd>
+						<input type="text" name="associated_thread" id="associated_thread" maxlength="200" value="{ASSOCIATED_THREAD}" class="inputbox">
+					</dd>
+				</dl>
+			</fieldset>
+			<fieldset class="submit-buttons">
+			<!-- IF ! S_ADD -->
+				<!-- IF S_CANUPDATE -->
+				<input type="submit" name="update" value="{L_UPDATE_STREAM}" class="button1" />
+				<!-- ENDIF -->
+				<!-- IF S_CANDELETE -->
+				<input type="submit"  name="delete" value="{L_DELETE_STREAM}" class="button1" />
+				<!-- ENDIF -->
+			<!-- ELSE -->
+				<input type="submit" name="add" value="{L_ADD_STREAM}" class="button2" /> 
+				<input type="reset" name="reset" value="{L_RESET}" class="button1" />
+			<!-- ENDIF -->
+			</fieldset>
+			<span class="corners-bottom"><span></span></span>
+		</div>
+	</div>
+{S_FORM_TOKEN}
+<!-- ELSE --> 
+	<p class="error">{MAX_CHARS_EXCEEDED} </p><p><br /><br /></p>
+<!-- ENDIF --> 
+</form>
+                
+<!-- INCLUDE ucp_footer.html -->

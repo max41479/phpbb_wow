@@ -1,11 +1,66 @@
 <?php
 function status_streams()
 {
-	global $template;
+	global $template, $db;
+	
+	$streams_online = false;
+	// make a listing of my own streams with dkp for each pool
+	$sql_array = array(
+		'SELECT'    => 's.*, s.stream_channel_name, s.stream_platform_id, s.associated_thread, s.stream_description, p.stream_platform_name, p.stream_platform_icon, p.stream_platform, s.phpbb_user_id, u.username',
+		'FROM'      => array(
+			STREAMS_TABLE			=> 's',
+			STREAM_PLATFORMS_TABLE	=> 'p',
+			USERS_TABLE				=> 'u',
+		),
+		'WHERE'     =>  "p.stream_platform_id = s.stream_platform_id AND s.phpbb_user_id = u.user_id",
+		'ORDER_BY'	=> "s.stream_channel_name",
+	);
+	
+	$sql = $db->sql_build_query('SELECT', $sql_array);
+
+	$result = $db->sql_query($sql);
+	
+	while ( $row = $db->sql_fetchrow($result) )
+	{
+		$stream_platform_id = $row['stream_platform_id'];
+		$stream_channel_name = $row['stream_channel_name'];
+		$stream_status = false;
+		switch ($stream_platform_id)
+		{
+			case '1':
+				$stream_status = twitch_checker($stream_channel_name);
+				break;
+			case '2':
+				$stream_status = goodgame_checker($stream_channel_name);
+				break;
+			case '3':
+				$stream_status = cybergame_checker($stream_channel_name);
+				break;
+		}
+		if ($stream_status == true)
+		{
+			$streams_online = true;
+		}
+		$stream_link = '';
+		if ($row['associated_thread'] == '')
+		{
+			$stream_link = $row['stream_platform'] . $row['stream_channel_name'];
+		}
+		else
+		{
+			$stream_link = $row['associated_thread'];
+		}
+		$template->assign_block_vars('stream_list_row', array(
+			'STREAM_DESCRIPTION'	=> $row['stream_description'],
+			'LINK'					=> $stream_link,
+			'USERNAME'				=> $row['username'],
+			'STREAM_PLATFORM_ICON'	=> $row['stream_platform_icon'],
+			'STREAM_STATUS'			=> $stream_status,
+			)
+		);
+	}
 	$template->assign_vars(array(
-		'STREAM1'						=> twitch_checker("max41479"),	//max41479
-		'STREAM2'						=> goodgame_checker("Shakor"),	//shakor
-		'STREAM3'						=> twitch_checker("tonyhowk2"),	//Zluchnik
+		'STREAMS_ONLINE'	=> $streams_online,
 	));
 }
 
@@ -13,6 +68,7 @@ function twitch_checker($user)
 {
 	$json_file = file_get_contents("http://api.justin.tv/api/stream/list.json?channel=$user");
 	$json_array = json_decode($json_file, true);
+	$stream_online = false;
 	if (empty($json_array))
 	{
 		$stream_online = false;
@@ -27,12 +83,13 @@ function cybergame_checker($user)
 {
 	$json_file = file_get_contents("http://api.cybergame.tv/w/streams2.php?channel=$user");
 	$json_array = json_decode($json_file, true);
-	if (($json_array['online']) == ("1")) 
-	{
-		$stream_online = true;
-	}else
+	$stream_online = false;
+	if (empty($json_array)) 
 	{
 		$stream_online = false;
+	}else if (($json_array['online']) == ("1"))
+	{
+		$stream_online = true;
 	}
 	return $stream_online;
 }
@@ -42,12 +99,13 @@ function goodgame_checker($user)
 	$json_file = file_get_contents("http://goodgame.ru/api/getchannelstatus?fmt=json&id=$user");
 	$json_array = json_decode($json_file, true);
 	$key = array_keys($json_array);
-	if (($json_array[$key[0]]['status']) == ("Live")) 
-	{
-		$stream_online = true;
-	}else
+	$stream_online = false;
+	if (empty($json_array)) 
 	{
 		$stream_online = false;
+	}else if (($json_array[$key[0]]['status']) == ("Live"))
+	{
+		$stream_online = true;
 	}
 	return $stream_online;
 }

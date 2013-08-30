@@ -1,0 +1,29 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>{L_MY_STREAMS}</h2>
+	<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+		<p>{L_MY_STREAMS_LIST}</p>
+		<!-- IF NO_STREAMS --> 
+		<p class="error">{L_STREAMS_NOT_FOUND}</p>
+		<!-- ELSE IF S_SHOW -->
+		<fieldset>
+			<!-- BEGIN streams_row -->
+				<dl>
+					<dt>
+						<a href="{streams_row.LINK}">{streams_row.NAME}</label>
+					</dt>
+					<dd>
+						<a href="{streams_row.U_EDIT}">{L_EDIT}</a>
+					</dd>	
+				</dl>
+			<!-- END streams_row -->
+		</fieldset>
+		<br />
+		<br />
+		<!-- ENDIF -->
+		<a href="{U_ADD}">{L_ADD_NEW}</a>
+	<span class="corners-bottom"><span></span></span></div>
+	</div>
+
+<!-- INCLUDE ucp_footer.html -->

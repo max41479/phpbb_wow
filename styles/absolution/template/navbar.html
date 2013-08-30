@@ -25,14 +25,14 @@
             </li>
 			<li class="divider"></li>
             <li class="float-left">
-				<a><!-- IF (STREAM1 or STREAM2 or STREAM3) --><img src="{ROOT_PATH}/images/online.gif" width="20" height="15" alt="" /><!-- ENDIF -->{L_VIDEO}</a>
+				<a><!-- IF (STREAMS_ONLINE) --><img src="{ROOT_PATH}/images/online.gif" width="20" height="15" alt="" /><!-- ENDIF -->{L_VIDEO}</a>
                    	<div style="clear: both;"></div>
                   	<ul class="drop">
                         <li><a href="//www.youtube.com/user/tonyhowk2/videos" target="_blank"><img src="{ROOT_PATH}/images/youtube.ico" width="16" height="16" alt="" />Youtube</a></li>
-						<li><a href="/forum/viewtopic.php?f=32&t=286" target="_blank"><!-- IF STREAM1 --><img src="{ROOT_PATH}/images/online.gif" width="20" height="15" alt="" /><!-- ELSE --><img src="{ROOT_PATH}/images/offline.gif" width="20" height="15" alt="" /><!-- ENDIF --><img src="{ROOT_PATH}/images/icon_bnet.gif" width="16" height="16" alt="" />Kiliminara's Stream</a></li>
-						<li><a href="/forum/viewtopic.php?f=32&t=321" target="_blank"><!-- IF STREAM2 --><img src="{ROOT_PATH}/images/online.gif" width="20" height="15" alt="" /><!-- ELSE --><img src="{ROOT_PATH}/images/offline.gif" width="20" height="15" alt="" /><!-- ENDIF --><img src="{ROOT_PATH}/images/wow.ico" width="16" height="16" alt="" />Shakor's Stream</a></li>
-						<li><a href="/forum/viewtopic.php?f=32&t=287" target="_blank"><!-- IF STREAM3 --><img src="{ROOT_PATH}/images/online.gif" width="20" height="15" alt="" /><!-- ELSE --><img src="{ROOT_PATH}/images/offline.gif" width="20" height="15" alt="" /><!-- ENDIF --><img src="{ROOT_PATH}/images/faviconzlu.png" width="16" height="16" alt="" />Злючник's Stream</a></li>
-                    </ul>
+						<!-- BEGIN stream_list_row -->
+							<li><a href="{stream_list_row.LINK}" target="_blank" class="tip-right" title="{stream_list_row.STREAM_DESCRIPTION}"><!-- IF stream_list_row.STREAM_STATUS --><img src="{ROOT_PATH}/images/online.gif" width="20" height="15" alt="" /><!-- ELSE --><img src="{ROOT_PATH}/images/offline.gif" width="20" height="15" alt="" /><!-- ENDIF --><img src="{ROOT_PATH}/images/{stream_list_row.STREAM_PLATFORM_ICON}" width="16" height="16" alt="" />{stream_list_row.USERNAME}</a></li>
+						<!-- END stream_list_row -->
+					</ul>
             </li>
             <li class="divider"></li>
 
