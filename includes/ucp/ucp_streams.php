@@ -124,7 +124,7 @@ class ucp_streams
 	private function fill_addstream($stream_id)
 	{
 		global $db, $auth, $user, $template, $config;
-		$show=true;
+		$show = true;
 		if($stream_id == 0)
 		{
 			// check if user can add stream
@@ -141,7 +141,7 @@ class ucp_streams
 			$db->sql_freeresult($result);
 			if ($streams_count >= $config['streams_max_count'])
 			{
-				$show=false;
+				$show = false;
 				$template->assign_vars(array(
 				'MAX_CHARS_EXCEEDED' => sprintf($user->lang['MAX_CHARS_EXCEEDED'],$config['streams_max_count']),
 				));
@@ -241,7 +241,7 @@ class ucp_streams
 		}
 		
 		$stream_platform_id = request_var('stream_platform_id', '', true);
-		$stream_channel_name = request_var('stream_channel_name', '');
+		$stream_channel_name = strtolower(request_var('stream_channel_name', ''));
 		$associated_thread = request_var('associated_thread', '', true);
 		$pattern = array(
 			'#https:#',
@@ -354,7 +354,7 @@ class ucp_streams
 		$db->sql_freeresult($result);
 		
 		$stream_platform_id = request_var('stream_platform_id', '', true);
-		$stream_channel_name = request_var('stream_channel_name', '', true);
+		$stream_channel_name = strtolower(request_var('stream_channel_name', '', true));
 		$associated_thread = request_var('associated_thread', '', true);
 		$pattern = array(
 			'#https:#',

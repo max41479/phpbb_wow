@@ -4,7 +4,7 @@ function status_streams()
 	global $template, $db;
 	
 	$streams_online = false;
-	// make a listing of my own streams with dkp for each pool
+	// make a listing of my own streams
 	$sql_array = array(
 		'SELECT'    => 's.*, s.stream_channel_name, s.stream_platform_id, s.associated_thread, s.stream_description, p.stream_platform_name, p.stream_platform_icon, p.stream_platform, s.phpbb_user_id, u.username',
 		'FROM'      => array(
@@ -42,7 +42,7 @@ function status_streams()
 			$streams_online = true;
 		}
 		$stream_link = '';
-		if ($row['associated_thread'] == '')
+		if ($row['associated_thread'] == '//')
 		{
 			$stream_link = $row['stream_platform'] . $row['stream_channel_name'];
 		}
