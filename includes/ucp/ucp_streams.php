@@ -244,8 +244,8 @@ class ucp_streams
 		$stream_channel_name = strtolower(request_var('stream_channel_name', ''));
 		$associated_thread = request_var('associated_thread', '', true);
 		$pattern = array(
-			'#https:#',
-			'#http:#',
+			'#https:#i',
+			'#http:#i',
 			'#//#',
 		);
 		$associated_thread = preg_replace($pattern ,'' , strtolower($associated_thread));
@@ -357,8 +357,8 @@ class ucp_streams
 		$stream_channel_name = strtolower(request_var('stream_channel_name', '', true));
 		$associated_thread = request_var('associated_thread', '', true);
 		$pattern = array(
-			'#https:#',
-			'#http:#',
+			'#https:#i',
+			'#http:#i',
 			'#//#',
 		);
 		$associated_thread = preg_replace($pattern ,'' , strtolower($associated_thread));
