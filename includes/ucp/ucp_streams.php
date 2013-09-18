@@ -49,7 +49,6 @@ class ucp_streams
 					$template->assign_vars(array(
 						'NO_STREAMS'		=> $no_streams,
 						'STREAMS_NOT_FOUND'	=> $user->lang['STREAMS_NOT_FOUND'],
-						'U_ADD'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", "i=streams&amp;mode=manage_streams"),
 					));
 				}
 				else 
@@ -61,7 +60,8 @@ class ucp_streams
 									
 				// These template variables are used on all the pages
 				$template->assign_vars(array(
-					'S_SHOW'				=> $show
+					'S_SHOW'				=> $show,
+					'U_ADD'			=> append_sid("{$phpbb_root_path}ucp.$phpEx", "i=streams&amp;mode=manage_streams"),
 				));
 				
 				$this->page_title = 'UCP_STREAMS';
