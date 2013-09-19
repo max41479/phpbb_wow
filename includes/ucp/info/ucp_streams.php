@@ -22,7 +22,7 @@ class ucp_streams_info
         'version'    => '1.0.0',
         'modes'        => array(
             'my_streams'			=> array('title' => 'MY_STREAMS', 'auth' => 'acl_u_view_streams', 'cat' => array('STREAMS')),
-			'manage_streams'	=> array('title' => 'MANAGE_STREAMS', 'auth' => 'acl_u_manage_streams', 'cat' => array('STREAMS')),
+			'manage_streams'	=> array('title' => 'ADD_EDIT_STREAM', 'auth' => 'acl_u_manage_streams', 'cat' => array('STREAMS')),
             ),
         );
         
