@@ -19,7 +19,7 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
-	'ERROR_MAX_STREAMS_EXCEEDED'			=> 'Извините, вы можете прикрепить только %s стрима(ов) к вашему phpBB аккаунту.',
+	'ERROR_MAX_STREAMS_EXCEEDED'	=> 'Извините, вы можете прикрепить только %s стрима(ов) к вашему phpBB аккаунту.',
 	'NO_UCP_DEL_STREAMS'			=> 'Вы не можете удалять стримы.',
 	'NO_UCP_UPD_STREAMS'			=> 'Вы не можете обновлять стримы.',
 	'NO_UCP_ADD_STREAMS'			=> 'Вы не можете добавлять стримы.',

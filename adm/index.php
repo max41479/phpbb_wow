@@ -106,6 +106,7 @@ function adm_page_header($page_title)
 		}
 	}
 
+	$ppkbb_spoiler_options=my_split_config($config['ppkbb_spoiler_options'], 6, 'my_int_val');
 	$template->assign_vars(array(
 		'PAGE_TITLE'			=> $page_title,
 		'USERNAME'				=> $user->data['username'],
@@ -144,6 +145,12 @@ function adm_page_header($page_title)
 		'S_CONTENT_ENCODING'	=> 'UTF-8',
 		'S_CONTENT_FLOW_BEGIN'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'left' : 'right',
 		'S_CONTENT_FLOW_END'	=> ($user->lang['DIRECTION'] == 'ltr') ? 'right' : 'left',
+		'SPOILER_IMG_WIDTH' => $ppkbb_spoiler_options[0],
+		'SPOILER_HIDE_POSTIMG' => $ppkbb_spoiler_options[1] ? 'true' : 'false',
+		'SPOILER_HIDE_SIGIMG' => $ppkbb_spoiler_options[2] ? 'true' : 'false',
+		'SPOILER_BANNED_IMGHOSTS' => $config['ppkbb_spoiler_banned_imghosts'] ? $config['ppkbb_spoiler_banned_imghosts'] : 'false',
+		'SPOILER_OPEN_TYPE' => $ppkbb_spoiler_options[4],
+		'PPKBB3CKER_ADDONS'	=> "{$phpbb_root_path}tracker/addons/",
 	));
 
 	// application/xhtml+xml not used because of IE
