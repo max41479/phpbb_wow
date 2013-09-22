@@ -30,10 +30,10 @@ function status_streams()
 				$stream_status = twitch_checker($stream_channel_name);
 				break;
 			case '2':
-				$stream_status = goodgame_checker($stream_channel_name);
+				$stream_status = cybergame_checker($stream_channel_name);
 				break;
 			case '3':
-				$stream_status = cybergame_checker($stream_channel_name);
+				$stream_status = goodgame_checker($stream_channel_name);
 				break;
 		}
 		
