@@ -66,9 +66,9 @@ function status_streams()
 
 function twitch_checker($user_name)
 {
+	$stream_online = false;
 	$json_file = file_get_contents("http://api.justin.tv/api/stream/list.json?channel=$user_name");
 	$json_array = json_decode($json_file, true);
-	$stream_online = false;
 	if (empty($json_array))
 	{
 		$stream_online = false;
@@ -81,9 +81,9 @@ function twitch_checker($user_name)
 
 function cybergame_checker($user_name)
 {
+	$stream_online = false;
 	$json_file = file_get_contents("http://api.cybergame.tv/w/streams2.php?channel=$user_name");
 	$json_array = json_decode($json_file, true);
-	$stream_online = false;
 	if (empty($json_array)) 
 	{
 		$stream_online = false;
@@ -96,11 +96,14 @@ function cybergame_checker($user_name)
 
 function goodgame_checker($user_name)
 {
+	$stream_online = false;
 	$json_file = file_get_contents("http://goodgame.ru/api/getchannelstatus?fmt=json&id=$user_name");
 	$json_array = json_decode($json_file, true);
-	$key = array_keys($json_array);
-	$stream_online = false;
-	if (empty($json_array)) 
+	if (!empty($json_array))
+	{
+		$key = array_keys($json_array);
+	}
+	if (empty($json_array))
 	{
 		$stream_online = false;
 	}else if (($json_array[$key[0]]['status']) == ("Live"))
