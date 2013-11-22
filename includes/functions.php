@@ -4930,6 +4930,10 @@ function page_footer($run_cron = true)
 		{
 			$cron_type = 'auto_backup';
 		}
+		else if ($time_now - $config['streams_online_gc'] > $config['streams_online_last_gc'])
+		{
+			$cron_type = 'streams_online';
+		}
 
 		if ($cron_type)
 		{

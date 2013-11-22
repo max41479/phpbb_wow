@@ -203,6 +203,19 @@ switch ($cron_type)
 		auto_backup();
 
 	break;
+	
+	case 'streams_online':
+
+		if (time() - $config['streams_online_gc'] <= $config['streams_online_last_gc'])
+		{
+			break;
+		}
+
+		include($phpbb_root_path . 'includes/streams_online.' . $phpEx);
+
+		streams_online();
+
+	break;
 }
 
 // Unloading cache and closing db after having done the dirty work.
