@@ -4,6 +4,7 @@ function status_streams()
 	global $template, $db;
 	
 	$streams_online = false;
+	$streams_online_count = 0;
 	// make a listing of all streams
 	$sql_array = array(
 		'SELECT'	=> 's.online, s.stream_channel_name, s.stream_platform_id, s.associated_thread, s.stream_description, p.stream_platform_name, p.stream_platform_icon, p.stream_platform, s.phpbb_user_id, u.username',
@@ -28,6 +29,7 @@ function status_streams()
 		if ($stream_online == true)
 		{
 			$streams_online = true;
+			$streams_online_count++;
 		}
 		
 		if ($row['associated_thread'] == '//')
@@ -49,6 +51,7 @@ function status_streams()
 	}
 	$template->assign_vars(array(
 		'STREAMS_ONLINE'	=> $streams_online,
+		'STREAMS_ONLINE_COUNT'	=> $streams_online_count,
 	));
 }
 
