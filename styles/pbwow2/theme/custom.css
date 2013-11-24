@@ -1,0 +1,50 @@
+/* Custom CSS for PBWoW 2 
+
+You can customize whatever you want.
+Many of these rules are for PBWoW.com specifically,
+my personal preference so to speak */
+
+/* Comment-out the fields that you DO want to display */
+.wow-info-frame .rank, 
+.wow-info-frame .special-rank, 
+.wow-info-frame .numberposts, 
+/*.wow-info-frame .joined,*/
+/*.wow-info-frame .guild,*/
+.wow-info-frame .pbguild, 
+.wow-info-frame .pblevel, 
+.wow-info-frame .pbrace, 
+.wow-info-frame .pbgender, 
+.wow-info-frame .pbclass, 
+.wow-info-frame .pbarmorycharlink, 
+.wow-info-frame .pbarmoryguildlink, 
+.wow-info-frame .pbdclass, 
+.wow-info-frame .pbdgender, 
+.wow-info-frame .pbdfollower { 
+	display: none; 
+}
+
+.donate-button {
+	background: url('{T_IMAGESET_PATH}/images/donate.jpg') no-repeat 0 0;
+	width: 300px;
+	height: 220px;
+	padding: 0;
+	margin: 0;
+}
+
+.donate-button:hover {
+	background-position: 0 -220px;
+}
+
+.headerbar .icon-custom1 {
+	background-image: url('{T_IMAGESET_PATH}/images/icons/unused/horde.png');
+	background-position: 1px 70%;
+	background-repeat: no-repeat;
+	padding: 1px 0 0 18px;
+}
+
+.headerbar .icon-custom2 {
+	background-image: url('{T_IMAGESET_PATH}/images/icons/unused/alliance.png');
+	background-position: 1px 70%;
+	background-repeat: no-repeat;
+	padding: 1px 0 0 18px;
+}

@@ -1,0 +1,51 @@
+<div class="wow-index">
+<!-- BEGIN forumrow -->
+	<!-- IF (forumrow.S_IS_CAT and not forumrow.S_FIRST_ROW) or forumrow.S_NO_CAT  -->
+		</ul>
+	</div>
+	<!-- ENDIF -->
+
+	<!-- IF forumrow.S_IS_CAT or forumrow.S_FIRST_ROW  or forumrow.S_NO_CAT  -->
+	<div class="forabg" id="cat-{forumrow.FORUM_ID}">
+		<h2 class="open"><!-- IF forumrow.S_IS_CAT --><a href="{forumrow.U_VIEWFORUM}">{forumrow.FORUM_NAME}</a><!-- ELSE -->{L_FORUM}<!-- ENDIF --></h2>
+
+		<ul class="topiclist forums">
+	<!-- ENDIF -->
+
+			<!-- IF not forumrow.S_IS_CAT -->
+			<li class="wow-forum" id="forum-{forumrow.FORUM_ID}">
+				<a class="forum-link" href="{forumrow.U_VIEWFORUM}" title="{forumrow.FORUM_FOLDER_IMG_ALT}">
+					<!-- IF forumrow.FORUM_IMAGE --><div class="forum-image" style="background-image: url({forumrow.FORUM_IMAGE_SRC})"></div><!-- ENDIF -->
+					<div class="forum-info"><div class="forum-title">{forumrow.FORUM_NAME}
+					<!-- IF forumrow.S_UNREAD_FORUM --><span class="new-icon" title="{L_UNREAD_POSTS}"></span><!-- ENDIF -->
+					<div class="forum-description">{forumrow.FORUM_DESC}</div></div></div>
+				</a>
+				<div class="forum-stats">
+				<!-- IF forumrow.CLICKS -->
+					{L_REDIRECTS}: {forumrow.CLICKS}
+				<!-- ELSEIF not forumrow.S_IS_LINK -->
+					<!-- IF S_ENABLE_FEEDS and forumrow.S_FEED_ENABLED --><!-- <a class="feed-icon-forum" title="{L_FEED} - {forumrow.FORUM_NAME}" href="{U_FEED}?f={forumrow.FORUM_ID}"><img src="{T_IMAGESET_PATH}/images/icons/feed.gif" alt="{L_FEED} - {forumrow.FORUM_NAME}" /></a> --><!-- ENDIF -->
+					({L_TOPICS}: {forumrow.TOPICS} | {L_POSTS}: {forumrow.POSTS})
+					<!-- IF not S_IS_BOT --><a href="{forumrow.U_LAST_POST}" class="last-post-icon" title="{L_VIEW_LATEST_POST}">{L_VIEW_LATEST_POST}</a> <!-- ENDIF -->
+					<!-- IF forumrow.S_LOCKED_FORUM --><span class="locked-icon" title="{L_FORUM_LOCKED}">{L_FORUM_LOCKED}</span><!-- ENDIF -->
+				<!-- ENDIF -->
+				</div>
+				<!-- IF forumrow.U_UNAPPROVED_TOPICS --><div class="extra-icons"><a href="{forumrow.U_UNAPPROVED_TOPICS}">{UNAPPROVED_IMG}</a></div><!-- ENDIF -->
+				<!--<!-- IF forumrow.MODERATORS --><br /><strong>{forumrow.L_MODERATOR_STR}:</strong> {forumrow.MODERATORS}<!-- ENDIF -->-->
+				<!-- IF forumrow.SUBFORUMS and forumrow.S_LIST_SUBFORUMS --><a class="subforums-button" id="subforums-{forumrow.FORUM_ID}" href="#"></a><div class="subforums-menu" id="subforums-{forumrow.FORUM_ID}-menu"><strong>{forumrow.L_SUBFORUM_STR}</strong> {forumrow.SUBFORUMS}</div><!-- ENDIF -->
+			</li>
+			<!-- ENDIF -->
+
+	<!-- IF forumrow.S_LAST_ROW -->
+		</ul>
+	</div>
+	<!-- ENDIF -->
+
+<!-- BEGINELSE -->
+	<div class="panel">
+		<div class="inner">
+			<p class="rules"><img src = "{T_IMAGESET_PATH}/images/icons/error-tiny.gif" />{L_NO_FORUMS}</p>
+		</div>
+	</div>
+<!-- END forumrow -->
+</div>

@@ -4800,6 +4800,7 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 		'SPOILER_OPEN_TYPE' => $ppkbb_spoiler_options[4],
 	));
 
+
 	// application/xhtml+xml not used because of IE
 	header('Content-type: text/html; charset=UTF-8');
 

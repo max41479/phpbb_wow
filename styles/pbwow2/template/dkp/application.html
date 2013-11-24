@@ -1,0 +1,575 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- 
+apply plugin for bbDKP 
+ @version 1.4
+-->
+
+<!-- DEFINE $TYPE_INPUTBOX = 'Inputbox' -->
+<!-- DEFINE $TYPE_TEXTBOX = 'Textbox' -->
+<!-- DEFINE $TYPE_TEXTBOXBBCODE = 'Textboxbbcode' -->
+<!-- DEFINE $TYPE_SELECTBOX = 'Selectbox' -->
+<!-- DEFINE $TYPE_RADIOBUTTON = 'Radiobuttons' -->
+<!-- DEFINE $TYPE_CHECKBOX = 'Checkboxes' -->
+<!-- DEFINE $TYPE_TITLE = 'title' -->
+<!-- DEFINE $TYPE_CHARNAME = 'charname' -->
+<!-- DEFINE $TYPE_GAMERACECLASS = 'gameraceclass' -->
+<!-- DEFINE $TYPE_REGIONREALM = 'regionrealm' -->
+<!-- DEFINE $TYPE_LEVEL = 'level' -->
+<!-- DEFINE $TYPE_GENDER = 'gender' -->
+
+<script type="text/javascript">
+// <![CDATA[
+            
+	// global js variables
+	var form_name = 'applyform';
+	
+	// Define the bbCode tags
+	var bbcode = new Array();
+	var bbtags = new Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[quote]','[/quote]','[code]','[/code]','[list]','[/list]',
+			'[list=]','[/list]','[img]','[/img]','[url]','[/url]','[flash=]', '[/flash]','[size=]','[/size]'<!-- BEGIN custom_tags -->, {custom_tags.BBCODE_NAME}<!-- END custom_tags -->);
+	var imageTag = false;
+
+	// Helpline messages
+	var help_line = {
+		b: '{LA_BBCODE_B_HELP}',
+		i: '{LA_BBCODE_I_HELP}',
+		u: '{LA_BBCODE_U_HELP}',
+		q: '{LA_BBCODE_Q_HELP}',
+		c: '{LA_BBCODE_C_HELP}',
+		l: '{LA_BBCODE_L_HELP}',
+		o: '{LA_BBCODE_O_HELP}',
+		p: '{LA_BBCODE_P_HELP}',
+		w: '{LA_BBCODE_W_HELP}',
+		a: '{LA_BBCODE_A_HELP}',
+		s: '{LA_BBCODE_S_HELP}',
+		f: '{LA_BBCODE_F_HELP}',
+		e: '{LA_BBCODE_E_HELP}',
+		d: '{LA_BBCODE_D_HELP}'
+		<!-- BEGIN custom_tags -->
+			,cb_{custom_tags.BBCODE_ID}: '{custom_tags.BBCODE_HELPLINE}'
+		<!-- END custom_tags -->
+	}
+
+	/**
+	* bbstyle for appform
+	* refers to passed textarea_name
+	*/
+	function bbstyle2(bbnumber, textarea_name)
+	{	
+		if (bbnumber != -1)
+		{
+			bbfontstyle2(bbtags[bbnumber], bbtags[bbnumber+1], textarea_name);
+		} 
+		else 
+		{
+			insert_text2('[*]', textarea_name);
+			document.forms[form_name].elements[textarea_name].focus();
+		}
+	}
+
+	/**
+	* bbfontstyle2 for appform
+	* Apply bbcodes
+	*/
+	function bbfontstyle2(bbopen, bbclose, textarea_name)
+	{
+		theSelection = false;
+
+		var textarea = document.forms[form_name].elements[textarea_name];
+
+		textarea.focus();
+
+		if ((clientVer >= 4) && is_ie && is_win)
+		{
+			// Get text selection
+			theSelection = document.selection.createRange().text;
+
+			if (theSelection)
+			{
+				// Add tags around selection
+				document.selection.createRange().text = bbopen + theSelection + bbclose;
+				document.forms[form_name].elements[textarea_name].focus();
+				theSelection = '';
+				return;
+			}
+		}
+		else if (document.forms[form_name].elements[textarea_name].selectionEnd && (document.forms[form_name].elements[textarea_name].selectionEnd - document.forms[form_name].elements[textarea_name].selectionStart > 0))
+		{
+			mozWrap(document.forms[form_name].elements[textarea_name], bbopen, bbclose);
+			document.forms[form_name].elements[textarea_name].focus();
+			theSelection = '';
+			return;
+		}
+		
+		//The new position for the cursor after adding the bbcode
+		var caret_pos = getCaretPosition(textarea).start;
+		var new_pos = caret_pos + bbopen.length;		
+
+		// Open tag
+		insert_text2((bbopen + bbclose), textarea_name);
+
+		// Center the cursor when we don't have a selection
+		// Gecko and proper browsers
+		if (!isNaN(textarea.selectionStart))
+		{
+			textarea.selectionStart = new_pos;
+			textarea.selectionEnd = new_pos;
+		}	
+		// IE
+		else if (document.selection)
+		{
+			var range = textarea.createTextRange(); 
+			range.move("character", new_pos); 
+			range.select();
+			storeCaret(textarea);
+		}
+
+		textarea.focus();
+		return;
+	}
+
+	/**
+	* insert_text2 for appforms
+	*
+	* Insert text at position
+	*/
+	function insert_text2(text, textarea_name)
+	{
+		var textarea;
+		
+		textarea = document.forms[form_name].elements[textarea_name];
+
+		// Since IE9, IE also has textarea.selectionStart, but it still needs to be treated the old way.
+		// Therefore we simply add a !is_ie here until IE fixes the text-selection completely.
+		if (!isNaN(textarea.selectionStart) && !is_ie)
+		{
+			var sel_start = textarea.selectionStart;
+			var sel_end = textarea.selectionEnd;
+
+			mozWrap(textarea, text, '');
+			textarea.selectionStart = sel_start + text.length;
+			textarea.selectionEnd = sel_end + text.length;
+		}
+		else if (textarea.createTextRange && textarea.caretPos)
+		{
+			if (baseHeight != textarea.caretPos.boundingHeight) 
+			{
+				textarea.focus();
+				storeCaret(textarea);
+			}
+
+			var caret_pos = textarea.caretPos;
+			caret_pos.text = caret_pos.text.charAt(caret_pos.text.length - 1) == ' ' ? caret_pos.text + text + ' ' : caret_pos.text + text;
+		}
+		else
+		{
+			textarea.value = textarea.value + text;
+		}
+		if (!popup) 
+		{
+			textarea.focus();
+		}
+	}
+
+
+	/**
+	* Color pallette for Appforms
+	*/
+	function colorPalette2(dir, width, height, textarea_name)
+	{
+		var r = 0, g = 0, b = 0;
+		var numberList = new Array(6);
+		var color = '';
+
+		numberList[0] = '00';
+		numberList[1] = '40';
+		numberList[2] = '80';
+		numberList[3] = 'BF';
+		numberList[4] = 'FF';
+
+		document.writeln('<table cellspacing="1" cellpadding="0" border="0">');
+
+		for (r = 0; r < 5; r++)
+		{
+			if (dir == 'h')
+			{
+				document.writeln('<tr>');
+			}
+
+			for (g = 0; g < 5; g++)
+			{
+				if (dir == 'v')
+				{
+					document.writeln('<tr>');
+				}
+				
+				for (b = 0; b < 5; b++)
+				{
+					color = String(numberList[r]) + String(numberList[g]) + String(numberList[b]);
+					document.write('<td bgcolor="#' + color + '" style="width: ' + width + 'px; height: ' + height + 'px;">');
+					document.write('<a href="#" onclick="bbfontstyle2(\'[color=#' + color + ']\', \'[/color]\', \'' + textarea_name + '\' ); return false;"><img src="images/spacer.gif" width="' + width + '" height="' + height + '" alt="#' + color + '" title="#' + color + '" /></a>');
+					document.writeln('</td>');
+				}
+
+				if (dir == 'v')
+				{
+					document.writeln('</tr>');
+				}
+			}
+
+			if (dir == 'h')
+			{
+				document.writeln('</tr>');
+			}
+		}
+		document.writeln('</table>');
+	}
+
+	var headline_name = 'headline';
+	function checkForm()
+	{
+		/*
+		if (document.getElementById(headline_name).value.length < 2)
+		{
+			alert('{LA_EMPTY_HEADLINE}');
+			return false;
+		}
+		*/
+		
+		if (document.getElementById(member_name).value.length < 3)
+	    {
+	        alert('{LA_MSG_NAME_EMPTY}');
+	        return false;
+	    }
+	    
+	    if (document.getElementById(member_level).value.length < 1 )
+	    {
+	        alert('{LA_MSG_LEVEL_EMPTY}');
+	        return false;
+	    }
+	    
+	    return true;
+	}
+	
+	/*  make a XMLHTTP Request object */
+	function GetXmlHttpObject() 
+	{ 
+		var xmlhttp=false;	
+		
+		try
+		{ 
+			//  IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		catch(e)	
+		{	// activex code for IE6, IE5
+			try
+			{			
+				xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			catch(e)
+			{
+				try
+				{
+					xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+				}
+				catch(e1)
+				{
+					xmlhttp=false;
+				}
+			}
+		}
+		return xmlhttp;
+	}
+	
+	/* ajax function to find class and race array based on game */ 
+	function GetClassRace(game_id)
+	{
+	   xmlhttp = GetXmlHttpObject();
+	   if (xmlhttp == null)
+	   {
+		   alert("{LA_ALERT_OLDBROWSER}");
+		   return;  
+	   }
+	    var strURL="{T_TEMPLATE_PATH}/dkp/findclassrace.php?game_id="+game_id;
+	    xmlhttp.onreadystatechange=classracestateChanged;
+	    xmlhttp.open("GET", strURL, true);
+	    // send to server
+	    xmlhttp.send(null);
+	}
+	
+	/* called from GetClassRace when state changed */
+	function classracestateChanged()
+	{
+		if (xmlhttp.readyState==4) //request complete
+		{
+			if (xmlhttp.status == 200)
+			{
+				//receive xml
+				xmlDoc=xmlhttp.responseXML;
+				var racelist = xmlDoc.getElementsByTagName('racelist')[0];
+				var classlist = xmlDoc.getElementsByTagName("classlist")[0];
+	
+				var species = racelist.getElementsByTagName("race");
+				var classes = classlist.getElementsByTagName("class");
+				
+				//now modify html : first remove old select options
+				var rsel = document.getElementById('candidate_race_id'); 
+				rsel.options.length = 0; 
+	
+				
+				for (var i = 0; i < species.length; i++)
+				{
+					var spec = species[i]; 
+					var raceid = spec.getElementsByTagName("race_id")[0].firstChild.nodeValue;
+					var racename = spec.getElementsByTagName("race_name")[0].firstChild.nodeValue;
+				    // add the options
+				    rsel.options[i] = new Option(racename,raceid, true, false); 
+				}
+				
+				var csel = document.getElementById('candidate_class_id'); 
+				csel.options.length = 0; 
+	
+				
+				for (var j = 0; j < classes.length; j++)
+				{
+					
+					var cla = classes[j]; 
+					var classid = cla.getElementsByTagName("class_id")[0].firstChild.nodeValue;
+					var classname = cla.getElementsByTagName("class_name")[0].firstChild.nodeValue;
+				    // add the options
+				    csel.options[j] = new Option(classname,classid, true, false); 
+				}
+				
+				
+				
+			}
+			else 
+			{
+	   	   		alert("{LA_ALERT_AJAX}:\n" + xmlhttp.statusText);
+		 	}
+		}
+	}
+
+// ]]>
+</script>  
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
+<center><h2>{L_APPLY_TITLE}</h2></center>
+<form action="{S_POST_ACTION}" method="post" id="applyform" name="applyform" onsubmit="return confirm('А Вы сохранились в армори в мейн спеке?\nhttp://eu.battle.net/wow/ru/');" {S_FORM_ENCTYPE}>
+<div class="panel bg1" >
+<div class="inner"  >
+<span class="corners-top"><span></span></span>
+<center>{WELCOME_MSG}</center>
+<!-- IF ERROR -->
+<fieldset class="fields1">
+<center><span class="genmed1 error">{ERROR}</span></center>
+</fieldset>
+<!-- ENDIF -->
+<span class="corners-bottom"><span></span></span>					
+</div>					
+</div>					
+<hr />					
+<div class="post bg1" >
+<div class="inner"  >
+<span class="corners-top"><span></span></span>
+<fieldset class="fields1">	
+<!-- BEGIN apptemplate -->
+<!-- IF apptemplate.TYPE == $TYPE_TITLE -->
+<center><h3>{apptemplate.TITLE}</h3></center>	
+<!-- ELSE -->
+<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --><dl><!-- ENDIF -->
+<!-- IF apptemplate.TYPE == $TYPE_GAMERACECLASS -->
+
+<!-- ELSEIF apptemplate.TYPE == $TYPE_CHARNAME -->
+	<dt><strong>{L_APPLY_ACP_CHARNAME}</strong></dt>
+<!-- ELSEIF apptemplate.TYPE == $TYPE_REGIONREALM -->
+	<dt><strong>{L_APPLY_ACP_REALM}</strong></dt>
+<!-- ELSEIF apptemplate.TYPE == $TYPE_LEVEL -->
+	<dt><strong>{L_APPLY_LEVEL}</strong></dt>
+<!-- ELSEIF apptemplate.TYPE == $TYPE_GENDER -->
+	<dt><strong>{L_GENDER}</strong></dt>
+<!-- ELSEIF apptemplate.TYPE != $TYPE_TITLE -->
+	<dt><strong>{apptemplate.TITLE}</strong></dt>
+<!-- ENDIF -->
+	
+	<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --><dd><!-- ENDIF --><!-- IF apptemplate.S_SHOWQUESTION -->{apptemplate.QUESTION}<!-- ENDIF -->
+	
+	<!-- IF apptemplate.TYPE == $TYPE_INPUTBOX -->
+		<br>
+		<input class="inputbox applyform" type="text" name="{apptemplate.DOMNAME}" size="40" maxlength="60" tabindex="{apptemplate.TABINDEX}" />	
+	<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOX -->
+		<br>
+		<textarea class="text applyform" name="{apptemplate.DOMNAME}" rows="2" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>
+	<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOXBBCODE -->
+		<div id="colour_palette{apptemplate.TABINDEX}" style="display: none;">
+			<dl style="clear: left;">
+				<dt><label>{L_FONT_COLOR}:</label></dt>
+				<dd>
+				<script type="text/javascript">
+				<!--
+					function change_palette{apptemplate.TABINDEX}()
+					{
+						dE('colour_palette{apptemplate.TABINDEX}');
+						e = document.getElementById('colour_palette{apptemplate.TABINDEX}');
+		
+						if (e.style.display == 'block')
+						{
+							document.getElementById('bbpalette{apptemplate.TABINDEX}').value = '{LA_FONT_COLOR_HIDE}';
+						}
+						else
+						{
+							document.getElementById('bbpalette{apptemplate.TABINDEX}').value = '{LA_FONT_COLOR}';
+						}
+					}	
+					colorPalette2('h', 15, 10, '{apptemplate.DOMNAME}' );
+				//-->
+				</script>
+				</dd>
+			</dl>
+		</div>
+		<div id="format-buttons">
+			<input type="button" class="button2" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px" onclick="bbstyle2(0, '{apptemplate.DOMNAME}')" title="{L_BBCODE_B_HELP}" />
+			<input type="button" class="button2" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px" onclick="bbstyle2(2, '{apptemplate.DOMNAME}')" title="{L_BBCODE_I_HELP}" />
+			<input type="button" class="button2" accesskey="u" name="addbbcode4" value=" u " style="text-decoration: underline; width: 30px" onclick="bbstyle2(4, '{apptemplate.DOMNAME}')" title="{L_BBCODE_U_HELP}" />
+			<!-- IF S_BBCODE_QUOTE -->
+				<input type="button" class="button2" accesskey="q" name="addbbcode6" value="Quote" style="width: 50px" onclick="bbstyle2(6, '{apptemplate.DOMNAME}')" title="{L_BBCODE_Q_HELP}" />
+			<!-- ENDIF -->
+			<input type="button" class="button2" accesskey="c" name="addbbcode8" value="Code" style="width: 45px" onclick="bbstyle2(8, '{apptemplate.DOMNAME}')" title="{L_BBCODE_C_HELP}" />
+			<input type="button" class="button2" accesskey="l" name="addbbcode10" value="List" style="width: 40px" onclick="bbstyle2(10, '{apptemplate.DOMNAME}')" title="{L_BBCODE_L_HELP}" />
+			<input type="button" class="button2" accesskey="o" name="addbbcode12" value="List=" style="width: 45px" onclick="bbstyle2(12, '{apptemplate.DOMNAME}')" title="{L_BBCODE_O_HELP}" />
+			<input type="button" class="button2" accesskey="t" name="addlitsitem" value="[*]" style="width: 40px" onclick="bbstyle2(-1, '{apptemplate.DOMNAME}')" title="{L_BBCODE_LISTITEM_HELP}" />
+			<!-- IF S_BBCODE_IMG -->
+				<input type="button" class="button2" accesskey="p" name="addbbcode14" value="Img" style="width: 40px" onclick="bbstyle2(14, '{apptemplate.DOMNAME}')" title="{L_BBCODE_P_HELP}" />
+			<!-- ENDIF -->
+			<!-- IF S_LINKS_ALLOWED -->
+				<input type="button" class="button2" accesskey="w" name="addbbcode16" value="URL" style="text-decoration: underline; width: 40px" onclick="bbstyle2(16, '{apptemplate.DOMNAME}')" title="{L_BBCODE_W_HELP}" />
+			<!-- ENDIF -->
+			<!-- IF S_BBCODE_FLASH -->
+				<input type="button" class="button2" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle2(18, '{apptemplate.DOMNAME}')" title="{L_BBCODE_D_HELP}" />
+			<!-- ENDIF -->
+			<select name="{apptemplate.BBDOMNAME}" onchange="bbfontstyle2('[size=' + this.form.{apptemplate.BBDOMNAME}.options[this.form.{apptemplate.BBDOMNAME}.selectedIndex].value + ']', '[/size]', '{apptemplate.DOMNAME}'); this.form.{apptemplate.BBDOMNAME}.selectedIndex = 2;" title="{L_FONT_SIZE}">
+				<option value="50">{L_FONT_TINY}</option>
+				<option value="85">{L_FONT_SMALL}</option>
+				<option value="100" selected="selected">{L_FONT_NORMAL}</option>
+				<option value="150">{L_FONT_LARGE}</option>
+				<option value="200">{L_FONT_HUGE}</option>
+			</select>
+			<input type="button" class="button2" name="bbpalette{apptemplate.TABINDEX}" id="bbpalette{apptemplate.TABINDEX}" value="{L_FONT_COLOR}" onclick="change_palette{apptemplate.TABINDEX}();" title="{L_BBCODE_S_HELP}" />
+			<!-- BEGIN custom_tags -->
+				<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle2({custom_tags.BBCODE_ID}, '{apptemplate.DOMNAME}')" title="{custom_tags.BBCODE_HELPLINE}" /><!-- END custom_tags -->
+		</div>
+		<textarea class="text applyform" name="{apptemplate.DOMNAME}" rows="3" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>	
+	<!-- ELSEIF apptemplate.TYPE == $TYPE_SELECTBOX -->
+		<br/ >
+		<select class="inputbox applyform" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}">
+			<option value="">----------------</option>
+			<!-- BEGIN selectboxoptions -->
+			<option value="{apptemplate.selectboxoptions.KEY}">{apptemplate.selectboxoptions.VALUE}</option><!-- END selectboxoptions -->
+		</select>
+	<!-- ELSEIF apptemplate.TYPE == $TYPE_RADIOBUTTON -->
+			<br/ >
+			<!-- BEGIN radiobuttonoptions -->
+			<input type="radio" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}" value="{apptemplate.radiobuttonoptions.KEY}"/>&nbsp;{apptemplate.radiobuttonoptions.VALUE}&nbsp;&nbsp;<!-- END radiobuttonoptions -->
+	<!-- ELSEIF apptemplate.TYPE == $TYPE_CHECKBOX -->
+			<br/>
+			<!-- BEGIN checkboxoptions -->
+			<input type="checkbox" name="{apptemplate.DOMNAME}[]" tabindex="{apptemplate.TABINDEX}" value="{apptemplate.checkboxoptions.KEY}"/>&nbsp;{apptemplate.checkboxoptions.VALUE}&nbsp;&nbsp;<!-- END checkboxoptions -->	
+	<!-- ELSEIF apptemplate.TYPE == $TYPE_GAMERACECLASS -->
+
+			<select style="display:none" name="game_id" class="input" onchange="return GetClassRace(this.value)">
+	        <!-- BEGIN game_row -->
+			<option value="{apptemplate.game_row.VALUE}"{apptemplate.game_row.SELECTED}>{apptemplate.game_row.OPTION}</option>
+	        <!-- END game_row -->
+			</select>
+
+			<select style="display:none" id="candidate_race_id" name="candidate_race_id" class="input">
+			<!-- BEGIN race_row -->
+			<option value="{apptemplate.race_row.VALUE}"{apptemplate.race_row.SELECTED}>{apptemplate.race_row.OPTION}</option>
+	        <!-- END race_row -->
+	        </select>
+		  <select style="display:none; outline-color: #0067C4;" id="candidate_class_id" name="candidate_class_id" class="input">
+	       <!-- BEGIN class_row -->
+	        <option style="background-color: #072443; color: {apptemplate.class_row.COLORCODE}" value="{apptemplate.class_row.VALUE}"{apptemplate.class_row.SELECTED}>{apptemplate.class_row.OPTION}</option>
+	        <!-- END class_row -->
+	        </select>
+
+		
+	<!-- ELSEIF apptemplate.TYPE == $TYPE_CHARNAME -->
+		<input type="text" name="candidate_name" size="25" maxlength="25" class="inputbox applyform" />
+	
+	<!-- ELSEIF apptemplate.TYPE == $TYPE_REGIONREALM -->
+		<select class="applyform" name="candidate_realm">
+			<!-- BEGIN realm_row -->
+				<option value="{apptemplate.realm_row.OPTION}">{apptemplate.realm_row.OPTION}</option>
+			<!-- END realm_row -->
+		</select>
+
+	
+	<!-- ELSEIF apptemplate.TYPE == $TYPE_LEVEL -->
+		<input type="text" name="candidate_level" size="3" maxlength="3" value="{MEMBER_LEVEL}" class="input" />
+	
+	<!-- ELSEIF apptemplate.TYPE == $TYPE_GENDER -->
+	    <input type="radio" name="candidate_gender"  value="0"{MALE_CHECKED} /> {L_MALE}&nbsp;&nbsp;
+    	<input type="radio" name="candidate_gender"  value="1"{FEMALE_CHECKED} /> {L_FEMALE}
+    
+	<!-- ENDIF -->
+	<!-- IF apptemplate.S_MANDATORY -->
+	<span style="color:red">{L_MANDATORY}</span>
+	<!-- ENDIF -->
+	
+	<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --></dd>
+</dl>
+<!-- ENDIF -->
+<!-- ENDIF -->
+
+<!-- END apptemplate -->
+</fieldset>
+
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+<!-- IF S_SHOW_FORUMCHOICE -->
+<div class="post bg2" >
+<div class="inner"  >
+<span class="corners-top"><span></span></span>
+<fieldset class="fields2">		
+<dl>
+	<dt><strong>{L_APPLY_PUBLICQUESTION}</strong></dt>
+    <dd>
+    	<input type="radio" name="publ" value="1"{PUBLIC_YES_CHECKED} />&nbsp;{L_APPLY_ACP_PUBLIC}&nbsp;
+    	<input type="radio" name="publ" value="0"{PUBLIC_NO_CHECKED} />&nbsp;{L_APPLY_ACP_PRIVATE}
+    	<span style="color:red">{L_MANDATORY}</span>
+    </dd>
+</dl>
+</fieldset>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>	
+<!-- ENDIF -->
+
+<div class="panel" id="postingbox">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+			<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+			 <center> 	
+					<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+					<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+			</center>
+			<!-- ENDIF --> 
+			<br />
+			<fieldset class="submit-buttons">
+			<input type="hidden" name="apptemplate_id_hidden" value="{TEMPLATE_ID}" />
+			<input type="submit" accesskey="s" name="post" value="{L_SUBMIT}" class="button1 default-submit-action" />&nbsp;
+			<input type="reset" name="reset" value="{L_RESET}" class="button1" />
+			{S_FORM_TOKEN}
+			</fieldset>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+	
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->

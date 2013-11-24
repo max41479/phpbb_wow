@@ -1,0 +1,28 @@
+<h2>{L_TITLE}<!-- IF CUR_FOLDER_NAME -->: {CUR_FOLDER_NAME}<!-- ENDIF --></h2>
+
+<form id="viewfolder" method="post" action="{S_PM_ACTION}">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<!-- IF FOLDER_STATUS and FOLDER_MAX_MESSAGES neq 0 --><p>{FOLDER_STATUS}</p><!-- ENDIF -->
+	<!-- IF U_POST_REPLY_PM or U_POST_NEW_TOPIC or U_FORWARD_PM -->
+		<div class="buttons">
+			<!-- IF U_POST_REPLY_PM --><a class="ui-button2 pmreply-icon" href="{U_POST_REPLY_PM}"><span><span>{L_POST_REPLY_PM}<div></div></span></span></a>
+			<!-- ELSEIF U_POST_NEW_TOPIC --><a class="ui-button2 newpm-icon" href="{U_POST_NEW_TOPIC}" accesskey="n"><span><span>{L_UCP_PM_COMPOSE}<div></div></span></span></a><!-- ENDIF -->
+			<!-- IF U_FORWARD_PM --><a class="ui-button2 forwardpm-icon" href="{U_FORWARD_PM}"><span><span>{L_FORWARD_PM}<div></div></span></span></a><!-- ENDIF -->
+			<!-- IF U_POST_REPLY_PM and S_PM_RECIPIENTS gt 1 --><div class="reply-all"><a class="left" title="{L_REPLY_TO_ALL}" href="{U_POST_REPLY_ALL}">{L_REPLY_TO_ALL}</a></div><!-- ENDIF -->			
+		</div>
+	<!-- ENDIF -->
+
+	<!-- IF TOTAL_MESSAGES or S_VIEW_MESSAGE -->
+	<ul class="linklist" style="margin-bottom: 10px;">
+		<li class="rightside pagination">
+			<!-- IF S_VIEW_MESSAGE --><a class="{S_CONTENT_FLOW_BEGIN}" href="{U_CURRENT_FOLDER}">{L_RETURN_TO} {CUR_FOLDER_NAME}</a><!-- ENDIF -->
+			<!-- IF FOLDER_CUR_MESSAGES neq 0 -->
+				<!-- IF TOTAL_MESSAGES -->{TOTAL_MESSAGES}<!-- ENDIF -->
+				<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --> &bull; <a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a> &bull; <span>{PAGINATION}</span><!-- ELSE --> &bull; {PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+			<!-- ENDIF -->
+		</li>
+	</ul>
+	<!-- ENDIF -->

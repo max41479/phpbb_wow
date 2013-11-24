@@ -278,6 +278,8 @@ define('WORDS_TABLE',				$table_prefix . 'words');
 define('ZEBRA_TABLE',				$table_prefix . 'zebra');
 
 // Additional tables
+define('PBWOW2_CONFIG_TABLE', 		$table_prefix . 'pbwow2_config');
+define('PBWOW_CONFIG_TABLE', 		$table_prefix . 'pbwow_config');
 define('STREAMS_TABLE',				$table_prefix . 'streams');
 define('STREAM_PLATFORMS_TABLE',	$table_prefix . 'stream_platforms');
 

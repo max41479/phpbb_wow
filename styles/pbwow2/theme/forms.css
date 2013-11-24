@@ -1,0 +1,559 @@
+/* Form Styles
+---------------------------------------- */
+
+/* General form styles
+----------------------------------------*/
+fieldset {
+	border-width: 0;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-size: 1.1em;
+}
+
+input {
+	font-weight: normal;
+	cursor: pointer;
+	vertical-align: middle;
+	padding: 0 3px;
+	font-size: 1em;
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+}
+
+select {
+	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-weight: normal;
+	cursor: pointer;
+	vertical-align: middle;
+	border: 1px solid #7F7F7F;
+	padding: 1px;
+	background-color: #040d1a;
+	font-size: 1em;
+	color: #CCC;
+}
+
+option {
+	padding-right: 1em;
+}
+
+option.disabled-option {
+	color: #888;
+}
+
+textarea {
+	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+	width: 60%;
+	padding: 2px;
+	font-size: 1em;
+	line-height: 1.4em;
+}
+
+label {
+	cursor: default;
+	padding-right: 5px;
+	color: #FFF;
+}
+
+label input {
+	vertical-align: middle;
+}
+
+label img {
+	vertical-align: middle;
+}
+
+/* Definition list layout for forms
+---------------------------------------- */
+fieldset dl {
+	padding: 4px 0;
+}
+
+fieldset dt {
+	float: left;	
+	width: 40%;
+	text-align: left;
+	display: block;
+	color: #888;
+}
+
+fieldset dd {
+	margin-left: 41%;
+	vertical-align: top;
+	margin-bottom: 3px;
+}
+
+/* Specific layout 1 */
+fieldset.fields1 dt {
+	width: 15em;
+	border-right-width: 0;
+}
+
+fieldset.fields1 dd {
+	margin-left: 15em;
+	border-left-width: 0;
+}
+
+fieldset.fields1 {
+	background-color: transparent;
+}
+
+fieldset.fields1 div {
+	margin-bottom: 3px;
+}
+
+/* Set it back to 0px for the reCaptcha divs: PHPBB3-9587 */
+fieldset.fields1 #recaptcha_widget_div div {
+	margin-bottom: 0;
+}
+
+/* Specific layout 2 */
+fieldset.fields2 dt {
+	width: 15em;
+	border-right-width: 0;
+}
+
+fieldset.fields2 dd {
+	margin-left: 16em;
+	border-left-width: 0;
+}
+
+/* Form elements */
+dt label {
+	font-weight: bold;
+	text-align: left;
+}
+
+dd label {
+	white-space: nowrap;
+	color: #CCC;
+}
+
+dd input, dd textarea {
+	margin-right: 3px;
+}
+
+dd select {
+	width: auto;
+}
+
+dd textarea {
+	width: 85%;
+}
+
+/* Hover effects */
+fieldset dl:hover dt label {
+	color: #00C0FF;
+}
+
+fieldset.fields2 dl:hover dt label {
+	color: #00C0FF;
+}
+
+#timezone {
+	width: 95%;
+}
+
+* html #timezone {
+	width: 50%;
+}
+
+/* Quick-login */
+div.quick-login-bg {
+	display: none;
+	position: fixed;
+	background: #000000;
+	opacity: 0.7;
+	/*filter: alpha(opacity=70);*/
+	top: 0px;
+	left: 0px;
+	min-width: 100%;
+	min-height: 100%;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+}
+form.quick-login-panel {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: -201px;
+	width: 400px;
+	background: #1B1B1B url("{T_IMAGESET_PATH}/images/poll-bg.jpg") repeat-x 50% 0;
+	border: 5px solid #333;
+	border-radius: 3px;
+	z-index: 1001;
+}
+form.quick-login-panel > div {
+	background: url("{T_IMAGESET_PATH}/images/poll-left.gif") no-repeat 0 0;
+	border: 1px solid #000;
+}
+form.quick-login-panel > div > div {
+	background: url("{T_IMAGESET_PATH}/images/poll-right.gif") no-repeat 100% 0;
+	padding: 10px 15px 10px 15px;
+	border: 1px solid #575757;
+}
+fieldset.quick-login {
+	margin-top: 5px;
+}
+fieldset.quick-login input {
+	width: auto;
+}
+fieldset.quick-login input.inputbox {
+	margin: 13px 0 0 32px;
+	width: 171px;
+	height: 18px;
+	border-radius: 2px;
+	font-size: 1.1em;
+}
+fieldset.quick-login label {
+	white-space: nowrap;
+	padding-right: 2px;
+	font-size: 1em;
+}
+form.quick-login-panel h3 {
+	text-align: center;
+	margin-top: 10px;
+}
+.quick-login div.username, .quick-login div.password {
+	margin: 20px 0;
+}
+.quick-login div.username div, .quick-login div.password div {
+	background: url("{T_IMAGESET_PATH}/images/options-account-bg.gif") no-repeat 50% 100%;
+	width: 241px;
+	height: 49px;
+	margin: 0 auto;
+	position: relative;
+}
+.quick-login div.password div {
+	background: url("{T_IMAGESET_PATH}/images/options-email-bg.gif") no-repeat 50% 100%;
+}
+.quick-login div.username label, .quick-login div.password label {
+	height: 20px;
+	width: 200px;
+	position: absolute;
+	top: -6px;
+	left: -3px;
+}
+.quick-login div.username label {
+	background: url("{T_IMAGESET_PATH}/{S_USER_LANG}/login-account.gif") no-repeat 0 0;
+}
+.quick-login div.password label {
+	background: url("{T_IMAGESET_PATH}/{S_USER_LANG}/login-password.gif") no-repeat 0 0;
+}
+.quick-login .controls {
+	text-align: center;
+}
+.quick-login .controls label {
+	display: block;
+	margin-bottom: 15px;
+	padding: 0;
+}
+.quick-login .button2 {
+	margin: 0;
+}
+
+/* Display options on viewtopic/viewforum pages  */
+fieldset.display-options {
+	text-align: center;
+	margin: 3px 0 5px 0;
+}
+
+fieldset.display-options.right-box {
+	text-align: right;
+}
+
+fieldset.display-options label {
+	white-space: nowrap;
+	padding-right: 2px;
+}
+
+fieldset.display-options a {
+	margin-top: 3px;
+}
+
+/* Display actions for ucp and mcp pages */
+fieldset.display-actions {
+	text-align: right;
+	line-height: 2em;
+	white-space: nowrap;
+	padding-right: 1em;
+}
+
+fieldset.display-actions label {
+	white-space: nowrap;
+	padding-right: 2px;
+}
+
+fieldset.sort-options {
+	line-height: 2em;
+}
+
+/* MCP forum selection*/
+fieldset.forum-selection {
+	margin: 5px 0 3px 0;
+	float: right;
+}
+
+fieldset.forum-selection2 {
+	margin: 13px 0 3px 0;
+	float: right;
+}
+
+/* Jumpbox */
+fieldset.jumpbox {
+	text-align: right;
+	margin-top: 15px;
+	height: 2.5em;
+}
+
+fieldset.quickmod {
+	width: 50%;
+	float: right;
+	text-align: right;
+	height: 2.5em;
+}
+
+/* Submit button fieldset */
+fieldset.submit-buttons {
+	text-align: center;
+	vertical-align: middle;
+	margin: 5px 0;
+}
+
+fieldset.submit-buttons input {
+	vertical-align: middle;
+	padding: 4px 6px;
+}
+
+/* Posting page styles
+----------------------------------------*/
+
+/* Buttons used in the editor */
+#format-buttons {
+	margin: 15px 0 5px 0;
+}
+
+#format-buttons input, #format-buttons select {
+	vertical-align: middle;
+}
+
+/* Main message box */
+#message-box {
+	width: 80%;
+}
+
+#message-box textarea {
+	font-family: "Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;
+	width: 450px;
+	height: 270px;
+	min-width: 100%;
+	max-width: 100%;
+	font-size: 1.2em;
+	color: #CCC;
+	resize: vertical;
+}
+
+/* Emoticons panel */
+#smiley-box {
+	width: 18%;
+	float: right;
+}
+
+#smiley-box img {
+	margin: 3px;
+}
+
+/* Input field styles
+---------------------------------------- */
+.inputbox {
+	background-color: #040d1a;
+	border: 1px solid #7F7F7F;
+	color: #CCC;
+	padding: 2px;
+	cursor: text;
+}
+
+.inputbox:hover {
+	border: 1px solid #11A3EA;
+}
+
+.inputbox:focus {
+	border: 1px solid #11A3EA;
+	color: #FFF;
+}
+
+input.inputbox	{ width: 85%; }
+input.medium	{ width: 50%; }
+input.narrow	{ width: 25%; }
+input.tiny		{ width: 125px; }
+
+textarea.inputbox {
+	width: 85%;
+}
+
+.autowidth {
+	width: auto !important;
+}
+
+/* Form button styles
+---------------------------------------- */
+input.button1, input.button2 {
+	font-size: 11px;
+	font-size: 1.1rem;
+}
+
+a.button1, input.button1, input.button3, a.button2, input.button2 {
+	width: auto !important;
+	padding: 2px 3px;
+	border: 1px solid #666;
+	border-radius: 2px;
+	background-color: #1a1a1a;
+	background-image: linear-gradient(to top, #1a1a1a, #3a3a3a);
+	box-shadow: inset 0 0 2px 1px #1a1a1a, 0 2px 5px 1px rgba(0,0,0,0.5);
+	text-shadow: 1px 2px 1px rgba(0,0,0,0.6);
+	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+	color: #DDD;
+}
+
+a.button1, input.button1 {
+	font-weight: bold;
+}
+
+input.button3 {
+	padding: 0;
+	margin: 0;
+	line-height: 5px;
+	height: 12px;
+	background-image: none;
+	font-variant: small-caps;
+}
+
+/* Alternative button */
+a.button2, input.button2, input.button3 {
+	border: 1px solid #4A4A4A;
+	border-radius: 2px;
+	background-color: #1a1a1a;
+	background-image: linear-gradient(to top, #111, #333);
+}
+
+/* <a> button in the style of the form buttons */
+a.button1, a.button1:link, a.button1:visited, a.button1:active, a.button2, a.button2:link, a.button2:visited, a.button2:active {
+	text-decoration: none;
+	color: #DDD;
+	padding: 2px 8px;
+	line-height: 250%;
+	vertical-align: text-bottom;
+}
+
+/* Hover states */
+a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover {
+	border: 1px solid #00C0FF;
+	background-position: 0 100%;
+	box-shadow: 0 0 2px 1px rgba(255,255,255,0.3);
+	color: #FFF;
+}
+
+input.button1:active, input.button3:active, input.button2:active {
+	background-image: linear-gradient(to bottom, #111, #222);
+	box-shadow: inset 0 0 2px 1px #000, 0 2px 5px 1px rgba(0,0,0,0.5);
+	border: 1px solid #888;
+}
+
+input.disabled {
+	font-weight: normal;
+	color: #999;
+}
+
+
+
+/* Topic and forum Search */
+.search-box {
+	margin-top: 3px;
+	margin-left: 5px;
+	float: left;
+}
+
+.search-box input {
+}
+
+input.search {
+	background-image: url("{T_IMAGESET_PATH}/images/icons/icon_textbox_search.gif");
+	background-repeat: no-repeat;
+	background-position: left 1px;
+	padding-left: 17px;
+}
+
+.full { width: 95%; }
+.medium { width: 50%;}
+.narrow { width: 25%;}
+.tiny { width: 10%;}
+
+
+/* Custom quick-reply style
+---------------------------------------- */
+
+.wow-post-frame1 { background: url("{T_IMAGESET_PATH}/images/post-main-bg.jpg") 50% 7px no-repeat #1b1b1b; max-width: 757px; margin: 0 auto; } 
+.wow-post-frame2 { background: url("{T_IMAGESET_PATH}/images/post-out-sides.gif") 50% 0 repeat-y; } 
+.wow-post-frame3 { background: url("{T_IMAGESET_PATH}/images/post-out-bot.gif") 50% 100% no-repeat; }
+.wow-post-frame4 { background: url("{T_IMAGESET_PATH}/images/post-out-top.gif") 50% 0 no-repeat; padding-bottom: 25px; }
+
+.wow-message-box1 { background: url("{T_IMAGESET_PATH}/images/post-message-box-sides.gif") 0 0 repeat-y; background-size: 100% auto; /*width: 643px;*/ margin: 0 auto; } 
+.wow-message-box2 { background: url("{T_IMAGESET_PATH}/images/post-message-box-top.gif") 0 0 no-repeat; background-size: 100% auto; } 
+.wow-message-box3 { background: url("{T_IMAGESET_PATH}/images/post-message-box-bot.gif") 0 100% no-repeat; background-size: 100% auto; padding: 15px 19px 27px 15px; }
+
+.wow-util-box1 { background: url("{T_IMAGESET_PATH}/images/post-util-sides.gif") 0 0 repeat-y; background-size: 100% 100%; /*width: 643px;*/ margin: 0 auto; } 
+.wow-util-box2 { background: url("{T_IMAGESET_PATH}/images/post-util-top.gif") 0 0 no-repeat; background-size: 100% auto; } 
+.wow-util-box3 { background: url("{T_IMAGESET_PATH}/images/post-util-bot.gif") 0 100% no-repeat; background-size: 100% auto; padding: 12px 10px; position: relative; }
+
+#qr_editor_div {
+	padding: 0;
+	background: none;
+	border: none;
+	box-shadow: none;
+}
+#qr_editor_div .inner {
+	padding: 10px 0 0 0;
+	max-width: 643px;
+	margin: 0 auto;
+}
+#qr_editor_div a.up {
+	position: absolute;
+	right: 25px;
+	top: 20px;
+	float: none;
+} 
+#qr_editor_div fieldset.fields1 div {
+	margin-bottom: 0;
+} 
+#qr_editor_div #message-box {
+	width: auto;
+	margin:0;
+}
+#qr_editor_div #message-box textarea { 
+	border-radius: 5px; 
+	background: #0D1A2D;
+	background: #0D1A2D linear-gradient(to bottom, rgba(8,17,38,1) 0,rgba(13,26,45,0) 32px); 
+	transition: box-shadow 0.25s ease-in-out 0s; 
+}
+#qr_editor_div #message-box textarea:focus {
+	box-shadow: 0 0 3px 1px #11A3EA;
+}
+#qr_showeditor_div {
+	background: none;
+	border: none;
+	box-shadow: none;
+	padding: 0;
+}
+#qr_showeditor_div .content {
+	background: url("{T_IMAGESET_PATH}/images/banner-decor-bg.png") 50% 0 no-repeat;
+	position: relative;
+	top: -7px; }
+#qr_showeditor_div .content input {
+	background: none;
+	width: 100px;
+	color: #DDD;
+	border: none;
+	font-size: 15px;
+	font-size: 1.5rem;
+	font-weight:bold;
+	text-shadow: 0px 2px 3px #000;
+}

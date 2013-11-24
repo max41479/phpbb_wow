@@ -1,0 +1,322 @@
+<!-- INCLUDE ucp_header.html -->
+<h2>{L_UCP_DKP_CHARACTER_ADD}</h2>
+
+<div class="panel">
+<div class="inner"><span class="corners-top"><span></span></span>
+
+<form method="post" action="{F_ADD_MEMBER}" name="character_add" onsubmit="return check_form(this)" >
+
+<fieldset>
+
+<!-- IF ERROR --><p class="error">{ERROR}</p>
+<!-- ELSE -->
+
+<!-- IF S_SHOW -->
+<br />
+
+  <dl>
+    <dt><label for="member_name">{L_NAME}:</label></dt>
+    <dd><input type="text" name="member_name" id="member_name" size="20" maxlength="30" value="{MEMBER_NAME}" class="input" /></dd>
+  </dl>
+
+ <dl>
+ <dt><label for="activated">{L_ACTIVE}:</label></dt>
+ <dd><input type="checkbox" class="radio" name="activated" value="{MEMBER_ID}" {STATUS} /></dd>
+ </dl>
+   
+<dl>
+    <dt><label for="member_level">{L_LEVEL}:</label></dt>
+		<dd><input type="text" name="member_level" size="20" maxlength="2" value="{MEMBER_LEVEL}" class="input" /></dd>
+</dl> 
+ 
+
+ 
+<dl>
+<dt><label for="member_guild_id">{L_GUILD}:</label></dt>
+<dd>
+	<select name="member_guild_id" class="input" onchange="return GetRank(this.value)">
+	   <!-- BEGIN guild_row -->
+    <option value="{guild_row.VALUE}"{guild_row.SELECTED}>{guild_row.OPTION}</option>
+       <!-- END guild_row -->
+    </select>
+</dd>
+</dl>
+
+<dl>
+  <dt><label for="member_rank_id">{L_MEMBER_RANK}:</label></dt>
+<dd>
+<select id="rankselect" name="member_rank_id" class="input">
+	   <!-- BEGIN rank_row -->
+    <option value="{rank_row.VALUE}"{rank_row.SELECTED}>{rank_row.OPTION}</option>
+       <!-- END rank_row -->
+</select>
+
+</dd>
+</dl> 
+
+  <dl>
+    <dt><label for="game_id">{L_GAME}:</label></dt>
+  		<dd>
+  		<select name="game_id" class="input" onchange="return GetClassRace(this.value)">
+       <!-- BEGIN game_row -->
+       <option value="{game_row.VALUE}"{game_row.SELECTED}>{game_row.OPTION}</option>
+        <!-- END game_row -->
+      </select></dd>
+ </dl>
+ 
+  <dl>
+    <dt><label for="member_race_id">{L_RACE}:</label></dt>
+  		<dd><select id="raceselect" name="member_race_id" class="input">
+       <!-- BEGIN race_row -->
+       <option value="{race_row.VALUE}"{race_row.SELECTED}>{race_row.OPTION}</option>
+        <!-- END race_row -->
+        </select>
+       
+   		<!-- IF S_RACE_IMAGE_EXISTS --> <br/><img src="{RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE -->&nbsp;<!-- ENDIF -->
+      </dd>
+ </dl>
+  <dl>
+    <dt><label for="member_class_id">{L_CLASS}:</label></dt>
+		<dd>
+		  <select id="classselect" name="member_class_id" class="input">
+        <!-- BEGIN class_row -->
+        <option value="{class_row.VALUE}"{class_row.SELECTED}>{class_row.OPTION}</option>
+        <!-- END class_row -->
+      </select>
+		<!-- IF S_CLASS_IMAGE_EXISTS --><br/><img src="{CLASS_IMAGE}" alt="" /><!-- ELSE -->&nbsp;<!-- ENDIF -->
+		</dd>
+  </dl> 
+  <dl>
+    <dt><label for="gender">{L_GENDER}:</label></dt>
+    <dd>
+    <input type="radio" name="gender"  value="0"{MALE_CHECKED} /> {L_MALE}&nbsp;&nbsp;
+    <input type="radio" name="gender"  value="1"{FEMALE_CHECKED} /> {L_FEMALE}
+   </dd>
+ </dl>
+ 
+	<!-- IF S_ADD -->
+    <dl>
+    <dt><label>{L_JOINDATE} (YYYY-MM-DD):</label></dt>
+    <dd>
+		{L_DAY}: <select id="member_joindate_d" name="member_joindate_d">{S_JOINDATE_DAY_OPTIONS}</select>
+		{L_MONTH}: <select name="member_joindate_mo">{S_JOINDATE_MONTH_OPTIONS}</select> 
+		{L_YEAR}: <select name="member_joindate_y">{S_JOINDATE_YEAR_OPTIONS}</select>
+	</dd>
+   </dl> 
+	<!-- ENDIF -->   
+
+    <dl>
+    <dt><label for="member_comment">{L_COMMENT}:</label></dt>
+	<dd><textarea name="member_comment" type="text" rows="5" cols="10" style="width: 80%" class="input">{MEMBER_COMMENT}</textarea></dd>
+
+  	</dl> 
+
+	</p>
+
+
+<input type="hidden" name="hidden_member_id" value="{MEMBER_ID}" />
+{S_FORM_TOKEN}
+<dl>
+	<dt><label for="dkpmember"></label></dt>
+	<dd>
+		<!-- IF ! S_ADD -->
+			<!-- IF S_CANUPDATE -->
+			<input type="submit" name="update" value="{L_UPDATE_MEMBER}" class="button1" />
+			<!-- ENDIF -->
+			<!-- IF S_CANDELETE -->
+			<input type="submit"  name="delete" value="{L_DELETE_MEMBER}" class="button1" />
+			<!-- ENDIF -->
+		<!-- ELSE -->
+			<input type="submit" name="add" value="{L_ADD_MEMBER}" class="button2" /> 
+			<input type="reset" name="reset" value="{L_RESET}" class="button1" />
+		<!-- ENDIF -->
+	</dd>
+</dl>
+
+<!-- ELSE --> 
+	<p class="error">{MAX_CHARS_EXCEEDED} </p><p><br /><br /></p>
+<!-- ENDIF --> 
+
+<!-- ENDIF -->
+
+</fieldset>
+</form>
+
+
+<span class="corners-bottom"><span></span></span></div>
+</div>
+
+
+<script type="text/javascript">
+// <![CDATA[
+function check_form()
+{
+    if (document.character_add.member_name.value.length < 2)
+    {
+        alert('{LA_MSG_NAME_EMPTY}');
+        return false;
+    }
+    return true;
+}
+
+/*  make a XMLHTTP Request object */
+function GetXmlHttpObject() 
+{ 
+	var xmlhttp=false;	
+	
+	try
+	{ 
+		//  IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	catch(e)	
+	{	// activex code for IE6, IE5
+		try
+		{			
+			xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		catch(e)
+		{
+			try
+			{
+				xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+			}
+			catch(e1)
+			{
+				xmlhttp=false;
+			}
+		}
+	}
+	return xmlhttp;
+}
+
+
+/* ajax function to find rank */ 
+ 
+var xmlhttp; 
+function GetRank(guildid)
+{
+   xmlhttp = GetXmlHttpObject();
+   if (xmlhttp == null)
+   {
+	   alert("{LA_ALERT_OLDBROWSER}");
+	   return;  
+   }
+    var strURL="{T_TEMPLATE_PATH}/dkp/findrank.php?guild="+guildid;
+    xmlhttp.onreadystatechange=stateChanged;
+    xmlhttp.open("GET", strURL, true);
+    // send to server
+    xmlhttp.send(null);
+}
+
+
+/* called from GetRank when state changed */
+function stateChanged()
+{
+	if (xmlhttp.readyState==4) //request complete
+	{
+		if (xmlhttp.status == 200)
+		{
+			//remove select options
+			var rsel = document.getElementById('rankselect'); 
+			rsel.options.length = 0; 
+			
+			//receive xml
+			xmlDoc=xmlhttp.responseXML;
+			
+			var root = xmlDoc.getElementsByTagName('ranklist')[0];
+			var ranks = root.getElementsByTagName("rank")
+			for (var i = 0; i < ranks.length; i++)
+			{
+				var rank = ranks[i]; 
+				var rankid = rank.getElementsByTagName("rank_id")[0].firstChild.nodeValue;
+				var rankname = rank.getElementsByTagName("rank_name")[0].firstChild.nodeValue;
+			    // add the options
+			    rsel.options[i] = new Option(rankname,rankid, true, false); 
+			}
+		}
+		else 
+		{
+   	   		alert("{LA_ALERT_AJAX}:\n" + xmlhttp.statusText);
+	 	}
+	}
+}
+
+
+/* ajax function to find class and race array based on game */ 
+function GetClassRace(game_id)
+{
+   xmlhttp = GetXmlHttpObject();
+   if (xmlhttp == null)
+   {
+	   alert("{LA_ALERT_OLDBROWSER}");
+	   return;  
+   }
+    var strURL="{T_TEMPLATE_PATH}/dkp/findclassrace.php?game_id="+game_id;
+    xmlhttp.onreadystatechange=classracestateChanged;
+    xmlhttp.open("GET", strURL, true);
+    // send to server
+    xmlhttp.send(null);
+}
+
+
+
+/* called from GetClassRace when state changed */
+function classracestateChanged()
+{
+	if (xmlhttp.readyState==4) //request complete
+	{
+		if (xmlhttp.status == 200)
+		{
+			//receive xml
+			xmlDoc=xmlhttp.responseXML;
+			var racelist = xmlDoc.getElementsByTagName('racelist')[0];
+			var classlist = xmlDoc.getElementsByTagName("classlist")[0];
+
+			var species = racelist.getElementsByTagName("race");
+			var classes = classlist.getElementsByTagName("class");
+			
+			//now modify html : first remove old select options
+			var rsel = document.getElementById('raceselect'); 
+			rsel.options.length = 0; 
+
+			
+			for (var i = 0; i < species.length; i++)
+			{
+				var spec = species[i]; 
+				var raceid = spec.getElementsByTagName("race_id")[0].firstChild.nodeValue;
+				var racename = spec.getElementsByTagName("race_name")[0].firstChild.nodeValue;
+			    // add the options
+			    rsel.options[i] = new Option(racename,raceid, true, false); 
+			}
+			
+			var csel = document.getElementById('classselect'); 
+			csel.options.length = 0; 
+
+			
+			for (var j = 0; j < classes.length; j++)
+			{
+				
+				var cla = classes[j]; 
+				var classid = cla.getElementsByTagName("class_id")[0].firstChild.nodeValue;
+				var classname = cla.getElementsByTagName("class_name")[0].firstChild.nodeValue;
+			    // add the options
+			    csel.options[j] = new Option(classname,classid, true, false); 
+			}
+			
+			
+			
+		}
+		else 
+		{
+   	   		alert("{LA_ALERT_AJAX}:\n" + xmlhttp.statusText);
+	 	}
+	}
+}
+
+
+
+
+// ]]>
+</script>
+<!-- INCLUDE ucp_footer.html -->

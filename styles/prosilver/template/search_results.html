@@ -53,7 +53,7 @@
 		<!-- BEGIN searchresults -->
 			<li class="row<!-- IF searchresults.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
 				<dl class="icon" style="background-image: url({searchresults.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
-					<dt <!-- IF searchresults.TOPIC_ICON_IMG -->style="background-image: url({T_ICONS_PATH}{searchresults.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF -->>
+					<dt <!-- IF searchresults.TOPIC_ICON_IMG -->style="background-image: url({T_ICONS_PATH}{searchresults.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --><!-- IF searchresults.TOPIC_PREVIEW_TEXT --> title="{searchresults.TOPIC_PREVIEW_TEXT}" id="t{searchresults.TOPIC_ID}"<!-- ENDIF -->>
 						<!-- IF searchresults.S_UNREAD_TOPIC --><a href="{searchresults.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF -->
 						<a href="{searchresults.U_VIEW_TOPIC}" class="topictitle">{searchresults.TOPIC_TITLE}</a> {searchresults.ATTACH_ICON_IMG}
 						<!-- IF searchresults.S_TOPIC_UNAPPROVED or searchresults.S_POSTS_UNAPPROVED --><a href="{searchresults.U_MCP_QUEUE}">{searchresults.UNAPPROVED_IMG}</a> <!-- ENDIF -->
@@ -69,6 +69,19 @@
 						<!-- IF not S_IS_BOT --><a href="{searchresults.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br />{searchresults.LAST_POST_TIME}<br /> </span>
 					</dd>
 				</dl>
+				<!-- IF searchresults.TOPIC_PREVIEW_TEXT and S_JQUERY_TOPIC_PREVIEW -->
+					<div id="topic_preview_t{searchresults.TOPIC_ID}" style="display:none;">
+						<!-- IF searchresults.TOPIC_PREVIEW_TEXT2 --><strong>{L_FIRST_POST}</strong><hr /><!-- ENDIF -->
+						<!-- IF searchresults.TOPIC_PREVIEW_AVATAR --><div class="topic_preview_avatar">{searchresults.TOPIC_PREVIEW_AVATAR}</div><!-- ENDIF -->
+						<div class="topic_preview_text_first"></div>
+						<!-- IF searchresults.TOPIC_PREVIEW_TEXT2 -->
+							<div class="topic_preview_break"></div>
+							<strong>{L_LAST_POST}</strong><hr />
+							<!-- IF searchresults.TOPIC_PREVIEW_AVATAR2 --><div class="topic_preview_avatar">{searchresults.TOPIC_PREVIEW_AVATAR2}</div><!-- ENDIF -->
+							<div class="topic_preview_text_last">{searchresults.TOPIC_PREVIEW_TEXT2}</div>
+						<!-- ENDIF -->
+					</div>
+				<!-- ENDIF -->
 			</li>
 		<!-- END searchresults -->
 		</ul>

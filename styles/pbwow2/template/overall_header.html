@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="{S_USER_LANG}">
+<head>
+
+<!--<meta http-equiv="content-type" content="text/html; charset={S_CONTENT_ENCODING}" />
+<meta http-equiv="content-style-type" content="text/css" />
+<meta http-equiv="content-language" content="{S_USER_LANG}" />
+<meta name="resource-type" content="document" />
+<meta name="distribution" content="global" />-->
+<meta charset="{S_CONTENT_ENCODING}" />
+<meta name="keywords" content="" />
+<meta name="description" content="{SITE_DESCRIPTION}" />
+<meta name="viewport" content="width=device-width">
+{META}
+<title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>
+
+<!-- IF S_ENABLE_FEEDS -->
+	<!-- IF S_ENABLE_FEEDS_OVERALL --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {SITENAME}" href="{U_FEED}" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_NEWS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_NEWS}" href="{U_FEED}?mode=news" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_FORUMS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_ALL_FORUMS}" href="{U_FEED}?mode=forums" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPICS --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_NEW}" href="{U_FEED}?mode=topics" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPICS_ACTIVE --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FEED_TOPICS_ACTIVE}" href="{U_FEED}?mode=topics_active" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_FORUM and S_FORUM_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_FORUM} - {FORUM_NAME}" href="{U_FEED}?f={S_FORUM_ID}" /><!-- ENDIF -->
+	<!-- IF S_ENABLE_FEEDS_TOPIC and S_TOPIC_ID --><link rel="alternate" type="application/atom+xml" title="{L_FEED} - {L_TOPIC} - {TOPIC_TITLE}" href="{U_FEED}?f={S_FORUM_ID}&amp;t={S_TOPIC_ID}" /><!-- ENDIF -->
+<!-- ENDIF -->
+
+<!--
+	phpBB style name: PBWoW 2
+	Based on style:   prosilver (this is the default phpBB3 style)
+	Original author:  Tom Beddard ( http://www.subBlue.com/ )
+	Modified by: PayBas
+-->
+
+<script type="text/javascript">
+// <![CDATA[
+	var jump_page = '{LA_JUMP_PAGE}:';
+	var on_page = '{ON_PAGE}';
+	var per_page = '{PER_PAGE}';
+	var base_url = '{A_BASE_URL}';
+	var style_cookie = 'phpBBstyle';
+	var style_cookie_settings = '{A_COOKIE_SETTINGS}';
+	var onload_functions = new Array();
+	var onunload_functions = new Array();
+
+	<!-- IF S_USER_PM_POPUP and S_NEW_PM -->
+		var url = '{UA_POPUP_PM}';
+		window.open(url.replace(/&amp;/g, '&'), '_phpbbprivmsg', 'height=225,resizable=yes,scrollbars=yes, width=400');
+	<!-- ENDIF -->
+
+	/**
+	* Find a member
+	*/
+	function find_username(url)
+	{
+		popup(url, 760, 570, '_usersearch');
+		return false;
+	}
+
+	/**
+	* New function for handling multiple calls to window.onload and window.unload by pentapenguin
+	*/
+	window.onload = function()
+	{
+		for (var i = 0; i < onload_functions.length; i++)
+		{
+			eval(onload_functions[i]);
+		}
+	};
+
+	window.onunload = function()
+	{
+		for (var i = 0; i < onunload_functions.length; i++)
+		{
+			eval(onunload_functions[i]);
+		}
+	};
+
+// ]]>
+</script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/styleswitcher.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/jquery.collapse.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/jquery.collapse_storage.js"></script>
+<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/jquery-detectmobilebrowser.js"></script>
+<!-- IF S_JQUERY_TOPIC_PREVIEW --><script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/topic_preview.js"></script><!-- ENDIF -->
+
+<!--[if lt IE 8]>
+	<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/jquery.collapse_cookie_storage.js"></script>
+	<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/json2.js"></script>
+<![endif]-->
+
+<link href="{T_THEME_PATH}/../../pbwow2/theme/print.css" rel="stylesheet" type="text/css" media="print" title="printonly" />
+<link href="{T_STYLESHEET_LINK}" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<!-- IF S_CONTENT_DIRECTION eq 'rtl' -->
+	<link href="{T_THEME_PATH}/../../pbwow2/theme/bidi.css" rel="stylesheet" type="text/css" media="screen, projection" />
+<!-- ENDIF -->
+<!-- IF not S_TOOLTIPS_FOOTER and not S_IS_BOT -->
+<!-- IF WOWTIPS_SCRIPT -->{WOWTIPS_SCRIPT}<!-- ENDIF -->
+<!-- IF D3TIPS_SCRIPT -->{D3TIPS_SCRIPT}<!-- ENDIF -->
+<!-- IF ZAMTIPS_SCRIPT -->{ZAMTIPS_SCRIPT}<!-- ENDIF -->
+<!-- ENDIF -->
+<!-- IF SPOILER_OPEN_TYPE eq 0 --><link rel="stylesheet" href="{PPKBB3CKER_ADDONS}css/prettyPhoto.css" type="text/css" /><!-- ENDIF -->
+<link rel="stylesheet" href="{T_THEME_PATH}/../../pbwow2/theme/spoiler.css" type="text/css" />
+ 
+<script src="{PPKBB3CKER_ADDONS}js/jquery-min.js" type="text/javascript"></script>
+<script type="text/javascript">
+// <![CDATA[
+    jQuery.noConflict();
+ 
+    //Spoiler image width
+    //var spoilerMaxW = Math.round(screen.width - (screen.width / 1.5));
+    var spoilerMaxW = {SPOILER_IMG_WIDTH};
+    var hidePostImg = {SPOILER_HIDE_POSTIMG};
+    var hideSigImg = {SPOILER_HIDE_SIGIMG};
+    var openInNewWindow = '{L_OPEN_IN_NEW_WINDOW}';
+    var bannedImageHosts = '{L_BANNED_IMAGE_HOSTS}';
+    var hiddenText = '{L_HIDDEN_TEXT}';
+    var spoilerClose = '{L_SPOILER_CLOSE}';
+    var banned_image_hosts = {SPOILER_BANNED_IMGHOSTS};//banned image hosts
+    var open_type = {SPOILER_OPEN_TYPE};
+// ]]>
+</script>
+<!-- IF SPOILER_OPEN_TYPE eq 0 --><script src="{PPKBB3CKER_ADDONS}js/jquery.prettyPhoto.js" type="text/javascript"></script><!-- ENDIF -->
+<script src="{PPKBB3CKER_ADDONS}js/spoiler.js" type="text/javascript"></script>
+<!-- IF SPOILER_OPEN_TYPE eq 0 -->
+<script type="text/javascript">
+// <![CDATA[
+jQuery(document).ready(
+    function($)
+    {
+        $("a[rel^='prettyPhoto']").prettyPhoto({'modal': false, 'show_title': false, 'social_tools': false});
+    }
+);
+// ]]>
+</script>
+<!-- ENDIF -->
+<!-- IF SCRIPT_NAME eq 'portal' --> 
+	<link href="./recruit/css/recruit_popup.css" media="screen" rel="stylesheet" type="text/css" /> 
+<!-- ENDIF -->
+</head>
+
+<body id="phpbb" class="phpbb section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}<!-- IF TOPBAR_CODE --> body-top-bar<!-- ENDIF --><!-- IF S_BG_FIXED --> bg-fixed<!-- ENDIF --><!-- IF S_TOPBAR_FIXED --> top-bar-fixed<!-- ENDIF -->">
+<!-- IF TOPBAR_CODE -->
+<div id="top-bar">
+	<div><!-- IF S_QUICK_STYLE_OPTIONS --><!-- INCLUDE prime_quick_style.html --><!-- ENDIF -->{TOPBAR_CODE}</div>
+</div>
+<!-- ENDIF -->
+<div id="wrapper"<!-- IF FORUM_ID --> class="f{FORUM_ID}"<!-- ENDIF -->>
+<!-- IF S_VIDEOBG and (S_INDEX_PAGE or S_VIDEOBG_ALL) and not S_IS_BOT  --><!-- INCLUDE videobg.html --><!-- ENDIF -->
+
+<div id="wrap">
+	<a id="top" accesskey="t"></a>
+	<div id="page-header">
+
+		<div id="logo-wrap">
+			<div class="headerbar">
+				<div>
+					<div>	
+			<!-- IF not S_IS_BOT and S_USER_LOGGED_IN -->
+			<ul class="linklist rightside">
+				<li class="icon-ucp">
+					<a href="{U_PROFILE}" title="{L_PROFILE}" accesskey="e">{L_PROFILE}</a>
+					<!-- IF S_DISPLAY_PM --> (<a href="{U_PRIVATEMSGS}">{PRIVATE_MESSAGE_INFO}</a>)<!-- ENDIF -->
+					<!-- IF S_DISPLAY_SEARCH --> &bull;	<a href="{U_SEARCH_SELF}">{L_SEARCH_SELF}</a><!-- ENDIF -->
+					<!-- IF U_RESTORE_PERMISSIONS --> &bull; <a href="{U_RESTORE_PERMISSIONS}">{L_RESTORE_PERMISSIONS}</a><!-- ENDIF -->
+				</li>
+			</ul>
+			<!-- ENDIF -->
+			<ul class="linklist rightside" style="clear:right">
+				<!-- IF U_PORTAL --><li class="icon-portal"><a href="{U_PORTAL}">{L_PORTAL}</a></li><!-- ENDIF -->
+				<!-- IF U_DKP --><!--<li class="icon-dkp"><a href="{U_DKP}">{L_DKPPAGE}</a></li>--><!-- ENDIF -->
+				<!-- IF HEADERLINKS_CODE -->{HEADERLINKS_CODE}<!-- ENDIF -->
+				<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>
+				<!-- IF not S_IS_BOT -->
+					<!-- IF S_DISPLAY_MEMBERLIST --><li class="icon-members"><a href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}">{L_MEMBERLIST}</a></li><!-- ENDIF -->
+					<!-- IF not S_USER_LOGGED_IN and S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) --><li class="icon-register"><a href="{U_REGISTER}">{L_REGISTER}</a></li><!-- ENDIF -->
+					<!-- IF S_USER_LOGGED_IN --><li class="icon-logout"><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x">{L_LOGIN_LOGOUT}</a></li><!-- ELSE -->
+					<li class="icon-logout"><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x" id="quick-login">{L_LOGIN_LOGOUT}</a></li><!-- ENDIF -->
+				<!-- ENDIF -->
+			</ul>
+			<!-- IF S_USER_LOGGED_IN --><span class="time">{LAST_VISIT_DATE}</span><!-- ENDIF -->
+					</div>
+				</div>
+			</div>
+			<a id="logo" href="{U_INDEX}" title="{SITENAME}"></a>
+			<div class="clear"></div>
+		</div>
+	</div>
+	
+	<p class="skiplink"><a href="#start_here">{L_SKIP}</a></p>
+
+	<div id="page-body">
+		<div class="body-top<!-- IF PAGINATION or RECENT_TOPICS_PAGINATION --> headpagi<!-- ENDIF -->">
+			<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
+			<div id="search-box">
+
+			<!-- IF S_VIEWFORUM and S_DISPLAY_SEARCHBOX -->
+				<form method="get" id="forum-search" action="{S_SEARCHBOX_ACTION}">
+				<fieldset>
+					<input class="inputbox search tiny" type="text" name="keywords" id="search_keywords" size="20" value="{L_SEARCH_FORUM}" onclick="if (this.value == '{LA_SEARCH_FORUM}') this.value = '';" onblur="if (this.value == '') this.value = '{LA_SEARCH_FORUM}';" />
+					<input class="qs-button" value="{L_SEARCH}" type="submit" title="{L_SEARCH}" />
+					<div class="qs-title"></div>
+					<a class="qs-advanced" href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}"></a>
+					{S_SEARCH_LOCAL_HIDDEN_FIELDS}
+				</fieldset>
+				</form>
+			<!-- ELSEIF S_VIEWTOPIC and S_DISPLAY_SEARCHBOX -->
+				<form method="get" id="topic-search" action="{S_SEARCHBOX_ACTION}">
+				<fieldset>
+					<input class="inputbox search tiny"  type="text" name="keywords" id="search_keywords" size="20" value="{L_SEARCH_TOPIC}" onclick="if(this.value=='{LA_SEARCH_TOPIC}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_TOPIC}';" />
+					<input class="qs-button" value="{L_SEARCH}" type="submit" title="{L_SEARCH}" />
+					<div class="qs-title"></div>
+					<a class="qs-advanced" href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}"></a>
+					{S_SEARCH_LOCAL_HIDDEN_FIELDS}
+				</fieldset>
+				</form>
+			<!-- ELSEIF SEARCH_MATCHES and SEARCH_IN_RESULTS -->
+				<form method="post" action="{S_SEARCH_ACTION}">
+				<fieldset>
+					<input class="inputbox search tiny"  type="text" name="add_keywords" id="add_keywords" size="20" value="{L_SEARCH_IN_RESULTS}" onclick="if(this.value=='{LA_SEARCH_IN_RESULTS}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_IN_RESULTS}';" />
+					<input class="qs-button" value="{L_SEARCH}" type="submit" title="{L_SEARCH}" />
+					<div class="qs-title"></div>
+					<a class="qs-advanced" href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}"></a>
+				</fieldset>
+				</form>
+			<!-- ELSE -->
+				<form action="{U_SEARCH}" method="get" id="search">
+				<fieldset>
+					<input name="keywords" id="keywords" type="text" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search" value="<!-- IF SEARCH_WORDS-->{SEARCH_WORDS}<!-- ELSE -->{L_SEARCH_MINI}<!-- ENDIF -->" onclick="if(this.value=='{LA_SEARCH_MINI}')this.value='';" onblur="if(this.value=='')this.value='{LA_SEARCH_MINI}';" />
+					<input class="qs-button" value="{L_SEARCH}" type="submit" title="{L_SEARCH}" />
+					<div class="qs-title"></div>
+					<a class="qs-advanced" href="{U_SEARCH}" title="{L_SEARCH_ADV_EXPLAIN}"></a>
+					{S_SEARCH_HIDDEN_FIELDS}
+				</fieldset>
+				</form>
+			<!-- ENDIF -->
+			</div>
+			<!-- ENDIF -->
+
+			<!-- IF PAGINATION or RECENT_TOPICS_PAGINATION -->
+			<div id="pagination-box">
+				<div>
+					<div class="pagination">
+						<!-- IF PAGE_NUMBER --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}" class="page-jump">{PAGE_NUMBER}</a><span>{PAGINATION}</span>
+						<!-- ELSEIF RECENT_TOPICS_PAGE_NUMBER --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}" class="page-jump">{RECENT_TOPICS_PAGE_NUMBER}</a><span>{RECENT_TOPICS_PAGINATION}</span><!-- ENDIF -->
+					</div>
+				</div>
+			</div>
+			<!-- ENDIF -->
+			
+			<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH --><div id="fix-left1"></div><!-- ELSE --><div id="fix-left2"></div><!-- ENDIF -->
+			<!-- IF PAGINATION or RECENT_TOPICS_PAGINATION --><div id="fix-right1"></div><!-- ELSE --><div id="fix-right2"></div><!-- ENDIF -->
+		</div>
+	
+		<div id="breadcrumb">
+			<ul class="linklist navlinks">
+				<li class="nav-link icon-home"><a href="{U_INDEX}" accesskey="h"><span>{L_INDEX}</span></a>
+				<!-- IF S_NAVMENU -->
+				<div class="nav-popup"><ul>
+					<!-- IF U_PORTAL --><li><a href="{U_PORTAL}">{L_PORTAL}</a></li><!-- ENDIF -->
+					<!-- IF U_DKP --><li><a href="{U_DKP}">{L_DKPPAGE}</a></li><!-- ENDIF -->
+					<!-- IF U_MCP --><li><a href="{U_MCP}">{L_MCP}</a></li><!-- ENDIF -->
+					<!-- IF S_USER_LOGGED_IN --><li><a href="{U_PROFILE}">{L_PROFILE}</a></li><!-- ENDIF -->
+					<!-- IF S_DISPLAY_SEARCH --><li><a href="{U_SEARCH}">{L_SEARCH_ADV}</a></li><!-- ENDIF -->
+					<li><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></li>
+				</ul></div>
+				<!-- ENDIF -->
+				</li>
+				<!-- BEGIN navlinks --><li class="nav-link"><a href="{navlinks.U_VIEW_FORUM}"><span>{navlinks.FORUM_NAME}</span></a><!-- IF S_NAVMENU and navlinks.POPUP -->{navlinks.POPUP}<!-- ENDIF -->
+				</li><!-- END navlinks -->
+				<!-- IF S_VIEWTOPIC --><li class="nav-link"><a href="{U_VIEW_TOPIC}">{TOPIC_TITLE}</a></li><!-- ENDIF -->
+				<!-- IF S_IS_LOCKED --><li class="nav-link lock" <!-- IF S_VIEWTOPIC -->title="{L_TOPIC_LOCKED}"<!-- ELSE -->title="{L_FORUM_LOCKED}"<!-- ENDIF -->></li><!-- ENDIF -->
+
+
+				<!-- IF U_MCP --><li class="rightside"><a href="{U_MCP}" title="{L_MCP}" class="mcp-icon">{L_MCP}</a></li><!-- ENDIF -->
+
+				<!-- IF U_EMAIL_TOPIC --><li class="rightside"><a href="{U_EMAIL_TOPIC}" title="{L_EMAIL_TOPIC}" class="sendemail">{L_EMAIL_TOPIC}</a></li><!-- ENDIF -->
+				<!-- IF U_EMAIL_PM --><li class="rightside"><a href="{U_EMAIL_PM}" title="{L_EMAIL_PM}" class="sendemail">{L_EMAIL_PM}</a></li><!-- ENDIF -->
+				<!-- IF U_PRINT_TOPIC --><li class="rightside"><a href="{U_PRINT_TOPIC}" title="{L_PRINT_TOPIC}" accesskey="p" class="print">{L_PRINT_TOPIC}</a></li><!-- ENDIF -->
+				<!-- IF U_PRINT_PM --><li class="rightside"><a href="{U_PRINT_PM}" title="{L_PRINT_PM}" accesskey="p" class="print">{L_PRINT_PM}</a></li><!-- ENDIF -->
+
+			<!-- IF not S_IS_BOT -->
+				<!-- IF S_INDEX_PAGE -->
+					<!-- IF U_MARK_FORUMS --><li class="rightside"><a href="{U_MARK_FORUMS}" accesskey="m">{L_MARK_FORUMS_READ}</a></li><!-- ENDIF -->
+				<!-- ELSEIF S_VIEWTOPIC -->
+					<!-- IF U_VIEW_UNREAD_POST --><li class="rightside"><a href="{U_VIEW_UNREAD_POST}">{L_VIEW_UNREAD_POST}</a></li><!-- ENDIF -->
+				<!-- ELSEIF S_VIEWFORUM -->
+					<!-- IF U_MARK_TOPICS or U_MARK_FORUMS --><li class="rightside">
+					<!-- IF S_HAS_SUBFORUM and U_MARK_FORUMS --><a href="{U_MARK_FORUMS}">{L_MARK_SUBFORUMS_READ}</a><!-- ENDIF -->
+					<!-- IF U_MARK_TOPICS and U_MARK_FORUMS -->  &bull;  <!-- ENDIF -->
+					<!-- IF .topicrow and TOTAL_TOPICS and U_MARK_TOPICS and not S_DISPLAY_ACTIVE --><a href="{U_MARK_TOPICS}">{L_MARK_TOPICS_READ}</a><!-- ENDIF -->
+					</li><!-- ENDIF -->
+				<!-- ELSEIF SEARCH_MATCHES and not S_IN_SEARCH -->
+					<!-- IF SEARCH_TOPIC -->
+					<li class="rightside"><a class="{S_CONTENT_FLOW_BEGIN}" href="{U_SEARCH_TOPIC}">{L_RETURN_TO}: {SEARCH_TOPIC}</a></li>
+					<!-- ELSE -->
+					<li class="rightside"><a class="{S_CONTENT_FLOW_BEGIN}" href="{U_SEARCH}" title="{L_SEARCH_ADV}">{L_RETURN_TO_SEARCH_ADV}</a></li>
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+			<!-- ENDIF -->
+			</ul>
+			<div id="breadcrumb-extra"></div>
+		</div>
+
+		<a id="start_here" style="display:none"></a>
+	
+		<div class="wrap1">
+			<div class="wrap2">
+				<div class="wrap3">
+					<div class="wrap4">
+						<div class="wrap5">
+							<div class="wrap6">
+								<div class="wrap7">
+									<div class="wrap8">
+	<!-- IF IE6MESSAGE_CODE -->{IE6MESSAGE_CODE}<!-- ENDIF -->
+
+	<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->
+	<div id="information" class="rules" style="font-size: 1.3em; color: #FFF; padding: 5px 10px; margin: 10px 7px;">
+		<div class="inner"><span class="corners-top"><span></span></span>
+			<strong>{L_INFORMATION}:</strong> {L_BOARD_DISABLED}
+		<span class="corners-bottom"><span></span></span></div>
+	</div>
+	<!-- ENDIF -->
+	
+	<!-- IF ADS_TOP_CODE and not S_INDEX_PAGE and not S_IS_BOT -->
+	<div class="advertisement top">{ADS_TOP_CODE}</div>
+	<!-- ENDIF -->

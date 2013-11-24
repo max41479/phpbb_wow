@@ -446,6 +446,11 @@ class bbcode
 				'color'		=> '<span style="color: $1">$2</span>',
 				'email'		=> '<a href="mailto:$1">$2</a>'
 			);
+			// BEGIN PBWoW 2 MOD
+			$bbcode_hardtpl['b_open'] = '<span class="bold" style="font-weight: bold">';
+			$bbcode_hardtpl['i_open'] = '<span class="italic" style="font-style: italic">';
+			$bbcode_hardtpl['u_open'] = '<span class="underline" style="text-decoration: underline">';
+			// END PBWoW 2 MOD
 		}
 
 		if ($bbcode_id != -1 && !$skip_bitfield_check && !$this->template_bitfield->get($bbcode_id))

@@ -1,0 +1,395 @@
+<form method="post" action="{F_MEMBERS}">
+
+<div class="forabg" >
+<span class="corners-top"><span></span></span>
+<ul class="topiclist">
+<li class="header">
+
+<div style="float: left; width:50%; white-space:nowrap;">
+	<h1 style = "color:#dfc065"><span style="color:{COLORCODE}"><strong>{NAME}</strong></span>
+	<!-- IF S_RACE_IMAGE_EXISTS --><img src="{RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE --><!-- ENDIF -->
+	<!-- IF S_CLASS_IMAGE_EXISTS --><img src="{CLASS_IMAGE}" alt="{CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF -->&nbsp;</h1>
+</div>
+<div style="color:white; text-align:left; float:left; width:50%; white-space:nowrap;">
+<br/>
+{L_POOL}:
+<select name="pool" class="input" onchange="javascript:form.submit();">
+
+        <!-- BEGIN pool_row -->
+        <option value="{pool_row.VALUE}"{pool_row.SELECTED}{pool_row.DISABLED}>{pool_row.OPTION}</option>
+        <!-- END pool_row -->
+</select>
+
+</div>
+</li>
+</ul>
+<span class="corners-bottom"><span></span></span>
+</div>
+
+<!-- IF ! S_SHOWEPGP -->
+<!--  non epgp classic dkp overview  -->
+
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_RAIDVALUE}</strong>: <span class="positive">{RAIDVAL} {POINTNAME}</span></h4></td>
+    <!-- IF S_SHOWTIME -->
+    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_TIME_BONUS}</strong>: <span class="positive">{TIMEBONUS} {POINTNAME}</span></h4></td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_ZEROSUM}</strong>: <span class="positive">{ZEROSUM} {POINTNAME}</span></h4></td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_RAIDDECAY}</strong>: <span class="negative">{RAIDDECAY} {POINTNAME}</span></h4></td>
+    <!-- ENDIF -->
+    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_TOTAL} {L_EARNED} {L_DKP}</strong>: <span class="positive">{EPNET} {POINTNAME}</span></h4></td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+	<td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_SPENT}</strong>: <span class="negative">{SPENT} {POINTNAME}</span></h4></td>
+    <!-- IF S_SHOWTIME -->
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
+    <!-- ENDIF -->
+	<!-- IF S_SHOWDECAY  -->
+	<td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_ITEMDECAY}</strong>: <span class="positive">{ITEMDECAY} {POINTNAME}</span></h4></td>
+	<!-- ENDIF -->
+    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_TOTAL} {L_SPENT}</strong>: <span class="negative">{GPNET} {POINTNAME}</span></h4></td>
+    </tr>
+ </table>
+ 
+<table width="100%" border="0" cellspacing="1" cellpadding="2"> 
+    <tr>
+	<td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_ADJUSTMENT}</strong>: <span class="{C_ADJUSTMENT}">{ADJUSTMENT} {POINTNAME}</span></h4></td>
+	<!-- IF S_SHOWTIME -->
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
+	<!-- ENDIF -->
+	<!-- IF S_SHOWZS -->
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
+	<!-- ENDIF -->
+	<!-- IF S_SHOWDECAY -->
+	<td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_ADJDECAY}</strong>: <span class="positive">{ADJDECAY} {POINTNAME}</span></h4></td>
+	<!-- ENDIF -->
+	<td style="width:18%; white-space:nowrap; text-align:center;"></td>	
+	</tr>
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+<div class="panel">
+<div class="inner"><span class="corners-top"><span></span></span>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_TOTAL} {L_CURRENT}</strong>: <span class="{C_CURRENT}">{CURRENT} {POINTNAME}</span></h4></td>  	
+    <!-- IF S_SHOWTIME -->
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <td style="width:15%; white-space:nowrap; text-align:center;"></td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWDECAY -->
+    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_DECAY}</strong>: <span class="{C_TOTAL_DECAY}">{TOTAL_DECAY} {POINTNAME}</span></h4></td>
+	<!-- ENDIF -->
+    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_CURRENT}</strong>: <span class="{C_NETCURRENT}">{NETCURRENT} {POINTNAME}</span></h4></td>
+    </tr>
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+<!-- ELSE -->
+
+<!-- ********************** epgp overview for player ************************** -->
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+	    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_RAIDVALUE}</strong>: <span class="positive">{RAIDVAL} {POINTNAME}</span></h4></td>
+	    <!-- IF S_SHOWTIME -->
+	    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_TIME_BONUS}</strong>: <span class="positive">{TIMEBONUS} {POINTNAME}</span></h4></td>
+	    <!-- ENDIF -->
+	    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_EP}</strong>: <span class="positive">{EP} {POINTNAME}</span></h4></td>
+	    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_RAIDDECAY}</strong>: <span class="negative">{RAIDDECAY} {POINTNAME}</span></h4></td>
+	    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_EPNET}</strong>: <span class="positive">{EPNET} {POINTNAME}</span></h4></td>
+  </tr>
+  <tr>
+		<td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_SPENT}</strong>: <span class="negative">{SPENT} {POINTNAME}</span> + {L_BGP} <span class="negative"> {BGP} </span></h4></td>
+	    <!-- IF S_SHOWTIME -->
+	    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"></td>
+	    <!-- ENDIF -->
+	    <!-- IF S_SHOWZS -->
+	    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"></td>
+	    <!-- ENDIF -->
+	    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_GP}</strong>: <span class="negative">{GP} {POINTNAME}</span></h4></td>
+		<td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_ITEMDECAY}</strong>: <span class="positive">{ITEMDECAY} {POINTNAME}</span></h4></td>
+		<td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_GPNET} </strong>: <span class="negative">{GPNET} {POINTNAME}</span></h4></td>
+	</tr>
+	<tr>
+	    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg2"><h4><strong>{L_ADJUSTMENT}</strong>: <span class="{C_ADJUSTMENT}">{ADJUSTMENT} {POINTNAME}</span></h4></td>
+	    <!-- IF S_SHOWTIME -->
+	    <td></td>
+	    <!-- ENDIF -->
+	    <!-- IF S_SHOWZS -->
+	    <td></td>
+	    <!-- ENDIF -->
+	    <td></td>
+	    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_ADJDECAY}</strong>: <span class="positive">{ADJDECAY} {POINTNAME}</span></h4></td>
+	    <td></td>
+    </tr>
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+  	<td style="width:15%; white-space:nowrap; text-align:center;" class="bg1"></td>
+    <!-- IF S_SHOWTIME -->
+    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg1"></td>
+    <!-- ENDIF -->
+    <!-- IF S_SHOWZS -->
+    <td style="width:15%; white-space:nowrap; text-align:center;" class="bg1"></td>
+    <!-- ENDIF -->
+    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"></td>
+    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_DECAY}</strong>: <span class="positive">{TOTAL_DECAY} {POINTNAME}</span></h4></td>
+    <td style="width:18%; white-space:nowrap; text-align:center;" class="bg1"><h4><strong>{L_PR}</strong>: <span class="{positive}">{PR} {POINTNAME}</span></h4></td>
+    </tr>
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+
+<!-- ENDIF -->
+
+<!-- *******  attendance *************** -->
+
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+  <tr>
+
+    <td style="width:20%; white-space:nowrap; text-align:center;" class="rowbg2"><strong>{RAIDS_X1_DAYS}</strong>: {C_RAIDS_X1_DAYS}%</td>
+    <td style="width:20%; white-space:nowrap; text-align:center;" class="rowbg1"><strong>{RAIDS_X2_DAYS}</strong>: {C_RAIDS_X2_DAYS}%</td>
+    <td style="width:20%; white-space:nowrap; text-align:center;" class="rowbg2"><strong>{RAIDS_X3_DAYS}</strong>: {C_RAIDS_X3_DAYS}%</td>
+    <td style="width:40%; white-space:nowrap; text-align:center;" class="rowbg1"><strong>{RAIDS_LIFETIME}</strong>: {C_RAIDS_LIFETIME}%</td>
+</tr>
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+
+<!-- ******* Attended Raids *************** -->
+
+<!-- IF .raids_row -->
+<h2>{L_RAID_ATTENDANCE_HISTORY}</h2>
+
+<div class="forumbg forumbg-table">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+<!-- IF RAID_PAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> 
+		<span>{RAID_PAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+<table class="table1" cellspacing="1">
+  <thead>
+   <tr>
+    <th style="text-align:left; width:10%;">{L_DATE}</th>
+    <th style="text-align:left; width:20%;">{L_NAME}</th>
+    <th style="text-align:left; width:20%;" >{L_NOTE}</th>
+   <!-- IF S_SHOWTIME || S_SHOWZS --><th class="name" style="text-align:right;">{L_RAIDVALUE}</th><!-- ENDIF -->
+   <!-- IF S_SHOWTIME --><th class="name" style="text-align:right;">{L_TIME_BONUS}</th><!-- ENDIF -->
+   <!-- IF S_SHOWZS --> <th class="name" style="text-align:right;">{L_ZSVALUE}</th><!-- ENDIF -->
+   <!-- IF S_SHOWDECAY --> <th class="name" style="text-align:right;">{L_RAIDDECAY}</th><!-- ENDIF -->
+    <th style="text-align:right;"><!-- IF S_EPGP -->{L_EP}<!-- ELSE -->{L_EARNED}<!-- ENDIF --></th>
+    <th style="text-align:right;">{L_CURRENT}</th>
+  </tr>
+</thead>
+ <tfoot>
+ <tr>
+	<th style="text-align: center; white-space: nowrap; color:white;">{RAID_FOOTCOUNT}</th>
+ </tr>
+ </tfoot>
+<tbody>
+  <!-- BEGIN raids_row -->
+    <tr class="bg1">
+    <td style="width:10%;" >{raids_row.DATE}</td>
+    <td style="width:20%;"><img src="adm/images/glyphs/view.gif" width="16" height="16" alt="View" />&nbsp;<a href="{raids_row.U_VIEW_RAID}">{raids_row.NAME}</a></td>
+    <td style="text-align:left; width:20%;" >{raids_row.NOTE}</td>
+    <!-- IF S_SHOWTIME || S_SHOWZS --><td style="text-align:right;">{raids_row.RAIDVAL}</td><!-- ENDIF -->
+    <!-- IF S_SHOWTIME --><td style="text-align:right;">{raids_row.TIMEBONUS}</td><!-- ENDIF -->
+    <!-- IF S_SHOWZS --><td style="text-align:right;">{raids_row.ZSBONUS}</td><!-- ENDIF -->
+    <!-- IF S_SHOWDECAY --><td style="text-align:right;"><span class="negative">{raids_row.RAIDDECAY}</span></td><!-- ENDIF -->
+    <td style="text-align:right;" ><span class="positive">{raids_row.EARNED}</span></td>
+    <td style="text-align:right;" ><span class="positive">{raids_row.CURRENT_EARNED}</span></td>
+  </tr>
+  <!-- END raids_row -->
+  </tbody>
+  </table>
+  
+<!-- IF RAID_PAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a> 
+		<span>{RAID_PAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+<!-- ENDIF -->
+
+
+<!-- IF .items_row -->
+
+<h2>{L_ITEM_PURCHASE_HISTORY}</h2>
+
+<div class="forumbg forumbg-table">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+<!-- IF ITEM_PAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
+		<span>{ITEM_PAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+<table class="table1" width="100%" border="0" cellspacing="1" cellpadding="0">
+<thead>
+   <tr>
+    <th style="text-align:left; width:8%">{L_DATE}</th>
+    <th style="text-align:left; width:35%">{L_NAME}</th>
+    <th style="text-align:left; width:35%">{L_RAID}</th>
+    <th style="text-align:right; width:10%">{L_SPENT}</th>
+    <th style="text-align:right; width:10%">{L_CURRENT}</th>
+    </tr>
+</thead>
+<tfoot>
+<tr>
+<th style="text-align:center; white-space: nowrap; color:white; ">{ITEM_FOOTCOUNT}</th>
+</tr>
+</tfoot>
+<tbody>
+<!-- BEGIN items_row -->
+<tr class="row bg1">  
+    <td>{items_row.DATE}</td>
+    <td><a href="{items_row.U_VIEW_ITEM}">{items_row.NAME}</a></td>
+    <td><a href="{items_row.U_VIEW_RAID}">{items_row.RAID}</a></td>
+    <td style="text-align:right;"><span class="negative">{items_row.SPENT}</span></td>
+    <td style="text-align:right;"><span class="negative">{items_row.CURRENT_SPENT}</span></td>
+</tr>
+<!-- END items_row -->
+</tbody>
+
+</table>
+
+<!-- IF ITEM_PAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
+		<span>{ITEM_PAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF .adjustments_row -->
+
+<h2>{L_INDIVIDUAL_ADJUSTMENT_HISTORY}</h2>
+<div class="forumbg forumbg-table">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+<table class="table1" width="100%" border="0" cellspacing="1" cellpadding="0">
+<thead>
+   <tr>
+    <th style="width:10%; color:white;">{L_DATE}</th>
+    <th style="width:20%; color:white;">{L_REASON}</th>
+    <th style="text-align: center; width:25%; color:white;">{L_ADJUSTMENT}</th>
+    <!-- IF S_SHOWDECAY -->
+    <th style="text-align: center; width:25%; color:white;">{L_ADJDECAY}</th>
+    <th style="text-align: center; width:25%; color:white;">{L_NETADJUSTMENT}</th>
+    <!-- ENDIF -->
+  </tr>
+</thead>  
+<tfoot>
+<tr>
+<th style="text-align: center; white-space: nowrap; color:white;">{ADJUSTMENT_FOOTCOUNT}</th>
+</tr>
+</tfoot>
+<tbody>
+<!-- BEGIN adjustments_row -->
+<tr class="row bg1">   
+	<td style="text-align: left;">{adjustments_row.DATE}</td>
+	<td style="text-align: left;">{adjustments_row.REASON}</td>
+	<td style="text-align: center;">{adjustments_row.INDIVIDUAL_ADJUSTMENT}</td>
+	<!-- IF S_SHOWDECAY -->
+	<td style="text-align: center;">{adjustments_row.ADJDECAY}</td>
+	<td style="text-align: center;">{adjustments_row.NETDECAY}</td>
+	<!-- ENDIF -->
+</tr>
+<!-- END adjustments_row -->
+</tbody>
+
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF .event_row -->
+<h2>{L_ATTENDANCE_BY_EVENT}</h2>
+<div class="forumbg forumbg-table">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+<table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0">
+<colgroup span="2">
+	<col width="15%"></col>
+	<col width="65%"></col>
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: center; white-space: nowrap; color:white"  colspan="2"></th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+	<th style="text-align: center; white-space: nowrap; color:white;">{L_EVENTS_FOOTCOUNT}</th>
+</tr>
+</tfoot>
+<tbody>
+  <!-- BEGIN event_row -->
+  <tr>
+    <td style="width: 20%; white-space: nowrap;" class="row bg2" ><a href="{event_row.U_VIEW_EVENT}" class="small">{event_row.EVENT}</a></td>
+    <td style="width: 80%;" class="row bg1">{event_row.BAR}</td>
+  </tr>
+  <!-- END event_row -->
+</tbody>
+
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!-- ENDIF -->
+
+</form>

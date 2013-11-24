@@ -1,0 +1,231 @@
+<!-- INCLUDE overall_header.html -->
+
+<h2><!-- IF SEARCH_TITLE -->{SEARCH_TITLE}<!-- ELSE -->{SEARCH_MATCHES}<!-- ENDIF --><!-- IF SEARCH_WORDS -->: <a href="{U_SEARCH_WORDS}">{SEARCH_WORDS}</a><!-- ENDIF --></h2>
+<!-- IF SEARCHED_QUERY --> <p>{L_SEARCHED_QUERY}: <strong>{SEARCHED_QUERY}</strong></p><!-- ENDIF -->
+<!-- IF IGNORED_WORDS --> <p>{L_IGNORED_TERMS}: <strong>{IGNORED_WORDS}</strong></p><!-- ENDIF -->
+
+<!-- IF S_SHOW_TOPICS -->
+
+<div class="wow-topics">
+	<div class="innerborder1">
+		<div class="innerborder2">
+			<div class="innerbg1">
+				<div class="innerbg2">
+
+	<!-- IF .searchresults -->
+	<div class="forumbg">
+
+		<div class="inner">
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="icon">
+					<dt>{L_TOPICS}</dt>
+					<dd class="posts">{L_REPLIES}</dd>
+					<dd class="views">{L_VIEWS}</dd>
+					<dd class="lastpost"><span>{L_LAST_POST}</span></dd>
+				</dl>
+			</li>
+		</ul>
+		<ul class="topiclist topics">
+
+		<!-- BEGIN searchresults -->
+			<li class="row<!-- IF searchresults.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF -->">
+				<dl class="icon" style="background-image: url({searchresults.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
+					<dt <!-- IF searchresults.TOPIC_ICON_IMG -->style="background-image: url({T_ICONS_PATH}{searchresults.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --><!-- IF searchresults.TOPIC_PREVIEW_TEXT --> title="{searchresults.TOPIC_PREVIEW_TEXT}" id="t{searchresults.TOPIC_ID}"<!-- ENDIF -->>
+						<!-- IF searchresults.S_UNREAD_TOPIC --><a href="{searchresults.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF -->
+						<a href="{searchresults.U_VIEW_TOPIC}" class="topictitle">{searchresults.TOPIC_TITLE}</a> {searchresults.ATTACH_ICON_IMG}
+						<!-- IF searchresults.S_TOPIC_UNAPPROVED or searchresults.S_POSTS_UNAPPROVED --><a href="{searchresults.U_MCP_QUEUE}">{searchresults.UNAPPROVED_IMG}</a> <!-- ENDIF -->
+						<!-- IF searchresults.S_TOPIC_REPORTED --><a href="{searchresults.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --><br />
+						<!-- IF searchresults.PAGINATION --><strong class="pagination"><span>{searchresults.PAGINATION}</span></strong><!-- ENDIF -->
+						{L_POST_BY_AUTHOR} {searchresults.TOPIC_AUTHOR_FULL} &raquo; {searchresults.FIRST_POST_TIME}
+						<!-- IF not searchresults.S_TOPIC_GLOBAL -->{L_IN} <a href="{searchresults.U_VIEW_FORUM}">{searchresults.FORUM_TITLE}</a><!-- ELSE --> ({L_GLOBAL})<!-- ENDIF -->
+					</dt>
+					<dd class="posts">{searchresults.TOPIC_REPLIES}</dd>
+					<dd class="views">{searchresults.TOPIC_VIEWS}</dd>
+					<dd class="lastpost"><span>
+						{L_POST_BY_AUTHOR} {searchresults.LAST_POST_AUTHOR_FULL}
+						<!-- IF not S_IS_BOT --><a href="{searchresults.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br />{searchresults.LAST_POST_TIME}<br /> </span>
+					</dd>
+				</dl>
+				<!-- IF searchresults.TOPIC_PREVIEW_TEXT and S_JQUERY_TOPIC_PREVIEW -->
+				<div id="topic_preview_t{searchresults.TOPIC_ID}" style="display:none;">
+					<!-- IF searchresults.TOPIC_PREVIEW_TEXT2 --><strong>{L_FIRST_POST}</strong><hr /><!-- ENDIF -->
+					<!-- IF searchresults.TOPIC_PREVIEW_AVATAR --><div class="topic_preview_avatar">{searchresults.TOPIC_PREVIEW_AVATAR}</div><!-- ELSEIF searchresults.TOPIC_PREVIEW_PBAVATAR --><div class="topic_preview_avatar"><img src="{T_IMAGESET_PATH}/images/portraits/{searchresults.TOPIC_PREVIEW_PBAVATAR}" width="64" height="64" alt="{searchresults.TOPIC_AUTHOR}" /></div><!-- ENDIF -->
+					<div class="topic_preview_text_first"<!-- IF searchresults.TOPIC_PREVIEW_COLOUR --> style="color:{searchresults.TOPIC_PREVIEW_COLOUR}"<!-- ENDIF -->></div>
+					<!-- IF searchresults.TOPIC_PREVIEW_TEXT2 -->
+						<div class="topic_preview_break"></div>
+						<strong>{L_LAST_POST}</strong><hr />
+						<!-- IF searchresults.TOPIC_PREVIEW_AVATAR2 --><div class="topic_preview_avatar">{searchresults.TOPIC_PREVIEW_AVATAR2}</div><!-- ELSEIF searchresults.TOPIC_PREVIEW_PBAVATAR2 --><div class="topic_preview_avatar"><img src="{T_IMAGESET_PATH}/images/portraits/{searchresults.TOPIC_PREVIEW_PBAVATAR2}" width="64" height="64" alt="{searchresults.LAST_POST_AUTHOR}" /></div><!-- ENDIF -->
+						<div class="topic_preview_text_last"<!-- IF searchresults.TOPIC_PREVIEW_COLOUR2 --> style="color:{searchresults.TOPIC_PREVIEW_COLOUR2}"<!-- ENDIF -->>{searchresults.TOPIC_PREVIEW_TEXT2}</div>
+					<!-- ENDIF -->
+				</div>
+				<!-- ENDIF -->
+			</li>
+		<!-- END searchresults -->
+		</ul>
+
+		</div>
+	</div>
+	<!-- ELSE -->
+		<div class="panel">
+			<div class="inner">
+				<p class="rules"><img src = "{T_IMAGESET_PATH}/images/icons/error-tiny.gif" />{L_NO_SEARCH_RESULTS}</p>
+			</div>
+		</div>
+	<!-- ENDIF -->
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- ELSE -->
+
+	<!-- BEGIN searchresults -->
+		<div class="search post <!-- IF searchresults.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF searchresults.S_POST_REPORTED --> reported<!-- ENDIF -->">
+			<div class="innerborder1">
+				<div class="innerborder2">
+					<div class="innerbg1">
+						<div class="innerbg2">
+							<div class="inner <!-- IF searchresults.USER_SPECIAL_STYLING eq 'blizz' -->blizz<!-- ELSEIF searchresults.USER_SPECIAL_STYLING eq 'propass' -->propass<!-- ELSEIF searchresults.USER_SPECIAL_STYLING eq 'red' -->red<!-- ENDIF -->">
+							
+	<!-- IF searchresults.S_IGNORE_POST -->
+		<div class="postbody">
+			{searchresults.L_IGNORE_POST}
+		</div>
+	<!-- ELSE -->
+	
+		<div class="postprofile<!-- IF searchresults.S_ONLINE and not searchresults.S_IGNORE_POST --> online<!-- ENDIF -->" id="profile{searchresults.POST_ID}">
+			<div class="wow-profile">
+			<!-- IF searchresults.POSTER_AVATAR_SRC or searchresults.S_PROFILE_PBAVATAR -->
+				<!-- IF searchresults.POSTER_AVATAR_SRC -->
+				<div class="game-avatar" style="background: url('{searchresults.POSTER_AVATAR_SRC}') no-repeat;">
+				<!-- ELSE -->
+				<div class="game-avatar" style="background: url('{T_IMAGESET_PATH}/images/portraits/{searchresults.PROFILE_PBAVATAR_VALUE}') no-repeat;">
+				<!-- ENDIF -->
+					<div class="game-avatar-frame">
+						<!-- IF searchresults.U_POST_AUTHOR --><a href="{searchresults.U_POST_AUTHOR}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="83" width="82" title="{searchresults.POST_AUTHOR}" alt="{searchresults.POST_AUTHOR}" /></a><!-- ENDIF -->
+						<div class="game-rank-icon"><!-- IF searchresults.SPECIAL_RANK_IMG -->{searchresults.SPECIAL_RANK_IMG}<!-- ELSEIF searchresults.S_PROFILE_PBLEVEL and searchresults.PROFILE_PBLEVEL_VALUE neq 0 --><b><small>{searchresults.PROFILE_PBLEVEL_VALUE}</small></b><!-- ELSEIF not searchresults.S_PROFILE_PBRACE and searchresults.U_POST_AUTHOR and searchresults.RANK_IMG -->{searchresults.RANK_IMG}<!-- ELSE --><img src="{T_IMAGESET_PATH}/images/icons/question.gif" alt="" /><!-- ENDIF --></div>
+
+						<!-- IF searchresults.S_PROFILE_PBRACE or searchresults.S_PROFILE_PBDCLASS -->
+						<div class="game-icons-frame">
+
+							<!-- IF searchresults.PROFILE_PBRACE_VALUEID -->
+							<div class="game-icons-a wow-{searchresults.PROFILE_PBRACE_VALUEID}<!-- IF searchresults.S_PROFILE_PBGENDER and searchresults.PROFILE_PBGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{searchresults.PROFILE_PBRACE_VALUE}" alt="{searchresults.PROFILE_PBRACE_VALUE}" /></div>
+							<!-- ELSEIF searchresults.PROFILE_PBDCLASS_VALUEID -->
+							<div class="game-icons-a diablo-{searchresults.PROFILE_PBDCLASS_VALUEID}<!-- IF searchresults.S_PROFILE_PBDGENDER and searchresults.PROFILE_PBDGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{searchresults.PROFILE_PBDCLASS_VALUE}" alt="{searchresults.PROFILE_PBDCLASS_VALUE}" /></div>							
+							<!-- ENDIF -->
+							
+							<!-- IF searchresults.PROFILE_PBCLASS_VALUEID -->
+							<div class="game-icons-b wow-{searchresults.PROFILE_PBCLASS_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{searchresults.PROFILE_PBCLASS_VALUE}" alt="{searchresults.PROFILE_PBCLASS_VALUE}" /></div>
+							<!-- ELSEIF searchresults.PROFILE_PBDFOLLOWER_VALUEID -->
+							<div class="game-icons-b diablo-{searchresults.PROFILE_PBDFOLLOWER_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{searchresults.PROFILE_PBDFOLLOWER_VALUE}" alt="{searchresults.PROFILE_PBDFOLLOWER_VALUE}" /></div>
+							<!-- ENDIF -->
+
+							<div class="game-icons-c<!-- IF searchresults.S_PROFILE_PBFACTION --> faction-{searchresults.PROFILE_PBFACTION_VALUE}<!-- ENDIF -->"<!-- IF searchresults.RANK_IMG --> style="background-image: url('{searchresults.RANK_IMG_SRC}');"<!-- ENDIF -->><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" alt="{searchresults.RANK_TITLE}" title="{searchresults.RANK_TITLE}" /></div>
+
+						</div>
+						<!-- ENDIF -->
+
+					</div>
+				</div>
+			<!-- ELSE -->
+				<div class="game-noavatar"></div>
+			<!-- ENDIF -->
+			</div>
+
+			<div class="wow-info-frame">
+				<dl>
+					<dt class="author">{searchresults.POST_AUTHOR_FULL}</dt>
+					<!-- IF searchresults.S_PROFILE_PBGUILD --><dd class="guild">&lsaquo; {searchresults.PROFILE_PBGUILD_VALUE} &rsaquo;</dd><!-- ENDIF -->	
+					<!-- IF postrow.SPECIAL_RANK_TITLE --><dd class="special-rank">{postrow.SPECIAL_RANK_TITLE}</dd><!-- ENDIF -->	
+					<dd class="separator"></dd>
+					<!-- BEGIN custom_fields --><dd class="{searchresults.custom_fields.PROFILE_FIELD_IDENT}"><strong>{searchresults.custom_fields.PROFILE_FIELD_NAME}:</strong> {searchresults.custom_fields.PROFILE_FIELD_VALUE}</dd><!-- END custom_fields -->
+					<!-- IF searchresults.FORUM_TITLE -->
+						<dd>{L_FORUM}: <a href="{searchresults.U_VIEW_FORUM}">{searchresults.FORUM_TITLE}</a></dd>
+						<dd>{L_TOPIC}: <a href="{searchresults.U_VIEW_TOPIC}">{searchresults.TOPIC_TITLE}</a></dd>
+					<!-- ELSE -->
+						<dd>{L_GLOBAL}: <a href="{searchresults.U_VIEW_TOPIC}">{searchresults.TOPIC_TITLE}</a></dd>
+					<!-- ENDIF -->
+					<dd class="stats"><span>{L_REPLIES}: <strong>{searchresults.TOPIC_REPLIES}</strong></span><span>{L_VIEWS}: <strong>{searchresults.TOPIC_VIEWS}</strong></span></dd>
+					<!-- IF searchresults.S_PROFILE_FIELD1 --><dd><strong>{searchresults.PROFILE_FIELD1_NAME}:</strong> {searchresults.PROFILE_FIELD1_VALUE}</dd><!-- ENDIF -->
+				</dl>
+			</div>
+			
+			<div class="wow-info-bottom"></div>
+		</div>
+		
+		<div class="postbody">
+			<h3><a href="{searchresults.U_VIEW_POST}">{searchresults.POST_SUBJECT}</a></h3>
+			<p class="author"><!-- IF S_IS_BOT -->{searchresults.MINI_POST_IMG}<!-- ELSE --><a href="{searchresults.U_MINI_POST}">{searchresults.MINI_POST_IMG}</a><!-- ENDIF -->{L_POST_BY_AUTHOR} <strong>{searchresults.POST_AUTHOR_FULL}</strong> &raquo; {searchresults.POST_DATE} </p>
+			<div class="content" <!-- IF searchresults.USER_SPECIAL_COLOR -->style="color: {searchresults.USER_SPECIAL_COLOR}"<!-- ENDIF -->>{searchresults.MESSAGE}</div>
+		</div>
+	<!-- ENDIF -->
+
+	
+	<!-- IF not searchresults.S_IGNORE_POST -->
+		<a href="{searchresults.U_VIEW_POST}" class="{S_CONTENT_FLOW_END} jumptopost">{L_JUMP_TO_POST}</a>
+	<!-- ENDIF -->
+	<div class="clear"></div>
+	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- BEGINELSE -->
+		<div class="panel">
+			<div class="inner"><span class="corners-top"><span></span></span>
+			<p class="rules"><img src = "{T_IMAGESET_PATH}/images/icons/error-tiny.gif" />{L_NO_SEARCH_RESULTS}</p>
+			<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<!-- END searchresults -->
+<!-- ENDIF -->
+
+<!-- IF PAGINATION or .searchresults or PAGE_NUMBER -->
+<div class="topic-actions">
+	<div class="pagination">
+		<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a>  &bull;  <!-- ENDIF -->
+		<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a>
+		 &bull;  <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+		<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
+	</div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF .searchresults or S_SELECT_SORT_KEY or S_SELECT_SORT_DAYS -->
+<div class="clear"></div>
+
+<div class="inner-footer" id="searchresults-tools">
+	<h2 class="open"></h2>
+	<div>
+	<div class="left"><div><div class="inner">
+	<!-- IF SEARCH_TOPIC -->
+		<p><a class="{S_CONTENT_FLOW_BEGIN}" href="{U_SEARCH_TOPIC}" accesskey="r">{L_RETURN_TO}: {SEARCH_TOPIC}</a></p>
+	<!-- ELSEIF S_SEARCH_ACTION -->
+		<p><a class="{S_CONTENT_FLOW_BEGIN}" href="{U_SEARCH}" title="{L_SEARCH_ADV}" accesskey="r">{L_RETURN_TO_SEARCH_ADV}</a></p>
+	<!-- ENDIF -->
+	
+	<!-- IF S_DISPLAY_JUMPBOX --><hr /><!-- ENDIF -->
+	<!-- INCLUDE jumpbox2.html -->
+	</div></div></div>
+	<div class="right"><div><div class="inner">
+		<!-- IF .searchresults --><p>{SEARCH_MATCHES}</p><hr /><!-- ENDIF -->
+		<form method="post" action="{S_SEARCH_ACTION}">
+			<fieldset class="display-options">
+				<!-- IF S_SELECT_SORT_DAYS or S_SELECT_SORT_KEY -->
+					<label><!-- IF S_SHOW_TOPICS -->{L_DISPLAY_POSTS}<!-- ELSE -->{L_SORT_BY}</label><label><!-- ENDIF --> {S_SELECT_SORT_DAYS}<!-- IF S_SELECT_SORT_KEY --></label> <label>{S_SELECT_SORT_KEY}</label>
+					<label>{S_SELECT_SORT_DIR}<!-- ENDIF --> <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
+				<!-- ENDIF -->
+			</fieldset>
+		</form>
+	</div></div></div>
+	</div>
+</div>
+<!-- ENDIF -->
+
+<div class="clear"></div>
+
+<!-- INCLUDE overall_footer.html -->

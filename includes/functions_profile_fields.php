@@ -499,6 +499,8 @@ class custom_profile
 					'PROFILE_' . strtoupper($ident) . '_TYPE'	=> $ident_ary['data']['field_type'],
 					'PROFILE_' . strtoupper($ident) . '_NAME'	=> $ident_ary['data']['lang_name'],
 					'PROFILE_' . strtoupper($ident) . '_EXPLAIN'=> $ident_ary['data']['lang_explain'],
+					'PROFILE_' . strtoupper($ident) . '_VALUEID'=> ($ident_ary['data']['field_type'] = 5) ? ($ident_ary['value'] -1) : '', // PBWoW 2 MOD
+					'PROFILE_' . strtoupper($ident) . '_IDENT'	=> $ident, // PBWoW 2 MOD
 
 					'S_PROFILE_' . strtoupper($ident)			=> true
 				);
@@ -508,11 +510,18 @@ class custom_profile
 					'PROFILE_FIELD_TYPE'	=> $ident_ary['data']['field_type'],
 					'PROFILE_FIELD_NAME'	=> $ident_ary['data']['lang_name'],
 					'PROFILE_FIELD_EXPLAIN'	=> $ident_ary['data']['lang_explain'],
+					'PROFILE_FIELD_VALUEID'	=> ($ident_ary['data']['field_type'] = 5) ? ($ident_ary['value'] -1) : '', // PBWoW 2 MOD
+					'PROFILE_FIELD_IDENT'	=> $ident, // PBWoW 2 MOD
 
 					'S_PROFILE_' . strtoupper($ident)		=> true
 				);
 			}
 
+			// BEGIN PBWoW 2 MOD
+			if (function_exists('process_pbwow_cpf')) {
+				$tpl_fields = process_pbwow_cpf($tpl_fields);
+			}
+			// END PBWoW 2 MOD
 			return $tpl_fields;
 		}
 		else

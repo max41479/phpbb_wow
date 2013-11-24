@@ -1219,6 +1219,30 @@ while ($row = $db->sql_fetchrow($result))
 			);
 
 			get_user_rank($row['user_rank'], $row['user_posts'], $user_cache[$poster_id]['rank_title'], $user_cache[$poster_id]['rank_image'], $user_cache[$poster_id]['rank_image_src']);
+			// BEGIN PBWoW 2 MOD
+			$user_cache[$poster_id] += array(
+				'avatar_src'				=> '',
+				'special_rank_title'		=> '',
+				'special_rank_image'		=> '',
+				'special_rank_image_src'	=> '',
+				'user_special_styling'		=> '',
+				'user_special_color'		=> '',
+			);
+			
+			// Just gonna copy the current 'primary' rank into the special one, so the current one can be overwritten without losing the previous one.
+			if(!empty($row['user_rank'])){
+				$user_cache[$poster_id]['special_rank_title'] = $user_cache[$poster_id]['rank_title'];
+				$user_cache[$poster_id]['special_rank_image'] = $user_cache[$poster_id]['rank_image'];
+				$user_cache[$poster_id]['special_rank_image_src'] = $user_cache[$poster_id]['rank_image_src'];
+				$user_cache[$poster_id]['rank_title'] = $user_cache[$poster_id]['rank_image'] = $user_cache[$poster_id]['rank_image_src'] = '';
+			}
+
+			// Now we get all the 'secondary' ranks (based on post count etc.) and put them in the place of the user ranks. Switcharooh!
+			get_user_rank(0, $row['user_posts'], $user_cache[$poster_id]['rank_title'], $user_cache[$poster_id]['rank_image'], $user_cache[$poster_id]['rank_image_src']);
+			
+			check_rank_special_styling($row['user_rank'], $user_cache[$poster_id]['user_special_styling'], $user_cache[$poster_id]['user_special_color']);
+			$user_cache[$poster_id]['avatar_src'] = ($user->optionget('viewavatars')) ? get_user_avatar_src($row['user_avatar'], $row['user_avatar_type']) : '';
+			// END PBWoW 2 MOD
 
 			if ((!empty($row['user_allow_viewemail']) && $auth->acl_get('u_sendemail')) || $auth->acl_get('a_email'))
 			{
@@ -1576,6 +1600,14 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'POSTER_POSTS'		=> $user_cache[$poster_id]['posts'],
 		'POSTER_FROM'		=> $user_cache[$poster_id]['from'],
 		'POSTER_AVATAR'		=> $user_cache[$poster_id]['avatar'],
+		// BEGIN PBWoW 2 MOD
+		'POSTER_AVATAR_SRC'		=> $user_cache[$poster_id]['avatar_src'],
+		'SPECIAL_RANK_TITLE'	=> $user_cache[$poster_id]['special_rank_title'],
+		'SPECIAL_RANK_IMG'		=> $user_cache[$poster_id]['special_rank_image'],
+		'SPECIAL_RANK_IMG_SRC'	=> $user_cache[$poster_id]['special_rank_image_src'],
+		'USER_SPECIAL_STYLING'	=> $user_cache[$poster_id]['user_special_styling'],
+		'USER_SPECIAL_COLOR'	=> $user_cache[$poster_id]['user_special_color'],
+		// END PBWoW 2 MOD
 		'POSTER_WARNINGS'	=> $user_cache[$poster_id]['warnings'],
 		'POSTER_AGE'		=> $user_cache[$poster_id]['age'],
 

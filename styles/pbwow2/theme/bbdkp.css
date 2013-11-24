@@ -1,0 +1,416 @@
+/*  bbdkp css prosilver
+ @package bbDkp
+ @copyright 2009 bbdkp <http://code.google.com/p/bbdkp/>
+ @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ @version $Id$
+*/
+
+.bbdkpcredits {
+	color:#105289;
+}
+
+ul.dkpmenu li {
+	overflow: none;
+	text-align: center;
+	font-size: 11px;
+	list-style-type: none;
+	margin: 0 auto;
+}
+
+a.dkpmenu,a.dkpmenu:link,a.dkpmenu:visited,a.dkpmenu:active {
+	text-decoration: none;
+	color: #FFF;
+	white-space: nowrap;
+}
+
+/* mainmenu.html  */
+.portalmenu ul 
+{
+	list-style-type: none;
+	margin: 0 0 8px;
+	padding: 0;
+}
+
+.portalmenu a:hover {
+	/*background-color: #F9F9F9;*/
+	color: #D31141;
+}
+
+.portalmenu li {
+	text-decoration: none;
+}
+
+.portalmenu a {
+	background-image: url("{T_THEME_PATH}/images/dkp/menu.gif");
+	background-position: 2% center;
+	background-repeat: no-repeat;
+	font-size: 90%;
+	font-weight: bold;
+	display: block;
+	margin-bottom: 0px;
+	padding: 5px 0px 0px 20px;
+	text-decoration: none;
+}
+
+/* Bossprogress block Colors 
+----------------------------------*/
+.bpprogress00,.bpprogress00:link,.bpprogress00:visited,.bpprogress00:active
+	{
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	line-height:150%;
+	text-decoration: none;
+	color: #FF0000;
+}
+
+.bpprogress00:link :hover {
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	line-height:150%;
+		text-decoration: underline;
+	color: #FF0000;
+}
+
+.bpprogress25,.bpprogress25:link,.bpprogress25:visited,.bpprogress25:active
+	{
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	line-height:150%;
+	text-decoration: none;
+	color: #FF0000;
+}
+
+.bpprogress25:link :hover {
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	line-height:150%;
+	text-decoration: underline;
+	color: #FF0000;
+}
+
+.bpprogress50,.bpprogress50:link,.bpprogress50:visited,.bpprogress50:active
+	{
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	line-height:150%;
+	text-decoration: none;
+	color: #FFCC00;
+}
+
+.bpprogress50:link :hover {
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	line-height:150%;
+	text-decoration: underline;
+	color: #FFCC00;
+}
+
+.bpprogress75,.bpprogress75:link,.bpprogress75:visited,.bpprogress75:active
+	{
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	line-height:150%;
+	text-decoration: none;
+	color: #88FFDD;
+}
+
+.bpprogress75:link :hover {
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	line-height:150%;
+	
+	text-decoration: underline;
+	color: #88FFDD;
+}
+
+.bpprogress99,.bpprogress99:link,.bpprogress99:visited,.bpprogress99:active
+	{
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	line-height:150%;
+	
+	text-decoration: none;
+	color: #00EE00;
+}
+
+.bpprogress99:link :hover {
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:11px;
+	line-height:150%;
+	
+	text-decoration: underline;
+	color: #00EE00;
+}
+
+.bpprogress100,.bpprogress100:link,.bpprogress100:visited,.bpprogress100:active
+	{
+	text-decoration: none;
+	color: #00EE00;
+}
+
+.bpprogress100:link :hover {
+	text-decoration: underline;
+	color: #00EE00;
+}
+
+/**** portal tooltip css ****/
+
+a.bossprogress,a.bossprogress:link,a.bossprogress:visited,a.bossprogress:active {
+	text-decoration: none; 
+	 color: #FFD100; /* tooltip boss link color */
+	white-space: nowrap;
+}
+
+
+/**** portal tooltip css ****/
+/* http://www.webmonkey.com/2010/02/make_css_rounded_corners  */
+
+.bbtooltip {
+	display: none;
+	position:relative;
+	margin:0px auto;
+	font-size: 10px;
+	min-width:200px;
+	max-width:400px; 
+	color:#FFFFDD;
+	z-index:1;
+	margin-left:12px; /* default, width of left corner */
+	margin-bottom:0.5em; /* spacing under dialog */	
+}
+
+.bbtooltip .bbinner,
+.bbtooltip .t,
+.bbtooltip .b,
+.bbtooltip .b div {
+ background-image: url("images/tooltip/tooltip.png");
+ background-color: transparent;
+ background-repeat: no-repeat;
+ background-position: right top;
+ 
+}
+	
+.bbtooltip .bbinner {
+ position:relative;
+ zoom:1;
+  _overflow-y:hidden;
+ padding:0px 12px 0px 0px;
+}
+
+.bbtooltip .t {
+ /* top+left vertical slice */
+ position:absolute;
+ left:0px;
+ top:0px;
+ width:12px; /* top slice width */
+ margin-left:-12px;
+ height:100%;
+ background-position:top left;
+}
+
+.bbtooltip .b {
+ /* bottom slice */
+ position:relative;
+ width:100%;
+}
+
+.bbtooltip .b,
+.bbtooltip .b div {
+ height:30px; /* height of bottom cap/shade */
+ font-size:1px;
+}
+
+.bbtooltip .b {
+ background-position:bottom right;
+}
+
+/* bottom corner width */
+.bbtooltip .b div {
+ position:absolute;
+ width:12px; 
+ margin-left:-12px;
+ background-position:bottom left;
+}
+
+.bbtooltip .hd,
+.bbtooltip .bd,
+.bbtooltip .ft {
+ position:relative;
+}
+
+.bbtooltip .wrapper {
+ /* extra content protector - preventing vertical overflow (past background) */
+ position:static;
+ max-height:1000px;
+ overflow:auto; 
+}
+
+.bbtooltip h1,
+.bbtooltip p {
+ margin:0px; /* margins will blow out backgrounds, leaving whitespace. */
+ padding:0.5em 0px 0.5em 0px;
+}
+
+.bbtooltip h1 {
+ padding-bottom:0px;
+}
+
+.bbtooltip textarea {
+	width:200px !important;
+	min-width:200px !important;
+	max-width:200px !important;
+	height:100px !important;
+	min-height:100px !important;
+	max-height:100px !important;
+}
+/* bossprogress.php css */
+
+.progresspage dl { 
+	margin: 0; 
+	padding: 0;     				
+}
+.progresspage dd { 
+	position: relative;
+	display: block;     			
+	float: left;     
+	width: 800px; 
+	height: 120px; 
+	margin: 0 0 0px; 
+	background: url("images/bossprogress/rp/g_colorbar2.jpg"); 
+}
+* .html dd { float: none; } 
+
+.progresspage dd div { 
+  	position: relative; 
+	background: url("images/bossprogress/rp/g_colorbar.jpg"); 
+	height: 120px; 
+	width: 100%; 
+	text-align:right; 
+}
+.progresspage dd div strong 
+{ 
+	position: absolute;
+	right: -5px; 
+	top: -2px; 
+	display: block; 
+	background: url("images/bossprogress/rp/g_marker.gif"); 
+	height: 24px; 
+	width: 9px; 
+	text-align: left;
+	text-indent: -9999px; 
+	overflow: hidden;
+}
+
+.positive {
+	color: #00BB55;
+}
+.negative {
+	color: #FF3344;
+}
+
+/* bar graph */
+.bargraph {
+	 background-color: #9900AA;
+}
+
+span.corners-inner-top, span.corners-inner-bottom, span.corners-inner-top span, span.corners-inner-bottom span {
+	font-size: 1px;
+	line-height: 1px;
+	display: block;
+	height: 5px;
+	background-repeat: no-repeat;
+}
+
+span.corners-inner-top {
+	background-image: url('none');
+	background-position: 0 0;
+	margin: 0 -5px;
+}
+
+span.corners-inner-top span {
+	background-image: url('none');
+	background-position: 100% 0;
+}
+
+span.corners-inner-bottom {
+	background-image: url('none');
+	background-position: 0 100%;
+	margin: 0 -5px;
+	clear: both; 
+}
+
+span.corners-inner-bottom span {
+	background-image: url('none');
+	background-position: 100% 100%;
+}
+
+span.corners-inner-top, span.corners-inner-bottom { 
+	background-image: url('{T_THEME_PATH}/images/corners_left.png'); 
+}
+span.corners-inner-top span, span.corners-inner-bottom span { 
+	background-image: url('{T_THEME_PATH}/images/corners_right.png'); 
+}
+
+/** flot statistics **/
+
+/* css for flot */
+.valueLabels {
+	font-size:70%;
+	color:black;
+}
+
+div.valueLabelLight {
+	opacity:0.5;
+	background-color: white;
+	border:none;
+	position:absolute;
+}
+
+div.valueLabel {
+	position:absolute;
+	border:none;
+}
+
+div.tickLabel { 
+	padding-left:20px !important;
+	font-size: 11px !important;
+    font-style: italic !important;
+    /*font-weight: bold !important;*/
+    font-family: sans-serif !important;
+    font-variant: small-caps !important;
+}
+.tooltip-with-bg{
+ 	position:relative;
+ 	text-align : center;
+	background-color: #000;
+	margin:0px auto;
+	min-width:100px;
+	max-width:100px; 
+	color:#FFFFDD;
+	z-index:1;
+	margin-left:10px; /* default, width of left corner */
+	margin-bottom:0.5em; /* spacing under dialog */	
+	font-size: 11px;
+}
+
+.portal_block {
+	padding: 10px;
+	font-size: 10px;
+	color: #FFFFFF;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+ 	-webkit-border-radius: 5px;
+}
+
+.portal_block a {
+	color: #E6E6E6;
+	font-size: 10px;
+}
+
+.portal_block a:hover {
+	color: #0070FF;
+}
+
+.portal_block h3 {
+	color: #FFFFFF;
+	margin-top: 5px;
+}

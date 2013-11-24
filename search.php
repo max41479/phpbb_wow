@@ -643,7 +643,8 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 			}
 			$db->sql_freeresult($result);
 
-			$sql = 'SELECT p.*, f.forum_id, f.forum_name, t.*, u.username, u.username_clean, u.user_sig, u.user_sig_bbcode_uid, u.user_colour
+			//$sql = 'SELECT p.*, f.forum_id, f.forum_name, t.*, u.username, u.username_clean, u.user_sig, u.user_sig_bbcode_uid, u.user_colour // PBWoW 2 MOD
+			$sql = 'SELECT p.*, f.forum_id, f.forum_name, t.*, u.username, u.username_clean, u.user_sig, u.user_sig_bbcode_uid, u.user_colour, u.user_avatar, u.user_avatar_type, u.user_rank, u.user_posts
 				FROM ' . POSTS_TABLE . ' p
 					LEFT JOIN ' . TOPICS_TABLE . ' t ON (p.topic_id = t.topic_id)
 					LEFT JOIN ' . FORUMS_TABLE . ' f ON (p.forum_id = f.forum_id)
@@ -682,6 +683,16 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 				$tracking_topics = ($tracking_topics) ? tracking_unserialize($tracking_topics) : array();
 			}
 
+			// BEGIN Topic Preview Mod
+			if(!class_exists('phpbb_topic_preview'))
+			{
+				include($phpbb_root_path . 'includes/topic_preview.' . $phpEx);
+			}
+			$topic_preview = new phpbb_topic_preview();
+			$sql_from 	= $topic_preview->modify_sql_join($sql_from);
+			$sql_select = $topic_preview->modify_sql_select($sql_select);
+			// END Topic Preview Mod
+
 			$sql = "SELECT $sql_select
 				FROM $sql_from
 				WHERE $sql_where";
@@ -695,6 +706,9 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 		if ($show_results == 'topics')
 		{
 			$forums = $rowset = $shadow_topic_list = array();
+			// BEGIN PBWoW 2 MOD for topic-preview mod
+			$id_cache = array();
+			// END PBWoW 2 MOD for topic-preview mod
 			while ($row = $db->sql_fetchrow($result))
 			{
 				$row['forum_id'] = (int) $row['forum_id'];
@@ -713,9 +727,31 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 				}
 				$forums[$row['forum_id']]['topic_list'][] = $row['topic_id'];
 				$forums[$row['forum_id']]['rowset'][$row['topic_id']] = &$rowset[$row['topic_id']];
+				// BEGIN PBWoW 2 MOD for topic-preview mod
+				if(!in_array($row['topic_poster'],$id_cache))
+				{
+					($id_cache[] = $row['topic_poster']);
+				}
+				if(!in_array($row['topic_last_poster_id'],$id_cache))
+				{
+					($id_cache[] = $row['topic_last_poster_id']);
+				}
+				// END PBWoW 2 MOD for topic-preview mod
 			}
 			$db->sql_freeresult($result);
 
+
+			// BEGIN PBWoW 2 MOD for topic-preview mod
+			if ($config['load_cpf_viewtopic'])
+			{
+				if(!class_exists('custom_profile')) {
+					include($phpbb_root_path . 'includes/functions_profile_fields.' . $phpEx);
+				}
+				$cp = new custom_profile();
+				$profile_fields_cache = $cp->generate_profile_fields_template('grab', $id_cache);
+			}
+			unset($id_cache);
+			// END PBWoW 2 MOD for topic-preview mod
 			// If we have some shadow topics, update the rowset to reflect their topic information
 			if (sizeof($shadow_topic_list))
 			{
@@ -764,8 +800,44 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 			$bbcode_bitfield = $text_only_message = '';
 			$attach_list = array();
 
+			// BEGIN PBWoW 2 MOD
+			$id_cache = array();
+			$user_cache = array();
+			// END PBWoW 2 MOD
 			while ($row = $db->sql_fetchrow($result))
 			{
+				// BEGIN PBWoW 2 MOD
+				$id_cache[] = $row['poster_id'];
+				if (!isset($user_cache[$row['poster_id']]))
+				{
+					if ($row['poster_id'] == ANONYMOUS) {
+						// do nothing
+					}
+					else {
+						$user_cache[$row['poster_id']] = array(
+							'avatar_src'				=> '',
+							'rank_title'				=> '',
+							'rank_image'				=> '',
+							'rank_image_src'			=> '',
+							'special_rank_title'		=> '',
+							'special_rank_image'		=> '',
+							'special_rank_image_src'	=> '',
+							'user_special_styling'		=> '',
+							'user_special_color'		=> '',
+						);
+			
+						if(!empty($row['user_rank'])){
+							get_user_rank_global($row['user_rank'], $row['user_posts'], $user_cache[$row['poster_id']]['special_rank_title'], $user_cache[$row['poster_id']]['special_rank_image'], $user_cache[$row['poster_id']]['special_rank_image_src']);
+						}
+
+						// Now we get all the 'secondary' ranks (based on post count etc.) and put them in the place of the user ranks. Switcharooh!
+						get_user_rank_global(0, $row['user_posts'], $user_cache[$row['poster_id']]['rank_title'], $user_cache[$row['poster_id']]['rank_image'], $user_cache[$row['poster_id']]['rank_image_src']);
+						
+						check_rank_special_styling($row['user_rank'], $user_cache[$row['poster_id']]['user_special_styling'], $user_cache[$row['poster_id']]['user_special_color']);
+						$user_cache[$row['poster_id']]['avatar_src'] = ($user->optionget('viewavatars')) ? get_user_avatar_src($row['user_avatar'], $row['user_avatar_type']) : '';
+					}
+				}
+				// END PBWoW 2 MOD
 				// We pre-process some variables here for later usage
 				$row['post_text'] = censor_text($row['post_text']);
 
@@ -800,6 +872,17 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 			$db->sql_freeresult($result);
 
 			unset($text_only_message);
+			// BEGIN PBWoW 2 MOD
+			if ($config['load_cpf_viewtopic'])
+			{
+				if(!class_exists('custom_profile')) {
+					include($phpbb_root_path . 'includes/functions_profile_fields.' . $phpEx);
+				}
+				$cp = new custom_profile();
+				$profile_fields_cache = $cp->generate_profile_fields_template('grab', $id_cache);
+			}
+			unset($id_cache);
+			// END PBWoW 2 MOD
 
 			// Instantiate BBCode if needed
 			if ($bbcode_bitfield !== '')
@@ -1012,6 +1095,32 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 					'POST_DATE'			=> (!empty($row['post_time'])) ? $user->format_date($row['post_time']) : '',
 					'MESSAGE'			=> $row['post_text']
 				);
+				// BEGIN PBWoW 2 MOD
+				$cp_row = array();
+				if ($config['load_cpf_viewtopic'])
+				{
+					$cp_row = (isset($profile_fields_cache[$row['poster_id']])) ? $cp->generate_profile_fields_template('show', false, $profile_fields_cache[$row['poster_id']]) : array();
+
+					$tpl_ary += array(
+						'POSTER_AVATAR_SRC'		=> $user_cache[$row['poster_id']]['avatar_src'],
+						'RANK_TITLE'			=> $user_cache[$row['poster_id']]['rank_title'],
+						'RANK_IMG'				=> $user_cache[$row['poster_id']]['rank_image'],
+						'RANK_IMG_SRC'			=> $user_cache[$row['poster_id']]['rank_image_src'],
+						'SPECIAL_RANK_TITLE'	=> $user_cache[$row['poster_id']]['special_rank_title'],
+						'SPECIAL_RANK_IMG'		=> $user_cache[$row['poster_id']]['special_rank_image'],
+						'SPECIAL_RANK_IMG_SRC'	=> $user_cache[$row['poster_id']]['special_rank_image_src'],
+						'USER_SPECIAL_STYLING'	=> $user_cache[$row['poster_id']]['user_special_styling'],
+						'USER_SPECIAL_COLOR'	=> $user_cache[$row['poster_id']]['user_special_color'],
+	
+						'S_CUSTOM_FIELDS'	=> (isset($cp_row['row']) && sizeof($cp_row['row'])) ? true : false
+					);
+					
+					if (isset($cp_row['row']) && sizeof($cp_row['row']))
+					{
+						$tpl_ary = array_merge($tpl_ary, $cp_row['row']);
+					}
+				}
+				// END PBWoW 2 MOD
 			}
 
 			$template->assign_block_vars('searchresults', array_merge($tpl_ary, array(
@@ -1028,6 +1137,26 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 				'U_VIEW_FORUM'		=> append_sid("{$phpbb_root_path}viewforum.$phpEx", 'f=' . $forum_id),
 				'U_VIEW_POST'		=> (!empty($row['post_id'])) ? append_sid("{$phpbb_root_path}viewtopic.$phpEx", "f=$forum_id&amp;t=" . $row['topic_id'] . '&amp;p=' . $row['post_id'] . (($u_hilit) ? '&amp;hilit=' . $u_hilit : '')) . '#p' . $row['post_id'] : '')
 			));
+			// BEGIN Topic Preview Mod
+			if(isset($topic_preview))
+			{
+				$topic_preview->display_topic_preview($row, 'searchresults');
+			}
+			// END Topic Preview Mod
+			// BEGIN PBWoW 2 MOD for topic-preview mod
+			if (function_exists('modify_topic_preview') && isset($profile_fields_cache) && isset($topic_preview)) {
+				modify_topic_preview($row, 'searchresults', $profile_fields_cache, $topic_preview->tp_avatars);
+			}
+			// END PBWoW 2 MOD for topic-preview mod
+			// BEGIN PBWoW 2 MOD
+			if (!empty($cp_row['blockrow']))
+			{
+				foreach ($cp_row['blockrow'] as $field_data)
+				{
+					$template->assign_block_vars('searchresults.custom_fields', $field_data);
+				}
+			}
+			// END PBWoW 2 MOD
 		}
 
 		if ($topic_id && ($topic_id == $result_topic_id))

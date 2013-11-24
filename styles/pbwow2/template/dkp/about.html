@@ -1,0 +1,278 @@
+<!-- INCLUDE simple_header.html -->
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/dkp/jquery.js"></script>
+<script  type="text/javascript" src="{T_TEMPLATE_PATH}/dkp/jquery.tools.min.js"></script>
+
+<style type="text/css">
+BODY 
+{ 
+	font-family: Verdana,Helvetica,Arial,sans-serif;
+	font-size: 11px;
+	color: #FF9933;
+}
+
+/* root element for tabs  */
+ul.css-tabs {  
+	margin:0 !important; 
+	padding:0;
+	height:30px;
+	border-bottom:1px solid #666;	 	
+}
+
+/* single tab */
+ul.css-tabs li {  
+	float:left;	 
+	padding:0; 
+	margin:0;  
+	list-style-type:none;	
+}
+
+/* link inside the tab. uses a background image */
+ul.css-tabs a { 
+	float:left;
+	font-size:13px;
+	display:block;
+	padding:5px 20px;	
+	text-decoration:none;
+	border:1px solid #666;	
+	border-bottom:0px;
+	height:18px;
+	color:#fff;
+	margin-right:2px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright:4px;
+	position:relative;
+	top:1px;	
+}
+
+ul.css-tabs a:hover {
+	background-color:#fff;
+	color:#333;
+}
+	
+/* selected tab */
+ul.css-tabs a.current {
+	background-color:#fff;
+	border-bottom:2px solid #ddd;	
+	color:#000;	
+	cursor:default;
+}
+
+	
+/* tab pane */
+div.css-panes div {
+	display:none;
+	border:1px solid #666;
+	border-width:0 1px 1px 1px;
+	min-height:150px;
+	padding:15px 20px;
+	background-color:#ddd;	
+}
+
+
+/* alternate colors: skin2 */
+ul.skin2 a {
+	background-color:#000000;		
+	color:#fff !important;
+}
+
+/* mouseover state */
+ul.skin2 a:hover {
+	background-color:#313131;
+}
+
+/* active tab */
+ul.skin2 a.current {
+	background-color:#313131;
+	border-bottom:2px solid #4F5C6A;	
+}
+
+/* tab pane with background gradient */
+div.skin2 div {
+	background: none repeat scroll 0 0 #000000;
+	border: 1px solid #000000;
+	display:block;
+	/*padding : 2px;*/
+	min-height:200px;
+	color:#FFDD88;	
+}
+
+a:link	{ color: #FFFFFF; text-decoration: none; }
+a:visited	{ color: #FFFFFF; text-decoration: none; }
+a:hover	{ color: #FFFFFF; text-decoration: underline; }
+a:active	{ color: #FFFFFF; text-decoration: none; }
+
+</style>
+
+<div class="panel" style = "background: none repeat scroll 0 0 #000000;">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	<div class="content">
+
+<!-- tabs -->
+<ul class="css-tabs skin2">
+	<li><a href="#">{BBDKPVERSION}</a></li>
+	<li><a href="#">{L_TCOPYRIGHT}</a></li>
+	<li><a href="#">{L_TCREDITS}</a></li>
+	<li><a href="#">{L_TEAM}</a></li>	
+	<li><a href="#">{L_PLUGINS}</a></li>
+	<li><a href="#">{L_TSPONSORS}</a></li>
+</ul>
+
+<!-- panes -->
+<div class="css-panes skin2">
+	<div>
+	
+		<table width="100%" border="0">      
+     	<tr>
+          <td><img class='reflect' style='float: left;' src='{ROOT_PATH}/images/bbdkp.png' alt='{L_IMAGE_ALT}' border='0' /></td>
+          <td>
+          
+          <strong><li style="list-style: none;" >
+				<ul style="list-style: none;">
+					<li>{L_CREATED}: {L_AUTHNAME}</li>
+					<li>{L_DEVELOPEDBY}: {L_DEVTEAM}</li>
+					<li>{L_WEBNAME}: <a href='{L_WEBURL}' target='_blank'>{L_WEBURL}</a></li>
+				</ul>
+			</li>		
+			</strong>
+			<li style="list-style: none;" >
+				<ul style="list-style: none;">
+     				<li>{L_DONATIONCOMMENT}</li>
+     				<li>{L_PAYPALLINK}</li>
+				</ul>
+		   </li>
+		   </td>					
+        </tr>
+	   </table>
+		
+			
+	</div>
+	<div>
+		<p>
+			{L_LICENSE1} 
+		</p> 
+		<li style="list-style: none;">			
+			<ul style="list-style: none;">
+				<li>{L_COPYRIGHT3}</li>
+				<li>{L_COPYRIGHT2}</li>
+				<li>{L_COPYRIGHT1}</li>
+			</ul>
+		</li> 
+	</div>
+	<div>
+		<table width="100%" border="0">      
+     	<tr>
+          <td bgcolor="#333333"><strong>{L_PRODNAME}</strong></td>
+          <td bgcolor="#333333"><strong>{L_VERSION}</strong></td>
+          <td bgcolor="#333333"><strong>{L_DEVELOPER}</strong></td>
+          <td bgcolor="#333333"><strong>{L_DEVLINK}</strong></td>
+        </tr>
+	    <tr>
+          <td>{L_PRODNAME}</td>
+          <td>{BBDKPVERSION}</td>
+          <td>{L_DEVELOPERS}
+          </td>
+          <td><a href="{L_WEBURL}" target="_blank">{L_WEBURL}</a></td>
+        </tr>
+		<tr>
+          <td>{L_PHPBB}</td>
+          <td>{PBPBBVERSION}</td>
+          <td>{L_PHPBBGR}</td>
+          <td><a href="{L_PHPBBLINK}" target="_blank">{L_PHPBBLINK}</a></td>
+        </tr>
+        <tr>
+          <td>{L_EQDKP}</td>
+          <td>{L_EQDKPVERS}</td>
+          <td>{L_EQDKPDEV}</td>
+          <td><a href="{L_EQDKPLINK}" target="_blank">{L_EQDKPLINK}</a></td>
+        </tr>
+		</table>
+	</div>
+
+	<div>
+		<table width="100%" border="0"> 
+	     	<tr>
+	          <td bgcolor="#333333"><strong>{L_DEVELOPER}</strong></td>
+	          <td bgcolor="#333333"><strong>{L_JOB}</strong></td>
+	          <td bgcolor="#333333"><strong></strong></td>
+	        </tr>
+			
+			<tr>
+			  <td><b><a href=mailto:Blazeflack@gmail.com>Blazeflack</a></b></td>
+			  <td>Supporter</td>
+			  <td>6.2010 -</td>
+			</tr>
+			<tr>
+	          <td><b><a href=mailto:sajaki9@gmail.com>Sajaki</a></b></td>
+	          <td>Developer, Project leader</td>
+	          <td>4.4.2008 -</td>
+	        </tr>
+			<tr>
+	          <td><b>Kapli</b></td>
+	          <td>Developer</td>
+	          <td>1.8.2008 - 5.2009</td>
+	        </tr>
+	        <tr>
+	          <td><b><a href=mailto:cs.krushin@gmail.com>Malfate</a></b></td>
+	          <td>Former Leader, bbDKP Supporter</td>
+	          <td>24.12.2007 -</td>
+	        </tr>
+			<tr>
+	          <td><b>Teksonic</b></td>
+	          <td>Support Manager / Previous Developer</td>
+	          <td>6.4.2008 - 1.6.2008</td>
+	        </tr>
+			<tr>
+	          <td><b>MonkeyTech</b></td>
+	          <td>Previous Developer</td>
+	          <td>24.12.2007 - 10.1.2008</td>
+	        </tr>
+	       	<tr>
+	          <td><b>DWKN</b></td>
+	          <td>Previous Developer</td>
+	        </tr>
+	        <tr>
+	          <td><b><a href=mailto:ippe.he@gmail.com>Ippeh</a></b></td>
+	          <td>bbDKP Project Founder, Previous Developer</td>
+	          <td></td>
+	        </tr>
+	</table>
+	</div>
+
+	<div>
+		<table width="100%" border="0"> 
+	     	<tr>
+	          <td bgcolor="#333333"><strong>{L_PLUGINS}</strong></td>
+	          <td bgcolor="#333333"><strong>{L_PLUGINVERS}</strong></td>
+	          <td bgcolor="#333333"><strong>{L_AUTHOR}</strong></td>
+	          <td bgcolor="#333333"><strong>{L_MAINT}</strong></td>
+	        </tr>
+			
+			<!-- BEGIN plugins_row -->
+			<tr>
+	          <td><b>{plugins_row.NAME}</b></td>
+	          <td>{plugins_row.VERSION}</td>
+	          <td>{plugins_row.AUTHOR}</td>
+	          <td>{plugins_row.MAINTAINER}</td>
+	        </tr>
+			<!-- END plugins_row -->
+			
+			
+	</table>
+	</div>	
+		
+	<div>
+		<p>{L_DONATORS}</p>
+	</div>
+</div>
+
+<!-- activate tabs with jquery -->
+<script>
+$(function() 
+{
+	$("ul.skin2").tabs("div.skin2 > div");
+});
+</script>
+	</div>
+	<span class="corners-bottom"><span></span></span></div>
+</div>
+<!-- INCLUDE simple_footer.html -->

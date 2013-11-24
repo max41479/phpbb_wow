@@ -1,0 +1,67 @@
+/* PBWoW Warlords style specific markup */
+
+body {
+	background-color: #100806;
+	background-image: url("{T_THEME_PATH}/images/bg.jpg");
+}
+
+#logo {
+	background: url("{T_THEME_PATH}/images/logo-small.png") no-repeat 50% 0;
+	width: 330px; 
+	height: 178px; 
+	margin: 15px 0 0 -10px;
+}
+
+#page-body {
+	background: rgba(0,0,0,0.85);
+	box-shadow: 0 3px 12px 8px rgba(10,6,4,0.7);	
+}
+
+.headerbar { 
+	background: rgba(0,0,0,0.8);
+}
+
+
+/* =Media queries
+-------------------------------------------------------------- */
+
+/* Small devices. */
+@media screen and (max-width: 859px) {
+	/* inherit from master */
+}
+
+@media screen and (max-width: 999px) {
+	body {
+		background-image: url("{T_THEME_PATH}/images/bg-small.jpg");
+	}
+	#logo {
+		margin: -10px 0 0 -10px;
+		width: 330px; 
+	}
+	#video-background {
+		display: none !important;;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	#logo-wrap {
+		height: 240px;
+	}
+	#wrapper {
+		min-height: 1000px;
+	}
+	#video-background {
+		/*height: 1000px;*/
+		left: 50%;
+		position: absolute;
+		top: 0;
+		-webkit-transform: translateX(-50%);
+		-ms-transform: translateX(-50%);
+		transform: translateX(-50%);
+		width: 1920px;
+		z-index: -1000;
+	}
+	#video-background video {
+		opacity: 0;
+	}
+}

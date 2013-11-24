@@ -1,0 +1,393 @@
+<!-- INCLUDE overall_header.html -->
+
+<div class="clear"></div>
+
+<!-- IF S_FORUM_RULES -->
+<div class="wow-topics">
+	<div class="innerborder1">
+		<div class="innerborder2">
+			<div class="innerbg1">
+				<div class="innerbg2">
+					<div class="rules">
+						<dl>
+						<!-- IF U_FORUM_RULES -->
+							<dt><a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a></dt>
+						<!-- ELSE -->
+							<dt>{L_FORUM_RULES}</dt>
+							<dd>{FORUM_RULES}</dd>
+						<!-- ENDIF -->
+						</dl>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- ENDIF -->
+
+<!-- IF S_HAS_POLL -->
+<form method="post" action="{S_POLL_ACTION}">
+<div class="poll bg2">
+	<div class="innerborder1">
+		<div class="innerborder2">
+			<div class="innerbg1">
+				<div class="innerbg2">
+					<div class="wow-poll-frame1">
+						<div class="wow-poll-frame2">
+							<div class="wow-poll-frame3">
+
+	<div class="inner">
+		<div class="content">
+		
+			<!-- IF S_CAN_VOTE or L_POLL_LENGTH -->
+			<div class="wow-poll-author1">
+				<div class="wow-poll-author2">
+					<div class="wow-poll-author3">
+						<p class="author"><!-- IF L_POLL_LENGTH -->{L_TIME}:<span> {L_POLL_LENGTH}</span><!-- ENDIF --><!-- IF S_CAN_VOTE and L_POLL_LENGTH --> | <!-- ENDIF --><!-- IF S_CAN_VOTE -->{L_OPTIONS}: <span>{L_MAX_VOTES}</span><!-- ENDIF --></p>
+						
+					</div>
+				</div>
+			</div>
+			<!-- ELSE -->
+			<br />
+			<!-- ENDIF -->
+		
+			<h2><img src="{T_IMAGESET_PATH}/images/icons/<!-- IF S_CAN_VOTE and L_POLL_LENGTH -->poll-end.gif<!-- ELSEIF S_CAN_VOTE -->poll-open.gif<!-- ELSE -->poll-private.gif<!-- ENDIF -->" alt="" style="position: absolute;"/><span>Poll:</span>&quot;{POLL_QUESTION}&quot;</h2>
+			
+
+			<div class="wow-poll-box1">
+				<div class="wow-poll-box2">
+					<div class="wow-poll-box3">
+
+			<fieldset class="polls">
+			<!-- BEGIN poll_option -->
+				<dl class="<!-- IF poll_option.POLL_OPTION_VOTED -->voted<!-- ENDIF -->"<!-- IF poll_option.POLL_OPTION_VOTED --> title="{L_POLL_VOTED_OPTION}"<!-- ENDIF -->>
+					<dt><!-- IF S_CAN_VOTE --><label for="vote_{poll_option.POLL_OPTION_ID}">{poll_option.POLL_OPTION_CAPTION}</label><!-- ELSE --><span>{poll_option.POLL_OPTION_CAPTION}</span><!-- ENDIF -->
+					<!-- IF S_CAN_VOTE --><!-- IF S_IS_MULTI_CHOICE --><input type="checkbox" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ELSE --><input type="radio" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF --></dt><!-- ENDIF -->
+					
+					<!-- IF S_DISPLAY_RESULTS --><dd class="resultbar"><div class="resultbar-restrict"><div class="pollbar0" style="width:{poll_option.POLL_OPTION_PERCENT};">{poll_option.POLL_OPTION_RESULT}</div></div><span><!-- IF poll_option.POLL_OPTION_RESULT == 0 -->{L_NO_VOTES}<!-- ELSE -->{poll_option.POLL_OPTION_PERCENT}<!-- ENDIF --></span></dd><!-- ENDIF -->
+				</dl>
+			<!-- END poll_option -->
+
+			<!-- IF S_DISPLAY_RESULTS --><div class="wow-poll-totals">{L_TOTAL_VOTES} : {TOTAL_VOTES}</div><!-- ENDIF -->
+
+			<div class="wow-poll-footer">
+				<!-- IF not S_DISPLAY_RESULTS -->
+				<a href="{U_VIEW_RESULTS}" class="ui-button2 poll-results"><span><span>{L_VIEW_RESULTS}</span></span></a>
+				<!-- ELSE -->
+				<a class="ui-button2 poll-results inactive"><span><span>{L_VIEW_RESULTS}</span></span></a>
+				<!-- ENDIF -->
+				
+				<!-- IF S_CAN_VOTE -->
+				<a class="ui-button2 poll-vote"><span><span><input type="submit" name="update" value="{L_SUBMIT_VOTE}" class="vote" /></span></span></a>
+				<!-- ELSE -->
+				<a class="ui-button2 poll-vote inactive"><span><span>{L_SUBMIT_VOTE}</span></span></a>
+				<!-- ENDIF -->
+			</div>
+			</fieldset>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	{S_FORM_TOKEN}
+	{S_HIDDEN_FIELDS}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+
+<!-- ENDIF -->
+
+<!-- BEGIN postrow -->
+	<!-- IF postrow.S_FIRST_UNREAD --><a id="unread"></a><!-- ENDIF -->
+	    <div id="p{postrow.POST_ID}" class="post <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF postrow.S_UNREAD_POST --> unreadpost<!-- ENDIF --><!-- IF postrow.S_POST_REPORTED --> reported<!-- ENDIF -->">
+			<div class="innerborder1">
+				<div class="innerborder2">
+					<div class="innerbg1">
+						<div class="innerbg2">
+							<div class="inner <!-- IF postrow.USER_SPECIAL_STYLING eq 'blizz' -->blizz<!-- ELSEIF postrow.USER_SPECIAL_STYLING eq 'propass' -->propass<!-- ELSEIF postrow.USER_SPECIAL_STYLING eq 'red' -->red<!-- ENDIF -->">
+
+	<!-- IF not postrow.S_IGNORE_POST -->
+		<div class="postprofile<!-- IF postrow.S_ONLINE and not postrow.S_IGNORE_POST --> online<!-- ENDIF -->" id="profile{postrow.POST_ID}">
+			<div class="wow-profile">
+			<!-- IF postrow.POSTER_AVATAR_SRC or postrow.S_PROFILE_PBAVATAR -->
+				<!-- IF postrow.POSTER_AVATAR_SRC -->
+				<div class="game-avatar" style="background: url('{postrow.POSTER_AVATAR_SRC}') no-repeat;">
+				<!-- ELSE -->
+				<div class="game-avatar" style="background: url('{T_IMAGESET_PATH}/images/portraits/{postrow.PROFILE_PBAVATAR_VALUE}') no-repeat;">
+				<!-- ENDIF -->
+					<div class="game-avatar-frame">
+						<!-- IF postrow.U_POST_AUTHOR --><a id="a{postrow.POST_ID}" class="context-avatar" href="{postrow.U_POST_AUTHOR}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="83" width="82" title="{postrow.POST_AUTHOR}" alt="{postrow.POST_AUTHOR}" /></a><!-- ENDIF -->
+						<div class="game-rank-icon"><!-- IF postrow.SPECIAL_RANK_IMG -->{postrow.SPECIAL_RANK_IMG}<!-- ELSEIF postrow.S_PROFILE_PBLEVEL and postrow.PROFILE_PBLEVEL_VALUE neq 0 --><b><small>{postrow.PROFILE_PBLEVEL_VALUE}</small></b><!-- ELSEIF not postrow.S_PROFILE_PBRACE and postrow.U_POST_AUTHOR and postrow.RANK_IMG -->{postrow.RANK_IMG}<!-- ELSE --><img src="{T_IMAGESET_PATH}/images/icons/question.gif" alt="" /><!-- ENDIF --></div>
+
+						<!-- IF postrow.S_PROFILE_PBRACE or postrow.S_PROFILE_PBDCLASS -->
+						<div class="game-icons-frame">
+
+							<!-- IF postrow.PROFILE_PBRACE_VALUEID -->
+							<div class="game-icons-a wow-{postrow.PROFILE_PBRACE_VALUEID}<!-- IF postrow.S_PROFILE_PBGENDER and postrow.PROFILE_PBGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{postrow.PROFILE_PBRACE_VALUE}" alt="{postrow.PROFILE_PBRACE_VALUE}" /></div>
+							<!-- ELSEIF postrow.PROFILE_PBDCLASS_VALUEID -->
+							<div class="game-icons-a diablo-{postrow.PROFILE_PBDCLASS_VALUEID}<!-- IF postrow.S_PROFILE_PBDGENDER and postrow.PROFILE_PBDGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{postrow.PROFILE_PBDCLASS_VALUE}" alt="{postrow.PROFILE_PBDCLASS_VALUE}" /></div>							
+							<!-- ENDIF -->
+							
+							<!-- IF postrow.PROFILE_PBCLASS_VALUEID -->
+							<div class="game-icons-b wow-{postrow.PROFILE_PBCLASS_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{postrow.PROFILE_PBCLASS_VALUE}" alt="{postrow.PROFILE_PBCLASS_VALUE}" /></div>
+							<!-- ELSEIF postrow.PROFILE_PBDFOLLOWER_VALUEID -->
+							<div class="game-icons-b diablo-{postrow.PROFILE_PBDFOLLOWER_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{postrow.PROFILE_PBDFOLLOWER_VALUE}" alt="{postrow.PROFILE_PBDFOLLOWER_VALUE}" /></div>
+							<!-- ENDIF -->
+							
+							<div class="game-icons-c<!-- IF postrow.S_PROFILE_PBFACTION --> faction-{postrow.PROFILE_PBFACTION_VALUE}<!-- ENDIF -->"<!-- IF postrow.RANK_IMG --> style="background-image: url('{postrow.RANK_IMG_SRC}');"<!-- ENDIF -->><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" alt="{postrow.RANK_TITLE}" title="{postrow.RANK_TITLE}" /></div>
+
+						</div>
+						<!-- ENDIF -->
+
+					</div>
+				</div>
+			<!-- ELSEIF postrow.POSTER_AVATAR -->
+				<!-- IF postrow.U_POST_AUTHOR --><a href="{postrow.U_POST_AUTHOR}">{postrow.POSTER_AVATAR}</a><!-- ELSE -->{postrow.POSTER_AVATAR}<!-- ENDIF -->
+			<!-- ELSE -->
+				<div class="game-noavatar">
+					<!-- IF postrow.U_POST_AUTHOR --><a id="a{postrow.POST_ID}" class="context-avatar" href="{postrow.U_POST_AUTHOR}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="83" width="82" title="{postrow.POST_AUTHOR}" alt="{postrow.POST_AUTHOR}" /></a><!-- ENDIF -->
+				</div>
+			<!-- ENDIF -->
+			</div>
+
+			<div class="wow-info-frame">
+				<dl>
+					<dt class="author"><!-- IF postrow.U_POST_AUTHOR --><a id="u{postrow.POST_ID}" class="context-link<!-- IF postrow.POST_AUTHOR_COLOUR --> username-coloured" style="color: {postrow.POST_AUTHOR_COLOUR}<!-- ENDIF -->" href="{postrow.U_POST_AUTHOR}">{postrow.POST_AUTHOR}</a><!-- ELSE --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ENDIF --></dt>
+					<!-- IF postrow.S_PROFILE_PBGUILD --><dd class="guild">&lsaquo; {postrow.PROFILE_PBGUILD_VALUE} &rsaquo;</dd><!-- ENDIF -->
+					<!-- IF postrow.SPECIAL_RANK_TITLE --><dd class="special-rank">{postrow.SPECIAL_RANK_TITLE}</dd><!-- ENDIF -->
+					<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd class="rank">{postrow.RANK_TITLE}<!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
+					<dd class="separator"></dd>
+					<!-- BEGIN custom_fields --><dd class="{postrow.custom_fields.PROFILE_FIELD_IDENT}"><strong>{postrow.custom_fields.PROFILE_FIELD_NAME}:</strong> {postrow.custom_fields.PROFILE_FIELD_VALUE}</dd><!-- END custom_fields -->
+					<!-- IF postrow.POSTER_POSTS != '' --><dd class="numberposts"><strong>{L_POSTS}:</strong> {postrow.POSTER_POSTS}</dd><!-- ENDIF -->
+					<!-- IF postrow.POSTER_JOINED --><dd class="joined"><strong>{L_JOINED}:</strong> {postrow.POSTER_JOINED}</dd><!-- ENDIF -->
+					<!-- IF postrow.POSTER_FROM --><dd class="from"><strong>{L_LOCATION}:</strong> {postrow.POSTER_FROM}</dd><!-- ENDIF -->
+					<!-- IF postrow.S_ONLINE --><dd class="online">{L_ONLINE}</dd><!-- ENDIF -->
+					<!-- IF postrow.S_PROFILE_FIELD1 --><dd><strong>{postrow.PROFILE_FIELD1_NAME}:</strong> {postrow.PROFILE_FIELD1_VALUE}</dd><!-- ENDIF -->
+				</dl>
+				
+				<div class="wow-context" id="{postrow.POST_ID}-context">
+				<!-- IF not S_IS_BOT -->
+					<strong>{postrow.POST_AUTHOR}</strong>
+					<!--<strong <!-- IF postrow.POST_AUTHOR_COLOUR -->style="color: {postrow.POST_AUTHOR_COLOUR}"<!-- ENDIF -->><!-- IF postrow.SPECIAL_RANK_TITLE -->{postrow.SPECIAL_RANK_TITLE}<!-- ELSE -->{postrow.POST_AUTHOR}<!-- ENDIF --></strong>-->
+					<div class="user-icons">
+						<a class="icon-profile" href="{postrow.U_POST_AUTHOR}">{L_READ_PROFILE}</a>
+						<a class="icon-posts" href="{postrow.U_SEARCH}" title="{L_SEARCH_USER_POSTS}"></a>
+						<!-- IF postrow.S_FRIEND --><!--Friend! yay!--><!-- ENDIF -->
+						<!-- IF U_PROFILE --><a class="icon-foe" href="{U_PROFILE}?i=zebra&mode=foes&add={postrow.POST_AUTHOR}" title="Ignore user" accesskey="e"></a><!-- ENDIF -->
+					</div>		
+					<!-- IF postrow.U_PM or postrow.U_EMAIL or postrow.U_WWW or postrow.U_MSN or postrow.U_ICQ or postrow.U_YIM or postrow.U_AIM or postrow.U_JABBER -->
+					<ul class="profile-icons">
+						<!-- IF postrow.U_PM --><li class="pm-icon"><a href="{postrow.U_PM}" title="{L_PRIVATE_MESSAGE}"><span>{L_PRIVATE_MESSAGE}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_EMAIL --><li class="email-icon"><a href="{postrow.U_EMAIL}" title="{L_SEND_EMAIL_USER} {postrow.POST_AUTHOR}"><span>{L_SEND_EMAIL_USER} {postrow.POST_AUTHOR}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_WWW --><li class="web-icon"><a href="{postrow.U_WWW}" title="{L_VISIT_WEBSITE}: {postrow.U_WWW}"><span>{L_WEBSITE}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_MSN --><li class="msnm-icon"><a href="{postrow.U_MSN}" onclick="popup(this.href, 550, 320); return false;" title="{L_MSNM}"><span>{L_MSNM}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_ICQ --><li class="icq-icon"><a href="{postrow.U_ICQ}" onclick="popup(this.href, 550, 320); return false;" title="{L_ICQ}"><span>{L_ICQ}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_YIM --><li class="yahoo-icon"><a href="{postrow.U_YIM}" onclick="popup(this.href, 780, 550); return false;" title="{L_YIM}"><span>{L_YIM}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_AIM --><li class="aim-icon"><a href="{postrow.U_AIM}" onclick="popup(this.href, 550, 320); return false;" title="{L_AIM}"><span>{L_AIM}</span></a></li><!-- ENDIF -->
+						<!-- IF postrow.U_JABBER --><li class="jabber-icon"><a href="{postrow.U_JABBER}" onclick="popup(this.href, 550, 320); return false;" title="{L_JABBER}"><span>{L_JABBER}</span></a></li><!-- ENDIF -->
+					</ul>
+					<!-- ENDIF -->
+				<!-- ENDIF -->
+				</div>
+			</div>
+			<div class="wow-info-bottom"></div>
+		</div>
+	<!-- ENDIF -->
+
+		<div class="postbody">
+			<!-- IF postrow.S_IGNORE_POST -->
+				<div class="ignore">{postrow.L_IGNORE_POST}</div>
+			<!-- ELSE -->
+
+		<!-- IF not S_IS_BOT -->
+			<!-- IF postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE or S_DISPLAY_REPLY_INFO -->
+				<ul class="profile-icons">
+					<!-- IF postrow.U_EDIT --><li class="edit-icon"><a href="{postrow.U_EDIT}" title="{L_EDIT_POST}"><span>{L_EDIT_POST}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_DELETE --><li class="delete-icon"><a href="{postrow.U_DELETE}" title="{L_DELETE_POST}"><span>{L_DELETE_POST}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_REPORT --><li class="report-icon"><a href="{postrow.U_REPORT}" title="{L_REPORT_POST}"><span>{L_REPORT_POST}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_WARN --><li class="warn-icon"><a href="{postrow.U_WARN}" title="{L_WARN_USER}"><span>{L_WARN_USER}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_INFO --><li class="info-icon"><a href="{postrow.U_INFO}" title="{L_INFORMATION}"><span>{L_INFORMATION}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_QUOTE --><li class="<!-- IF S_IS_LOCKED -->quote-icon inactive<!-- ELSE -->quote-icon<!-- ENDIF -->"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}" class="ui-button2"><span><span><div>{L_REPLY_WITH_QUOTE}</div></span></span></a></li><!-- ENDIF -->
+					<!-- IF S_DISPLAY_REPLY_INFO --><!-- IF S_IS_LOCKED --><li class="reply-icon inactive"><a href="{U_POST_REPLY_TOPIC}" title="{L_TOPIC_LOCKED_SHORT}" class="ui-button2"><span><span>{L_POST}<div></div></span></span></a></li><!-- ELSE -->
+					<li class="reply-icon"><a href="{U_POST_REPLY_TOPIC}" title="{L_POST_REPLY}" class="ui-button2"><span><span>{L_POST}<div></div></span></span></a></li><!-- ENDIF --><!-- ENDIF -->
+				</ul>
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+
+			<h3 <!-- IF postrow.S_FIRST_ROW -->class="first"<!-- ENDIF -->><!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="" /> <!-- ENDIF --><a href="#p{postrow.POST_ID}">{postrow.POST_SUBJECT}</a></h3>
+			<p class="author"><!-- IF S_IS_BOT -->{postrow.MINI_POST_IMG}<!-- ELSE --><a href="{postrow.U_MINI_POST}">{postrow.MINI_POST_IMG}</a><!-- ENDIF -->{L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR_FULL}</strong> &raquo; {postrow.POST_DATE} </p>
+
+			<!-- IF postrow.S_POST_UNAPPROVED or postrow.S_POST_REPORTED -->
+				<p class="rules">
+					<!-- IF postrow.S_POST_UNAPPROVED -->{UNAPPROVED_IMG} <a href="{postrow.U_MCP_APPROVE}"><strong>{L_POST_UNAPPROVED}</strong></a><br /><!-- ENDIF -->
+					<!-- IF postrow.S_POST_REPORTED -->{REPORTED_IMG} <a href="{postrow.U_MCP_REPORT}"><strong>{L_POST_REPORTED}</strong></a><!-- ENDIF -->
+				</p>
+			<!-- ENDIF -->
+
+			<div class="content" <!-- IF postrow.USER_SPECIAL_COLOR -->style="color: {postrow.USER_SPECIAL_COLOR}"<!-- ENDIF -->>{postrow.MESSAGE}</div>
+
+			<!-- IF postrow.S_HAS_ATTACHMENTS -->
+				<dl class="attachbox">
+					<dt>{L_ATTACHMENTS}</dt>
+					<!-- BEGIN attachment -->
+						<dd>{postrow.attachment.DISPLAY_ATTACHMENT}</dd>
+					<!-- END attachment -->
+				</dl>
+			<!-- ENDIF -->
+
+			<!-- IF postrow.S_DISPLAY_NOTICE --><p class="rules"><img src = "{T_IMAGESET_PATH}/images/icons/error-tiny.gif" />{L_DOWNLOAD_NOTICE}</p><!-- ENDIF -->
+			<!-- IF postrow.EDITED_MESSAGE or postrow.EDIT_REASON -->
+				<div class="notice">{postrow.EDITED_MESSAGE}
+					<!-- IF postrow.EDIT_REASON --><br /><strong>{L_REASON}:</strong> <em>{postrow.EDIT_REASON}</em><!-- ENDIF -->
+				</div>
+			<!-- ENDIF -->
+
+			<!-- IF postrow.BUMPED_MESSAGE --><div class="notice"><br /><br />{postrow.BUMPED_MESSAGE}</div><!-- ENDIF -->
+			<!-- IF postrow.SIGNATURE --><div id="sig{postrow.POST_ID}" class="signature">{postrow.SIGNATURE}</div><!-- ENDIF -->
+		<!-- ENDIF -->
+
+		</div>
+		<!-- IF not postrow.S_IGNORE_POST --><div class="back2top2"><a href="#wrap" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a></div><!-- ENDIF -->
+		<div class="clear"></div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<hr class="divider" />
+<!-- END postrow -->
+<!-- IF S_QUICK_REPLY -->
+	<!-- INCLUDE quickreply_editor.html -->
+<!-- ENDIF -->
+
+<!-- IF PAGINATION or PREVIOUS_PAGE or S_NUM_POSTS > 1 -->
+<div class="topic-actions">
+	<div class="pagination">
+		<!-- IF PREVIOUS_PAGE --><a href="{PREVIOUS_PAGE}" class="left-box {S_CONTENT_FLOW_BEGIN}">{L_PREVIOUS}</a>  &bull;  <!-- ENDIF -->
+		<!-- IF PAGE_NUMBER --><!-- IF PAGINATION --><a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{PAGE_NUMBER}</a>
+		 &bull;  <span>{PAGINATION}</span><!-- ELSE -->{PAGE_NUMBER}<!-- ENDIF --><!-- ENDIF -->
+		<!-- IF NEXT_PAGE --><a href="{NEXT_PAGE}" class="right-box {S_CONTENT_FLOW_END}">{L_NEXT}</a><!-- ENDIF -->
+	</div>
+</div>
+<!-- ENDIF -->
+
+<div class="clear"></div>
+
+<div class="inner-footer" id="viewtopic-tools">
+	<h2 class="open"></h2>
+	<div>
+	<div class="left"><div><div class="inner">
+		<!-- IF MODERATORS --><h3><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF --><!-- IF U_MCP -->  &raquo;  [&nbsp;<a href="{U_MCP}">{L_MCP}</a>&nbsp;]<!-- ENDIF --></h3>
+		<p>{MODERATORS}</p><!-- ENDIF -->
+	
+		<!-- IF S_DISPLAY_ONLINE_LIST -->
+		<h3><!-- IF U_VIEWONLINE --><a href="{U_VIEWONLINE}">{L_WHO_IS_ONLINE}</a><!-- ELSE -->{L_WHO_IS_ONLINE}<!-- ENDIF --></h3>
+		<p>{LOGGED_IN_USER_LIST}</p>
+		<!-- ENDIF -->
+	
+		<!-- IF S_TOPIC_MOD -->
+		<hr />
+		<form method="post" action="{S_MOD_ACTION}">
+		<fieldset class="quickmod">
+			<label for="quick-mod-select">{L_QUICK_MOD}:</label> {S_TOPIC_MOD} <input type="submit" value="{L_GO}" class="button2" />
+			{S_FORM_TOKEN}
+		</fieldset>
+		</form>
+		<!-- ENDIF -->
+		
+		<!-- INCLUDE jumpbox2.html -->
+		
+		<!-- IF not S_TOPIC_MOD and not MODERATORS -->
+			<!-- IF S_DISPLAY_JUMPBOX --><p><a href="{U_VIEW_FORUM}" class="{S_CONTENT_FLOW_BEGIN}" accesskey="r">{L_RETURN_TO} {FORUM_NAME}</a></p><!-- ENDIF -->
+		<!-- ENDIF -->
+	</div></div></div>
+	<div class="right"><div><div class="inner">
+		<!-- IF U_VIEW_UNREAD_POST or TOTAL_POSTS and not S_IS_BOT -->
+		<p><!-- IF U_VIEW_UNREAD_POST and not S_IS_BOT --><a href="{U_VIEW_UNREAD_POST}">{L_VIEW_UNREAD_POST}</a> &bull; <!-- ENDIF --><!-- IF TOTAL_POSTS -->{TOTAL_POSTS}<!-- ENDIF --></p>
+		<!-- ENDIF -->
+		
+		<!-- IF S_NUM_POSTS > 1 or PREVIOUS_PAGE -->
+		<hr />
+		<form id="viewtopic" method="post" action="{S_TOPIC_ACTION}">
+			<fieldset class="display-options">
+			<!-- IF not S_IS_BOT -->
+				<label>{L_DISPLAY_POSTS}: {S_SELECT_SORT_DAYS}</label><br />
+				<label>{L_SORT_BY} {S_SELECT_SORT_KEY}</label>
+				<label>{S_SELECT_SORT_DIR} <input type="submit" name="sort" value="{L_GO}" class="button2" /></label>
+			<!-- ENDIF -->
+			</fieldset>
+		</form>
+		<!-- ENDIF -->
+		
+		<!-- IF S_TOPIC_MOD or MODERATORS -->
+			<!-- IF S_DISPLAY_JUMPBOX --><hr /><p><a href="{U_VIEW_FORUM}" class="{S_CONTENT_FLOW_BEGIN}" accesskey="r">{L_RETURN_TO} {FORUM_NAME}</a></p><!-- ENDIF -->
+		<!-- ENDIF -->
+	</div></div></div>
+	</div>
+</div>
+
+<div class="clear"></div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	if (typeof jQuery != 'undefined') {
+		$("a.context-link, a.context-avatar").attr("href", "#")
+	
+		$("a.context-link, a.context-avatar").click(function (e) {
+			var id = $(this).attr('id');
+			id = id.substring(1, id.length);
+			var context = $("#" + id + "-context");
+			if ($(context).hasClass("active")) {
+				$(context).stop(true);
+				$(context).slideUp(100);
+				$(context).animate(
+    				{ opacity: 0 },
+    				{ queue: false, duration: 100 }
+ 				);
+				$(context).removeClass("active");
+				$("#u" + id).removeClass("active");
+				$("#a" + id).removeClass("active");
+			} else {
+				$(context).stop(true);
+				$(context).css('opacity', 0)
+				$(context).slideDown(200);
+				$(context).animate(
+    				{ opacity: 1 },
+    				{ queue: false, duration: 300 }
+ 				);
+				$(context).addClass("active");
+				$("#u" + id).addClass("active");
+				$("#a" + id).addClass("active");
+			}
+			e.stopPropagation();
+			return false;
+		});
+
+		$("body").click(function () { 
+			$(".wow-context.active").stop(true);
+			$(".wow-context.active").slideUp(100);
+			$(".wow-context.active").animate(
+    			{ opacity: 0 },
+    			{ queue: false, duration: 100 }
+ 			);
+			$(".wow-context.active").removeClass("active");
+			$("a.context-link.active").removeClass("active");
+			$("a.context-avatar.active").removeClass("active");
+		});
+	}
+}); 
+</script>
+
+<!-- INCLUDE overall_footer.html -->

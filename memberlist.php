@@ -1728,6 +1728,32 @@ function show_profile($data, $user_notes_enabled = false, $warn_user_enabled = f
 		}
 	}
 
+	// BEGIN PBWoW 2 MOD
+	$special_rank_title = $special_rank_image = $special_rank_image_src = $user_special_styling = $user_special_color = '';
+
+	// Just gonna copy the current 'primary' rank into the special one, so the current one can be overwritten without losing the previous one.
+	if(!empty($data['user_rank'])){
+		$special_rank_title = $rank_title;
+		$special_rank_image = $rank_img;
+		$special_rank_image_src = $rank_img_src;
+		$rank_title = $rank_img = $rank_img_src = '';
+	}
+
+	// Now we get all the 'secondary' ranks (based on post count etc.) and put them in the place of the user ranks. Switcharooh!
+	get_user_rank(0, (($user_id == ANONYMOUS) ? false : $data['user_posts']), $rank_title, $rank_img, $rank_img_src);
+	
+	check_rank_special_styling($data['user_rank'], $user_special_styling, $user_special_color);
+	$avatar_src = get_user_avatar_src($data['user_avatar'], $data['user_avatar_type']);
+
+	$template->assign_vars(array(
+		'AVATAR_SRC'		=> $avatar_src,
+		'SPECIAL_RANK_TITLE'	=> $special_rank_title,
+		'SPECIAL_RANK_IMG'		=> $special_rank_image,
+		'SPECIAL_RANK_IMG_SRC'	=> $special_rank_image_src,
+		'USER_SPECIAL_STYLING'	=> $user_special_styling,
+		'USER_SPECIAL_COLOR'	=> $user_special_color,
+	));
+	// END PBWoW 2 MOD
 	// Dump it out to the template
 	return array(
 		'AGE'			=> $age,

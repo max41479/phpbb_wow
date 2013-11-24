@@ -249,6 +249,7 @@ if (!$default)
 	return true;
 }
 
+
 // Only registered users can go beyond this point
 if (!$user->data['is_registered'])
 {

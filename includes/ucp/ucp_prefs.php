@@ -200,6 +200,10 @@ class ucp_prefs
 
 				add_form_key('ucp_prefs_view');
 
+				// BEGIN Topic Preview Mod
+				$user->add_lang('mods/info_acp_topic_preview');
+				// END Topic Preview Mod
+
 				$data = array(
 					'topic_sk'		=> request_var('topic_sk', (!empty($user->data['user_topic_sortby_type'])) ? $user->data['user_topic_sortby_type'] : 't'),
 					'topic_sd'		=> request_var('topic_sd', (!empty($user->data['user_topic_sortby_dir'])) ? $user->data['user_topic_sortby_dir'] : 'd'),
@@ -215,6 +219,9 @@ class ucp_prefs
 					'sigs'			=> request_var('sigs', (bool) $user->optionget('viewsigs')),
 					'avatars'		=> request_var('avatars', (bool) $user->optionget('viewavatars')),
 					'wordcensor'	=> request_var('wordcensor', (bool) $user->optionget('viewcensors')),
+					// BEGIN Topic Preview Mod
+					'topic_preview'	=> request_var('topic_preview', (int) $user->data['user_topic_preview']),
+					// END Topic Preview Mod
 				);
 
 				if ($submit)
@@ -253,6 +260,9 @@ class ucp_prefs
 
 							'user_topic_show_days'	=> $data['topic_st'],
 							'user_post_show_days'	=> $data['post_st'],
+							// BEGIN Topic Preview MOD
+							'user_topic_preview'		=> $data['topic_preview'],
+							// END Topic Preview MOD
 						);
 
 						$sql = 'UPDATE ' . USERS_TABLE . '
@@ -320,6 +330,10 @@ class ucp_prefs
 					'S_SIGS'			=> $data['sigs'],
 					'S_AVATARS'			=> $data['avatars'],
 					'S_DISABLE_CENSORS'	=> $data['wordcensor'],
+					// BEGIN Topic Preview MOD
+					'S_DISPLAY_TOPIC_PREVIEW'	=> $data['topic_preview'],
+					'S_TOPIC_PREVIEW'			=> $config['topic_preview_limit'],
+					// END Topic Preview MOD
 
 					'S_CHANGE_CENSORS'		=> ($auth->acl_get('u_chgcensors') && $config['allow_nocensors']) ? true : false,
 

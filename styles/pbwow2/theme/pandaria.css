@@ -1,0 +1,19 @@
+/* PBWoW Default (Pandaria) style specific markup */
+
+body {
+	background-image: url("{T_IMAGESET_PATH}/images/themes/pandaria.jpg");
+}
+
+body.bg-fixed {
+	background-attachment: scroll !important;
+}
+
+@media screen and (max-width: 999px) {
+	body {
+		background-image: url("{T_IMAGESET_PATH}/images/themes/pandaria-small.jpg");
+		background-position: 0 0;
+	}
+	body.body-top-bar {
+		background-position: 0 41px;
+	}
+}

@@ -1,0 +1,33 @@
+.sp-wrap			{ margin: 8px auto; }
+.sp-wrap			{ width: 98%; clear: both; }
+.sp-wrap .sp-wrap		{ margin: 2px auto 4px; }
+.sp-wrap, .sp-head, .sp-body	{
+	border: solid #CCCCCC; 
+	border-width: 1px 1px 1px 2px; 
+	clear: both;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+.sp-body	{ padding: 2px 6px; }
+.sp-head	{ text-align: left !important; }
+
+.sp-wrap	{ padding: 0; background: #444444; }
+.sp-head	{ border-width: 0; font-size: 11px; padding: 1px 14px 3px; margin-left: 6px; line-height: 15px; font-weight: bold; color: #D4D4D4; cursor: pointer; }
+.sp-body	{ border-width: 1px 0 0 0; display: none; font-weight: normal; background: #888888; }
+
+.clickable	{ cursor: pointer; }
+.folded	{ display: block;
+	background: transparent url(../../../tracker/addons/images/spoiler/icon_plus_1.gif) no-repeat left center; padding-left: 14px; }
+.unfolded	{ display: block;
+	background: transparent url(../../../tracker/addons/images/spoiler/icon_minus_1.gif) no-repeat left center; padding-left: 14px; }
+
+var.postImgAligned {
+	display: block;
+}
+
+img.postImg  { vertical-align: text-bottom; }
+img.postImg        { margin: 2px 2px 0 0; }
+img.postImgAligned { margin: 4px 4px 2px; }
+
+.clear     { clear: both; height: 0; font-size: 0px; line-height: 0px; overflow: hidden; }

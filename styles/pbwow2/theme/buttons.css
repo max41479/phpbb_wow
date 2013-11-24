@@ -1,0 +1,404 @@
+/* Button Styles
+---------------------------------------- */
+
+/* Rollover buttons
+   Based on: http://wellstyled.com/css-nopreload-rollovers.html
+----------------------------------------*/
+.buttons {
+	float: left;
+	width: auto;
+	height: auto;
+}
+
+/* Rollover state */
+.buttons div {
+	float: left;
+	margin: 0 5px 0 0;
+	background-position: 0 100%;
+}
+
+/* Rolloff state */
+.buttons div a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-position: 0 0;
+	position: relative;
+	overflow: hidden;
+}
+
+/* Hide <a> text and hide off-state image when rolling over (prevents flicker in IE) */
+/*.buttons div span		{ display: none; }*/
+/*.buttons div a:hover	{ background-image: none; }*/
+.buttons div span			{ position: absolute; width: 100%; height: 100%; cursor: pointer;}
+.buttons div a:hover span	{ background-position: 0 100%; }
+
+/* Sub-header (navigation bar)
+--------------------------------------------- */
+a.print, a.sendemail, a.fontsize, a.mcp-icon {
+	display: block;
+	overflow: hidden;
+	height: 18px;
+	text-indent: -5000px;
+	text-transform: capitalize;
+	text-align: left;
+	background-repeat: no-repeat;
+}
+
+a.print {
+	background-image: none;
+	width: 22px;
+}
+
+a.sendemail {
+	background-image: none;
+	width: 22px;
+}
+
+a.fontsize {
+	background-image: none;
+	background-position: 0 -1px;
+	width: 29px;
+}
+
+a.fontsize:hover {
+	background-position: 0 -20px;
+	text-decoration: none;
+}
+
+a.mcp-icon {
+	background-image: none;
+	width: 22px;
+}
+
+/* Icon images
+---------------------------------------- */
+.sitehome, .icon-faq, .icon-members, .icon-home, .icon-ucp, .icon-register, .icon-logout, .icon-bookmark,
+.icon-bump, .icon-subscribe, .icon-unsubscribe, .icon-pages, .icon-search, .icon-portal, .icon-dkp {
+	background-position: 0 50%;
+	background-repeat: no-repeat;
+	background-image: none;
+	padding: 1px 0 0 18px;
+}
+
+/* Poster profile icons
+----------------------------------------*/
+ul.profile-icons {
+	padding-top: 10px;
+	list-style: none;
+}
+
+/* Rollover state */
+ul.profile-icons li {
+	float: left;
+	margin: 0 6px 3px 0;
+	background-position: 0 100%;
+}
+
+/* Rolloff state */
+ul.profile-icons li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-position: 0 0;
+}
+
+/* Hide <a> text and hide off-state image when rolling over (prevents flicker in IE) */
+ul.profile-icons li span { display:none; }
+ul.profile-icons li a:hover { background: none; }
+
+/* Positioning of moderator icons */
+.postbody ul.profile-icons {
+	float: right;
+	width: auto;
+	padding: 3px;
+	margin: 0 0 0 0;
+}
+
+.postbody ul.profile-icons li {
+	margin: 6px 3px 0 3px;
+}
+
+/* Profile & navigation icons */
+.email-icon, .email-icon a		{ background: none top left no-repeat; }
+.aim-icon, .aim-icon a			{ background: none top left no-repeat; }
+.yahoo-icon, .yahoo-icon a		{ background: none top left no-repeat; }
+.web-icon, .web-icon a			{ background: none top left no-repeat; }
+.msnm-icon, .msnm-icon a		{ background: none top left no-repeat; }
+.icq-icon, .icq-icon a			{ background: none top left no-repeat; }
+.jabber-icon, .jabber-icon a	{ background: none top left no-repeat; }
+.pm-icon, .pm-icon a			{ background: none top left no-repeat; }
+.quote-icon, .quote-icon a		{ background: none top left no-repeat; }
+.reply-icon, .reply-icon a		{ background: none top left no-repeat; }
+
+/* Moderator icons */
+.report-icon, .report-icon a	{ background: none top left no-repeat; }
+.warn-icon, .warn-icon a		{ background: none top left no-repeat; }
+.edit-icon, .edit-icon a		{ background: none top left no-repeat; }
+.delete-icon, .delete-icon a	{ background: none top left no-repeat; }
+.info-icon, .info-icon a		{ background: none top left no-repeat; }
+
+/* Set profile icon dimensions */
+ul.profile-icons li.email-icon	{ width: {IMG_ICON_CONTACT_EMAIL_WIDTH}px; height: {IMG_ICON_CONTACT_EMAIL_HEIGHT}px; }
+ul.profile-icons li.aim-icon	{ width: {IMG_ICON_CONTACT_AIM_WIDTH}px; height: {IMG_ICON_CONTACT_AIM_HEIGHT}px; }
+ul.profile-icons li.yahoo-icon	{ width: {IMG_ICON_CONTACT_YAHOO_WIDTH}px; height: {IMG_ICON_CONTACT_YAHOO_HEIGHT}px; }
+ul.profile-icons li.web-icon	{ width: {IMG_ICON_CONTACT_WWW_WIDTH}px; height: {IMG_ICON_CONTACT_WWW_HEIGHT}px; }
+ul.profile-icons li.msnm-icon	{ width: {IMG_ICON_CONTACT_MSNM_WIDTH}px; height: {IMG_ICON_CONTACT_MSNM_HEIGHT}px; }
+ul.profile-icons li.icq-icon	{ width: {IMG_ICON_CONTACT_ICQ_WIDTH}px; height: {IMG_ICON_CONTACT_ICQ_HEIGHT}px; }
+ul.profile-icons li.jabber-icon	{ width: {IMG_ICON_CONTACT_JABBER_WIDTH}px; height: {IMG_ICON_CONTACT_JABBER_HEIGHT}px; }
+ul.profile-icons li.pm-icon		{ width: {IMG_ICON_CONTACT_PM_WIDTH}px; height: {IMG_ICON_CONTACT_PM_HEIGHT}px; }
+ul.profile-icons li.report-icon	{ width: 19px; height: 17px; }
+ul.profile-icons li.edit-icon	{ width: 16px; height: 18px; }
+ul.profile-icons li.delete-icon	{ width: 16px; height: 15px; }
+ul.profile-icons li.info-icon	{ width: 16px; height: 17px; }
+ul.profile-icons li.warn-icon	{ width: 16px; height: 16px; }
+
+/* Fix profile icon default margins */
+ul.profile-icons li.edit-icon	{ margin-top: 3px}
+ul.profile-icons li.quote-icon	{ margin: 0 0 0 6px; }
+ul.profile-icons li.reply-icon	{ margin: 0 0 0 2px; }
+
+
+/*  	
+--------------------------------------------------------------
+Colours and backgrounds for buttons.css
+-------------------------------------------------------------- */
+
+a.print {
+	background-image: url("{T_IMAGESET_PATH}/images/icons/icon_print.png");
+}
+
+a.sendemail {
+	background-image: url("{T_IMAGESET_PATH}/images/icons/icon_sendemail.png");
+}
+
+a.fontsize {
+	background-image: url("{T_IMAGESET_PATH}/images/icons/icon_fontsize.png");
+}
+
+a.mcp-icon {
+	background-image: url("{T_IMAGESET_PATH}/images/icons/biohazard-button.gif");
+}
+
+/* Icon images
+---------------------------------------- */
+.sitehome			{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_home.png"); }
+.icon-faq			{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_faq.png"); }
+.icon-members		{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_members.png"); }
+.icon-home			{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_home.png"); }
+.icon-ucp			{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_ucp.png"); }
+.icon-register		{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_register.png"); }
+.icon-logout		{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_logout.png"); }
+.icon-bookmark		{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_bookmark.png"); }
+.icon-bump			{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_bump.png"); }
+.icon-subscribe		{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_subscribe.png"); }
+.icon-unsubscribe	{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_unsubscribe.png"); }
+.icon-pages			{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_pages.png"); }
+.icon-search		{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_search.gif"); }
+.icon-portal		{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_portal.png"); background-position: 0 60%; }
+.icon-dkp			{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_dkp.gif"); background-position: 0 60%; padding-left: 21px; }
+
+/* Profile & navigation icons */
+.email-icon, .email-icon a		{ background-image: url("{IMG_ICON_CONTACT_EMAIL_SRC}"); }
+.aim-icon, .aim-icon a			{ background-image: url("{IMG_ICON_CONTACT_AIM_SRC}"); }
+.yahoo-icon, .yahoo-icon a		{ background-image: url("{IMG_ICON_CONTACT_YAHOO_SRC}"); }
+.web-icon, .web-icon a			{ background-image: url("{IMG_ICON_CONTACT_WWW_SRC}"); }
+.msnm-icon, .msnm-icon a		{ background-image: url("{IMG_ICON_CONTACT_MSNM_SRC}"); }
+.icq-icon, .icq-icon a			{ background-image: url("{IMG_ICON_CONTACT_ICQ_SRC}"); }
+.jabber-icon, .jabber-icon a	{ background-image: url("{IMG_ICON_CONTACT_JABBER_SRC}"); }
+.pm-icon, .pm-icon a			{ background-image: url("{IMG_ICON_CONTACT_PM_SRC}"); }
+
+/* Moderator icons */
+.report-icon, .report-icon a	{ background-image: url("{T_IMAGESET_PATH}/images/icons/biohazard-button.gif"); }
+.edit-icon, .edit-icon a		{ background-image: url("{T_IMAGESET_PATH}/images/icons/edit-button.gif"); }
+.delete-icon, .delete-icon a	{ background-image: url("{T_IMAGESET_PATH}/images/icons/delete-icon.gif"); } 
+.info-icon, .info-icon a		{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon-help.gif"); }
+.warn-icon, .warn-icon a		{ background-image: url("{T_IMAGESET_PATH}/images/icons/warn.gif"); } /* Need updated warn icon */
+
+
+/* Custom buttons */
+
+a.ui-button1 {
+	float: left;
+	display: inline-block;
+	height: auto;
+	overflow: visible;
+	position: relative;
+	margin: 10px 0 5px 0;
+	box-shadow: 0 5px 4px -7px rgba(0,0,0,0.2);
+}
+a.ui-button1 span {
+	color: #FFAE00;
+	display: inline-block !important;
+	height: 38px;
+	line-height: 38px;
+	font-size: 12px;
+	font-size: 1.2rem;
+	text-align: center;
+	text-transform: uppercase;
+	white-space: nowrap;
+
+	background: url("{T_IMAGESET_PATH}/images/button-1d.png") 0 0 no-repeat;
+	padding: 0 0 0 8px;
+}
+a.ui-button1 span span {
+	background-position: 100% -123px;
+	padding: 0 8px 0 8px;
+}
+a.ui-button1:hover span {
+	background-position: 0 -41px;
+	color: #FFF;
+}
+a.ui-button1:hover span span {
+	background-position: 100% -164px;
+}
+
+a.ui-button1.locked-icon span {
+	background-position: 0 -82px;
+}
+a.ui-button1.locked-icon span span {
+	background-position: 100% -205px;
+	padding-right: 34px;
+}
+a.ui-button1.post-icon span span {
+	padding-right: 30px;
+}
+a.ui-button1 div {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 30px;
+	height: 38px;
+}
+
+a.ui-button1.post-icon div {
+	background: url("{T_IMAGESET_PATH}/images/icons/icon_add.png") 30% 8px no-repeat;
+}
+a.ui-button1.locked-icon div {
+	background: url("{T_IMAGESET_PATH}/images/icons/icon_lock.png") 10% 8px no-repeat;
+}
+a.ui-button1.post-icon:hover div {
+	background-position: 30% -33px;
+}
+
+
+
+a.ui-button2 {
+	float: left;
+	display: inline-block;
+	height: auto;
+	overflow: visible;
+	position: relative;
+	box-shadow: 0 5px 4px -7px rgba(0,0,0,0.2);
+}
+a.ui-button2 span {
+	color: #FFAE00;
+	display: inline-block !important;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+	font-size: 1.2rem;
+	text-align: center;
+	text-transform: uppercase;
+	white-space: nowrap;
+
+	background: url("{T_IMAGESET_PATH}/images/button-2d.png") 0 0 no-repeat;
+	padding: 0 0 0 8px;
+}
+a.ui-button2 span span {
+	background-position: 100% -123px;
+	padding: 0 35px 0 6px;
+}
+a.ui-button2:hover span {
+	background-position: 0 -41px;
+	color: #FFF;
+}
+a.ui-button2:hover span span {
+	background-position: 100% -164px;
+}
+.inactive a.ui-button2 span, a.ui-button2.inactive span {
+	background-position: 0 -82px;
+}
+.inactive a.ui-button2 span span, a.ui-button2.inactive span span {
+	background-position: 100% -205px;
+	color: #777;
+}
+a.ui-button2 div {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	width: 35px;
+	height: 30px;
+}
+
+.quote-icon a.ui-button2 span {
+	padding: 0 0 0 8px;
+}
+.quote-icon a.ui-button2 span span {
+	padding: 0 8px 0 0;
+}
+a.ui-button2.poll-results, a.ui-button2.poll-vote {
+	width: 124px;
+	text-align: center;
+}
+a.ui-button2.poll-results span, a.ui-button2.poll-vote span {
+	padding: 0 0 0 8px;
+	width: 116px;
+}
+a.ui-button2.poll-results span span, a.ui-button2.poll-vote span span {
+	padding: 0 8px 0 0;
+	width: 108px;
+}
+.quote-icon a.ui-button2 div {
+	background: url("{T_IMAGESET_PATH}/images/icons/icon_quote.png") 50% 4px no-repeat;
+	position: inherit;
+	text-indent: -5000px;
+	text-transform: capitalize;
+	width: 25px;
+}
+.reply-icon a.ui-button2 div {
+	background: url("{T_IMAGESET_PATH}/images/icons/icon_add.png") 50% 5px no-repeat;
+}
+.reply-icon.inactive a.ui-button2 div {
+	background: url("{T_IMAGESET_PATH}/images/icons/icon_lock.png") 50% 5px no-repeat;
+}
+a.ui-button2.newpm-icon div {
+	background: url("{T_IMAGESET_PATH}/images/icons/icon_newpm.png") 50% 4px no-repeat;
+}
+a.ui-button2.pmreply-icon div {
+	background: url("{T_IMAGESET_PATH}/images/icons/icon_reply.png") 50% 4px no-repeat;
+}
+a.ui-button2.forwardpm-icon div {
+	background: url("{T_IMAGESET_PATH}/images/icons/icon_forward.png") 50% 4px no-repeat;
+}
+.quote-icon a.ui-button2:hover div {
+	background-position: 50% -37px;
+}
+.reply-icon a.ui-button2:hover div {
+	background-position: 50% -36px;
+}
+.reply-icon.inactive a.ui-button2:hover div {
+	background-position: 50% -36px;
+}
+a.ui-button2.newpm-icon:hover div {
+	background-position: 50% -37px;
+}
+a.ui-button2.pmreply-icon:hover div {
+	background-position: 50% -37px;
+}
+a.ui-button2.forwardpm-icon:hover div {
+	background-position: 50% -37px;
+}
+a.ui-button2 input {
+	width: 100%;
+	background: none;
+	text-transform: uppercase;
+	border: none;
+	font-family: inherit;
+	vertical-align: inherit;
+	color: #FFAE00;
+}
+a.ui-button2:hover input {
+	color: #FFF;
+}

@@ -1,0 +1,102 @@
+<!-- begin recruit  -->
+<div class="panel">
+<div class="inner">
+<span class="corners-top"><span></span></span>	  
+<h3 style="text-align:center">{L_RECRUITMENT_BLOCK}</h3>
+
+<table width="100%" cellpadding="2" cellspacing="1" border="0" class="forumline">
+<tr>
+<!-- BEGIN status -->
+<th class="row1" align="center"><img src="{ROOT_PATH}/images/portal/recruitblock_images/looking_icon.gif" alt="{L_CLASS}" title="{status.MESSAGE}" /></th>
+<!-- END status -->
+
+ <th style="text-align:center;"><img src="{ROOT_PATH}/images/portal/recruitblock_images/tank_icon.png" alt="{L_TANK}" title="{L_TANK}" /></th>
+ <th style="text-align:center;"><img src="{ROOT_PATH}/images/portal/recruitblock_images/dps_icon.png" alt="{L_DPS}" title="{L_DPS}" /></th>
+ <th style="text-align:center;"><img src="{ROOT_PATH}/images/portal/recruitblock_images/healer_icon.png" alt="{L_HEAL}" title="{L_HEAL}" />
+</th>
+</tr>
+<!-- BEGIN rec -->
+<script type="text/javascript"> 
+jQuery.noConflict();
+jQuery(document).ready( function() 
+{
+	jQuery("a.tool{rec.CLASSID}").tooltip(
+			{ offset: [5, 0],  
+				  effect: 'slide',  
+				  onShow: function() {this.getTrigger().fadeTo("slow", 0.55);},
+				  onHide: function() {this.getTrigger().fadeTo(300,1);}
+			}).dynamic({
+						 bottom: 
+							 { direction: 'up', bounce: true } 
+					 		});  
+
+} 
+);
+</script>
+
+	<tr style="text-align:center;">
+    <td class="row1"><span class="genmed"><img src="{ROOT_PATH}images/class_images/{rec.IMAGENAME}.png" alt="" title="{rec.CLASS}" />
+    
+    </span></td>
+    <td class="row1" align="center">
+    <!-- IF rec.S_TANK -->
+    <span style="color:{rec.TANKCOLOR}"><strong><a class="tool{rec.CLASSID}"  href="{rec.TANKFORUM}"><img src="{ROOT_PATH}images/portal/recruitblock_images/{rec.TANK}" alt="{rec.TANKTEXT}" title="{rec.TANKTEXT}" /></a>
+       	<div class="bbtooltip">
+			<div class="bbinner">
+			<div class="t"></div>
+		    	<div style="text-align: left">
+		    	<img src="{ROOT_PATH}images/class_images/{rec.IMAGENAME}.png" alt="" title="{rec.CLASS}" /> 
+		    	<span style="color:{rec.CLASSCOLOR}"><strong>{rec.CLASS}</strong></span><br/>{rec.TANKTEXT}
+				</div>
+			</div>
+			<div class="b"><div></div></div> 
+		</div> 
+    </strong></span>
+    <!-- ENDIF -->
+    </td>
+    
+    <td class="row1" align="center">
+    <!-- IF rec.S_DPS -->
+    <span style="color:{rec.DPSCOLOR}"><strong><a class="tool{rec.CLASSID}" href="{rec.DPSFORUM}">
+    <img src="{ROOT_PATH}images/portal/recruitblock_images/{rec.DPS}" alt="{rec.DPSTEXT}" title="{rec.DPSTEXT}" /></a>
+    <div class="bbtooltip">
+			<div class="bbinner">
+			<div class="t"></div>
+		    	<div style="text-align: left">
+		    	<img src="{ROOT_PATH}images/class_images/{rec.IMAGENAME}.png" alt="" title="{rec.CLASS}" /> 
+		    	<span style="color:{rec.CLASSCOLOR}"><strong>{rec.CLASS}</strong></span><br/>{rec.DPSTEXT}
+				</div>
+			</div>
+			<div class="b"><div></div></div> 
+		</div> 
+    </strong></span>
+    <!-- ENDIF -->
+    </td>
+    
+    <td class="row1" align="center">
+    <!-- IF rec.S_HEAL -->
+    <span style="color:{rec.HEALCOLOR}"><strong><a class="tool{rec.CLASSID}" href="{rec.HEALFORUM}">
+    <img src="{ROOT_PATH}images/portal/recruitblock_images/{rec.HEAL}" alt="{rec.HEALTEXT}" title="{rec.HEALTEXT}" /></a>
+    <div class="bbtooltip">
+			<div class="bbinner">
+			<div class="t"></div>
+		    	<div style="text-align: left">
+		    	<img src="{ROOT_PATH}images/class_images/{rec.IMAGENAME}.png" alt="" title="{rec.CLASS}" /> 
+		    	<span style="color:{rec.CLASSCOLOR}"><strong>{rec.CLASS}</strong></span><br/>{rec.HEALTEXT}
+				</div>
+			</div>
+			<div class="b"><div></div></div> 
+		</div> 
+    </strong></span>
+    <!-- ENDIF -->
+    </td>
+    
+    </tr>
+<!-- END rec -->
+
+
+</table>
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+<!--  end recruit  -->

@@ -1,0 +1,225 @@
+/* Link Styles
+---------------------------------------- */
+
+/* Links adjustment to correctly display an order of rtl/ltr mixed content */
+a {
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+a:link	{ color: #FFB019; text-decoration: none; }
+a:visited	{ color: #FFB019; text-decoration: none; }
+a:hover	{ color: #FFF; text-decoration: underline; }
+a:active	{ color: #00C0FF; text-decoration: none; }
+
+/* Coloured usernames */
+.username-coloured {
+	font-weight: bold;
+	display: inline !important;
+	padding: 0 !important;
+}
+
+/* Links on gradient backgrounds */
+.navbg a:link, .forumbg .header a:link, .forabg .header a:link, th a:link {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.navbg a:visited, .forumbg .header a:visited, .forabg .header a:visited, th a:visited {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.navbg a:hover, .forumbg .header a:hover, .forabg .header a:hover, th a:hover {
+	color: #FFB019;
+	text-decoration: underline;
+}
+
+.navbg a:active, .forumbg .header a:active, .forabg .header a:active, th a:active {
+	color: #00C0FF;
+	text-decoration: none;
+}
+
+/* Links for forum/topic lists */
+a.forumtitle {
+	font-family: "Trebuchet MS", Helvetica, Arial, Sans-serif;
+	font-size: 1.2em;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.forumtitle:hover {
+	text-decoration: underline;
+}
+
+a.topictitle {
+	font-family: "Trebuchet MS", Helvetica, Arial, Sans-serif;
+	font-size: 1.3em;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a.topictitle:hover {
+	text-decoration: underline;
+}
+
+
+/* Post body links */
+.postlink {
+	text-decoration: none;
+	border-bottom: 1px dotted #FFB019;
+	padding-bottom: 0;
+}
+
+.postlink:visited {
+	color: #D38D01;
+	border-bottom-color: #D38D01;
+}
+
+.postlink:active {
+	color: #00C0FF;
+	border-bottom-color: #FFF;
+}
+
+.postlink:hover {
+	text-decoration: none;
+	color: #FFF;
+	border-bottom-color: #00C0FF;
+}
+
+.signature a, .signature a:visited, .signature a:hover, .signature a:active {
+	border: none;
+	text-decoration: underline;
+	background-color: transparent;
+}
+
+/* Profile links */
+.postprofile a:link, .postprofile a:visited, .postprofile dt.author a {
+	font-weight: bold;
+	/*color: #FFB019;*/
+	text-decoration: none;
+}
+
+.postprofile a:hover, .postprofile dt.author a:hover {
+	text-decoration: none;
+	color: #FFF !important;
+}
+
+.postprofile dt.author a {
+	font-size: 12px;
+	font-size: 1.2rem;
+}
+
+/* CSS spec requires a:link, a:visited, a:hover and a:active rules to be specified in this order. */
+/* See http://www.phpbb.com/bugs/phpbb3/59685 */
+.postprofile a:active {
+	font-weight: bold;
+	color: #00C0FF;
+	text-decoration: none;
+}
+
+
+/* Profile searchresults */	
+.search .postprofile a {
+	text-decoration: none; 
+	font-weight: normal;
+}
+
+.search .postprofile a:hover {
+	text-decoration: underline; 
+}
+
+/* Back to top of page */
+.back2top {
+	clear: both;
+	height: 11px;
+	text-align: right;
+}
+.back2top2 {
+	position: absolute;
+	bottom: 2px;
+	right: 3px;
+}
+
+a.top {
+	background: url("{T_IMAGESET_PATH}/images/icons/arrow_up_big.png") no-repeat 1px 3px;
+	text-decoration: none;
+	width: 15px;
+	height: 15px;
+	display: block;
+	float: right;
+	overflow: hidden;
+	text-indent: 20px;
+	text-transform: capitalize;
+}
+a.top2 {
+	background: url("{T_IMAGESET_PATH}/images/icons/arrow_up_big.png") no-repeat 0px 3px;
+	text-decoration: none;
+	padding-left: 15px;
+	font-size: 11px;
+	font-size: 1.1rem;
+}
+a.top:hover {
+	background-position: 1px -48px;
+}
+a.top2:hover {
+	background-position: 0px -48px;
+}
+
+/* Arrow links  */
+a.up		{ background: url("{T_IMAGESET_PATH}/images/icons/arrow_up.png") no-repeat 0 3px transparent; }
+a.down		{ background: url("{T_IMAGESET_PATH}/images/icons/arrow_down.png") no-repeat 100% 3px transparent; }
+a.left		{ background: url("{T_IMAGESET_PATH}/images/icons/arrow_left.png") no-repeat 3px 3px transparent; }
+a.right		{ background: url("{T_IMAGESET_PATH}/images/icons/arrow_right.png") no-repeat 95% 3px transparent; }
+
+a.up, a.up:link, a.up:active, a.up:visited {
+	padding-left: 12px;
+	text-decoration: none;
+	border-bottom-width: 0;
+}
+
+a.up:hover {
+	background-position: 0 -47px;
+	background-color: transparent;
+}
+
+a.down, a.down:link, a.down:active, a.down:visited {
+	padding-right: 12px;
+}
+
+a.down:hover {
+	background-position: 100% -47px;
+	text-decoration: none;
+}
+
+a.left, a.left:active, a.left:visited {
+	padding-left: 15px;
+}
+
+a.left:hover {
+	text-decoration: none;
+	background-position: 0 -47px;
+}
+
+a.right, a.right:active, a.right:visited {
+	padding-right: 15px;
+}
+
+a.right:hover {
+	color: #FFF;
+	text-decoration: none;
+	background-position: 100% -47px;
+}
+
+/* invisible skip link, used for accessibility  */
+.skiplink {
+	position: absolute;
+	left: -999px;
+	width: 990px;
+}
+
+/* Feed icon in forumlist_body.html */
+a.feed-icon-forum {
+	float: right;
+	margin: 3px;
+}

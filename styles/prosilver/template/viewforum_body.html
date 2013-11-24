@@ -139,7 +139,7 @@
 
 		<li class="row<!-- IF topicrow.S_ROW_COUNT is even --> bg1<!-- ELSE --> bg2<!-- ENDIF --><!-- IF topicrow.S_POST_GLOBAL --> global-announce<!-- ENDIF --><!-- IF topicrow.S_POST_ANNOUNCE --> announce<!-- ENDIF --><!-- IF topicrow.S_POST_STICKY --> sticky<!-- ENDIF --><!-- IF topicrow.S_TOPIC_REPORTED --> reported<!-- ENDIF -->">
 			<dl class="icon" style="background-image: url({topicrow.TOPIC_FOLDER_IMG_SRC}); background-repeat: no-repeat;">
-				<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> title="{topicrow.TOPIC_FOLDER_IMG_ALT}"><!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+				<dt<!-- IF topicrow.TOPIC_ICON_IMG and S_TOPIC_ICONS --> style="background-image: url({T_ICONS_PATH}{topicrow.TOPIC_ICON_IMG}); background-repeat: no-repeat;"<!-- ENDIF --> id="t{topicrow.TOPIC_ID}" title="<!-- IF topicrow.TOPIC_PREVIEW_TEXT -->{topicrow.TOPIC_PREVIEW_TEXT}<!-- ELSE -->{topicrow.TOPIC_FOLDER_IMG_ALT}<!-- ENDIF -->"><!-- IF topicrow.S_UNREAD_TOPIC --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
 					<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
 					<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --><br />
 					<!-- IF topicrow.PAGINATION --><strong class="pagination"><span>{topicrow.PAGINATION}</span></strong><!-- ENDIF -->
@@ -151,6 +151,19 @@
 					<!-- IF not S_IS_BOT --><a href="{topicrow.U_LAST_POST}">{LAST_POST_IMG}</a> <!-- ENDIF --><br />{topicrow.LAST_POST_TIME}</span>
 				</dd>
 			</dl>
+			<!-- IF topicrow.TOPIC_PREVIEW_TEXT and S_JQUERY_TOPIC_PREVIEW -->
+				<div id="topic_preview_t{topicrow.TOPIC_ID}" style="display:none;">
+					<!-- IF topicrow.TOPIC_PREVIEW_TEXT2 --><strong>{L_FIRST_POST}</strong><hr /><!-- ENDIF -->
+					<!-- IF topicrow.TOPIC_PREVIEW_AVATAR --><div class="topic_preview_avatar">{topicrow.TOPIC_PREVIEW_AVATAR}</div><!-- ENDIF -->
+					<div class="topic_preview_text_first"></div>
+					<!-- IF topicrow.TOPIC_PREVIEW_TEXT2 -->
+						<div class="topic_preview_break"></div>
+						<strong>{L_LAST_POST}</strong><hr />
+						<!-- IF topicrow.TOPIC_PREVIEW_AVATAR2 --><div class="topic_preview_avatar">{topicrow.TOPIC_PREVIEW_AVATAR2}</div><!-- ENDIF -->
+						<div class="topic_preview_text_last">{topicrow.TOPIC_PREVIEW_TEXT2}</div>
+					<!-- ENDIF -->
+				</div>
+			<!-- ENDIF -->
 		</li>
 
 	<!-- IF topicrow.S_LAST_ROW -->

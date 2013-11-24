@@ -105,3 +105,18 @@ dl.icon {
 	white-space: nowrap;
 	*min-width: 50%;
 }
+
+.quick-style {
+	position: absolute;
+	color: #CEE0F7;
+	margin: 8px -189px;
+	z-index: 10;
+}
+.quick-style span {
+	font-size: 9px;
+	font-size: 0.9rem;
+	vertical-align: middle;
+}
+.quick-style select {
+	font-size: 0.9em;
+}

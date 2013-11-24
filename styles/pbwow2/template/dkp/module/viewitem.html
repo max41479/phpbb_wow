@@ -1,0 +1,61 @@
+<div class="forabg" >
+<span class="corners-top"><span></span></span>
+<ul class="topiclist">
+<li class="header">
+
+<div style="float: left; width:50%; white-space:nowrap;">
+	<h1 style = "color:#dfc065"><span style="color:{COLORCODE}"><strong>{L_PURCHASE_HISTORY_FOR}</strong></span></h1>
+</div>
+
+</li>
+</ul>
+<span class="corners-bottom"><span></span></span>
+</div>
+
+<div class="forumbg forumbg-table">
+<div class="inner">
+<span class="corners-top"><span></span></span>
+
+<table class="table1" width="100%" cellspacing="0">
+<thead>
+  <tr style="color:white;">
+    <th style="text-align:left; white-space:nowrap; width:20%" >&nbsp;</th>
+    <th style="text-align:left; white-space:nowrap; width:30%" >{L_BUYER}</th>
+    <th style="text-align:left; white-space:nowrap; width:40%" >{L_RAID}</th>
+    <th style="text-align:left; white-space:nowrap; width:10%" >{L_VALUE}</th>
+</tr>
+</thead>
+<tfoot>
+ <tr style="color:white;">
+    <th class="footer">{VIEWITEM_FOOTCOUNT}</th>
+</tr>
+</tfoot>	
+<tbody>
+	  <!-- BEGIN items_row -->
+	  <!-- IF items_row.S_ROW_COUNT is even -->
+	  <tr style="width:900;" class="bg1">
+	  <!-- ELSE -->
+	  <tr style="width:900;" class="bg2">
+	  <!-- ENDIF -->   
+	    <td>{items_row.DATE}</td>
+	    <td>
+		    <span><img src="{ROOT_PATH}images/class_images/{items_row.CLASSIMAGE}.png" alt="class" width="20" height="20"></img>&nbsp;
+		    <strong><a style="color:{items_row.CLASSCOLOR}" href="{items_row.U_VIEW_BUYER}">{items_row.BUYER}</a></strong></span>
+	    </td>
+	    <td><a href="{items_row.U_VIEW_RAID}">{items_row.RAID}</a></td>
+	    <td>{items_row.VALUE}</td>
+	  </tr>
+	  <!-- END items_row -->
+</tbody>
+
+</table>
+
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+
+
+<!-- 
+<strong>{L_RAIDVALUE}</strong>: <span class="positive">{RAIDVAL} {POINTNAME}</span>
+ -->
+

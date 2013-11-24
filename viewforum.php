@@ -368,6 +368,15 @@ if ($user->data['is_registered'])
 	}
 }
 
+// BEGIN Topic Preview Mod
+if(!class_exists('phpbb_topic_preview'))
+{
+	include($phpbb_root_path . 'includes/topic_preview.' . $phpEx);
+}
+$topic_preview = new phpbb_topic_preview();
+$sql_array = $topic_preview->modify_sql_array($sql_array);
+// END Topic Preview Mod
+
 if ($forum_data['forum_type'] == FORUM_POST)
 {
 	// Obtain announcements ... removed sort ordering, sort by time in all cases
@@ -497,6 +506,9 @@ if (sizeof($shadow_topic_list))
 	$sql = 'SELECT *
 		FROM ' . TOPICS_TABLE . '
 		WHERE ' . $db->sql_in_set('topic_id', array_keys($shadow_topic_list));
+	// BEGIN Topic Preview Mod
+	$sql = $topic_preview->modify_sql($sql);
+	// END Topic Preview Mod
 	$result = $db->sql_query($sql);
 
 	while ($row = $db->sql_fetchrow($result))
@@ -559,6 +571,33 @@ $template->assign_vars(array(
 
 $topic_list = ($store_reverse) ? array_merge($announcement_list, array_reverse($topic_list)) : array_merge($announcement_list, $topic_list);
 $topic_tracking_info = $tracking_topics = array();
+// BEGIN PBWoW 2 MOD for topic-preview mod
+$id_cache = array();
+
+if (sizeof($topic_list))
+{
+	foreach ($rowset as $row)
+	{
+		if(!in_array($row['topic_poster'],$id_cache))
+		{
+			($id_cache[] = $row['topic_poster']);
+		}
+		if(!in_array($row['topic_last_poster_id'],$id_cache))
+		{
+			($id_cache[] = $row['topic_last_poster_id']);
+		}
+	}
+
+	if ($config['load_cpf_viewtopic'])
+	{
+		if(!class_exists('custom_profile')) {
+			include($phpbb_root_path . 'includes/functions_profile_fields.' . $phpEx);
+		}
+		$cp = new custom_profile();
+		$profile_fields_cache = $cp->generate_profile_fields_template('grab', $id_cache);
+	}
+}
+// END PBWoW 2 MOD for topic-preview mod
 
 // Okay, lets dump out the page ...
 if (sizeof($topic_list))
@@ -705,6 +744,15 @@ if (sizeof($topic_list))
 
 			'S_TOPIC_TYPE_SWITCH'	=> ($s_type_switch == $s_type_switch_test) ? -1 : $s_type_switch_test)
 		);
+
+		// BEGIN Topic Preview Mod
+		$topic_preview->display_topic_preview($row, 'topicrow');
+		// END Topic Preview Mod
+		// BEGIN PBWoW 2 MOD for topic-preview mod
+		if (function_exists('modify_topic_preview') && isset($profile_fields_cache)) {
+			modify_topic_preview($row, 'topicrow', $profile_fields_cache, $topic_preview->tp_avatars);
+		}
+		// END PBWoW 2 MOD for topic-preview mod
 
 		$s_type_switch = ($row['topic_type'] == POST_ANNOUNCE || $row['topic_type'] == POST_GLOBAL) ? 1 : 0;
 

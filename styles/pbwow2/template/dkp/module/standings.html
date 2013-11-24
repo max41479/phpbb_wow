@@ -1,0 +1,130 @@
+<form method="post" action="{F_MEMBERS}">
+<div class="forabg" >
+<span class="corners-top"><span></span></span>
+<ul class="topiclist">
+<li class="header">
+
+<div style="float: left; width:10%; white-space:nowrap;">
+<h1 style="color:#dfc065">{L_LISTMEMBERS_TITLE}</h1>
+</div>
+<div style="float: left; width:40%">
+<br/>
+<div style="color:#FFFFDD; text-align:right; white-space:nowrap;" >{L_POOL}:
+      <select name="pool" class="input" onchange="javascript:form.submit();">
+        <!-- BEGIN pool_row -->
+        <option value="{pool_row.VALUE}"{pool_row.SELECTED}{pool_row.DISABLED}>{pool_row.OPTION}</option>
+        <!-- END pool_row -->
+      </select>
+</div>
+</div>
+<div style="float: left; width:50%">
+<br/>
+<div style="color:#FFFFDD; text-align:left; white-space:nowrap;">{L_FILTER}:
+      <select name="filter" class="input" onchange="javascript:form.submit();">
+        <!-- BEGIN filter_row -->
+        <option value="{filter_row.VALUE}"{filter_row.SELECTED}{filter_row.DISABLED}>{filter_row.OPTION}</option>
+        <!-- END filter_row -->
+      </select>
+</div>
+</div>
+</li>
+</ul>
+<span class="corners-bottom"><span></span></span>
+</div>
+
+<!-- INCLUDE dkp/module/leaderboard.html -->
+
+<div class="forumbg forumbg-table">
+<div class="inner">
+   <span class="corners-top"><span></span></span>
+   
+<!-- IF DKPPAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
+		<span>{DKPPAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+   
+	<table class="table1" width="100%" border="0" cellspacing="0" cellpadding="0">
+	<thead>
+	  <tr>
+	    <th style="text-align: center; width:4%;"><a href="{O_CLASS}">{L_CLASS}</a></th>
+	    <th style="text-align: left; width:10%;"><a href="{O_NAME}">{L_NAME}</a></th>
+	    <th style="text-align: center; width:5%;"><a href="{O_LEVEL}">{L_LEVEL}</a></th>
+	    <th style="text-align: center; width:5%;"><a href="{O_RANK}">{L_RANK}</a></th>
+	    <!-- IF ! S_QUERYBYPOOL --><td style="text-align: center;"><a href="{O_RANK}">{L_POOL}</a></td><!-- ENDIF -->
+	    <!-- IF S_SHOWEPGP -->
+	    <th style="text-align: right; width:9%;"><a href="{O_EP}">{L_EP}</a></th>
+	    <th style="text-align: right; width:9%;"><a href="{O_GP}">{L_GP}</a></th>
+	    <th style="text-align: right; width:9%;"><a href="{O_PR}">{L_PR}</a></th>
+	    
+	    <!-- ELSE -->
+	    <th style="text-align: right; width:9%;"><a href="{O_EARNED}">{L_EARNED}</a></th>
+	    <th style="text-align: right; width:9%;"><a href="{O_SPENT}">{L_SPENT}</a></th>
+	    <th style="text-align: right; width:9%;"><a href="{O_ADJUSTMENT}">{L_ADJUSTMENT}</a></th>
+	    <th style="text-align: right; width:10%;"><a href="{O_CURRENT}">{L_CURRENT}</a></th>
+	    <!-- ENDIF -->
+	    <th style="text-align: right; width:10%;"><a href="{O_LASTRAID}">{L_LASTRAID}</a></th>
+	    <th style="text-align: right; width:10%;"><a href="{O_RAIDS_P1_DAYS}">{RAIDS_P1_DAYS}</a></th>
+	    <th style="text-align: center; width:3%;"><a href="{O_CLASS}">#</a></th>
+	  </tr>
+	</thead>
+	
+	<tfoot>
+	<tr>
+	<th style="text-align: left; white-space: nowrap; color:white;" colspan="0">{FOOTCOUNT}</th>
+	</tr>
+	</tfoot>
+	
+	<tbody>
+	  <!-- BEGIN members_row -->
+	  <!-- IF members_row.S_ROW_COUNT is even -->
+	  <tr class="row bg1">
+	  <!-- ELSE -->
+	  <tr class="row bg2">
+	  <!-- ENDIF -->
+	    <td style="white-space: nowrap;"><!-- IF members_row.S_RACE_IMAGE_EXISTS --><img src="{members_row.RACE_IMAGE}" alt="" />&nbsp;<!-- ELSE --><!-- ENDIF --><!-- IF members_row.S_CLASS_IMAGE_EXISTS --><img src="{members_row.CLASS_IMAGE}" alt="{members_row.CLASS}" /><!-- ELSE -->&nbsp;<!-- ENDIF -->&nbsp;</td>
+	    <td><a style="white-space: nowrap; color:{members_row.COLORCODE}" href="{members_row.U_VIEW_MEMBER}"><strong>{members_row.NAME}</strong></a> </td>
+	    <td style="text-align: center;">{members_row.LEVEL}</td>
+	    <td style="text-align: center;"><!-- IF members_row.RANK_HIDE == '1' --><em><!-- ENDIF --><a href="{members_row.RANK_SEARCH}">{members_row.RANK_NAME}</a><!-- IF members_row.RANK_HIDE == '1' --></em><!-- ENDIF --></td>
+	     <!-- IF ! S_QUERYBYPOOL --><td style="text-align: center;">&nbsp;({members_row.DKPNAME})</td><!-- ENDIF -->
+	     <!-- IF S_SHOWEPGP -->
+	    <td style="text-align: right;"><span class="positive">{members_row.EP}</span></td>
+	    <td style="text-align: right;" ><span class="negative">{members_row.GP}</span></td>
+	    <td style="text-align: right;"><span class="{members_row.DKPCOLOUR2}"><strong>{members_row.PR}</strong></span></td>
+	     <!-- ELSE -->
+	    <td style="text-align: right;"><span class="positive">{members_row.EARNED}</span></td>
+	    <td style="text-align: right;" ><span class="negative">{members_row.SPENT}</span></td>
+		<td style="text-align: right;">{members_row.ADJUSTMENT}</td>
+	    <td style="text-align: right;"><span class="{members_row.DKPCOLOUR2}"><strong>{members_row.CURRENT}</strong></span></td>   
+	     <!-- ENDIF -->        
+	    <td style="text-align: right;">{members_row.LASTRAID}</td>
+	    <td style="text-align: right;">{members_row.RAIDS_P1_DAYS}%</td>
+	    <td><input type="checkbox" name="compare_ids[]" value="{members_row.ID}" /></td>
+	
+	  </tr>
+	  <!-- END members_row -->	
+	</tbody>
+</table>
+
+<!-- IF DKPPAGINATION -->  
+<div class="pagination">
+		<a href="#" onclick="jumpto(); return false;" title="{L_JUMP_TO_PAGE}">{S_ON_PAGE}</a>
+		<span>{DKPPAGINATION}<br /><br /></span>
+</div>
+<!-- ENDIF -->
+
+<span class="corners-bottom"><span></span></span>
+</div>
+</div>
+	
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+ 		<td style="text-align: center;">
+ 		<input class="button2" type="submit" name="compare" id="compare" value="{L_COMPARE_MEMBERS}"  />
+	</td>
+</tr>
+</table>
+
+</form>
+
