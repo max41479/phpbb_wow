@@ -169,7 +169,8 @@ jQuery(document).ready(
 			</ul>
 			<!-- ENDIF -->
 			<ul class="linklist rightside" style="clear:right">
-				<!-- IF U_PORTAL --><li class="icon-portal"><a href="{U_PORTAL}">{L_PORTAL}</a></li><!-- ENDIF -->
+				<!-- IF U_PORTAL --><li class="icon-home"><a href="{U_PORTAL}">{L_PORTAL}</a></li><!-- ENDIF -->
+				<li class="icon-portal"><a href="{U_INDEX}"><span>{L_INDEX}</span></a>
 				<!-- IF U_DKP --><!--<li class="icon-dkp"><a href="{U_DKP}">{L_DKPPAGE}</a></li>--><!-- ENDIF -->
 				<!-- IF HEADERLINKS_CODE -->{HEADERLINKS_CODE}<!-- ENDIF -->
 				<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>
@@ -256,12 +257,14 @@ jQuery(document).ready(
 	
 		<div id="breadcrumb">
 			<ul class="linklist navlinks">
-				<li class="nav-link icon-home"><a href="{U_INDEX}" accesskey="h"><span>{L_INDEX}</span></a>
+				<li class="nav-link icon-home"><a href="{U_PORTAL}">{L_PORTAL}</a></li>
+				<li class="nav-link"><a href="{U_INDEX}" accesskey="h"><span>{L_INDEX}</span></a>
 				<!-- IF S_NAVMENU -->
 				<div class="nav-popup"><ul>
-					<!-- IF U_PORTAL --><li><a href="{U_PORTAL}">{L_PORTAL}</a></li><!-- ENDIF -->
-					<!-- IF U_DKP --><li><a href="{U_DKP}">{L_DKPPAGE}</a></li><!-- ENDIF -->
+					<!-- IF U_PORTAL --><!--<li><a href="{U_PORTAL}">{L_PORTAL}</a></li>--><!-- ENDIF -->
+					<!-- IF U_DKP --><!--<li><a href="{U_DKP}">{L_DKPPAGE}</a></li>--><!-- ENDIF -->
 					<!-- IF U_MCP --><li><a href="{U_MCP}">{L_MCP}</a></li><!-- ENDIF -->
+					<!-- IF U_ACP --><li><a href="{U_ACP}">{L_ACP}</a></li><!-- ENDIF -->
 					<!-- IF S_USER_LOGGED_IN --><li><a href="{U_PROFILE}">{L_PROFILE}</a></li><!-- ENDIF -->
 					<!-- IF S_DISPLAY_SEARCH --><li><a href="{U_SEARCH}">{L_SEARCH_ADV}</a></li><!-- ENDIF -->
 					<li><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a></li>
