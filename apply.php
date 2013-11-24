@@ -873,7 +873,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 		{
 			case 'title':
 					
-				$apply_post->message .= $newline . '[color=#1a1a1a][size=150][b]' . strtoupper($row['header']) . ' [/b][/size][/color]' . $newline . $newline;
+				$apply_post->message .= $newline . '[size=150][b]' . strtoupper($row['header']) . ' [/b][/size]' . $newline . $newline;
 				break;
 					
 			case 'charname':
@@ -899,13 +899,13 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 					{
 						$board_url = generate_board_url() . '/';
 						$apply_post->message .= '[shadow=black][size=150][b][color='. $candidate->class_color .']'. $candidate->name . '[/color][/b][/size][/shadow]';
-						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']Main/off specs: [/color][/b]';
-						$apply_post->message .= '[color='. $apply_post->answercolor .']' . $candidate->primary['spec'] . '/' . $candidate->secondary['spec'] . '[/color]';
-						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']';
-						$apply_post->message .= $user->lang['APPLY_ACP_REALM'] . ':[/color][/b] ';
-						$apply_post->message .= '[color='. $apply_post->answercolor .']' . $candidate->region . '/' . $candidate->realm . '[/color]';
-						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']Гильдия: [/color][/b][color='. $apply_post->answercolor .']' . $candidate->guild . '[/color]';
-						$apply_post->message .= $newline . '[b][color='. $apply_post->questioncolor .']Ссылки: [/color][/b]';
+						$apply_post->message .= $newline . '[b]Main/off specs: [/b]';
+						$apply_post->message .= $candidate->primary['spec'] . '/' . $candidate->secondary['spec'];
+						$apply_post->message .= $newline . '[b]';
+						$apply_post->message .= $user->lang['APPLY_ACP_REALM'] . ':[/b] ';
+						$apply_post->message .= $candidate->region . '/' . $candidate->realm;
+						$apply_post->message .= $newline . '[b]Гильдия: [/b]' . $candidate->guild;
+						$apply_post->message .= $newline . '[b]Ссылки: [/b]';
 						$apply_post->message .= ' [url=' . $candidate->url  . ']' . '[img]' . $board_url . 'images/wow.ico[/img][/url]';
 						$apply_post->message .= ' [url=' . $candidate->wowprogressurl  . ']' . '[img]' . $board_url . 'images/wowprogress.ico[/img][/url]';
 						$apply_post->message .= ' [url=' . $candidate->wowheroesurl  . ']'. '[img]' . $board_url . 'images/wowheroes.ico[/img][/url]';
@@ -959,19 +959,18 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 			case 'Checkboxes':
 				if(isset($_POST['templatefield_' . $row['qorder']]) )
 				{
-					$apply_post->message .= '[size=100][color='. $apply_post->questioncolor .'][b]' . $row['header'] . ': [/b][/color][/size]';
+					$apply_post->message .= '[size=100][b]' . $row['header'] . ': [/b][/size]';
 					$cb_countis = count( request_var('templatefield_' . $row['qorder'], array(0 => 0)) );
 					$cb_count = 0;
 
 					if((int) $row['showquestion'] == 1)
 					{
-						$apply_post->message .= '[size=100][color='. $apply_post->questioncolor .'][b]' . $row['question'] . ': [/b][/color][/size]';
+						$apply_post->message .= '[size=100][b]' . $row['question'] . ': [/b][/size]';
 						$apply_post->message .= $newline;
 					}
 
 					$checkboxes = utf8_normalize_nfc( request_var('templatefield_' . $row['qorder'], array(0 => '') , true));
 						
-					$apply_post->message .= '[color='. $apply_post->answercolor .']';
 					foreach($checkboxes as $value)
 					{
 						$apply_post->message .= $value;
@@ -981,7 +980,6 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 						}
 						$cb_count++;
 					}
-					$apply_post->message .= '[/color]';
 					$apply_post->message .= $newline . $newline;
 						
 				}
@@ -996,12 +994,10 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 					$fieldcontents = utf8_normalize_nfc(request_var('templatefield_' . $row['qorder'], ' ', true));
 					if((int) $row['showquestion'] == 1)
 					{
-						$apply_post->message .= '[size=100][color='. $apply_post->questioncolor .'][b]' . $row['question'] . ': [/b][/color][/size]';
+						$apply_post->message .= '[size=100][b]' . $row['question'] . ': [/b][/size]';
 						$apply_post->message .= $newline;
 					}
-					$apply_post->message .= '[color='. $apply_post->answercolor .'] ';
 					$apply_post->message .=	$fieldcontents;
-					$apply_post->message .= '[/color]';
 					$apply_post->message .= $newline . $newline;
 				}
 				break;
