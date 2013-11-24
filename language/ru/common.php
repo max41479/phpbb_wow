@@ -685,6 +685,7 @@ $lang = array_merge($lang, array(
 	'USER_NEW_PERMISSION_DISALLOWED'	=> 'Вам не разрешено использовать данную возможность. Возможно, вы недавно зарегистрировались на конференции или вам необходимо проявить больше активности на ней, чтобы получить такое право.',
 
 	'VARIANT_DATE_SEPARATOR'	=> ' / ',	// Used in date format dropdown, eg: "Today, 13:37 / 01 Jan 2007, 13:37" ... to join a relative date with calendar date
+	'STREAMS'					=> 'Стримы',
 	'VIDEO'						=> 'Видео',
 	'VIEWED'					=> 'Просмотров:',
 	'VIEWING_FAQ'				=> 'Просмотр FAQ',
