@@ -52,3 +52,9 @@ my personal preference so to speak */
 .imgltr {
 padding: 0px 7px 7px 7px;
 }
+
+.cell.stream_online { 
+	background: url("{T_IMAGESET_PATH}/online.gif") no-repeat 0 0 !important;
+	background-position-x: 17px !important;
+	background-position-y: center !important;
+}

@@ -80,7 +80,8 @@ function twitch_checker($user_name)
 	if (empty($json_array))
 	{
 		$stream_online = false;
-	}else if (strtolower($json_array[0]['name']) == strtolower("live_user_$user_name")) 
+	}
+	else if (strtolower($json_array[0]['name']) == strtolower("live_user_$user_name")) 
 	{
 		$stream_online = true;
 	}
@@ -95,7 +96,8 @@ function cybergame_checker($user_name)
 	if (empty($json_array)) 
 	{
 		$stream_online = false;
-	}else if (($json_array['online']) == ("1"))
+	}
+	else if (($json_array['online']) == ("1"))
 	{
 		$stream_online = true;
 	}
@@ -111,7 +113,8 @@ function goodgame_checker($user_name)
 	if (empty($json_array)) 
 	{
 		$stream_online = false;
-	}else if (($json_array[$key[0]]['status']) == ("Live"))
+	}
+	else if (($json_array[$key[0]]['status']) == ("Live"))
 	{
 		$stream_online = true;
 	}

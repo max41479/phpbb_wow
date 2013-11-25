@@ -10,7 +10,8 @@ function gen_links()
 		'U_DKP'			=> append_sid("{$phpbb_root_path}dkp.$phpEx", 'page=standings'),
 		'L_DKPPAGE'		=> $user->lang['DKP'],
 		'L_BBDKP'		=> $user->lang['FOOTERBBDKP'],
-		'U_ABOUT'		=> append_sid("{$phpbb_root_path}aboutbbdkp.$phpEx")
+		'U_ABOUT'		=> append_sid("{$phpbb_root_path}aboutbbdkp.$phpEx"),
+		'U_STREAMS'		=> append_sid("{$phpbb_root_path}streams.$phpEx"),
 	));
 }
 
