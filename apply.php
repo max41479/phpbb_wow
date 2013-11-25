@@ -899,7 +899,7 @@ function make_apply_posting($post_data, $current_time, $candidate_name, $templat
 					{
 						$board_url = generate_board_url() . '/';
 						$apply_post->message .= '[shadow=black][size=150][b][color='. $candidate->class_color .']'. $candidate->name . '[/color][/b][/size][/shadow]';
-						$apply_post->message .= $newline . '[b]' . lang['APPLY_ACP_SPEC'] . ': [/b]';
+						$apply_post->message .= $newline . '[b]' . $user->lang['APPLY_ACP_SPEC'] . ': [/b]';
 						$apply_post->message .= $candidate->primary['spec'] . '/' . $candidate->secondary['spec'];
 						$apply_post->message .= $newline . '[b]';
 						$apply_post->message .= $user->lang['APPLY_ACP_REALM'] . ':[/b] ';
