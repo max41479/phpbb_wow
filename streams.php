@@ -157,7 +157,6 @@ page_header($page_title);
 	
 	
 	$goodgame_stream_id = goodgame_get_stream_id($channel);
-	//var_dump($goodgame_stream_id);
 	$title = $user->lang['STREAMS'];
 	$template->assign_vars(array(
 		'STREAMER_NAME'			=> $streamer_name,
@@ -169,11 +168,16 @@ page_header($page_title);
 		'CHANNEL'				=> $channel,
 	));
 
-
-
-
-//--------------------------------------
-
+// Recruitment Block - Start
+	include_once($phpbb_root_path . 'recruit/recruit_block.'.$phpEx);
+	$recruit_config = recruit_config();
+	
+	if ($recruit_config['show_block'])
+	{
+		$template->assign_var('S_DISPLAY_RECRUIT', true);
+	}
+// Recruitment Block - End
+	
 $template->set_filenames(array(
     'body' => 'streams_body.html',
 ));
