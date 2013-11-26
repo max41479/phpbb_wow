@@ -48,7 +48,7 @@ $lang = array_merge($lang, array(
 	'TOPIC_PREVIEW_AVATARS'			=> 'Display user avatars (in jQuery Topic Previews)',
 	'TOPIC_PREVIEW_LAST_POST'		=> 'Display “Last post” text (in jQuery Topic Previews)',
 	'CHARS'							=> 'Characters',
-	'FIRST_POST'					=> 'First post',
+	'FIRST_POST'					=> 'Первое сообщение',
 ));
 
 ?>
