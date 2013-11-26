@@ -118,7 +118,7 @@ page_header($page_title);
 	}
 	else
 	{
-		$stream_id = $_GET['stream_id'];
+		$stream_id = (int) $_GET['stream_id'];
 		$sql_arr = array(
 			'SELECT'	=> 's.*, f.pf_character',
 			'FROM'		=> array(
