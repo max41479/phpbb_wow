@@ -124,3 +124,136 @@ dl.icon {
 .stream-content {
 color: white;
 }
+
+/*
+* Streams page styles
+*/
+
+.stream_online { 
+	background: url("{T_IMAGESET_PATH}/online.gif") no-repeat 0 0 !important;
+	background-position-x: 17px !important;
+	background-position-y: center !important;
+}
+
+.wow-forum {
+	float: left;
+	display: block;
+	position: relative;
+	background: rgba(27,27,27,0.75);
+	width: 350px;
+	border: 1px solid #444;
+	margin: 2px;
+	box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.6);
+	transition: box-shadow 0.25s ease-out 0s;
+}
+
+.wow-forum:hover, .wow-forum:active {
+	box-shadow: 0 0 2px 1px rgba(150, 200, 255, 0.7);
+	border-color: #00C0FF;
+}
+
+.clearfix {
+	height: 1%;
+	overflow: hidden;
+	width: 77%;
+}
+
+.stream-content {
+	width: 260px;
+	margin-bottom: 5px;
+}
+
+.float-left {
+	float: left;
+}
+
+.shadow-box {
+	box-shadow: 0 1px 0 rgba(64, 62, 62, 0.7) inset, 0 -1px 0 rgba(32, 32, 32, 0.7) inset, 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.stream-user {
+	width: 260px;
+	margin-top: 5px;
+}
+
+.stream-status p {
+	margin: 0px;
+}
+
+.classIcon p {
+	float: left;
+	margin: 0 auto;
+	margin-left: 30px;
+	min-width: 100px;
+	margin-top: 2px;
+}
+
+.classIcon {
+	background: url("{T_IMAGESET_PATH}/icons-wowclasses.gif") no-repeat;
+
+	display: block;
+	float: left;
+	width: 21px;
+	height: 21px;
+	border: 1px #000 solid;
+}
+
+.icon_class_6 { background-position: 0 0; }
+.icon_class_11 { background-position: 0 -25px; }
+.icon_class_3 { background-position: 0 -50px; }
+.icon_class_8 { background-position: 0 -75px; }
+.icon_class_10 { background-position: 0 -100px; }
+.icon_class_2 { background-position: 0 -125px; }
+.icon_class_5 { background-position: 0 -150px; }
+.icon_class_4 { background-position: 0 -175px;  }
+.icon_class_7 { background-position: 0 -200px; }
+.icon_class_9 { background-position: 0 -225px; }
+.icon_class_1 { background-position: 0 -250px; }
+.icon_class_0 {
+	background: none !important; 
+	width: 0px !important;
+	height: 0px !important;
+	border: none !important;
+}
+
+.unknown { margin-left: 0px !important; }
+.deathknight { color: #C41F3B; }
+.druid { color: #FF7D0A; }
+.hunter { color: #ABD473; }
+.mage { color: #69CCF0; }
+.monk { color: #558A84; }
+.paladin { color: #F58CBA; }
+.priest { color: #FFFFFF; }
+.rogue { color: #FFF569; }
+.shaman { color: #0070DE; }
+.warlock { color: #9482C9; }
+.warrior { color: #C79C6E; }
+
+.stream-logo {
+	text-align: center;
+	float: left;
+	width: 75px;
+	margin: 5px;
+}
+
+.stream-description {
+	padding: 5px;
+}
+
+.stream-status-text {
+	margin-top: 2px !important;
+}
+
+.float-right {
+	float: right;
+}
+
+.stream-user-name, .stream-status {
+	margin: 5px;
+}
+
+.stream-status {
+	font-size: 9px;
+	height: 20px;
+	padding-right: 5px;
+}

@@ -1,311 +1,66 @@
 <!-- INCLUDE overall_header.html -->
-<style>
-.wow-forum {
-	float: left;
-	display: block;
-	position: relative;
-	background: #141414;
-	background: rgba(20,20,20,0.8);
-	width: 350px;
-	border: 1px solid #444;
-	margin: 2px;
-	box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.6);
-}
-
-.wow-forum {
-transition: box-shadow 0.25s ease-out 0s;
-}
-
-.wow-forum:hover, .wow-forum:active {
-box-shadow: 0 0 2px 1px rgba(150, 200, 255, 0.7);
-border-color: #00C0FF;
-}
-
-.clearfix:after {
-content: ".";
-display: block;
-clear: both;
-visibility: hidden;
-line-height: 0;
-height: 0;
-}
-
-.clearfix, #tabs, #minitabs, fieldset dl, ul.topiclist dl, dl.polls {
-	height: 1%;
-	overflow: hidden;
-	width: 77%;
-}
-
-.stream-content {
-width: 260px;
-margin-bottom: 5px;
-}
-
-.float-left {
-float: left;
-}
-
-.shadow-box {
-box-shadow: 0 1px 0 rgba(64, 62, 62, 0.7) inset, 0 -1px 0 rgba(32, 32, 32, 0.7) inset, 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.stream-user {
-width: 260px;
-margin-top: 5px;
-}
-
-p {
-display: block;
--webkit-margin-before: 1em;
--webkit-margin-after: 1em;
--webkit-margin-start: 0px;
--webkit-margin-end: 0px;
-}
-
-.classIcon p {
-float: left;
-margin: 0 auto;
-margin-left: 30px;
-min-width: 100px;
-margin-top: 2px;
-}
-
-.classIcon {
-    background: url("{T_IMAGESET_PATH}/icons-wowclasses.gif") no-repeat;
-
-    display: block;
-    float: left;
-    width: 21px;
-    height: 21px;
-    border: 1px #000 solid;
-}
-
-.icon_class_6 { background-position: 0 0; }
-.icon_class_11 { background-position: 0 -25px; }
-.icon_class_3 { background-position: 0 -50px; }
-.icon_class_8 { background-position: 0 -75px; }
-.icon_class_10 { background-position: 0 -100px; }
-.icon_class_2 { background-position: 0 -125px; }
-.icon_class_5 { background-position: 0 -150px; }
-.icon_class_4 { background-position: 0 -175px;  }
-.icon_class_7 { background-position: 0 -200px; }
-.icon_class_9 { background-position: 0 -225px; }
-.icon_class_1 { background-position: 0 -250px; }
-.icon_class_0 {
-	background: none !important; 
-    width: 0px !important;
-    height: 0px !important;
-    border: none !important;
-}
-
-.unknown { margin-left: 0px !important; }
-.deathknight { color: #C41F3B; }
-.druid { color: #FF7D0A; }
-.hunter { color: #ABD473; }
-.mage { color: #69CCF0; }
-.monk { color: #558A84; }
-.paladin { color: #F58CBA; }
-.priest { color: #FFFFFF; }
-.rogue { color: #FFF569; }
-.shaman { color: #0070DE; }
-.warlock { color: #9482C9; }
-.warrior { color: #C79C6E; }
-
-.stream-container {
-    width: 360px;
-    margin: 0px 0px 15px 20px;
-    float: left;
-}
-
-.stream-container:hover {
-    background-color: #313131;
-}
-
-.stream-content {
-    width: 260px;
-    margin-bottom: 5px;
-}
-
-.stream-logo {
-    text-align: center;
-    float: left;
-    width: 75px;
-    margin: 5px;
-}
-
-.stream-user {
-    width: 260px;
-    margin-top: 5px;
-}
-
-
-.stream-description {
-    padding: 5px;
-}
-
-.stream-status {
-    font-size: 9px;
-    height: 20px;
-    padding-right: 5px;
-}
-
-.stream-status-text {
-    margin-top: 2px !important;
-}
-
-.stream-status p {
-    margin: 0px;
-}
-
-.float-right {
-	float: right;
-}
-
-.stream-status-text {
-margin-top: 2px !important;
-}
-
-.stream-container {
-    width: 360px;
-    margin: 0px 0px 15px 20px;
-    float: left;
-}
-
-.stream-container:hover {
-    background-color: #313131;
-}
-
-.stream-content {
-    width: 260px;
-    margin-bottom: 5px;
-}
-
-.stream-logo {
-    text-align: center;
-    float: left;
-    width: 75px;
-    margin: 5px;
-}
-
-.stream-user {
-    width: 260px;
-    margin-top: 5px;
-}
-
-.stream-status {
-    margin: 5px;
-}
-
-.stream-user-name {
-    width: 170px;
-    margin-right: 5px;
-}
-
-.stream-description {
-    padding: 5px;
-}
-
-.stream-status {
-    font-size: 9px;
-    height: 20px;
-    padding-right: 5px;
-}
-
-.stream-status-text {
-    margin-top: 2px !important;
-}
-
-.stream-status p {
-    margin: 0px;
-}
-
-.livestream {
-    width: 77%;
-}
-
-.livestream .twitch {
-    width: 550px;
-}
-
-.livestream .chat {
-    width: 220px;;
-}
-
-.float-left {
-	float: left;
-}
-
-
-
-</style>
-
- 
 <div class="content">
-
-
-
-
-<div style="float: right; width: 23%;">
-
-	<!-- IF S_DISPLAY_RECRUIT -->
-	<!-- INCLUDE recruit/recruit.html -->
-	<br/>
-	<!-- ENDIF -->
-
-	<!-- INCLUDE dkp/block/wowprogressblock.html -->
-
-</div>
-<div class="livestream clearfix">
-<!-- IF TWITCH -->
-<h2>{STREAMER_NAME}</h2>
-    <div class="twitch">
-        <object type="application/x-shockwave-flash" width="698" height="470" id="live_embed_player_flash" data="http://ru.twitch.tv/widgets/live_embed_player.swf?channel={CHANNEL}" bgcolor="#000000"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><param name="allowNetworking" value="all"><param name="movie" value="http://ru.twitch.tv/widgets/live_embed_player.swf"><param name="flashvars" value="hostname=ru.twitch.tv&amp;channel={CHANNEL}&amp;auto_play=true&amp;start_volume=100"></object>
-    </div>
-    <div class="chat">
-        <iframe frameborder="0" scrolling="no" id="chat_embed" width="698" height="400" src="http://www.twitch.tv/chat/embed?channel={CHANNEL}&amp;popout_chat=true"></iframe>
-    </div>
-
-<!-- ENDIF -->
-<!-- IF CYBERGAME -->
-<h2>{STREAMER_NAME}</h2>
-<iframe src="http://api.cybergame.tv/p/embed.php?c={CHANNEL}&w=698&h=360&type=embed" width="698" height="360"></iframe>
-
-<!-- ENDIF -->
-<!-- IF GOODGAME -->
-<h2>{STREAMER_NAME}</h2>
-<iframe frameborder="0" width="698" height="400" src="http://goodgame.ru/player2?{GOODGAME_STREAM_ID}"></iframe>
-<iframe id="chatIframe" scrolling="no" width="698" height="400" frameborder="0" src="http://goodgame.ru/chat/{CHANNEL}/"></iframe>
-
-
-<!-- ENDIF -->
-</div>
-<div class="clearfix">
-<h2>{TITLE}</h2>
-	<!-- BEGIN stream_list_row -->
-		<a href="streams.php?stream_id={stream_list_row.STREAM_ID}">
-			<div class="wow-forum">
-				<div class="stream-logo"><img src="{T_IMAGESET_PATH}/ship.png" width="64" height="64"></div>
-				<div class="stream-content float-left">
-					<div class="stream-user clearfix shadow-box">
-						<div class="stream-user-name float-left">
-							<div class="classIcon icon_class_{stream_list_row.CLASS}"><p class="{stream_list_row.CLASS_NAME}">{stream_list_row.CHARACTER}</p></div>
-						</div>
-						<div class="stream-status float-right">
-							<p class="float-right"><img src="{T_IMAGESET_PATH}/{stream_list_row.STREAM_STATUS_IMG}"></p>
-							<p class="float-right stream-status-text">{stream_list_row.STREAM_STATUS}</p>
-						</div>
-					</div>
-					<!-- IF stream_list_row.STREAM_DESCRIPTION != '' -->
-						<div class="stream-description shadow-box">
-							{stream_list_row.STREAM_DESCRIPTION}
-						</div>
-					<!-- ENDIF -->
-				</div>
+	<div style="float: right; width: 23%;">
+		<!-- IF S_DISPLAY_RECRUIT -->
+		<!-- INCLUDE recruit/recruit.html -->
+		<br/>
+		<!-- ENDIF -->
+		<!-- INCLUDE dkp/block/wowprogressblock.html -->
+	</div>
+	<div class="livestream clearfix">
+		<!-- IF TWITCH -->
+			<h2>{STREAMER_NAME}</h2>
+			<div class="twitch">
+				<object type="application/x-shockwave-flash" width="698" height="470" id="live_embed_player_flash" data="http://ru.twitch.tv/widgets/live_embed_player.swf?channel={CHANNEL}" bgcolor="#000000">
+					<param name="allowFullScreen" value="true">
+					<param name="allowScriptAccess" value="always">
+					<param name="allowNetworking" value="all">
+					<param name="movie" value="http://ru.twitch.tv/widgets/live_embed_player.swf">
+					<param name="flashvars" value="hostname=ru.twitch.tv&amp;channel={CHANNEL}&amp;auto_play=true&amp;start_volume=100">
+				</object>
 			</div>
-		</a>
-	<!-- END stream_list_row -->
+			<div class="chat">
+				<iframe frameborder="0" scrolling="no" id="chat_embed" width="698" height="400" src="http://www.twitch.tv/chat/embed?channel={CHANNEL}&amp;popout_chat=true"></iframe>
+			</div>
+		<!-- ENDIF -->
+		<!-- IF CYBERGAME -->
+			<h2>{STREAMER_NAME}</h2>
+			<iframe src="http://api.cybergame.tv/p/embed.php?c={CHANNEL}&w=698&h=360&type=embed" width="698" height="360"></iframe>
+		<!-- ENDIF -->
+		<!-- IF GOODGAME -->
+			<h2>{STREAMER_NAME}</h2>
+			<iframe frameborder="0" width="698" height="400" src="http://goodgame.ru/player2?{GOODGAME_STREAM_ID}"></iframe>
+			<iframe id="chatIframe" scrolling="no" width="698" height="400" frameborder="0" src="http://goodgame.ru/chat/{CHANNEL}/"></iframe>
+		<!-- ENDIF -->
+	</div>
+	<div class="clearfix">
+		<h2>{TITLE}</h2>
+		<!-- BEGIN stream_list_row -->
+			<a href="streams.php?stream_id={stream_list_row.STREAM_ID}">
+				<div class="wow-forum">
+					<div class="stream-logo"><img src="{T_IMAGESET_PATH}/ship.png" width="64" height="64"></div>
+					<div class="stream-content float-left">
+						<div class="stream-user clearfix shadow-box">
+							<div class="stream-user-name float-left">
+								<div class="classIcon icon_class_{stream_list_row.CLASS}">
+									<p class="{stream_list_row.CLASS_NAME}">{stream_list_row.CHARACTER}</p>
+								</div>
+							</div>
+							<div class="stream-status float-right">
+								<p class="float-right"><img src="{T_IMAGESET_PATH}/{stream_list_row.STREAM_STATUS_IMG}"></p>
+								<p class="float-right stream-status-text">{stream_list_row.STREAM_STATUS}</p>
+							</div>
+						</div>
+						<!-- IF stream_list_row.STREAM_DESCRIPTION != '' -->
+							<div class="stream-description shadow-box">
+								{stream_list_row.STREAM_DESCRIPTION}
+							</div>
+						<!-- ENDIF -->
+					</div>
+				</div>
+			</a>
+		<!-- END stream_list_row -->
+	</div>
 </div>
-</div>
-	
 <!-- INCLUDE jumpbox.html -->
 <!-- INCLUDE overall_footer.html -->
