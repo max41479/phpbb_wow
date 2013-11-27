@@ -1,0 +1,82 @@
+/* PBWoW Garrison style specific markup */
+
+body {
+	background-color: #030309;
+	background-image: url("{T_THEME_PATH}/images/bg.jpg");
+}
+
+#logo {
+	/*background: url("./styles/pbwow2_garrison/theme/images/themes/logo.png") no-repeat 50% 0;*/
+	width: 400px; 
+	height: 200px; 
+	margin: 0 0 0 -10px;
+}
+
+#page-body {
+	background: rgba(0,0,0,0.75);
+	box-shadow: 0 3px 12px 8px rgba(0,0,0,0.65);	
+}
+
+.headerbar { 
+	background: rgba(0,0,0,0.75);
+}
+
+
+/* =Media queries
+-------------------------------------------------------------- */
+
+/* Small devices. */
+@media screen and (max-width: 859px) {
+	/* inherit from master */
+}
+
+@media screen and (max-width: 999px) {
+	body {
+		background-image: url("{T_THEME_PATH}/images/bg-small.jpg");
+	}
+	#logo {
+		width: 350px; 
+		height: 150px; 
+		margin: 0 0 0 -10px;
+	}
+	#video-background {
+		display: none !important;;
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	/*#logo-wrap {
+		height: 255px;
+	}*/
+	#wrapper {
+		min-height: 1000px;
+	}
+	#video-background {
+		/*height: 1000px;*/
+		left: 50%;
+		position: absolute;
+		top: 0;
+		z-index: -1000;
+	}
+	#video-background video {
+		opacity: 0;
+	}
+	#video-element1 {
+		background-image: none;
+		position: absolute;
+		top: 587px;
+		right: 440px;
+	}
+	#video-element2 {
+		background-image: none;
+		position: absolute;
+		top: 430px;
+		left: 468px;
+	}
+	#video-element3 {
+		background-image: none;
+		position: absolute;
+		top: -73px;
+		left: -259px;
+	}
+}
