@@ -21,8 +21,10 @@ if (!defined('IN_PHPBB'))
 function streams_online()
 {
 	global $db;
-
 	set_config('streams_online_last_gc', time(), true);
+	$online_streams = array();
+	$offline_streams = array();
+	
 	$sql_array = array(
 		'SELECT'	=> 's.stream_channel_name, s.stream_platform_id',
 		'FROM'		=> array(
@@ -52,23 +54,25 @@ function streams_online()
 		
 		if ($stream_online == true)
 		{
-			$sql_array = array(
-				'online'    => '1',
-			);
-
-			$sql = 'UPDATE ' . STREAMS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_array) . ' WHERE stream_channel_name = ' . '"' .$row['stream_channel_name'] . '"';
-			$db->sql_query($sql);
+			$online_streams[] = $row['stream_channel_name'];
 		}
 		else
 		{
-			$sql_array = array(
-				'online'    => '0',
-			);
-
-			$sql = 'UPDATE ' . STREAMS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_array) . ' WHERE stream_channel_name = ' . '"' .$row['stream_channel_name'] . '"';
-			$db->sql_query($sql);
+			$offline_streams[] = $row['stream_channel_name'];
 		}
 	}
+	
+	$sql_array = array(
+			'online'	=> '1',
+	);
+	$sql = 'UPDATE ' . STREAMS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_array) . ' WHERE ' . $db->sql_in_set('stream_channel_name', $online_streams);
+	$db->sql_query($sql);
+	
+	$sql_array = array(
+			'online'	=> '0',
+	);
+	$sql = 'UPDATE ' . STREAMS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_array) . ' WHERE ' . $db->sql_in_set('stream_channel_name', $offline_streams);
+	$db->sql_query($sql);
 
 }
 
