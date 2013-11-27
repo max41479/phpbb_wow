@@ -62,18 +62,23 @@ function streams_online()
 		}
 	}
 	
-	$sql_array = array(
-			'online'	=> '1',
-	);
-	$sql = 'UPDATE ' . STREAMS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_array) . ' WHERE ' . $db->sql_in_set('stream_id', $online_streams);
-	$db->sql_query($sql);
+	if (!empty($online_streams))
+	{
+		$sql_array = array(
+				'online'	=> '1',
+		);
+		$sql = 'UPDATE ' . STREAMS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_array) . ' WHERE ' . $db->sql_in_set('stream_id', $online_streams);
+		$db->sql_query($sql);
+	}
 	
-	$sql_array = array(
-			'online'	=> '0',
-	);
-	$sql = 'UPDATE ' . STREAMS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_array) . ' WHERE ' . $db->sql_in_set('stream_id', $offline_streams);
-	$db->sql_query($sql);
-
+	if (!empty($offline_streams))
+	{
+		$sql_array = array(
+				'online'	=> '0',
+		);
+		$sql = 'UPDATE ' . STREAMS_TABLE . ' SET ' . $db->sql_build_array('UPDATE', $sql_array) . ' WHERE ' . $db->sql_in_set('stream_id', $offline_streams);
+		$db->sql_query($sql);
+	}
 }
 
 function twitch_checker($user_name)
