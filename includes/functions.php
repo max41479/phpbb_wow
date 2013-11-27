@@ -4801,6 +4801,11 @@ function page_header($page_title = '', $display_online_list = true, $item_id = 0
 	));
 
 
+
+//-- mod: Prime Quick Style -------------------------------------------------//
+	include($phpbb_root_path . 'includes/prime_quick_style.' . $phpEx);
+	$prime_quick_style->select_style();
+//-- end: Prime Quick Style -------------------------------------------------//
 	// application/xhtml+xml not used because of IE
 	header('Content-type: text/html; charset=UTF-8');
 

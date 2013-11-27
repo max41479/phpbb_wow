@@ -1625,6 +1625,10 @@ class user extends session
 		else
 		{
 			// Set up style
+//-- mod: Prime Quick Style -------------------------------------------------//
+			include($phpbb_root_path . 'includes/prime_quick_style.' . $phpEx);
+			$prime_quick_style->set_guest_style($style);
+//-- end: Prime Quick Style -------------------------------------------------//
 			$style = ($style) ? $style : ((!$config['override_user_style']) ? $this->data['user_style'] : $config['default_style']);
 		}
 

@@ -250,6 +250,11 @@ if (!$default)
 }
 
 
+
+//-- mod: Prime Quick Style -------------------------------------------------//
+include($phpbb_root_path . 'includes/prime_quick_style.' . $phpEx);
+$prime_quick_style->switch_style();
+//-- end: Prime Quick Style -------------------------------------------------//
 // Only registered users can go beyond this point
 if (!$user->data['is_registered'])
 {
