@@ -414,3 +414,7 @@ div.tickLabel {
 	color: #FFFFFF;
 	margin-top: 5px;
 }
+
+ul.linklist {
+	margin-left: 10px;
+}
