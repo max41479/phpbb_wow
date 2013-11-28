@@ -58,9 +58,7 @@ padding: 0px 7px 7px 7px;
 */
 
 .stream_online { 
-	background: url("{T_IMAGESET_PATH}/online.gif") no-repeat 0 0 !important;
-	background-position-x: 17px !important;
-	background-position-y: center !important;
+	background: url("{T_IMAGESET_PATH}/online.gif") no-repeat 15px 12px !important;
 	padding-left: 42px !important;
 }
 
