@@ -1,0 +1,59 @@
+/* PBWoW Pandaria style specific markup */
+
+body {
+	background-image: url("{T_THEME_PATH}/images/bg.jpg");
+	background-color: #020b10;
+	background-position: 49.999% -110px;
+}
+
+body.body-top-bar {
+	background-position: 49.999% -69px;
+}
+
+#page-body {
+	background: rgba(0,0,0,0.80);
+	box-shadow: 0 3px 12px 8px rgba(0,0,0,0.65);	
+}
+
+.headerbar { 
+	background: rgba(0,0,0,0.80);
+}
+
+/* =Media queries
+-------------------------------------------------------------- */
+
+/* Small devices. */
+@media screen and (max-width: 859px) {
+	/* inherit from master */
+}
+
+@media screen and (max-width: 999px) {
+	body {
+		background-image: url("{T_THEME_PATH}/images/bg-small.jpg");
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	#logo-wrap {
+		min-height: 300px;
+	}
+	#logo {
+		margin-top: 20px !important;
+	}
+	#wrapper {
+		min-height: 700px;
+	}
+	#video-background {
+		/*height: 1000px;*/
+		left: 50%;
+		position: absolute;
+		top: 0;
+		z-index: -1000;
+	}
+	#video-element1 {
+		background-image: none;
+		position: absolute;
+		top: -109px;
+		left: -688px;
+	}
+}
