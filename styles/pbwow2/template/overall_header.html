@@ -2,15 +2,9 @@
 <html lang="{S_USER_LANG}">
 <head>
 
-<!--<meta http-equiv="content-type" content="text/html; charset={S_CONTENT_ENCODING}" />
-<meta http-equiv="content-style-type" content="text/css" />
-<meta http-equiv="content-language" content="{S_USER_LANG}" />
-<meta name="resource-type" content="document" />
-<meta name="distribution" content="global" />-->
 <meta charset="{S_CONTENT_ENCODING}" />
-<meta name="keywords" content="" />
 <meta name="description" content="{SITE_DESCRIPTION}" />
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, maximum-scale=1.5">
 {META}
 <title>{SITENAME} &bull; <!-- IF S_IN_MCP -->{L_MCP} &bull; <!-- ELSEIF S_IN_UCP -->{L_UCP} &bull; <!-- ENDIF -->{PAGE_TITLE}</title>
 
@@ -135,6 +129,23 @@ jQuery(document).ready(
 );
 // ]]>
 </script>
+<!-- ENDIF -->
+<!-- IF S_PBLOGO -->
+<style>
+#logo {
+	background: url("{PBLOGO_SRC}") no-repeat 50% 50%;
+	width: {PBLOGO_WIDTH}px;
+	height: {PBLOGO_HEIGHT}px;
+	<!-- IF PBLOGO_MARGINS -->margin: {PBLOGO_MARGINS}<!-- ENDIF -->
+}
+@media screen and (max-width: 859px) {
+	#logo {
+		background-size: 100% 100%;
+		width: {PBLOGO_WIDTH_MOB}px;
+		height: {PBLOGO_HEIGHT_MOB}px;
+	}
+}
+</style>
 <!-- ENDIF -->
 <!-- IF SCRIPT_NAME eq ('portal' or 'streams') --> 
 	<link href="./recruit/css/recruit_popup.css" media="screen" rel="stylesheet" type="text/css" /> 

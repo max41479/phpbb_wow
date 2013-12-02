@@ -4,13 +4,6 @@ body {
 	background-image: url("{T_THEME_PATH}/images/tribute2.jpg");
 }
 
-#logo {
-	/*background: url("{T_THEME_PATH}/images/themes/logo.png") no-repeat 50% 0;*/
-	width: 400px; 
-	height: 200px; 
-	margin: 0 0 0 -10px;
-}
-
 #page-body {
 	box-shadow: 0 3px 12px 8px rgba(0,0,0,0.65);	
 }
@@ -31,19 +24,14 @@ body {
 	body {
 		background-image: url("{T_THEME_PATH}/images/tribute2-small.jpg");
 	}
-	#logo {
-		width: 350px; 
-		height: 150px; 
-		margin: 0 0 0 -10px;
-	}
-	#video-background {
-		display: none !important;;
-	}
 }
 
 @media screen and (min-width: 1000px) {
 	#logo-wrap {
-		height: 255px;
+		min-height: 255px;
+	}
+	#logo {
+		margin-top: 20px !important;
 	}
 	#wrapper {
 		min-height: 700px;
@@ -54,9 +42,6 @@ body {
 		position: absolute;
 		top: 0;
 		z-index: -1000;
-	}
-	#video-background video {
-		opacity: 0;
 	}
 	#video-element1 {
 		background-image: none;

@@ -94,6 +94,10 @@ h2.toggle > a {
 .wow-index li.wow-forum {
 	min-height: 110px;
 }
+.wow-index li.wow-forum:last-child {
+	margin-bottom: 15px;
+	margin-bottom: 1.5rem;
+}
 .wow-index a.forum-link {
 	display: block;
 	padding: 10px 10px 0 0;
@@ -181,7 +185,6 @@ h2.toggle > a {
 }
 .wow-index .wow-forum:hover,
 .wow-index .wow-forum:active {
-	box-shadow: 0 0 2px 1px rgba(150, 200, 255, 0.7);
 	border-color: #00C0FF;
 }
 .wow-index .subforums-button {
@@ -206,12 +209,13 @@ h2.toggle > a {
 .wow-index .subforums-menu {
 	display: none;
 	position: absolute;
-	background: #141414;
-	background: rgba(20,20,20,0.98);
-	border: 1px solid #444;
 	margin: 2px 2px 2px 5px;
+	background: #141414;
+	background: rgba(15,15,15,0.98);
+	border: 1px solid #444;
+	border-radius: 5px;
 	box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.7);
-	z-index: 90;
+	z-index: 70;
 	top: 70px;
 	padding: 15px 15px;
 	color: #CCC;
@@ -234,6 +238,9 @@ h2.toggle > a {
 }
 .section-viewforum .wow-index .forabg {
 	margin-bottom: 4px;
+}
+.section-viewforum .wow-index li.wow-forum:last-child {
+	margin-bottom: 5px;
 }
 
 /* NV Recent Topics
@@ -711,6 +718,7 @@ div[class].topic-actions {
 	font-size: 1.3rem;
 	line-height: 18px;
 	line-height: 1.8rem;
+	opacity: 1 !important;
 }
 
 .postbody ul.profile-icons {
@@ -1544,7 +1552,7 @@ fieldset.polls dd div {
 	position: absolute;
 	top: 15px;
 	/*width: 225px;*/
-	z-index: 90;
+	z-index: 70;
 	padding: 10px;
 }
 .wow-info-frame dl {

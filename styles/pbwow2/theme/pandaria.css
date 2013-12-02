@@ -8,6 +8,18 @@ body.bg-fixed {
 	background-attachment: scroll !important;
 }
 
+#logo-wrap {
+	min-height: 184px !important;
+	height: 184px !important;
+}
+
+#logo {
+	background-image: none !important;
+	width: 266px !important;
+	height: 126px !important;
+	margin: 15px 10px 10px -10px !important;
+}
+
 @media screen and (max-width: 999px) {
 	body {
 		background-image: url("{T_IMAGESET_PATH}/images/themes/pandaria-small.jpg");

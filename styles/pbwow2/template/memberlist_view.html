@@ -116,6 +116,14 @@
 		<!-- IF U_AIM or USER_AIM --><dt>{L_AIM}:</dt> <dd><!-- IF U_AIM --><a href="{U_AIM}" onclick="popup(this.href, 550, 320); return false;">{L_SEND_AIM_MESSAGE}</a><!-- ELSE -->{USER_AIM}<!-- ENDIF --></dd><!-- ENDIF -->
 		<!-- IF U_ICQ or USER_ICQ --><dt>{L_ICQ}:</dt> <dd><!-- IF U_ICQ --><a href="{U_ICQ}" onclick="popup(this.href, 550, 320); return false;">{L_SEND_ICQ_MESSAGE}</a><!-- ELSE -->{USER_ICQ}<!-- ENDIF --></dd><!-- ENDIF -->
 		<!-- IF U_JABBER and S_JABBER_ENABLED --><dt>{L_JABBER}:</dt> <dd><a href="{U_JABBER}" onclick="popup(this.href, 550, 320); return false;">{L_SEND_JABBER_MESSAGE}</a></dd><!-- ELSEIF USER_JABBER --><dt>{L_JABBER}:</dt> <dd>{USER_JABBER}</dd><!-- ENDIF -->
+		<!-- IF USER_BEBO_SN --><dt>{L_BEBO}:</dt> <dd><a href="http://www.bebo.com/{USER_BEBO_SN}" title="{L_VIEW_BEBO}: {USER_BEBO_SN}">{L_VIEW_BEBO}</a></dd><!-- ENDIF -->	
+		<!-- IF USER_BLOGGER_SN --><dt>{L_BLOGGER}:</dt> <dd><a href="{USER_BLOGGER_SN}" title="{L_VIEW_BLOGGER}: {USER_BLOGGER_SN}">{L_VIEW_BLOGGER}</a></dd><!-- ENDIF -->
+		<!-- IF USER_FACEBOOK_SN --><dt>{L_FACEBOOK}:</dt> <dd><a href="{USER_FACEBOOK_SN}" title="{L_VIEW_FACEBOOK}: {USER_FACEBOOK_SN}">{L_VIEW_FACEBOOK}</a></dd><!-- ENDIF -->
+		<!-- IF USER_GOODREADS_SN --><dt>{L_GOODREADS}:</dt> <dd><a href="{USER_GOODREADS_SN}" title="{L_VIEW_GOODREADS}: {USER_GOODREADS_SN}">{L_VIEW_GOODREADS}</a></dd><!-- ENDIF -->
+		<!-- IF USER_LINKEDIN_SN --><dt>{L_LINKEDIN}:</dt> <dd><a href="{USER_LINKEDIN_SN}" title="{L_VIEW_LINKEDIN}: {USER_LINKEDIN_SN}">{L_VIEW_LINKEDIN}</a></dd><!-- ENDIF -->
+		<!-- IF USER_MYSPACE_SN --><dt>{L_MYSPACE}:</dt> <dd><a href="http://www.myspace.com/{USER_MYSPACE_SN}" title="{L_VIEW_MYSPACE}: {USER_MYSPACE_SN}">{L_VIEW_MYSPACE}</a></dd><!-- ENDIF -->
+		<!-- IF USER_NETLOG_SN --><dt>{L_NETLOG}:</dt> <dd><a href="{USER_NETLOG_SN}" title="{L_VIEW_NETLOG}: {USER_NETLOG_SN}">{L_VIEW_NETLOG}</a></dd><!-- ENDIF -->
+		<!-- IF USER_TWITTER_SN --><dt>{L_TWITTER}:</dt> <dd><a href="http://www.twitter.com/{USER_TWITTER_SN}" title="{L_VIEW_TWITTER}: {USER_TWITTER_SN}">{L_VIEW_TWITTER}</a></dd><!-- ENDIF -->
 		<!-- IF S_PROFILE_FIELD1 -->
 			<!-- NOTE: Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. -->
 			<dt>{PROFILE_FIELD1_NAME}:</dt> <dd>{PROFILE_FIELD1_VALUE}</dd>

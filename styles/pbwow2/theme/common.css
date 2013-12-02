@@ -173,19 +173,17 @@ p.right {
 }
 
 #logo-wrap {
-	height: 184px;
+	min-height: 160px;
 	position: relative;
-	overflow-y: hidden;
+	overflow: hidden;
 }
 
 #logo {
-	display: block; 
-	width: 266px; 
-	height: 126px; 
-	margin: 15px 10px 0 -10px;
-	position: absolute;
-	top: 0;
-	left: 0;
+	display: block;
+	width: 300px;
+	height: 150px;
+	margin: 10px 10px 25px 10px;
+	background-size: 100% 100%;
 	z-index: 0;
 }
 
@@ -360,11 +358,10 @@ a#logo:hover {
 	position: absolute;
 	width: auto;
 	background: #101010;
-	background: rgba(15, 15, 15, 0.99);
-	border: 1px solid #353837;
+	background: rgba(15, 15, 15, 0.97);
+	border: 1px solid #353535;
 	border-radius: 5px;
 	box-shadow: 0 0 10px #000000;
-	opacity: 0.98;
 	padding: 1px;
 	z-index: 75;
 	
@@ -1124,9 +1121,13 @@ p.rules a {
 	.headerbar {
 		margin: 0 0 15px 10px;
 	}
+	#logo-wrap {
+		min-height: 140px;
+	}
 	#logo {
-		margin: 15px 0 0 0;
+		margin: 0 0 25px 0;
 		width: 200px;
+		height: 100px;
 	}
 	.body-top.headpagi {
 		background: url("{T_IMAGESET_PATH}/images/forumliner-top-right.gif") no-repeat 70%;
@@ -1161,6 +1162,9 @@ p.rules a {
 	body.body-top-bar {
 		background-position: 50% 41px;
 	}
+	body.bg-fixed {
+		background-attachment: scroll;
+	}
 	#pagination-box a.page-jump {
 		display: none;
 	}
@@ -1173,6 +1177,9 @@ p.rules a {
 		border-left: none;
 		border-right: none;
 	}
+	#video-background {
+		display: none !important;;
+	}
 }
 
 @media screen and (min-width: 1000px) {
@@ -1180,5 +1187,8 @@ p.rules a {
 		position: relative;
 		overflow: hidden;
 		min-height: 850px;
+	}
+	#video-background video {
+		opacity: 0;
 	}
 }

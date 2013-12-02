@@ -799,13 +799,14 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 		{
 			$bbcode_bitfield = $text_only_message = '';
 			$attach_list = array();
-
 			// BEGIN PBWoW 2 MOD
 			$id_cache = array();
 			$user_cache = array();
 			// END PBWoW 2 MOD
+
 			while ($row = $db->sql_fetchrow($result))
 			{
+
 				// BEGIN PBWoW 2 MOD
 				$id_cache[] = $row['poster_id'];
 				if (!isset($user_cache[$row['poster_id']]))
@@ -1148,6 +1149,7 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 				modify_topic_preview($row, 'searchresults', $profile_fields_cache, $topic_preview->tp_avatars);
 			}
 			// END PBWoW 2 MOD for topic-preview mod
+
 			// BEGIN PBWoW 2 MOD
 			if (!empty($cp_row['blockrow']))
 			{

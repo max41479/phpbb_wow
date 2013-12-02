@@ -517,6 +517,7 @@ class custom_profile
 				);
 			}
 
+
 			// BEGIN PBWoW 2 MOD
 			if (function_exists('process_pbwow_cpf')) {
 				$tpl_fields = process_pbwow_cpf($tpl_fields);

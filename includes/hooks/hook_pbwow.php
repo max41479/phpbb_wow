@@ -84,6 +84,24 @@ function pbwow_global_style_append(&$hook, $handle, $include_once = true)
 		{
 			$values += array('S_INDEX_PAGE' => true);
 		}
+		if($logo_enable && isset($logo_src) && isset($logo_size_width) && isset($logo_size_height) && $logo_size_width > 1 && $logo_size_height > 1)
+		{
+			$values += array(
+				'S_PBLOGO' => true,
+				'PBLOGO_SRC' => html_entity_decode($logo_src),
+				'PBLOGO_WIDTH' => $logo_size_width,
+				'PBLOGO_HEIGHT' => $logo_size_height,
+				'PBLOGO_WIDTH_MOB' => floor(($logo_size_width * 0.8)),
+				'PBLOGO_HEIGHT_MOB' => floor(($logo_size_height * 0.8)),
+				'PBLOGO_MARGINS' => $logo_margins,
+			);
+			if(isset($logo_margins) && strlen($logo_margins) > 0)
+			{
+				$values += array(
+					'PBLOGO_MARGINS' => $logo_margins,
+				);
+			}
+		}
 		if($topbar_enable && isset($topbar_code))
 		{
 			$values += array(
@@ -131,6 +149,12 @@ function pbwow_global_style_append(&$hook, $handle, $include_once = true)
 			$values += array(
 				'S_BG_FIXED' => true,
 			);
+			if(!$topbar_fixed)
+			{
+				$values += array(
+					'S_TOPBAR_FIXED' => true,
+				);
+			}
 		}
 		if(isset($wowtips_script))
 		{

@@ -1728,6 +1728,7 @@ function show_profile($data, $user_notes_enabled = false, $warn_user_enabled = f
 		}
 	}
 
+
 	// BEGIN PBWoW 2 MOD
 	$special_rank_title = $special_rank_image = $special_rank_image_src = $user_special_styling = $user_special_color = '';
 

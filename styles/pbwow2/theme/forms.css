@@ -168,7 +168,7 @@ div.quick-login-bg {
 	min-height: 100%;
 	width: 100%;
 	height: 100%;
-	z-index: 1000;
+	z-index: 1001;
 }
 form.quick-login-panel {
 	display: none;
@@ -180,7 +180,7 @@ form.quick-login-panel {
 	background: #1B1B1B url("{T_IMAGESET_PATH}/images/poll-bg.jpg") repeat-x 50% 0;
 	border: 5px solid #333;
 	border-radius: 3px;
-	z-index: 1001;
+	z-index: 1002;
 }
 form.quick-login-panel > div {
 	background: url("{T_IMAGESET_PATH}/images/poll-left.gif") no-repeat 0 0;
@@ -549,7 +549,7 @@ input.search {
 	top: -7px; }
 #qr_showeditor_div .content input {
 	background: none;
-	width: 140px;
+	width: 100px;
 	color: #DDD;
 	border: none;
 	font-size: 15px;

@@ -24,9 +24,9 @@ class acp_pbwow2
 		$this->tpl_name = 'acp_pbwow2';
 		
 		// Some constants
-		$module_version = '2.0.6b';
-		$dbtable = PBWOW2_CONFIG_TABLE;
-		$legacy_dbtable = PBWOW_CONFIG_TABLE;
+		$module_version = '2.0.7';
+		$dbtable = defined('PBWOW2_CONFIG_TABLE') ? PBWOW2_CONFIG_TABLE : '';
+		$legacy_dbtable = defined('PBWOW_CONFIG_TABLE') ? PBWOW_CONFIG_TABLE : '';
 		$topics_table = TOPICS_TABLE;
 
 		$constantsokay = $dbokay = $legacy_constants = $legacy_db_active = $legacy_topics_mod = false;
@@ -73,7 +73,7 @@ class acp_pbwow2
 			$versions = $this->obtain_pbwow_version_info(request_var('versioncheck_force', false),true);
 			
 			// Check if old constants are still being used
-			if($legacy_dbtable != 'PBWOW_CONFIG_TABLE')
+			if(!empty($legacy_dbtable))
 			{
 				$legacy_constants = true;
 			}
@@ -110,28 +110,36 @@ class acp_pbwow2
 				$display_vars = array(
 					'title'	=> 'ACP_PBWOW_CONFIG_TITLE',
 					'vars'	=> array(
-						'legend1'				=> 'ACP_PBWOW_TOPBAR',
+						'legend1'				=> 'ACP_PBWOW_LOGO',
+						'logo_size_width'		=> array('lang' => 'PBWOW_LOGO_SIZE', 			'validate' => 'int:0',	'type' => false, 'method' => false, 'explain' => false,),
+						'logo_size_height'		=> array('lang' => 'PBWOW_LOGO_SIZE', 			'validate' => 'int:0',	'type' => false, 'method' => false, 'explain' => false,),
+						'logo_enable'			=> array('lang' => 'PBWOW_LOGO_ENABLE',			'validate' => 'bool',	'type' => 'radio:enabled_disabled',	'explain' => true),
+						'logo_src'				=> array('lang' => 'PBWOW_LOGO_SRC',			'validate' => 'string',	'type' => 'text:20:255', 'explain' => true),
+						'logo_size'				=> array('lang' => 'PBWOW_LOGO_SIZE',			'validate' => 'int:0',	'type' => 'dimension:3:4', 'explain' => true, 'append' => ' ' . $user->lang['PIXEL']),
+						'logo_margins'			=> array('lang' => 'PBWOW_LOGO_MARGINS',		'validate' => 'string',	'type' => 'text:20:20', 'explain' => true),
+
+						'legend2'				=> 'ACP_PBWOW_TOPBAR',
 						'topbar_enable'			=> array('lang' => 'PBWOW_TOPBAR_ENABLE',		'validate' => 'bool',	'type' => 'radio:enabled_disabled',	'explain' => true),
 						'topbar_code'			=> array('lang' => 'PBWOW_TOPBAR_CODE',			'type' => 'textarea:6:6',	'explain' => true),
 						'topbar_fixed'			=> array('lang' => 'PBWOW_TOPBAR_FIXED',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => true),
 
-						'legend2'				=> 'ACP_PBWOW_HEADERLINKS',
+						'legend3'				=> 'ACP_PBWOW_HEADERLINKS',
 						'headerlinks_enable'	=> array('lang' => 'PBWOW_HEADERLINKS_ENABLE',	'validate' => 'bool',	'type' => 'radio:enabled_disabled',	'explain' => true),
 						'headerlinks_code'		=> array('lang' => 'PBWOW_HEADERLINKS_CODE',	'type' => 'textarea:6:6',	'explain' => true),
 
-						'legend3'				=> 'ACP_PBWOW_NAVMENU',
-						'navmenu_enable'		=> array('lang' => 'PBWOW_NAVMENU_ENABLE',	'validate' => 'bool',	'type' => 'radio:enabled_disabled',	'explain' => true),
+						'legend4'				=> 'ACP_PBWOW_NAVMENU',
+						'navmenu_enable'		=> array('lang' => 'PBWOW_NAVMENU_ENABLE',		'validate' => 'bool',	'type' => 'radio:enabled_disabled',	'explain' => true),
 
-						'legend4'				=> 'ACP_PBWOW_IE6MESSAGE',
+						'legend5'				=> 'ACP_PBWOW_IE6MESSAGE',
 						'ie6message_enable'		=> array('lang' => 'PBWOW_IE6MESSAGE_ENABLE',	'validate' => 'bool',	'type' => 'radio:enabled_disabled',	'explain' => true),
 						'ie6message_code'		=> array('lang' => 'PBWOW_IE6MESSAGE_CODE',		'type' => 'textarea:6:6',	'explain' => true),
 
-						'legend5'				=> 'ACP_PBWOW_VIDEOBG',
+						'legend6'				=> 'ACP_PBWOW_VIDEOBG',
 						'videobg_enable'		=> array('lang' => 'PBWOW_VIDEOBG_ENABLE',		'validate' => 'bool',	'type' => 'radio:enabled_disabled',	'explain' => true),
 						'videobg_allpages'		=> array('lang' => 'PBWOW_VIDEOBG_ALLPAGES',	'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => true),
-						'bg_fixed'				=> array('lang' => 'PBWOW_BG_FIXED',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => true),
+						'bg_fixed'				=> array('lang' => 'PBWOW_BG_FIXED',			'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => true),
 						
-						'legend6'				=> 'ACP_PBWOW_TOOLTIPS',
+						'legend7'				=> 'ACP_PBWOW_TOOLTIPS',
 						'wowtips_script'		=> array('lang' => 'PBWOW_WOWTIPS_SCRIPT',		'validate' => 'int',	'type' => 'custom',	'explain' => true,	'method' => 'select_single'),
 						'd3tips_script'			=> array('lang' => 'PBWOW_D3TIPS_SCRIPT',		'validate' => 'int',	'type' => 'custom',	'explain' => true,	'method' => 'select_single'),
 						'zamtips_enable'		=> array('lang' => 'PBWOW_ZAMTIPS_ENABLE',		'validate' => 'bool',	'type' => 'radio:enabled_disabled',	'explain' => true),
@@ -371,14 +379,22 @@ class acp_pbwow2
 				$l_explain = (isset($user->lang[$vars['lang'] . '_EXPLAIN'])) ? $user->lang[$vars['lang'] . '_EXPLAIN'] : '';
 			}
 
+			$content = build_cfg_template($type, $config_key, $this->new_config, $config_key, $vars);
+
+			if (empty($content))
+			{
+				continue;
+			}
+
 			$template->assign_block_vars('options', array(
 				'KEY'			=> $config_key,
 				'TITLE'			=> (isset($user->lang[$vars['lang']])) ? $user->lang[$vars['lang']] : $vars['lang'],
 				'S_EXPLAIN'		=> $vars['explain'],
 				'TITLE_EXPLAIN'	=> $l_explain,
-				'CONTENT'		=> build_cfg_template($type, $config_key, $this->new_config, $config_key, $vars),
+				'CONTENT'		=> $content,
 				)
 			);
+
 			unset($display_vars['vars'][$config_key]);
 		}
 	}

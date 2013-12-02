@@ -6,10 +6,10 @@ body {
 }
 
 #logo {
-	background: url("{T_THEME_PATH}/images/logo-small.png") no-repeat 50% 0;
-	width: 330px; 
-	height: 178px; 
-	margin: 15px 0 0 -10px;
+	background: url("{T_THEME_PATH}/images/logo-small.png") no-repeat 50% 50%;
+	width: 330px;
+	height: 178px;
+	background-size: 100% 100%;
 }
 
 #page-body {
@@ -27,25 +27,32 @@ body {
 
 /* Small devices. */
 @media screen and (max-width: 859px) {
-	/* inherit from master */
+	#logo {
+		margin: 0 0 25px 0;
+		width: 264px;
+		height: 142px;
+	}
 }
 
 @media screen and (max-width: 999px) {
 	body {
 		background-image: url("{T_THEME_PATH}/images/bg-small.jpg");
 	}
+}
+
+@media screen and (min-width: 860px) and (max-width: 999px) {
 	#logo {
-		margin: -10px 0 0 -10px;
-		width: 330px; 
-	}
-	#video-background {
-		display: none !important;;
+		margin: -10px 0 25px -10px;
 	}
 }
 
 @media screen and (min-width: 1000px) {
 	#logo-wrap {
-		height: 240px;
+		min-height: 240px;
+	}
+	#logo {
+		margin-top: 20px !important;
+		margin-left: 0;
 	}
 	#wrapper {
 		min-height: 1000px;
@@ -60,8 +67,5 @@ body {
 		transform: translateX(-50%);
 		width: 1920px;
 		z-index: -1000;
-	}
-	#video-background video {
-		opacity: 0;
 	}
 }

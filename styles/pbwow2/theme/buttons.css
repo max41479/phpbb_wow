@@ -120,16 +120,24 @@ ul.profile-icons li a:hover { background: none; }
 }
 
 /* Profile & navigation icons */
-.email-icon, .email-icon a		{ background: none top left no-repeat; }
-.aim-icon, .aim-icon a			{ background: none top left no-repeat; }
-.yahoo-icon, .yahoo-icon a		{ background: none top left no-repeat; }
-.web-icon, .web-icon a			{ background: none top left no-repeat; }
-.msnm-icon, .msnm-icon a		{ background: none top left no-repeat; }
-.icq-icon, .icq-icon a			{ background: none top left no-repeat; }
-.jabber-icon, .jabber-icon a	{ background: none top left no-repeat; }
-.pm-icon, .pm-icon a			{ background: none top left no-repeat; }
-.quote-icon, .quote-icon a		{ background: none top left no-repeat; }
-.reply-icon, .reply-icon a		{ background: none top left no-repeat; }
+.email-icon, .email-icon a				{ background: none top left no-repeat; }
+.aim-icon, .aim-icon a					{ background: none top left no-repeat; }
+.yahoo-icon, .yahoo-icon a				{ background: none top left no-repeat; }
+.web-icon, .web-icon a					{ background: none top left no-repeat; }
+.msnm-icon, .msnm-icon a				{ background: none top left no-repeat; }
+.icq-icon, .icq-icon a					{ background: none top left no-repeat; }
+.jabber-icon, .jabber-icon a			{ background: none top left no-repeat; }
+.pm-icon, .pm-icon a					{ background: none top left no-repeat; }
+.quote-icon, .quote-icon a				{ background: none top left no-repeat; }
+.reply-icon, .reply-icon a				{ background: none top left no-repeat; }
+.bebosn-icon, .bebosnsn-icon a			{ background: none top left no-repeat; }
+.bloggersn-icon, .bloggersn-icon a		{ background: none top left no-repeat; }
+.facebooksn-icon, .facebooksn-icon a	{ background: none top left no-repeat; }
+.goodreadssn-icon, .goodreadssn-icon a	{ background: none top left no-repeat; }
+.linkedinsn-icon, .linkedinsn-icon a	{ background: none top left no-repeat; }
+.myspacesn-icon, .myspacesn-icon a		{ background: none top left no-repeat; }
+.netlogsn-icon, .netlogsn-icon a		{ background: none top left no-repeat; }
+.twittersn-icon, .twittersn-icon a		{ background: none top left no-repeat; }
 
 /* Moderator icons */
 .report-icon, .report-icon a	{ background: none top left no-repeat; }
@@ -139,19 +147,27 @@ ul.profile-icons li a:hover { background: none; }
 .info-icon, .info-icon a		{ background: none top left no-repeat; }
 
 /* Set profile icon dimensions */
-ul.profile-icons li.email-icon	{ width: {IMG_ICON_CONTACT_EMAIL_WIDTH}px; height: {IMG_ICON_CONTACT_EMAIL_HEIGHT}px; }
-ul.profile-icons li.aim-icon	{ width: {IMG_ICON_CONTACT_AIM_WIDTH}px; height: {IMG_ICON_CONTACT_AIM_HEIGHT}px; }
-ul.profile-icons li.yahoo-icon	{ width: {IMG_ICON_CONTACT_YAHOO_WIDTH}px; height: {IMG_ICON_CONTACT_YAHOO_HEIGHT}px; }
-ul.profile-icons li.web-icon	{ width: {IMG_ICON_CONTACT_WWW_WIDTH}px; height: {IMG_ICON_CONTACT_WWW_HEIGHT}px; }
-ul.profile-icons li.msnm-icon	{ width: {IMG_ICON_CONTACT_MSNM_WIDTH}px; height: {IMG_ICON_CONTACT_MSNM_HEIGHT}px; }
-ul.profile-icons li.icq-icon	{ width: {IMG_ICON_CONTACT_ICQ_WIDTH}px; height: {IMG_ICON_CONTACT_ICQ_HEIGHT}px; }
-ul.profile-icons li.jabber-icon	{ width: {IMG_ICON_CONTACT_JABBER_WIDTH}px; height: {IMG_ICON_CONTACT_JABBER_HEIGHT}px; }
-ul.profile-icons li.pm-icon		{ width: {IMG_ICON_CONTACT_PM_WIDTH}px; height: {IMG_ICON_CONTACT_PM_HEIGHT}px; }
-ul.profile-icons li.report-icon	{ width: 19px; height: 17px; }
-ul.profile-icons li.edit-icon	{ width: 16px; height: 18px; }
-ul.profile-icons li.delete-icon	{ width: 16px; height: 15px; }
-ul.profile-icons li.info-icon	{ width: 16px; height: 17px; }
-ul.profile-icons li.warn-icon	{ width: 16px; height: 16px; }
+ul.profile-icons li.email-icon			{ width: {IMG_ICON_CONTACT_EMAIL_WIDTH}px; height: {IMG_ICON_CONTACT_EMAIL_HEIGHT}px; }
+ul.profile-icons li.aim-icon			{ width: {IMG_ICON_CONTACT_AIM_WIDTH}px; height: {IMG_ICON_CONTACT_AIM_HEIGHT}px; }
+ul.profile-icons li.yahoo-icon			{ width: {IMG_ICON_CONTACT_YAHOO_WIDTH}px; height: {IMG_ICON_CONTACT_YAHOO_HEIGHT}px; }
+ul.profile-icons li.web-icon			{ width: {IMG_ICON_CONTACT_WWW_WIDTH}px; height: {IMG_ICON_CONTACT_WWW_HEIGHT}px; }
+ul.profile-icons li.msnm-icon			{ width: {IMG_ICON_CONTACT_MSNM_WIDTH}px; height: {IMG_ICON_CONTACT_MSNM_HEIGHT}px; }
+ul.profile-icons li.icq-icon			{ width: {IMG_ICON_CONTACT_ICQ_WIDTH}px; height: {IMG_ICON_CONTACT_ICQ_HEIGHT}px; }
+ul.profile-icons li.jabber-icon			{ width: {IMG_ICON_CONTACT_JABBER_WIDTH}px; height: {IMG_ICON_CONTACT_JABBER_HEIGHT}px; }
+ul.profile-icons li.pm-icon				{ width: {IMG_ICON_CONTACT_PM_WIDTH}px; height: {IMG_ICON_CONTACT_PM_HEIGHT}px; }
+ul.profile-icons li.bebosn-icon			{ width: {IMG_ICON_CONTACT_BEBO_WIDTH}px; height: {IMG_ICON_CONTACT_BEBO_HEIGHT}px; }
+ul.profile-icons li.bloggersn-icon		{ width: {IMG_ICON_CONTACT_BLOGGER_WIDTH}px; height: {IMG_ICON_CONTACT_BLOGGER_HEIGHT}px; }
+ul.profile-icons li.facebooksn-icon		{ width: {IMG_ICON_CONTACT_FB_WIDTH}px; height: {IMG_ICON_CONTACT_FB_HEIGHT}px; }
+ul.profile-icons li.goodreadssn-icon	{ width: {IMG_ICON_CONTACT_GR_WIDTH}px; height: {IMG_ICON_CONTACT_GR_HEIGHT}px; }
+ul.profile-icons li.linkedinsn-icon		{ width: {IMG_ICON_CONTACT_LI_WIDTH}px; height: {IMG_ICON_CONTACT_LI_HEIGHT}px; }
+ul.profile-icons li.myspacesn-icon		{ width: {IMG_ICON_CONTACT_MS_WIDTH}px; height: {IMG_ICON_CONTACT_MS_HEIGHT}px; }
+ul.profile-icons li.netlogsn-icon		{ width: {IMG_ICON_CONTACT_NETLOG_WIDTH}px; height: {IMG_ICON_CONTACT_NETLOG_HEIGHT}px; }
+ul.profile-icons li.twittersn-icon		{ width: {IMG_ICON_CONTACT_TWIT_WIDTH}px; height: {IMG_ICON_CONTACT_TWIT_HEIGHT}px; }
+ul.profile-icons li.report-icon		{ width: 19px; height: 17px; }
+ul.profile-icons li.edit-icon		{ width: 16px; height: 18px; }
+ul.profile-icons li.delete-icon		{ width: 16px; height: 15px; }
+ul.profile-icons li.info-icon		{ width: 16px; height: 17px; }
+ul.profile-icons li.warn-icon		{ width: 16px; height: 16px; }
 
 /* Fix profile icon default margins */
 ul.profile-icons li.edit-icon	{ margin-top: 3px}
@@ -199,14 +215,22 @@ a.mcp-icon {
 .icon-dkp			{ background-image: url("{T_IMAGESET_PATH}/images/icons/icon_dkp.gif"); background-position: 0 60%; padding-left: 21px; }
 
 /* Profile & navigation icons */
-.email-icon, .email-icon a		{ background-image: url("{IMG_ICON_CONTACT_EMAIL_SRC}"); }
-.aim-icon, .aim-icon a			{ background-image: url("{IMG_ICON_CONTACT_AIM_SRC}"); }
-.yahoo-icon, .yahoo-icon a		{ background-image: url("{IMG_ICON_CONTACT_YAHOO_SRC}"); }
-.web-icon, .web-icon a			{ background-image: url("{IMG_ICON_CONTACT_WWW_SRC}"); }
-.msnm-icon, .msnm-icon a		{ background-image: url("{IMG_ICON_CONTACT_MSNM_SRC}"); }
-.icq-icon, .icq-icon a			{ background-image: url("{IMG_ICON_CONTACT_ICQ_SRC}"); }
-.jabber-icon, .jabber-icon a	{ background-image: url("{IMG_ICON_CONTACT_JABBER_SRC}"); }
-.pm-icon, .pm-icon a			{ background-image: url("{IMG_ICON_CONTACT_PM_SRC}"); }
+.email-icon, .email-icon a				{ background-image: url("{IMG_ICON_CONTACT_EMAIL_SRC}"); }
+.aim-icon, .aim-icon a					{ background-image: url("{IMG_ICON_CONTACT_AIM_SRC}"); }
+.yahoo-icon, .yahoo-icon a				{ background-image: url("{IMG_ICON_CONTACT_YAHOO_SRC}"); }
+.web-icon, .web-icon a					{ background-image: url("{IMG_ICON_CONTACT_WWW_SRC}"); }
+.msnm-icon, .msnm-icon a				{ background-image: url("{IMG_ICON_CONTACT_MSNM_SRC}"); }
+.icq-icon, .icq-icon a					{ background-image: url("{IMG_ICON_CONTACT_ICQ_SRC}"); }
+.jabber-icon, .jabber-icon a			{ background-image: url("{IMG_ICON_CONTACT_JABBER_SRC}"); }
+.pm-icon, .pm-icon a					{ background-image: url("{IMG_ICON_CONTACT_PM_SRC}"); }
+.bebosn-icon, .bebosn-icon a			{ background-image: url("{IMG_ICON_CONTACT_BEBO_SRC}"); }
+.bloggersn-icon, .bloggersn-icon a		{ background-image: url("{IMG_ICON_CONTACT_BLOGGER_SRC}"); }
+.facebooksn-icon, .facebooksn-icon a	{ background-image: url("{IMG_ICON_CONTACT_FB_SRC}"); }
+.goodreadssn-icon, .goodreadssn-icon a	{ background-image: url("{IMG_ICON_CONTACT_GR_SRC}"); }
+.linkedinsn-icon, .linkedinsn-icon a	{ background-image: url("{IMG_ICON_CONTACT_LI_SRC}"); }
+.myspacesn-icon, .myspacesn-icon a		{ background-image: url("{IMG_ICON_CONTACT_MS_SRC}"); }
+.netlogsn-icon, .netlogsn-icon a		{ background-image: url("{IMG_ICON_CONTACT_NETLOG_SRC}"); }
+.twittersn-icon, .twittersn-icon a		{ background-image: url("{IMG_ICON_CONTACT_TWIT_SRC}"); }
 
 /* Moderator icons */
 .report-icon, .report-icon a	{ background-image: url("{T_IMAGESET_PATH}/images/icons/biohazard-button.gif"); }

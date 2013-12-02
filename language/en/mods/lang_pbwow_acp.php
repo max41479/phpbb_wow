@@ -112,6 +112,16 @@ $lang = array_merge($lang, array(
 	'ACP_PBWOW_CONFIG_TITLE_EXPLAIN'	=> 'Here you can choose some options for your PBWoW installation.',
 	'ACP_PBWOW_CONFIG_SETTINGS'			=> 'Configuration Options',
 
+	'ACP_PBWOW_LOGO'					=> 'Custom Logo',
+	'PBWOW_LOGO_ENABLE'					=> 'Enable your own custom logo image',
+	'PBWOW_LOGO_ENABLE_EXPLAIN'			=> 'Using this will enable your own custom logo for all installed PBWoW 2 styles, except the PBWoW 2 master style (Pandaria).',
+	'PBWOW_LOGO_SRC'					=> 'Image source path',
+	'PBWOW_LOGO_SRC_EXPLAIN'			=> 'Image path under your phpBB root directory, e.g. <samp>images/logo.png</samp>.<br />I strongly advise you to use a PNG image with a transparent background.',
+	'PBWOW_LOGO_SIZE'					=> 'Logo dimensions',
+	'PBWOW_LOGO_SIZE_EXPLAIN'			=> 'Exact dimensions of your logo image (Width x Height in pixels)<br />Images of more than 350 x 200 are not advised.',
+	'PBWOW_LOGO_MARGINS'				=> 'Logo margins',
+	'PBWOW_LOGO_MARGINS_EXPLAIN'		=> 'Set the CSS margins of your logo. This will give more control over the positioning of your image. Use valid CSS markup, e.g. <samp>10px 5px 25px 0</samp>.',
+
 	'ACP_PBWOW_TOPBAR'					=> 'Top Header-Bar',
 	'PBWOW_TOPBAR_ENABLE'				=> 'Enable the top header-bar',
 	'PBWOW_TOPBAR_ENABLE_EXPLAIN'		=> 'By enabling this option, a 40px high bar will be displayed at the top of each page.',

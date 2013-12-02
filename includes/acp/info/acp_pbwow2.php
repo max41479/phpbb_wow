@@ -11,7 +11,7 @@ class acp_pbwow2_info
         return array(
 			'filename'	=> 'acp_pbwow2',
 			'title'		=> 'ACP_PBWOW2_CATEGORY',
-			'version'	=> '2.0.6',
+			'version'	=> '2.0.7',
 			'modes'		=> array(
 				'overview'		=> array('title' => 'ACP_PBWOW2_OVERVIEW', 'auth' => 'acl_a_board', 'cat' => array('ACP_PBWOW2_CATEGORY')),
 				'config'		=> array('title' => 'ACP_PBWOW2_CONFIG', 'auth' => 'acl_a_board', 'cat' => array('ACP_PBWOW2_CATEGORY')),
