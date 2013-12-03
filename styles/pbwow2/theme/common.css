@@ -35,8 +35,11 @@ body.bg-fixed {
 
 body.bg-fixed #video-background {
 	position: fixed;
-	top: 41px;
 	z-index: 0;
+}
+
+body.bg-fixed.body-top-bar #video-background {
+	top: 41px;
 }
 
 h1 {

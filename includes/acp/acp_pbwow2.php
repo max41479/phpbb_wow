@@ -24,7 +24,7 @@ class acp_pbwow2
 		$this->tpl_name = 'acp_pbwow2';
 		
 		// Some constants
-		$module_version = '2.0.7';
+		$module_version = '2.0.7b';
 		$dbtable = defined('PBWOW2_CONFIG_TABLE') ? PBWOW2_CONFIG_TABLE : '';
 		$legacy_dbtable = defined('PBWOW_CONFIG_TABLE') ? PBWOW_CONFIG_TABLE : '';
 		$topics_table = TOPICS_TABLE;
@@ -44,7 +44,13 @@ class acp_pbwow2
 				$dbokay = true;
 				$pbwow_config = $this->get_pbwow_config();
 				$this->new_config = $pbwow_config;
-				$this->get_pbwow_umil_version();
+				if(!isset($pbwow_config['pbwow2_version']))
+				{
+					if (isset($config['pbwow2_version']) && !empty($config['pbwow2_version']))
+					{
+						$pbwow_config['pbwow2_version'] = $config['pbwow2_version'];
+					}
+				}
 			}
 		}
 
@@ -620,30 +626,6 @@ class acp_pbwow2
 			$db->sql_query($sql);
 		}
 		$pbwow_config[$config_name] = $config_value;
-	}
-
-	/**
-	 * Getting the database version, as determined by the UMIL install.
-	 */
-	function get_pbwow_umil_version()
-	{
-		global $db, $cache, $pbwow_config;
-		
-		if(!isset($pbwow_config['pbwow_version']))
-		{
-			$version = array();
-			
-			$sql = 'SELECT config_name, config_value
-				FROM ' . CONFIG_TABLE . ' WHERE config_name = "pbwow2_version" ';
-			$result = $db->sql_query($sql);
-	
-			while ($row = $db->sql_fetchrow($result))
-			{
-				$version[$row['config_name']] = $row['config_value'];
-			}
-			$db->sql_freeresult($result);
-			$pbwow_config = array_merge($pbwow_config, $version);
-		}
 	}
 
 	/**

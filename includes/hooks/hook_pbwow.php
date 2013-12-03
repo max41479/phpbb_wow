@@ -149,7 +149,7 @@ function pbwow_global_style_append(&$hook, $handle, $include_once = true)
 			$values += array(
 				'S_BG_FIXED' => true,
 			);
-			if(!$topbar_fixed)
+			if($topbar_enable && isset($topbar_code) && !$topbar_fixed)
 			{
 				$values += array(
 					'S_TOPBAR_FIXED' => true,
