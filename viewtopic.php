@@ -1161,6 +1161,14 @@ while ($row = $db->sql_fetchrow($result))
 				'bbchar'			=> '',
 				// BBDKP END
 				'allow_pm'			=> 0,
+				// BEGIN PBWoW 2 MOD
+				'avatar_src'				=> '',
+				'special_rank_title'		=> '',
+				'special_rank_image'		=> '',
+				'special_rank_image_src'	=> '',
+				'user_special_styling'		=> '',
+				'user_special_color'		=> '',
+				// END PBWoW 2 MOD
 			);
 
 			get_user_rank($row['user_rank'], false, $user_cache[$poster_id]['rank_title'], $user_cache[$poster_id]['rank_image'], $user_cache[$poster_id]['rank_image_src']);
