@@ -794,8 +794,7 @@ function authorized_mod_colors($message)
 		$db->sql_freeresult($result);
 		
 		//check if user can use this colors
-		$user_blizz = array_intersect(explode(',', $pbwow_config['blizz_ranks']), $user_groups);
-		if (empty($user_blizz) and ($pbwow_config['blizz_enable']) and (!empty($matches_rgb)))
+		if (!array_intersect(explode(',', $pbwow_config['blizz_ranks']), $user_groups) and $pbwow_config['blizz_enable'] and (!empty($matches_rgb)))
 		{
 			foreach($matches_rgb as $key => $value)
 			{
@@ -803,8 +802,7 @@ function authorized_mod_colors($message)
 			}
 		}
 
-		$user_propass = array_intersect(explode(',', $pbwow_config['propass_ranks']), $user_groups);
-		if (empty($user_propass) and $pbwow_config['propass_enable'])
+		if (!array_intersect(explode(',', $pbwow_config['propass_ranks']), $user_groups) and $pbwow_config['propass_enable'])
 		{
 			foreach($matches_rgb as $key => $value)
 			{
@@ -812,8 +810,7 @@ function authorized_mod_colors($message)
 			}
 		}
 
-		$user_red = array_intersect(explode(',', $pbwow_config['red_ranks']), $user_groups);
-		if (empty($user_red) and $pbwow_config['red_enable'])
+		if (!array_intersect(explode(',', $pbwow_config['red_ranks']), $user_groups) and $pbwow_config['red_enable'])
 		{
 			foreach($matches_rgb as $key => $value)
 			{
@@ -821,8 +818,7 @@ function authorized_mod_colors($message)
 			}
 		}
 
-		$user_green = array_intersect(explode(',', $pbwow_config['green_ranks']), $user_groups);
-		if (empty($user_green) and $pbwow_config['green_enable'])
+		if (!array_intersect(explode(',', $pbwow_config['green_ranks']), $user_groups) and $pbwow_config['green_enable'])
 		{
 			foreach($matches_rgb as $key => $value)
 			{
