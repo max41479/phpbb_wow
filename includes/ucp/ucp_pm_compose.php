@@ -545,6 +545,19 @@ function compose_pm($id, $mode, $action, $user_folders = array())
 	$img_status		= ($config['auth_img_pm'] && $auth->acl_get('u_pm_img')) ? true : false;
 	$flash_status	= ($config['auth_flash_pm'] && $auth->acl_get('u_pm_flash')) ? true : false;
 	$url_status		= ($config['allow_post_links']) ? true : false;
+	// BEGIN PBWoW 2 MOD
+	$pbwow_config = get_pbwow_config();
+	// everyone is checked for auths...everyone except board founder that is
+	if(!$pbwow_config['mod_colors'] && $user->data['user_type'] != USER_FOUNDER)
+	{
+		$auth_msg = authorized_mod_colors(utf8_normalize_nfc(request_var('message', '', true)));
+		if(!empty($auth_msg))
+		{
+			$bbcode_status = false;
+			$error[] = implode("",$auth_msg);
+		}
+	}						
+	// END PBWoW 2 MOD
 
 	// Save Draft
 	if ($save && $auth->acl_get('u_savedrafts'))

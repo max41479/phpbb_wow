@@ -172,6 +172,14 @@ $lang = array_merge($lang, array(
 	
 	'PBWOW_TOOLTIPS_LOCAL'				=> 'Load scripts from local webserver?',
 	'PBWOW_TOOLTIPS_LOCAL_EXPLAIN'		=> 'Loads a local copy (11-11-2013) of the tooltip scripts instead of the live DB websites. Do not enable unless you know what you are doing.',
+	'PBWOW_MOD_COLORS'					=> 'Allow users to post with mod colors?',
+	'ACP_PBWOW_MOD_COLORS'				=> 'Moderator colors censoring',
+	'PBWOW_RANGE_RED'					=> 'Range of red color component (max 255)',
+	'PBWOW_RANGE_RED_EXPLAIN'			=> 'Example: rgb( <b>r</b>, g, b )',
+	'PBWOW_RANGE_GREEN'					=> 'Range of green color component (max 255)',
+	'PBWOW_RANGE_GREEN_EXPLAIN'			=> 'Example: rgb( r, <b>g</b>, b )',
+	'PBWOW_RANGE_BLUE'					=> 'Range of blue color component (max 255)',
+	'PBWOW_RANGE_BLUE_EXPLAIN'			=> 'Example: rgb( r, g, <b>b</b> )',
 
 
 	// POSTSTYLING //

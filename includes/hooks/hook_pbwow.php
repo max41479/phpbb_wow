@@ -757,4 +757,136 @@ function get_pbwow_config()
 	return $pbwow_config;
 }
 
+/* Check if the color moderators unauthorized use */
+function authorized_mod_colors($message)
+{
+	global $user, $db;
+	
+	// need to notice language
+	$user->add_lang('mods/authorized_mod_colors');
+
+	// initialize a variable or two
+	$auth_msg = '';
+	$matches_message = array();
+	$pbwow_config = get_pbwow_config();
+	$color_range[] = $pbwow_config['range_red'];
+	$color_range[] = $pbwow_config['range_green'];
+	$color_range[] = $pbwow_config['range_blue'];
+	
+	preg_match_all("/color=#.{3,6}\]/i", $message, $matches);
+	if (!empty($matches))
+	{
+		$pattern[] = '/color=/i';
+		$pattern[] = '/\]/';
+		foreach ($matches[0] as $key => $value)
+		{
+			$matches_rgb[] = hex2rgb(preg_replace($pattern, '', $matches[0][$key]));
+		}
+		unset($message);
+		
+		//get user groups
+		$sql = 'SELECT group_id FROM ' . USER_GROUP_TABLE . ' WHERE user_id = '. (int) $user->data['user_id'];
+		$result = $db->sql_query($sql);
+		while ($row = $db->sql_fetchrow($result))
+		{
+			$user_groups[] = $row['group_id'];
+		}
+		$db->sql_freeresult($result);
+		
+		//check if user can use this colors
+		if (empty(array_intersect(explode(',', $pbwow_config['blizz_ranks']), $user_groups)) and $pbwow_config['blizz_enable'] and (!empty($matches_rgb)))
+		{
+			foreach($matches_rgb as $key => $value)
+			{
+				$mod_colors[] = filter_mod_colors ($color_range, hex2rgb($pbwow_config['blizz_color']), $matches_rgb[$key]);
+			}
+		}
+
+		if (empty(array_intersect(explode(',', $pbwow_config['propass_ranks']), $user_groups)) and $pbwow_config['propass_enable'])
+		{
+			foreach($matches_rgb as $key => $value)
+			{
+				$mod_colors[] = filter_mod_colors ($color_range, hex2rgb($pbwow_config['propass_color']), $matches_rgb[$key]);
+			}
+		}
+
+		if (empty(array_intersect(explode(',', $pbwow_config['red_ranks']), $user_groups)) and $pbwow_config['red_enable'])
+		{
+			foreach($matches_rgb as $key => $value)
+			{
+				$mod_colors[] = filter_mod_colors ($color_range, hex2rgb($pbwow_config['red_color']), $matches_rgb[$key]);
+			}
+		}
+
+		if (empty(array_intersect(explode(',', $pbwow_config['green_ranks']), $user_groups)) and $pbwow_config['green_enable'])
+		{
+			foreach($matches_rgb as $key => $value)
+			{
+				$mod_colors[] = filter_mod_colors ($color_range, hex2rgb($pbwow_config['green_color']), $matches_rgb[$key]);
+			}
+		}
+	}
+	unset($pbwow_config);
+	
+	if (!empty($mod_colors))
+	{
+		$matches_message = array_filter(array_unique($mod_colors));
+	}
+	if (!empty($matches_message))
+	{
+		$auth_msg = array(sprintf($user->lang['MOD_COLORS_UNAUTHED'], implode('; ', $matches_message)));
+	}
+	return ($auth_msg);
+}
+
+function filter_mod_colors ($range, $mod_color_rgb, $user_color_rgb)
+{
+	for ($i = 0; $i <= 2; $i++)
+	{
+		if ((abs($mod_color_rgb[$i] - $user_color_rgb[$i])) <= (int) $range[$i])
+		{
+			$match[] = true;
+		}
+		else
+		{
+			$match[] = false;
+		}
+	}
+	if ($match[0] and $match[1] and $match[2])
+	{
+		return rgb2hex($user_color_rgb);
+	}
+}
+
+function hex2rgb($hex)
+{
+	$hex = str_replace("#", "", $hex);
+
+	if(strlen($hex) == 3)
+	{
+		$r = hexdec(substr($hex,0,1).substr($hex,0,1));
+		$g = hexdec(substr($hex,1,1).substr($hex,1,1));
+		$b = hexdec(substr($hex,2,1).substr($hex,2,1));
+	}
+	else
+	{
+		$r = hexdec(substr($hex,0,2));
+		$g = hexdec(substr($hex,2,2));
+		$b = hexdec(substr($hex,4,2));
+	}
+	$rgb = array($r, $g, $b);
+	//return implode(",", $rgb); // returns the rgb values separated by commas
+	return $rgb; // returns an array with the rgb values
+}
+
+function rgb2hex($rgb)
+{
+	$hex = "#";
+	$hex .= str_pad(dechex($rgb[0]), 2, "0", STR_PAD_LEFT);
+	$hex .= str_pad(dechex($rgb[1]), 2, "0", STR_PAD_LEFT);
+	$hex .= str_pad(dechex($rgb[2]), 2, "0", STR_PAD_LEFT);
+
+	return $hex; // returns the hex value including the number sign (#)
+}
+
 ?>

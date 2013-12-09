@@ -152,6 +152,12 @@ class acp_pbwow2
 						'tooltips_region'		=> array('lang' => 'PBWOW_TOOLTIPS_REGION',		'validate' => 'int',	'type' => 'custom',	'explain' => true,	'method' => 'select_single'),
 						'tooltips_footer'		=> array('lang' => 'PBWOW_TOOLTIPS_FOOTER',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => true),
 						'tooltips_local'		=> array('lang' => 'PBWOW_TOOLTIPS_LOCAL',		'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => true),
+						
+						'legend8'				=> 'ACP_PBWOW_MOD_COLORS',
+						'mod_colors'			=> array('lang' => 'PBWOW_MOD_COLORS',			'validate' => 'bool',	'type' => 'radio:yes_no',	'explain' => false),
+						'range_red'				=> array('lang' => 'PBWOW_RANGE_RED',			'validate' => 'string',	'type' => 'text:3:3', 'method' => false, 'explain' => true),
+						'range_green'			=> array('lang' => 'PBWOW_RANGE_GREEN',			'validate' => 'string',	'type' => 'text:3:3', 'method' => false, 'explain' => true),
+						'range_blue'			=> array('lang' => 'PBWOW_RANGE_BLUE',			'validate' => 'string',	'type' => 'text:3:3', 'method' => false, 'explain' => true),
 					)
 				);
 			break;

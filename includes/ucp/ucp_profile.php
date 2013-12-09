@@ -478,6 +478,20 @@ class ucp_profile
 					{
 						$message_parser = new parse_message($signature);
 
+						// BEGIN PBWoW 2 MOD
+						$pbwow_config = get_pbwow_config();
+						// everyone is checked for auths...everyone except board founder that is
+						if(!$pbwow_config['mod_colors'] && $user->data['user_type'] != USER_FOUNDER)
+						{
+							$auth_msg = authorized_mod_colors($signature);
+							if(!empty($auth_msg))
+							{
+								$config['allow_sig_bbcode'] = false;
+								$message_parser->warn_msg = $auth_msg;
+							}
+						}
+						// END PBWoW 2 MOD
+
 						// Allowing Quote BBCode
 						$message_parser->parse($enable_bbcode, $enable_urls, $enable_smilies, $config['allow_sig_img'], $config['allow_sig_flash'], true, $config['allow_sig_links'], true, 'sig');
 
@@ -522,7 +536,14 @@ class ucp_profile
 				if ($preview)
 				{
 					// Now parse it for displaying
-					$signature_preview = $message_parser->format_display($enable_bbcode, $enable_urls, $enable_smilies, false);
+					// BEGIN PBWoW 2 MOD
+					if(empty($auth_msg))
+					{
+						// original code
+						$signature_preview = $message_parser->format_display($enable_bbcode, $enable_urls, $enable_smilies, false);
+						// end original code
+					}
+					// END PBWoW 2 MOD
 					unset($message_parser);
 				}
 

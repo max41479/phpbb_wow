@@ -52,7 +52,7 @@
 			<br />
 			<!-- ENDIF -->
 		
-			<h2><img src="{T_IMAGESET_PATH}/images/icons/<!-- IF S_CAN_VOTE and L_POLL_LENGTH -->poll-end.gif<!-- ELSEIF S_CAN_VOTE -->poll-open.gif<!-- ELSE -->poll-private.gif<!-- ENDIF -->" alt="" style="position: absolute;"/><span>Poll:</span>&quot;{POLL_QUESTION}&quot;</h2>
+			<h2><img src="{T_IMAGESET_PATH}/images/icons/<!-- IF S_CAN_VOTE and L_POLL_LENGTH -->poll-end.gif<!-- ELSEIF S_CAN_VOTE -->poll-open.gif<!-- ELSE -->poll-private.gif<!-- ENDIF -->" alt="" style="position: absolute;"/><span>{L_VIEW_TOPIC_POLL}</span>&quot;{POLL_QUESTION}&quot;</h2>
 			
 
 			<div class="wow-poll-box1">
@@ -143,7 +143,7 @@
 							<div class="game-icons-b diablo-{postrow.PROFILE_PBDFOLLOWER_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{postrow.PROFILE_PBDFOLLOWER_VALUE}" alt="{postrow.PROFILE_PBDFOLLOWER_VALUE}" /></div>
 							<!-- ENDIF -->
 							
-							<div class="game-icons-c<!-- IF postrow.S_PROFILE_PBFACTION --> faction-{postrow.PROFILE_PBFACTION_VALUE}<!-- ENDIF -->"<!-- IF postrow.RANK_IMG --> style="background-image: url('{postrow.RANK_IMG_SRC}');"<!-- ENDIF -->><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" alt="{postrow.RANK_TITLE}" title="{postrow.RANK_TITLE}" /></div>
+							<div class="game-icons-c<!-- IF postrow.S_PROFILE_PBFACTION --> faction-{postrow.PROFILE_PBFACTION_VALUE}<!-- ENDIF -->"<!-- IF postrow.RANK_IMG and postrow.RANK_IMG != postrow.SPECIAL_RANK_IMG --> style="background-image: url('{postrow.RANK_IMG_SRC}');"<!-- ENDIF -->><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" alt="{postrow.RANK_TITLE}" title="{postrow.RANK_TITLE}" /></div>
 
 						</div>
 						<!-- ENDIF -->

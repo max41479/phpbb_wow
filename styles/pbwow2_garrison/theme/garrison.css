@@ -1,15 +1,8 @@
 /* PBWoW Garrison style specific markup */
 
 body {
-	background-color: #030309;
 	background-image: url("{T_THEME_PATH}/images/bg.jpg");
-}
-
-#logo {
-	/*background: url("{T_THEME_PATH}/images/themes/logo.png") no-repeat 50% 0;*/
-	width: 400px; 
-	height: 200px; 
-	margin: 0 0 0 -10px;
+	background-color: #030309;
 }
 
 #page-body {
@@ -20,7 +13,6 @@ body {
 .headerbar { 
 	background: rgba(0,0,0,0.75);
 }
-
 
 /* =Media queries
 -------------------------------------------------------------- */
@@ -34,20 +26,9 @@ body {
 	body {
 		background-image: url("{T_THEME_PATH}/images/bg-small.jpg");
 	}
-	#logo {
-		width: 350px; 
-		height: 150px; 
-		margin: 0 0 0 -10px;
-	}
-	#video-background {
-		display: none !important;;
-	}
 }
 
 @media screen and (min-width: 1000px) {
-	/*#logo-wrap {
-		height: 255px;
-	}*/
 	#wrapper {
 		min-height: 1000px;
 	}
@@ -57,9 +38,6 @@ body {
 		position: absolute;
 		top: 0;
 		z-index: -1000;
-	}
-	#video-background video {
-		opacity: 0;
 	}
 	#video-element1 {
 		background-image: none;

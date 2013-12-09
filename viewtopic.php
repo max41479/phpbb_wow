@@ -1247,7 +1247,20 @@ while ($row = $db->sql_fetchrow($result))
 
 			// Now we get all the 'secondary' ranks (based on post count etc.) and put them in the place of the user ranks. Switcharooh!
 			get_user_rank(0, $row['user_posts'], $user_cache[$poster_id]['rank_title'], $user_cache[$poster_id]['rank_image'], $user_cache[$poster_id]['rank_image_src']);
+			if($user_cache[$poster_id]['rank_title'] == '')
+			{
+				$user_cache[$poster_id]['rank_title'] = $user_cache[$poster_id]['special_rank_title'];
+			}
 			
+			if($user_cache[$poster_id]['rank_image'] == '')
+			{
+				$user_cache[$poster_id]['rank_image'] = $user_cache[$poster_id]['special_rank_image'];
+			}
+			
+			if($user_cache[$poster_id]['rank_image_src'] == '')
+			{
+				$user_cache[$poster_id]['rank_image_src'] = $user_cache[$poster_id]['rank_image_src'];
+			}
 			check_rank_special_styling($row['user_rank'], $user_cache[$poster_id]['user_special_styling'], $user_cache[$poster_id]['user_special_color']);
 			$user_cache[$poster_id]['avatar_src'] = ($user->optionget('viewavatars')) ? get_user_avatar_src($row['user_avatar'], $row['user_avatar_type']) : '';
 			// END PBWoW 2 MOD

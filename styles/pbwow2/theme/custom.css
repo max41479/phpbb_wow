@@ -184,3 +184,13 @@ padding: 0px 7px 7px 7px;
 	height: 20px;
 	padding-right: 5px;
 }
+
+.wow-index .wow-forum:hover,
+.wow-index .wow-forum:active {
+	box-shadow: 0 0 2px 1px rgba(150, 200, 255, 0.7);
+}
+
+input[type="radio"], input[type="checkbox"] {
+background: none;
+border: none;
+}

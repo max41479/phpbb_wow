@@ -70,6 +70,34 @@
 	</dl>
 </div>
 
+<div id="colour_palette_shadow" style="display: none;">
+	<dl style="clear: left;">
+		<dt><label>{L_SHADOW_COLOR}:</label></dt>
+		<dd>
+		<script type="text/javascript">
+		// <![CDATA[
+			function change_palette_shadow()
+			{
+				dE('colour_palette_shadow');
+				e = document.getElementById('colour_palette_shadow');
+				
+				if (e.style.display == 'block')
+				{
+					document.getElementById('bbpalette_shadow').value = '{LA_FONT_COLOR_HIDE}';
+				}
+				else
+				{
+					document.getElementById('bbpalette_shadow').value = '{LA_SHADOW_COLOR}';
+				}
+			}
+
+			colorPaletteShadow('h', 15, 10);
+		// ]]>
+		</script>
+		</dd>
+	</dl>
+</div>
+
 <div id="format-buttons">
 	<input type="button" class="button2" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px" onclick="bbstyle(0)" title="{L_BBCODE_B_HELP}" />
 	<input type="button" class="button2" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px" onclick="bbstyle(2)" title="{L_BBCODE_I_HELP}" />
@@ -103,6 +131,7 @@
 		<!-- ENDIF -->
 	</select>
 	<input type="button" class="button2" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
+	<input type="button" class="button2" name="bbpalette_shadow" id="bbpalette_shadow" value="{L_SHADOW_COLOR}" onclick="change_palette_shadow();" title="{L_BBCODE_SHADOW_HELP}" />
 	<!-- BEGIN custom_tags -->
 		<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
 	<!-- END custom_tags -->

@@ -645,6 +645,19 @@ if ($load && ($mode == 'reply' || $mode == 'quote' || $mode == 'post') && $post_
 
 if ($submit || $preview || $refresh)
 {
+	// BEGIN PBWoW 2 MOD
+		// everyone is checked for auths...everyone except board founder that is
+		$pbwow_config = get_pbwow_config();
+		if(!$pbwow_config['mod_colors'] && $user->data['user_type'] != USER_FOUNDER)
+		{
+			$auth_msg = authorized_mod_colors(utf8_normalize_nfc(request_var('message', '', true)));
+			if(!empty($auth_msg))
+			{
+				$bbcode_status = false;
+				$message_parser->warn_msg = $auth_msg;
+			}
+		}
+	// END PBWoW 2 MOD
 	$post_data['topic_cur_post_id']	= request_var('topic_cur_post_id', 0);
 	$post_data['post_subject']		= utf8_normalize_nfc(request_var('subject', '', true));
 	$message_parser->message		= utf8_normalize_nfc(request_var('message', '', true));

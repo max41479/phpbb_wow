@@ -33,7 +33,7 @@
 						<div class="game-icons-b diablo-{PROFILE_PBDFOLLOWER_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{PROFILE_PBDFOLLOWER_VALUE}" alt="{PROFILE_PBDFOLLOWER_VALUE}" /></div>
 						<!-- ENDIF -->
 						
-						<div class="game-icons-c<!-- IF S_PROFILE_PBFACTION --> faction-{PROFILE_PBFACTION_VALUE}<!-- ENDIF -->"<!-- IF RANK_IMG --> style="background-image: url('{RANK_IMG_SRC}');"<!-- ENDIF -->><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" alt="{RANK_TITLE}" title="{RANK_TITLE}" /></div>
+						<div class="game-icons-c<!-- IF S_PROFILE_PBFACTION --> faction-{PROFILE_PBFACTION_VALUE}<!-- ENDIF -->"<!-- IF RANK_IMG and postrow.RANK_IMG != postrow.SPECIAL_RANK_IMG --> style="background-image: url('{RANK_IMG_SRC}');"<!-- ENDIF -->><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" alt="{RANK_TITLE}" title="{RANK_TITLE}" /></div>
 
 					</div>
 					<!-- ENDIF -->
@@ -53,7 +53,7 @@
 				<!-- IF S_PROFILE_PBGUILD --><dd class="guild">&lsaquo; {PROFILE_PBGUILD_VALUE} &rsaquo;</dd><!-- ENDIF -->
 				<!-- IF SPECIAL_RANK_TITLE or RANK_TITLE --><dd class="separator"></dd><!-- ENDIF -->
 				<!-- IF SPECIAL_RANK_TITLE --><dd class="special-rank" style="display: block; font-weight: bold; font-size: 1.1em;"">{SPECIAL_RANK_TITLE}</dd><!-- ENDIF -->
-				<!-- IF RANK_TITLE or RANK_IMG --><dd class="rank" style="display: block; font-weight: bold; font-size: 1.1em;">{RANK_TITLE}</dd><!-- ENDIF -->
+				<!-- IF (RANK_TITLE or RANK_IMG) and (RANK_TITLE != SPECIAL_RANK_TITLE) --><dd class="rank" style="display: block; font-weight: bold; font-size: 1.1em;">{RANK_TITLE}</dd><!-- ENDIF -->
 				<!-- IF S_ONLINE --><dd class="separator"></dd><dd class="online">{L_ONLINE}</dd><!-- ENDIF -->
 			</dl>
 

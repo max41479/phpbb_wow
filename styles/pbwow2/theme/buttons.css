@@ -373,6 +373,8 @@ a.ui-button2.poll-results span, a.ui-button2.poll-vote span {
 a.ui-button2.poll-results span span, a.ui-button2.poll-vote span span {
 	padding: 0 8px 0 0;
 	width: 108px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .quote-icon a.ui-button2 div {
 	background: url("{T_IMAGESET_PATH}/images/icons/icon_quote.png") 50% 4px no-repeat;
