@@ -1,0 +1,179 @@
+/* Xmas style specific markup */
+
+body {
+	background-image: url("{T_THEME_PATH}/images/bg.jpg");
+}
+
+#logo {
+	background: url("{T_THEME_PATH}/images/logo.png") no-repeat 50% 0;
+	width: 300px;
+	height: 150px;
+	background-size: 100% 100%;
+}
+
+#page-body {
+	background: rgba(0,0,0,0.85);
+	box-shadow: 0 0px 12px 8px rgba(0,0,0,0.6);	
+}
+
+.headerbar { 
+	background: rgba(0,0,0,0.75);
+}
+
+.wrap1 { background-image: url("{T_THEME_PATH}/images/border-left.gif"); }
+.wrap2 { background-image: url("{T_THEME_PATH}/images/border-right.gif"); }
+.wrap3 { background-image: url("{T_THEME_PATH}/images/border-top.gif"); }
+.wrap4 { background-image: url("{T_THEME_PATH}/images/border-bot.gif"); }
+.wrap5 { background-image: url("{T_THEME_PATH}/images/border-top-left.gif"); }
+.wrap6 { background-image: url("{T_THEME_PATH}/images/border-top-right.gif"); }
+.wrap7 { background-image: url("{T_THEME_PATH}/images/border-bot-right.gif"); } 
+.wrap8 { background-image: url("{T_THEME_PATH}/images/border-bot-left.gif"); } 
+
+a:link, a.ui-button1 span, a.ui-button2 span, a.topictitle	{ color: #f2c56e; text-decoration: none; }
+a:visited	{ color: #f2c56e; text-decoration: none; }
+a:hover	{ color: #FFF; text-decoration: underline; }
+a:active	{ color: #00C0FF; text-decoration: none; }
+
+/* Body-top */
+.body-top {
+	background-image: url("{T_THEME_PATH}/images/forumliner-top.png");
+}
+
+.body-top #fix-left1 { background-image: url("{T_THEME_PATH}/images/forumliner-fix-left1.gif"); }
+.body-top #fix-left2 { background-image: url("{T_THEME_PATH}/images/forumliner-fix-left2.gif"); }
+.body-top #fix-right1 { background-image: url("{T_THEME_PATH}/images/forumliner-fix-right1.gif"); }
+.body-top #fix-right2 { background-image: url("{T_THEME_PATH}/images/forumliner-fix-right2.gif"); }
+
+#search-box {
+	background-image: url("{T_THEME_PATH}/images/forumliner-top-left.gif");
+	width: 422px;
+}
+
+#search-box .qs-title {
+	background-image: url("{T_THEME_PATH}/images/{S_USER_LANG}/forum-menu-quicksearch.gif");
+}
+
+#search-box .qs-advanced {
+	background-image: url("{T_THEME_PATH}/images/{S_USER_LANG}/forum-menu-advanced-search.gif");
+}
+
+#search-box .qs-button {
+	background-image: url("{T_THEME_PATH}/images/{S_USER_LANG}/forum-menu-search.gif");
+}
+
+#pagination-box {
+	background-image: url("{T_THEME_PATH}/images/forumliner-top-right.gif");
+}
+
+#pagination-box > div {
+	background-image: url("{T_THEME_PATH}/images/forumliner-top-right-end.gif");
+	padding-left: 150px;
+}
+
+#pagination-box span strong {
+	border-color: #F2C56E;
+}
+
+#pagination-box span a, #pagination-box span a:link, #pagination-box span a:visited, #pagination-box span a:active {
+	color: #F2C56E;
+	border-color: #645834;
+}
+
+#breadcrumb {
+	background-image: url("{T_THEME_PATH}/images/grey-bar-wide.gif");
+}
+
+#qr_showeditor_div .content {
+	background-image: url("{T_THEME_PATH}/images/banner-decor-bg.png");
+}
+
+#top-bar {
+	background: url("{T_THEME_PATH}/images/bar-bg.jpg") no-repeat scroll 50% 100% #122134;
+	border-bottom-color: #214463;
+}
+#top-bar > div {
+	border-right-color: #10283b;
+	border-left-color: #011323;
+}
+#top-bar span, #top-bar a.cell {
+	border-left: 1px solid #10283b;
+	border-right-color: #011323;
+}
+
+/* Index */
+.wow-index .forum-description {
+	color: #877B69;
+}
+
+.wow-recent a.forum {
+	color: #AD835A;
+}
+
+.wow-index .forum-stats, .wow-recent dd.topic-stats, .online-pagelink {
+	color: #41434a;
+}
+
+.wow-index .wow-forum:hover {
+	border-color: #05d0ff;
+}
+
+/* Extras */
+.post:hover .innerborder2, .poll:hover .innerborder2 { 
+	box-shadow: 0 0 3px 2px rgba(168,191,203, 0.6);
+}
+
+.postlink {
+	border-bottom-color: #8C6407;
+}
+
+/* =Media queries
+-------------------------------------------------------------- */
+
+/* Small devices. */
+@media screen and (max-width: 859px) {
+	#logo {
+		width: 200px;
+		height: 100px;
+		margin-top: 10px;
+	}
+	.body-top.headpagi {
+		background-image: url("{T_THEME_PATH}/images/forumliner-top-right.gif");
+	}
+	#pagination-box {
+		background-position: -160px 0;
+	}
+	#pagination-box > div {
+		padding-left: 10px;
+	}
+}
+
+@media screen and (max-width: 999px) {
+	body {
+		background-image: url("{T_THEME_PATH}/images/bg-small.jpg");
+	}
+}
+
+@media screen and (min-width: 1000px) {
+	#wrapper {
+		min-height: 850px;
+	}
+	#video-background {
+		/*height: 1000px;*/
+		left: 50%;
+		position: absolute;
+		top: 0;
+		z-index: -1000;
+	}
+	#video-element1 {
+		background-image: none;
+		position: absolute;
+		top: 1px;
+		right: 407px;
+	}
+	#video-element2 {
+		background-image: none;
+		position: absolute;
+		top: 61px;
+		left: 519px;
+	}
+}

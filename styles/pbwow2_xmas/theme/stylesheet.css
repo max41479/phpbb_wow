@@ -1,0 +1,24 @@
+/*  phpBB3 Style Sheet
+    --------------------------------------------------------------
+	Style name:			PBWoW 2 Xmas
+	Based on style:		prosilver (the default phpBB 3.0.x style)
+	Original author:	Tom Beddard ( http://www.subblue.com/ )
+	Modified by:		PayBas ( http://pbwow.com/ )
+    --------------------------------------------------------------
+*/
+
+@import url("../../pbwow2/theme/common.css");
+@import url("../../pbwow2/theme/links.css");
+@import url("../../pbwow2/theme/content.css");
+@import url("../../pbwow2/theme/buttons.css");
+@import url("../../pbwow2/theme/cp.css");
+@import url("../../pbwow2/theme/forms.css");
+@import url("../../pbwow2/theme/tweaks.css");
+@import url("../../pbwow2/theme/colours.css");
+@import url("../../pbwow2/theme/game-icons.css");
+
+@import url("../../pbwow2/theme/custom.css");
+@import url("xmas.css");
+
+@import url("../../pbwow2/theme/bbdkp.css");
+@import url("../../pbwow2/theme/apply.css");

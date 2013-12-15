@@ -65,7 +65,7 @@
 					<dt><!-- IF S_CAN_VOTE --><label for="vote_{poll_option.POLL_OPTION_ID}">{poll_option.POLL_OPTION_CAPTION}</label><!-- ELSE --><span>{poll_option.POLL_OPTION_CAPTION}</span><!-- ENDIF -->
 					<!-- IF S_CAN_VOTE --><!-- IF S_IS_MULTI_CHOICE --><input type="checkbox" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ELSE --><input type="radio" name="vote_id[]" id="vote_{poll_option.POLL_OPTION_ID}" value="{poll_option.POLL_OPTION_ID}"<!-- IF poll_option.POLL_OPTION_VOTED --> checked="checked"<!-- ENDIF --> /><!-- ENDIF --></dt><!-- ENDIF -->
 					
-					<!-- IF S_DISPLAY_RESULTS --><dd class="resultbar"><div class="resultbar-restrict"><div class="pollbar0" style="width:{poll_option.POLL_OPTION_PERCENT};">{poll_option.POLL_OPTION_RESULT}</div></div><span><!-- IF poll_option.POLL_OPTION_RESULT == 0 -->{L_NO_VOTES}<!-- ELSE -->{poll_option.POLL_OPTION_PERCENT}<!-- ENDIF --></span></dd><!-- ENDIF -->
+					<!-- IF S_DISPLAY_RESULTS --><dd class="resultbar"><div class="resultbar-restrict"><div class="pollbar" style="width:{poll_option.POLL_OPTION_PERCENT};"><div>{poll_option.POLL_OPTION_PERCENT}</div></div></div><span>{poll_option.POLL_OPTION_RESULT}</span></dd><!-- ENDIF -->
 				</dl>
 			<!-- END poll_option -->
 
@@ -396,6 +396,24 @@ $(document).ready(function(){
 			$("a.context-link.active").removeClass("active");
 			$("a.context-avatar.active").removeClass("active");
 		});
+		
+		<!-- IF S_HAS_POLL and S_DISPLAY_RESULTS -->
+		var maxperc = 0;
+		$(".pollbar").each(function() {
+			var perc = parseFloat($("div", this).html());
+			maxperc = ( perc > maxperc ? perc : maxperc );
+		})
+		if (maxperc !== 0) {
+			$(".pollbar").each(function() {
+				var perc = parseFloat($("div", this).html());
+				if (perc == maxperc) {
+					$(this).addClass("winner");
+				}
+				perc = Math.round(perc / maxperc * 100);
+				$(this).css("width", perc+"%");
+			})
+		}
+		<!-- ENDIF -->
 	}
 }); 
 </script>

@@ -300,7 +300,7 @@ h2.toggle > a {
 	background-position: 5px 50%;
 }
 .index-right dl.icon dt {
-	padding-left: 40px;
+	padding: 0 0 5px 40px;
 }
 
 .index-extra {
@@ -1282,21 +1282,30 @@ fieldset.polls dd {
 	border-left: none;
 	/*padding: 0 5px;*/
 	margin-left: 0;
-	font-size: 1.1em;
+	font-size: 11px;
+	font-size: 1.1rem;
+	text-shadow: 0 0 2px #000;
 }
 
 fieldset.polls dd span {
-	margin-left: 10px;
+	/*margin-left: 10px;*/
+	display: inline-block;
+	width: 18%;
+	text-align: right;
+	font-size: 12px;
+	font-size: 1.2rem;
 }
 
 fieldset.polls dd.resultbar {
 	width: 50%;
 	margin: 0;
 }
+
 fieldset.polls .resultbar-restrict {
 	width: 80%;
 	text-align: left;
 }
+
 fieldset.polls dd.resultbar div {
 	display: inline-block;
 }
@@ -1310,40 +1319,26 @@ fieldset.polls dd div {
 	font-family: Arial, Helvetica, sans-serif;
 	color: #FFFFFF;
 	font-weight: bold;
-	padding: 0 2px;
 	overflow: visible;
 	min-width: 2%;
 }
 
-.pollbar0 {
-	background: url("{T_IMAGESET_PATH}/images/bar-energy.gif") repeat-x;
+.pollbar {
+	background: url("{T_IMAGESET_PATH}/images/poll_bars1.gif") no-repeat ;
+	background-position: 0 -19px;
 	height: 16px;
 }
-
-.pollbar1 {
-	background-color: #AA2346;
-	border-bottom-color: #74162C;
-	border-right-color: #74162C;
+.pollbar div {
+	background: url("{T_IMAGESET_PATH}/images/poll_bars1.gif") no-repeat ;
+	background-position: 100% -19px;
+	margin-left: 3px;
+	padding-right: 3px;
 }
-.pollbar2 {
-	background-color: #BE1E4A;
-	border-bottom-color: #8C1C38;
-	border-right-color: #8C1C38;
+.pollbar.winner {
+	background-position: 0 -1px;
 }
-.pollbar3 {
-	background-color: #D11A4E;
-	border-bottom-color: #AA2346;
-	border-right-color: #AA2346;
-}
-.pollbar4 {
-	background-color: #E41653;
-	border-bottom-color: #BE1E4A;
-	border-right-color: #BE1E4A;
-}
-.pollbar5 {
-	background-color: #F81157;
-	border-bottom-color: #D11A4E;
-	border-right-color: #D11A4E;
+.pollbar.winner div {
+	background-position: 100% -1px;
 }
 
 /* Poster profile block

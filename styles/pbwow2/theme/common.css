@@ -1133,7 +1133,7 @@ p.rules a {
 		height: 100px;
 	}
 	.body-top.headpagi {
-		background: url("{T_IMAGESET_PATH}/images/forumliner-top-right.gif") no-repeat 70%;
+		background: url("{T_IMAGESET_PATH}/images/forumliner-top-right.gif") no-repeat 75%;
 		height: 39px;
 		margin-top: -18px;
 	}
@@ -1181,7 +1181,7 @@ p.rules a {
 		border-right: none;
 	}
 	#video-background {
-		display: none !important;;
+		display: none !important;
 	}
 }
 
