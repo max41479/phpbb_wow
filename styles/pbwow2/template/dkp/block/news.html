@@ -2,44 +2,49 @@
 <div class="inner">
 	<!-- BEGIN news_row -->
 	<div class="post bg2" style="margin-bottom: 0px">
-		<div class="inner">
-			<span></span>
-			<div class="postbody" style="width: 100%; margin: 0px">
-				<br />
-				<h4 class="first" style="text-align: center;">{news_row.ATTACH_ICON_IMG}<a href="{news_row.LINK}"><span style="font-size: 130%; font-family: Arial, Helvetica, sans-serif; text-align: center;">{news_row.HEADLINE}</span></a></h4>
-				<ul class="linklist">
-					<li>{L_NEWS_POST_BY_AUTHOR} : {news_row.AUTHOR} &raquo;&nbsp;{news_row.DATE}<a href="{news_row.LINK}"></a>
-						<span> &raquo;&nbsp;<a href="{news_row.LINK}" title="{L_VIEW_COMMENTS}">{L_COMMENT}: {news_row.MORE}</a></span>
-					</li>
-				</ul>
-				<div class="content">
-					<br />
-					{news_row.MESSAGE}
-				</div>
+		<div class="innerborder1">
+			<div class="innerborder2">
+				<div class="innerbg1">
+					<div class="innerbg2">
+						<div class="inner" style="background: none;">
+							<div class="postbody" style="width: 100%; margin: 0px">
+								<br />
+								<h4 class="first" style="text-align: center;">{news_row.ATTACH_ICON_IMG}<a href="{news_row.LINK}"><span style="font-size: 130%; font-family: Arial, Helvetica, sans-serif; text-align: center;">{news_row.HEADLINE}</span></a></h4>
+								<ul class="linklist">
+									<li>{L_NEWS_POST_BY_AUTHOR} : {news_row.AUTHOR} &raquo;&nbsp;{news_row.DATE}<a href="{news_row.LINK}"></a>
+										<span> &raquo;&nbsp;<a href="{news_row.LINK}" title="{L_VIEW_COMMENTS}">{L_COMMENT}: {news_row.MORE}</a></span>
+									</li>
+								</ul>
+								<div class="content">
+									<br />
+									{news_row.MESSAGE}
+								</div>
 
-				<!-- IF news_row.S_HAS_ATTACHMENTS -->
-					<dl class="attachbox">
-						<dt>{L_ATTACHMENTS}</dt>
-						<!-- BEGIN attachment -->
-							<dd>{news_row.attachment.DISPLAY_ATTACHMENT}</dd>
-						<!-- END attachment -->
-					</dl>
-				<!-- ENDIF -->
+								<!-- IF news_row.S_HAS_ATTACHMENTS -->
+									<dl class="attachbox">
+										<dt>{L_ATTACHMENTS}</dt>
+										<!-- BEGIN attachment -->
+											<dd>{news_row.attachment.DISPLAY_ATTACHMENT}</dd>
+										<!-- END attachment -->
+									</dl>
+								<!-- ENDIF -->
 
-				<!-- IF news_row.EDITED_MESSAGE or news_row.EDIT_REASON -->
-					<div class="notice">{news_row.EDITED_MESSAGE}
-						<!-- IF news_row.EDIT_REASON --><br /><strong>{L_REASON}:</strong> <em>{news_row.EDIT_REASON}</em><!-- ENDIF -->
+								<!-- IF news_row.EDITED_MESSAGE or news_row.EDIT_REASON -->
+									<div class="notice">{news_row.EDITED_MESSAGE}
+										<!-- IF news_row.EDIT_REASON --><br /><strong>{L_REASON}:</strong> <em>{news_row.EDIT_REASON}</em><!-- ENDIF -->
+									</div>
+								<!-- ENDIF -->
+
+								<div class="leftside">
+								</div>
+								<div class="back2top2">
+									<a href="<!-- IF SCRIPT_NAME eq 'portal' -->#top<!-- ELSE -->#wrap<!-- ENDIF -->" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a>
+								</div>
+							</div>
+						</div>
 					</div>
-				<!-- ENDIF -->
-
-				<div class="leftside">
 				</div>
-				<div class="rightside">
-					<a href="<!-- IF SCRIPT_NAME eq 'portal' -->#top<!-- ELSE -->#wrap<!-- ENDIF -->" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a>
-				</div>
-				<hr class="dashed" />
 			</div>
-			<span></span>
 		</div>
 	</div>
 	<br />
