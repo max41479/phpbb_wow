@@ -10,28 +10,40 @@
 	<div class="clearfix">
 		<!-- IF TWITCH -->
 			<h2>{STREAMER_NAME}</h2>
-			<div class="twitch">
-				<object type="application/x-shockwave-flash" width="698" height="470" id="live_embed_player_flash" data="http://ru.twitch.tv/widgets/live_embed_player.swf?channel={CHANNEL}" bgcolor="#000000">
-					<param name="allowFullScreen" value="true">
-					<param name="allowScriptAccess" value="always">
-					<param name="allowNetworking" value="all">
-					<param name="movie" value="http://ru.twitch.tv/widgets/live_embed_player.swf">
-					<param name="flashvars" value="hostname=ru.twitch.tv&amp;channel={CHANNEL}&amp;auto_play=true&amp;start_volume=100">
-					<param name="wmode" value="opaque">
-				</object>
-			</div>
-			<div class="chat">
-				<iframe frameborder="0" scrolling="no" id="chat_embed" width="698" height="400" src="http://www.twitch.tv/chat/embed?channel={CHANNEL}&amp;popout_chat=true"></iframe>
+			<div class="index-extra">
+				<div class="block">
+					<div class="twitch">
+						<object type="application/x-shockwave-flash" width="100%" height="470" id="live_embed_player_flash" data="http://ru.twitch.tv/widgets/live_embed_player.swf?channel={CHANNEL}" bgcolor="#000000">
+							<param name="allowFullScreen" value="true">
+							<param name="allowScriptAccess" value="always">
+							<param name="allowNetworking" value="all">
+							<param name="movie" value="http://ru.twitch.tv/widgets/live_embed_player.swf">
+							<param name="flashvars" value="hostname=ru.twitch.tv&amp;channel={CHANNEL}&amp;auto_play=true&amp;start_volume=100">
+							<param name="wmode" value="opaque">
+						</object>
+					</div>
+					<div class="chat">
+						<iframe frameborder="0" scrolling="no" id="chat_embed" width="100%" height="400" src="http://www.twitch.tv/chat/embed?channel={CHANNEL}&amp;popout_chat=true"></iframe>
+					</div>
+				</div>
 			</div>
 		<!-- ENDIF -->
 		<!-- IF CYBERGAME -->
 			<h2>{STREAMER_NAME}</h2>
-			<iframe src="http://api.cybergame.tv/p/embed.php?c={CHANNEL}&w=698&h=360&type=embed" width="698" height="360"></iframe>
+			<div class="index-extra">
+				<div class="block">
+					<iframe src="http://api.cybergame.tv/p/embed.php?c={CHANNEL}&w=100%&h=360&type=embed" width="100%" height="360"></iframe>
+				</div>
+			</div>
 		<!-- ENDIF -->
 		<!-- IF GOODGAME -->
 			<h2>{STREAMER_NAME}</h2>
-			<iframe frameborder="0" width="698" height="400" src="http://goodgame.ru/player2?{GOODGAME_STREAM_ID}"></iframe>
-			<iframe id="chatIframe" scrolling="no" width="698" height="400" frameborder="0" src="http://goodgame.ru/chat/{CHANNEL}/"></iframe>
+			<div class="index-extra">
+				<div class="block">
+					<iframe frameborder="0" width="100%" height="400" src="http://goodgame.ru/player2?{GOODGAME_STREAM_ID}"></iframe>
+					<iframe id="chatIframe" scrolling="no" width="100%" height="400" frameborder="0" src="http://goodgame.ru/chat/{CHANNEL}/"></iframe>
+				</div>
+			</div>
 		<!-- ENDIF -->
 	</div>
 	<div class="clearfix">
