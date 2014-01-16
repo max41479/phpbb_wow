@@ -357,218 +357,212 @@ apply plugin for bbDKP
 <script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
 <center><h2>{L_APPLY_TITLE}</h2></center>
 <form action="{S_POST_ACTION}" method="post" id="applyform" name="applyform" onsubmit="return confirm('А Вы сохранились в армори в мейн спеке?\nhttp://eu.battle.net/wow/ru/');" {S_FORM_ENCTYPE}>
-<div class="panel bg1" >
-<div class="inner"  >
-<span class="corners-top"><span></span></span>
-<center>{WELCOME_MSG}</center>
-<!-- IF ERROR -->
-<fieldset class="fields1">
-<center><span class="genmed1 error">{ERROR}</span></center>
-</fieldset>
-<!-- ENDIF -->
-<span class="corners-bottom"><span></span></span>					
-</div>					
-</div>					
-<hr />					
-<div class="post bg1" >
-<div class="inner"  >
-<span class="corners-top"><span></span></span>
-<fieldset class="fields1">	
-<!-- BEGIN apptemplate -->
-<!-- IF apptemplate.TYPE == $TYPE_TITLE -->
-<center><h3>{apptemplate.TITLE}</h3></center>	
-<!-- ELSE -->
-<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --><dl style="padding-left: 5px;"><!-- ENDIF -->
-<!-- IF apptemplate.TYPE == $TYPE_GAMERACECLASS -->
-
-<!-- ELSEIF apptemplate.TYPE == $TYPE_CHARNAME -->
-	<dt><strong>{L_APPLY_ACP_CHARNAME}</strong></dt>
-<!-- ELSEIF apptemplate.TYPE == $TYPE_REGIONREALM -->
-	<dt><strong>{L_APPLY_ACP_REALM}</strong></dt>
-<!-- ELSEIF apptemplate.TYPE == $TYPE_LEVEL -->
-	<dt><strong>{L_APPLY_LEVEL}</strong></dt>
-<!-- ELSEIF apptemplate.TYPE == $TYPE_GENDER -->
-	<dt><strong>{L_GENDER}</strong></dt>
-<!-- ELSEIF apptemplate.TYPE != $TYPE_TITLE -->
-	<dt><strong>{apptemplate.TITLE}</strong></dt>
-<!-- ENDIF -->
-	
-	<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --><dd><!-- ENDIF --><!-- IF apptemplate.S_SHOWQUESTION -->{apptemplate.QUESTION}<!-- ENDIF -->
-	
-	<!-- IF apptemplate.TYPE == $TYPE_INPUTBOX -->
-		<br>
-		<input class="inputbox applyform" type="text" name="{apptemplate.DOMNAME}" size="40" maxlength="60" tabindex="{apptemplate.TABINDEX}" />	
-	<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOX -->
-		<br>
-		<textarea class="inputbox applyform" name="{apptemplate.DOMNAME}" rows="2" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>
-	<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOXBBCODE -->
-		<div id="colour_palette{apptemplate.TABINDEX}" style="display: none;">
-			<dl style="clear: left;">
-				<dt><label>{L_FONT_COLOR}:</label></dt>
-				<dd>
-				<script type="text/javascript">
-				<!--
-					function change_palette{apptemplate.TABINDEX}()
-					{
-						dE('colour_palette{apptemplate.TABINDEX}');
-						e = document.getElementById('colour_palette{apptemplate.TABINDEX}');
-		
-						if (e.style.display == 'block')
-						{
-							document.getElementById('bbpalette{apptemplate.TABINDEX}').value = '{LA_FONT_COLOR_HIDE}';
-						}
-						else
-						{
-							document.getElementById('bbpalette{apptemplate.TABINDEX}').value = '{LA_FONT_COLOR}';
-						}
-					}	
-					colorPalette2('h', 15, 10, '{apptemplate.DOMNAME}' );
-				//-->
-				</script>
-				</dd>
-			</dl>
+	<div class="panel bg1">
+		<div class="inner">
+			<center>{WELCOME_MSG}</center>
+			<!-- IF ERROR -->
+				<fieldset class="fields1">
+					<center><span class="genmed1 error">{ERROR}</span></center>
+				</fieldset>
+			<!-- ENDIF -->
 		</div>
-		<div id="format-buttons">
-			<input type="button" class="button2" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px" onclick="bbstyle2(0, '{apptemplate.DOMNAME}')" title="{L_BBCODE_B_HELP}" />
-			<input type="button" class="button2" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px" onclick="bbstyle2(2, '{apptemplate.DOMNAME}')" title="{L_BBCODE_I_HELP}" />
-			<input type="button" class="button2" accesskey="u" name="addbbcode4" value=" u " style="text-decoration: underline; width: 30px" onclick="bbstyle2(4, '{apptemplate.DOMNAME}')" title="{L_BBCODE_U_HELP}" />
-			<!-- IF S_BBCODE_QUOTE -->
-				<input type="button" class="button2" accesskey="q" name="addbbcode6" value="Quote" style="width: 50px" onclick="bbstyle2(6, '{apptemplate.DOMNAME}')" title="{L_BBCODE_Q_HELP}" />
+	</div>
+	<div class="panel bg1">
+		<div class="inner">
+		<fieldset class="fields1">	
+		<!-- BEGIN apptemplate -->
+		<!-- IF apptemplate.TYPE == $TYPE_TITLE -->
+		<center><h3>{apptemplate.TITLE}</h3></center>	
+		<!-- ELSE -->
+		<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --><dl style="padding-left: 5px;"><!-- ENDIF -->
+		<!-- IF apptemplate.TYPE == $TYPE_GAMERACECLASS -->
+
+		<!-- ELSEIF apptemplate.TYPE == $TYPE_CHARNAME -->
+			<dt><strong>{L_APPLY_ACP_CHARNAME}</strong></dt>
+		<!-- ELSEIF apptemplate.TYPE == $TYPE_REGIONREALM -->
+			<dt><strong>{L_APPLY_ACP_REALM}</strong></dt>
+		<!-- ELSEIF apptemplate.TYPE == $TYPE_LEVEL -->
+			<dt><strong>{L_APPLY_LEVEL}</strong></dt>
+		<!-- ELSEIF apptemplate.TYPE == $TYPE_GENDER -->
+			<dt><strong>{L_GENDER}</strong></dt>
+		<!-- ELSEIF apptemplate.TYPE != $TYPE_TITLE -->
+			<dt><strong>{apptemplate.TITLE}</strong></dt>
+		<!-- ENDIF -->
+			
+			<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --><dd><!-- ENDIF --><!-- IF apptemplate.S_SHOWQUESTION -->{apptemplate.QUESTION}<!-- ENDIF -->
+			
+			<!-- IF apptemplate.TYPE == $TYPE_INPUTBOX -->
+				<br>
+				<input class="inputbox applyform" type="text" name="{apptemplate.DOMNAME}" size="40" maxlength="60" tabindex="{apptemplate.TABINDEX}" />	
+			<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOX -->
+				<br>
+				<textarea class="inputbox applyform" name="{apptemplate.DOMNAME}" rows="2" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>
+			<!-- ELSEIF apptemplate.TYPE == $TYPE_TEXTBOXBBCODE -->
+				<div id="colour_palette{apptemplate.TABINDEX}" style="display: none;">
+					<dl style="clear: left;">
+						<dt><label>{L_FONT_COLOR}:</label></dt>
+						<dd>
+						<script type="text/javascript">
+						<!--
+							function change_palette{apptemplate.TABINDEX}()
+							{
+								dE('colour_palette{apptemplate.TABINDEX}');
+								e = document.getElementById('colour_palette{apptemplate.TABINDEX}');
+				
+								if (e.style.display == 'block')
+								{
+									document.getElementById('bbpalette{apptemplate.TABINDEX}').value = '{LA_FONT_COLOR_HIDE}';
+								}
+								else
+								{
+									document.getElementById('bbpalette{apptemplate.TABINDEX}').value = '{LA_FONT_COLOR}';
+								}
+							}	
+							colorPalette2('h', 15, 10, '{apptemplate.DOMNAME}' );
+						//-->
+						</script>
+						</dd>
+					</dl>
+				</div>
+				<div id="format-buttons">
+					<input type="button" class="button2" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px" onclick="bbstyle2(0, '{apptemplate.DOMNAME}')" title="{L_BBCODE_B_HELP}" />
+					<input type="button" class="button2" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px" onclick="bbstyle2(2, '{apptemplate.DOMNAME}')" title="{L_BBCODE_I_HELP}" />
+					<input type="button" class="button2" accesskey="u" name="addbbcode4" value=" u " style="text-decoration: underline; width: 30px" onclick="bbstyle2(4, '{apptemplate.DOMNAME}')" title="{L_BBCODE_U_HELP}" />
+					<!-- IF S_BBCODE_QUOTE -->
+						<input type="button" class="button2" accesskey="q" name="addbbcode6" value="Quote" style="width: 50px" onclick="bbstyle2(6, '{apptemplate.DOMNAME}')" title="{L_BBCODE_Q_HELP}" />
+					<!-- ENDIF -->
+					<input type="button" class="button2" accesskey="c" name="addbbcode8" value="Code" style="width: 45px" onclick="bbstyle2(8, '{apptemplate.DOMNAME}')" title="{L_BBCODE_C_HELP}" />
+					<input type="button" class="button2" accesskey="l" name="addbbcode10" value="List" style="width: 40px" onclick="bbstyle2(10, '{apptemplate.DOMNAME}')" title="{L_BBCODE_L_HELP}" />
+					<input type="button" class="button2" accesskey="o" name="addbbcode12" value="List=" style="width: 45px" onclick="bbstyle2(12, '{apptemplate.DOMNAME}')" title="{L_BBCODE_O_HELP}" />
+					<input type="button" class="button2" accesskey="t" name="addlitsitem" value="[*]" style="width: 40px" onclick="bbstyle2(-1, '{apptemplate.DOMNAME}')" title="{L_BBCODE_LISTITEM_HELP}" />
+					<!-- IF S_BBCODE_IMG -->
+						<input type="button" class="button2" accesskey="p" name="addbbcode14" value="Img" style="width: 40px" onclick="bbstyle2(14, '{apptemplate.DOMNAME}')" title="{L_BBCODE_P_HELP}" />
+					<!-- ENDIF -->
+					<!-- IF S_LINKS_ALLOWED -->
+						<input type="button" class="button2" accesskey="w" name="addbbcode16" value="URL" style="text-decoration: underline; width: 40px" onclick="bbstyle2(16, '{apptemplate.DOMNAME}')" title="{L_BBCODE_W_HELP}" />
+					<!-- ENDIF -->
+					<!-- IF S_BBCODE_FLASH -->
+						<input type="button" class="button2" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle2(18, '{apptemplate.DOMNAME}')" title="{L_BBCODE_D_HELP}" />
+					<!-- ENDIF -->
+					<select name="{apptemplate.BBDOMNAME}" onchange="bbfontstyle2('[size=' + this.form.{apptemplate.BBDOMNAME}.options[this.form.{apptemplate.BBDOMNAME}.selectedIndex].value + ']', '[/size]', '{apptemplate.DOMNAME}'); this.form.{apptemplate.BBDOMNAME}.selectedIndex = 2;" title="{L_FONT_SIZE}">
+						<option value="50">{L_FONT_TINY}</option>
+						<option value="85">{L_FONT_SMALL}</option>
+						<option value="100" selected="selected">{L_FONT_NORMAL}</option>
+						<option value="150">{L_FONT_LARGE}</option>
+						<option value="200">{L_FONT_HUGE}</option>
+					</select>
+					<input type="button" class="button2" name="bbpalette{apptemplate.TABINDEX}" id="bbpalette{apptemplate.TABINDEX}" value="{L_FONT_COLOR}" onclick="change_palette{apptemplate.TABINDEX}();" title="{L_BBCODE_S_HELP}" />
+					<!-- BEGIN custom_tags -->
+						<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle2({custom_tags.BBCODE_ID}, '{apptemplate.DOMNAME}')" title="{custom_tags.BBCODE_HELPLINE}" /><!-- END custom_tags -->
+				</div>
+				<textarea class="inputbox applyform" name="{apptemplate.DOMNAME}" rows="3" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>	
+			<!-- ELSEIF apptemplate.TYPE == $TYPE_SELECTBOX -->
+				<br/ >
+				<select class="inputbox applyform" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}">
+					<option value="">----------------</option>
+					<!-- BEGIN selectboxoptions -->
+					<option value="{apptemplate.selectboxoptions.KEY}">{apptemplate.selectboxoptions.VALUE}</option><!-- END selectboxoptions -->
+				</select>
+			<!-- ELSEIF apptemplate.TYPE == $TYPE_RADIOBUTTON -->
+					<br/ >
+					<!-- BEGIN radiobuttonoptions -->
+					<input type="radio" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}" value="{apptemplate.radiobuttonoptions.KEY}"/>&nbsp;{apptemplate.radiobuttonoptions.VALUE}&nbsp;&nbsp;<!-- END radiobuttonoptions -->
+			<!-- ELSEIF apptemplate.TYPE == $TYPE_CHECKBOX -->
+					<br/>
+					<!-- BEGIN checkboxoptions -->
+					<input type="checkbox" name="{apptemplate.DOMNAME}[]" tabindex="{apptemplate.TABINDEX}" value="{apptemplate.checkboxoptions.KEY}"/>&nbsp;{apptemplate.checkboxoptions.VALUE}&nbsp;&nbsp;<!-- END checkboxoptions -->	
+			<!-- ELSEIF apptemplate.TYPE == $TYPE_GAMERACECLASS -->
+
+					<select style="display:none" name="game_id" class="input" onchange="return GetClassRace(this.value)">
+			        <!-- BEGIN game_row -->
+					<option value="{apptemplate.game_row.VALUE}"{apptemplate.game_row.SELECTED}>{apptemplate.game_row.OPTION}</option>
+			        <!-- END game_row -->
+					</select>
+
+					<select style="display:none" id="candidate_race_id" name="candidate_race_id" class="input">
+					<!-- BEGIN race_row -->
+					<option value="{apptemplate.race_row.VALUE}"{apptemplate.race_row.SELECTED}>{apptemplate.race_row.OPTION}</option>
+			        <!-- END race_row -->
+			        </select>
+				  <select style="display:none; outline-color: #0067C4;" id="candidate_class_id" name="candidate_class_id" class="input">
+			       <!-- BEGIN class_row -->
+			        <option style="background-color: #072443; color: {apptemplate.class_row.COLORCODE}" value="{apptemplate.class_row.VALUE}"{apptemplate.class_row.SELECTED}>{apptemplate.class_row.OPTION}</option>
+			        <!-- END class_row -->
+			        </select>
+
+				
+			<!-- ELSEIF apptemplate.TYPE == $TYPE_CHARNAME -->
+				<input type="text" name="candidate_name" size="25" maxlength="25" class="inputbox applyform" />
+			
+			<!-- ELSEIF apptemplate.TYPE == $TYPE_REGIONREALM -->
+				<select class="applyform" name="candidate_realm">
+					<!-- BEGIN realm_row -->
+						<option value="{apptemplate.realm_row.OPTION}">{apptemplate.realm_row.OPTION}</option>
+					<!-- END realm_row -->
+				</select>
+
+			
+			<!-- ELSEIF apptemplate.TYPE == $TYPE_LEVEL -->
+				<input type="text" name="candidate_level" size="3" maxlength="3" value="{MEMBER_LEVEL}" class="input" />
+			
+			<!-- ELSEIF apptemplate.TYPE == $TYPE_GENDER -->
+			    <input type="radio" name="candidate_gender"  value="0"{MALE_CHECKED} /> {L_MALE}&nbsp;&nbsp;
+		    	<input type="radio" name="candidate_gender"  value="1"{FEMALE_CHECKED} /> {L_FEMALE}
+		    
 			<!-- ENDIF -->
-			<input type="button" class="button2" accesskey="c" name="addbbcode8" value="Code" style="width: 45px" onclick="bbstyle2(8, '{apptemplate.DOMNAME}')" title="{L_BBCODE_C_HELP}" />
-			<input type="button" class="button2" accesskey="l" name="addbbcode10" value="List" style="width: 40px" onclick="bbstyle2(10, '{apptemplate.DOMNAME}')" title="{L_BBCODE_L_HELP}" />
-			<input type="button" class="button2" accesskey="o" name="addbbcode12" value="List=" style="width: 45px" onclick="bbstyle2(12, '{apptemplate.DOMNAME}')" title="{L_BBCODE_O_HELP}" />
-			<input type="button" class="button2" accesskey="t" name="addlitsitem" value="[*]" style="width: 40px" onclick="bbstyle2(-1, '{apptemplate.DOMNAME}')" title="{L_BBCODE_LISTITEM_HELP}" />
-			<!-- IF S_BBCODE_IMG -->
-				<input type="button" class="button2" accesskey="p" name="addbbcode14" value="Img" style="width: 40px" onclick="bbstyle2(14, '{apptemplate.DOMNAME}')" title="{L_BBCODE_P_HELP}" />
+			<!-- IF apptemplate.S_MANDATORY -->
+			<span style="color:red">{L_MANDATORY}</span>
 			<!-- ENDIF -->
-			<!-- IF S_LINKS_ALLOWED -->
-				<input type="button" class="button2" accesskey="w" name="addbbcode16" value="URL" style="text-decoration: underline; width: 40px" onclick="bbstyle2(16, '{apptemplate.DOMNAME}')" title="{L_BBCODE_W_HELP}" />
-			<!-- ENDIF -->
-			<!-- IF S_BBCODE_FLASH -->
-				<input type="button" class="button2" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle2(18, '{apptemplate.DOMNAME}')" title="{L_BBCODE_D_HELP}" />
-			<!-- ENDIF -->
-			<select name="{apptemplate.BBDOMNAME}" onchange="bbfontstyle2('[size=' + this.form.{apptemplate.BBDOMNAME}.options[this.form.{apptemplate.BBDOMNAME}.selectedIndex].value + ']', '[/size]', '{apptemplate.DOMNAME}'); this.form.{apptemplate.BBDOMNAME}.selectedIndex = 2;" title="{L_FONT_SIZE}">
-				<option value="50">{L_FONT_TINY}</option>
-				<option value="85">{L_FONT_SMALL}</option>
-				<option value="100" selected="selected">{L_FONT_NORMAL}</option>
-				<option value="150">{L_FONT_LARGE}</option>
-				<option value="200">{L_FONT_HUGE}</option>
-			</select>
-			<input type="button" class="button2" name="bbpalette{apptemplate.TABINDEX}" id="bbpalette{apptemplate.TABINDEX}" value="{L_FONT_COLOR}" onclick="change_palette{apptemplate.TABINDEX}();" title="{L_BBCODE_S_HELP}" />
-			<!-- BEGIN custom_tags -->
-				<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle2({custom_tags.BBCODE_ID}, '{apptemplate.DOMNAME}')" title="{custom_tags.BBCODE_HELPLINE}" /><!-- END custom_tags -->
+			
+			<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --></dd>
+		</dl>
+		<!-- ENDIF -->
+		<!-- ENDIF -->
+
+		<!-- END apptemplate -->
+		</fieldset>
 		</div>
-		<textarea class="inputbox applyform" name="{apptemplate.DOMNAME}" rows="3" cols="76" tabindex="{apptemplate.TABINDEX}" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" ></textarea>	
-	<!-- ELSEIF apptemplate.TYPE == $TYPE_SELECTBOX -->
-		<br/ >
-		<select class="inputbox applyform" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}">
-			<option value="">----------------</option>
-			<!-- BEGIN selectboxoptions -->
-			<option value="{apptemplate.selectboxoptions.KEY}">{apptemplate.selectboxoptions.VALUE}</option><!-- END selectboxoptions -->
-		</select>
-	<!-- ELSEIF apptemplate.TYPE == $TYPE_RADIOBUTTON -->
-			<br/ >
-			<!-- BEGIN radiobuttonoptions -->
-			<input type="radio" name="{apptemplate.DOMNAME}" tabindex="{apptemplate.TABINDEX}" value="{apptemplate.radiobuttonoptions.KEY}"/>&nbsp;{apptemplate.radiobuttonoptions.VALUE}&nbsp;&nbsp;<!-- END radiobuttonoptions -->
-	<!-- ELSEIF apptemplate.TYPE == $TYPE_CHECKBOX -->
-			<br/>
-			<!-- BEGIN checkboxoptions -->
-			<input type="checkbox" name="{apptemplate.DOMNAME}[]" tabindex="{apptemplate.TABINDEX}" value="{apptemplate.checkboxoptions.KEY}"/>&nbsp;{apptemplate.checkboxoptions.VALUE}&nbsp;&nbsp;<!-- END checkboxoptions -->	
-	<!-- ELSEIF apptemplate.TYPE == $TYPE_GAMERACECLASS -->
+	</div>
 
-			<select style="display:none" name="game_id" class="input" onchange="return GetClassRace(this.value)">
-	        <!-- BEGIN game_row -->
-			<option value="{apptemplate.game_row.VALUE}"{apptemplate.game_row.SELECTED}>{apptemplate.game_row.OPTION}</option>
-	        <!-- END game_row -->
-			</select>
+	<!-- IF S_SHOW_FORUMCHOICE -->
+	<div class="post bg2" >
+	<div class="inner"  >
+	<span class="corners-top"><span></span></span>
+	<fieldset class="fields2">		
+	<dl>
+		<dt><strong>{L_APPLY_PUBLICQUESTION}</strong></dt>
+	    <dd>
+	    	<input type="radio" name="publ" value="1"{PUBLIC_YES_CHECKED} />&nbsp;{L_APPLY_ACP_PUBLIC}&nbsp;
+	    	<input type="radio" name="publ" value="0"{PUBLIC_NO_CHECKED} />&nbsp;{L_APPLY_ACP_PRIVATE}
+	    	<span style="color:red">{L_MANDATORY}</span>
+	    </dd>
+	</dl>
+	</fieldset>
+	<span class="corners-bottom"><span></span></span>
+	</div>
+	</div>	
+	<!-- ENDIF -->
 
-			<select style="display:none" id="candidate_race_id" name="candidate_race_id" class="input">
-			<!-- BEGIN race_row -->
-			<option value="{apptemplate.race_row.VALUE}"{apptemplate.race_row.SELECTED}>{apptemplate.race_row.OPTION}</option>
-	        <!-- END race_row -->
-	        </select>
-		  <select style="display:none; outline-color: #0067C4;" id="candidate_class_id" name="candidate_class_id" class="input">
-	       <!-- BEGIN class_row -->
-	        <option style="background-color: #072443; color: {apptemplate.class_row.COLORCODE}" value="{apptemplate.class_row.VALUE}"{apptemplate.class_row.SELECTED}>{apptemplate.class_row.OPTION}</option>
-	        <!-- END class_row -->
-	        </select>
-
+	<div class="panel" id="postingbox">
+	<div class="inner">
+	<span class="corners-top"><span></span></span>
+				<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
+				 <center> 	
+						<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
+						<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
+				</center>
+				<!-- ENDIF --> 
+				<br />
+				<fieldset class="submit-buttons">
+				<input type="hidden" name="apptemplate_id_hidden" value="{TEMPLATE_ID}" />
+				<input type="submit" accesskey="s" name="post" value="{L_SUBMIT}" class="button1 default-submit-action" />&nbsp;
+				<input type="reset" name="reset" value="{L_RESET}" class="button1" />
+				{S_FORM_TOKEN}
+				</fieldset>
+	<span class="corners-bottom"><span></span></span>
+	</div>
+	</div>
 		
-	<!-- ELSEIF apptemplate.TYPE == $TYPE_CHARNAME -->
-		<input type="text" name="candidate_name" size="25" maxlength="25" class="inputbox applyform" />
-	
-	<!-- ELSEIF apptemplate.TYPE == $TYPE_REGIONREALM -->
-		<select class="applyform" name="candidate_realm">
-			<!-- BEGIN realm_row -->
-				<option value="{apptemplate.realm_row.OPTION}">{apptemplate.realm_row.OPTION}</option>
-			<!-- END realm_row -->
-		</select>
-
-	
-	<!-- ELSEIF apptemplate.TYPE == $TYPE_LEVEL -->
-		<input type="text" name="candidate_level" size="3" maxlength="3" value="{MEMBER_LEVEL}" class="input" />
-	
-	<!-- ELSEIF apptemplate.TYPE == $TYPE_GENDER -->
-	    <input type="radio" name="candidate_gender"  value="0"{MALE_CHECKED} /> {L_MALE}&nbsp;&nbsp;
-    	<input type="radio" name="candidate_gender"  value="1"{FEMALE_CHECKED} /> {L_FEMALE}
-    
-	<!-- ENDIF -->
-	<!-- IF apptemplate.S_MANDATORY -->
-	<span style="color:red">{L_MANDATORY}</span>
-	<!-- ENDIF -->
-	
-	<!-- IF apptemplate.TYPE != $TYPE_GAMERACECLASS --></dd>
-</dl>
-<!-- ENDIF -->
-<!-- ENDIF -->
-
-<!-- END apptemplate -->
-</fieldset>
-
-<span class="corners-bottom"><span></span></span>
-</div>
-</div>
-
-<!-- IF S_SHOW_FORUMCHOICE -->
-<div class="post bg2" >
-<div class="inner"  >
-<span class="corners-top"><span></span></span>
-<fieldset class="fields2">		
-<dl>
-	<dt><strong>{L_APPLY_PUBLICQUESTION}</strong></dt>
-    <dd>
-    	<input type="radio" name="publ" value="1"{PUBLIC_YES_CHECKED} />&nbsp;{L_APPLY_ACP_PUBLIC}&nbsp;
-    	<input type="radio" name="publ" value="0"{PUBLIC_NO_CHECKED} />&nbsp;{L_APPLY_ACP_PRIVATE}
-    	<span style="color:red">{L_MANDATORY}</span>
-    </dd>
-</dl>
-</fieldset>
-<span class="corners-bottom"><span></span></span>
-</div>
-</div>	
-<!-- ENDIF -->
-
-<div class="panel" id="postingbox">
-<div class="inner">
-<span class="corners-top"><span></span></span>
-			<!-- IF CAPTCHA_TEMPLATE and S_CONFIRM_CODE -->
-			 <center> 	
-					<!-- DEFINE $CAPTCHA_TAB_INDEX = 3 -->
-					<!-- INCLUDE {CAPTCHA_TEMPLATE} -->
-			</center>
-			<!-- ENDIF --> 
-			<br />
-			<fieldset class="submit-buttons">
-			<input type="hidden" name="apptemplate_id_hidden" value="{TEMPLATE_ID}" />
-			<input type="submit" accesskey="s" name="post" value="{L_SUBMIT}" class="button1 default-submit-action" />&nbsp;
-			<input type="reset" name="reset" value="{L_RESET}" class="button1" />
-			{S_FORM_TOKEN}
-			</fieldset>
-<span class="corners-bottom"><span></span></span>
-</div>
-</div>
-	
 
 </form>
 
