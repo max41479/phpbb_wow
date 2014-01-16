@@ -28,7 +28,15 @@
 				<!-- IF S_QUICK_STYLE_OPTIONS and not TOPBAR_CODE --><!-- INCLUDE prime_quick_style.html --><!-- ENDIF -->
 			</div>
 		</div>
-		<div class="copyright">{CREDIT_LINE}
+		<div class="copyright">{CREDIT_LINE},
+			<script type="text/javascript">
+			function pop_aboutbbdkp()
+			{
+				search = window.open('aboutbbdkp.php','search','resizable=no,toolbar=no,status=no,height=400,width=680,screenX=50,screenY=25,left=100,top=70');
+				search.focus();
+			}
+			</script>
+			<a class="bbdkpcredits" onclick="javascript:pop_aboutbbdkp();" style="cursor:pointer;" onmouseover="style.textDecoration='underline';" onmouseout="style.textDecoration='none';">{L_BBDKP}</a>
 			<!-- IF TRANSLATION_INFO --><br />{TRANSLATION_INFO}<!-- ENDIF -->
 			<!-- IF DEBUG_OUTPUT --><br />{DEBUG_OUTPUT}<!-- ENDIF -->
 			<!-- IF U_ACP --><br /><strong><a href="{U_ACP}">{L_ACP}</a></strong><!-- ENDIF -->
