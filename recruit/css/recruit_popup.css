@@ -40,7 +40,8 @@ span.cor_8 { color:#2459ff; }
 span.cor_9 { color:#9482c9; }
 span.cor_10 { color:#c79c6e; }
 span.cor_11 { color:#008467; }
-div.graph {	
+
+div.graph {
 	position: relative;
 	background-color: #666;
 	width: 95%;
@@ -61,7 +62,25 @@ div.graph .bar {
 	height: 1em;
 	line-height: .8em;
 }
+
 div.graph .bar span {
 	position: absolute;
 	left: 1em;
+}
+
+td a img {
+	display: block;
+}
+
+.center {
+	text-align: center;
+}
+
+table{
+	border:0px; /* border="0" */
+	border-collapse:collapse; /* cellspacing="0" */
+}
+
+table td{
+	padding:0px; /* cellpadding="0" */
 }

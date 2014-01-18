@@ -190,3 +190,8 @@ padding: 0px 7px 7px 7px;
 .wow-index .wow-forum:active {
 	box-shadow: 0 0 2px 1px rgba(150, 200, 255, 0.7);
 }
+
+img.center {
+	display: block;
+	margin: 0 auto;
+}
