@@ -5,8 +5,8 @@
 	<div><div>
 	<h3><a href="{U_LOGIN_LOGOUT}">{L_LOGIN_LOGOUT}</a><!-- IF S_REGISTER_ENABLED -->&nbsp; &bull; &nbsp;<a href="{U_REGISTER}">{L_REGISTER}</a><!-- ENDIF --></h3>
 	<fieldset class="quick-login">
-		<div class="username"><div><label for="username" title="{L_USERNAME}" /></label><input type="text" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" /></div></div>
-		<div class="password"><div><label for="password" title="{L_PASSWORD}" /></label><input type="password" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" /></div></div>
+		<div class="username"><div><label for="username" title="{L_USERNAME}" />{L_USERNAME}</label><input type="text" name="username" id="username" size="10" class="inputbox" title="{L_USERNAME}" /></div></div>
+		<div class="password"><div><label for="password" title="{L_PASSWORD}" />{L_PASSWORD}</label><input type="password" name="password" id="password" size="10" class="inputbox" title="{L_PASSWORD}" /></div></div>
 		<div class="controls">
 			<!-- IF S_AUTOLOGIN_ENABLED -->
 			<label for="autologin"><input type="checkbox" name="autologin" id="autologin" /> {L_LOG_ME_IN}</label>
@@ -20,7 +20,7 @@
 </form>
 
 <script type="text/javascript">
-$(document).ready(function(){
+$(document).ready(function($){
 	if (typeof jQuery != 'undefined') {  
 		$("a#quick-login").attr("href", "#")
 		$("a#quick-login").click(function(){

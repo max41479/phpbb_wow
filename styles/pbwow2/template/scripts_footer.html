@@ -1,7 +1,7 @@
 <!-- INCLUDE quick_login.html -->
 
 <script type="text/javascript">
-$(document).ready(function(){
+$(document).ready(function($){
 	if (typeof jQuery != 'undefined') {
 		$(".wow-index .forabg > h2, .wow-recent > h2, .index-extra > h2, .inner-footer > h2, .inner-footer").addClass("toggle")
         $(".wow-index .forabg, .wow-recent, .index-extra, .inner-footer").collapse({
@@ -185,8 +185,10 @@ $(document).ready(function(){
 		$(window).resize(checkWidth);
 		<!-- ENDIF -->
 	}
-}); 
+});
 </script>
+
+<!-- INCLUDE scripts_footer_jqstyle.html -->
 
 <!-- IF S_TOOLTIPS_FOOTER and not S_IS_BOT -->
 <!-- IF WOWTIPS_SCRIPT -->{WOWTIPS_SCRIPT}<!-- ENDIF -->

@@ -105,7 +105,7 @@ ul.profile-icons li a {
 
 /* Hide <a> text and hide off-state image when rolling over (prevents flicker in IE) */
 ul.profile-icons li span { display:none; }
-ul.profile-icons li a:hover { background: none; }
+/*ul.profile-icons li a:hover { background: none; }*/
 
 /* Positioning of moderator icons */
 .postbody ul.profile-icons {
@@ -170,9 +170,9 @@ ul.profile-icons li.info-icon		{ width: 16px; height: 17px; }
 ul.profile-icons li.warn-icon		{ width: 16px; height: 16px; }
 
 /* Fix profile icon default margins */
-ul.profile-icons li.edit-icon	{ margin-top: 3px}
-ul.profile-icons li.quote-icon	{ margin: 0 0 0 6px; }
-ul.profile-icons li.reply-icon	{ margin: 0 0 0 2px; }
+ul.profile-icons li.edit-icon	{ margin-top: 3px; }
+ul.profile-icons li.quote-icon	{ margin: 0 0 0 4px; }
+ul.profile-icons li.reply-icon	{ margin: 0; }
 
 
 /*  	
@@ -232,6 +232,11 @@ a.mcp-icon {
 .netlogsn-icon, .netlogsn-icon a		{ background-image: url("{IMG_ICON_CONTACT_NETLOG_SRC}"); }
 .twittersn-icon, .twittersn-icon a		{ background-image: url("{IMG_ICON_CONTACT_TWIT_SRC}"); }
 
+.wow-info-frame .profile-icons li:hover,
+.wow-info-frame .profile-icons li:hover a	{ 
+	background-position: 0 100%;
+}
+
 /* Moderator icons */
 .report-icon, .report-icon a	{ background-image: url("{T_IMAGESET_PATH}/images/icons/biohazard-button.gif"); }
 .edit-icon, .edit-icon a		{ background-image: url("{T_IMAGESET_PATH}/images/icons/edit-button.gif"); }
@@ -241,180 +246,114 @@ a.mcp-icon {
 
 
 /* Custom buttons */
-
-a.ui-button1 {
+a.ui-button1, a.ui-button2 {
 	float: left;
 	display: inline-block;
-	height: auto;
-	overflow: visible;
 	position: relative;
-	margin: 10px 0 5px 0;
-	box-shadow: 0 5px 4px -7px rgba(0,0,0,0.2);
-}
-a.ui-button1 span {
-	color: #FFAE00;
-	display: inline-block !important;
-	height: 38px;
-	line-height: 38px;
+	background-color: #222;
+	background-image: linear-gradient(to bottom, #373737 0%, #111111 100%);
+	border: 1px solid #5D5D5D;
+	border-radius: 3px;
+	margin: 12px 3px 5px 3px;
+	padding: 0 12px;
 	font-size: 12px;
 	font-size: 1.2rem;
-	text-align: center;
-	text-transform: uppercase;
-	white-space: nowrap;
-
-	background: url("{T_IMAGESET_PATH}/images/button-1d.png") 0 0 no-repeat;
-	padding: 0 0 0 8px;
-}
-a.ui-button1 span span {
-	background-position: 100% -123px;
-	padding: 0 8px 0 8px;
-}
-a.ui-button1:hover span {
-	background-position: 0 -41px;
-	color: #FFF;
-}
-a.ui-button1:hover span span {
-	background-position: 100% -164px;
-}
-
-a.ui-button1.locked-icon span {
-	background-position: 0 -82px;
-}
-a.ui-button1.locked-icon span span {
-	background-position: 100% -205px;
-	padding-right: 34px;
-}
-a.ui-button1.post-icon span span {
-	padding-right: 30px;
-}
-a.ui-button1 div {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 30px;
-	height: 38px;
-}
-
-a.ui-button1.post-icon div {
-	background: url("{T_IMAGESET_PATH}/images/icons/icon_add.png") 30% 8px no-repeat;
-}
-a.ui-button1.locked-icon div {
-	background: url("{T_IMAGESET_PATH}/images/icons/icon_lock.png") 10% 8px no-repeat;
-}
-a.ui-button1.post-icon:hover div {
-	background-position: 30% -33px;
-}
-
-
-
-a.ui-button2 {
-	float: left;
-	display: inline-block;
-	height: auto;
-	overflow: visible;
-	position: relative;
-	box-shadow: 0 5px 4px -7px rgba(0,0,0,0.2);
-}
-a.ui-button2 span {
-	color: #FFAE00;
-	display: inline-block !important;
-	height: 30px;
 	line-height: 30px;
-	font-size: 12px;
-	font-size: 1.2rem;
 	text-align: center;
 	text-transform: uppercase;
 	white-space: nowrap;
-
-	background: url("{T_IMAGESET_PATH}/images/button-2d.png") 0 0 no-repeat;
-	padding: 0 0 0 8px;
+	text-shadow: 1px 1px rgba(0,0,0,0.8);
+	box-shadow: 0 1px 7px 0 rgba(0,0,0,0.6), inset 0 0 3px 0 rgba(0,0,0,0.8);
+	transition: all 0.2s;
 }
-a.ui-button2 span span {
-	background-position: 100% -123px;
-	padding: 0 35px 0 6px;
+a.ui-button1:hover, a.ui-button2:hover {
+	background-color: #2061d2;
+	background-image: linear-gradient(to bottom, #37dfff 0%, #1041e2 100%);
+	border-color: #238eff;
+	text-decoration: none;
+	text-shadow: 0 0 4px rgba(255,255,255,0.5);
+	box-shadow: 0 1px 7px 0 rgba(0,0,0,0.5), inset 0 1px 3px 0 rgba(255,255,255,0.8);	
 }
-a.ui-button2:hover span {
+a.ui-button2 {
+	margin: 2px 2px 0 2px;
+	padding: 0 8px;
+	line-height: 24px;
+}
+ul.profile-icons li a.ui-button2 {
+	width: auto;
+}
+a.ui-button1.post-icon:after, 
+a.ui-button1.locked-icon:after, 
+a.ui-button2.newpm-icon:after,
+a.ui-button2.pmreply-icon:after,
+a.ui-button2.forwardpm-icon:after,
+.reply-icon a.ui-button2:after,
+.quote-icon a.ui-button2 div {
+	content: "";
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	width: 21px;
+	height: 26px;
+	margin: 0 -5px 0 3px;
+}
+a.ui-button2.newpm-icon:after,
+a.ui-button2.pmreply-icon:after,
+a.ui-button2.forwardpm-icon:after,
+.reply-icon a.ui-button2:after,
+.quote-icon a.ui-button2 div {
+	height: 23px;
+	background-position: 0 2px;
+	vertical-align: top;
+}
+a.ui-button1:hover:after {
 	background-position: 0 -41px;
-	color: #FFF;
 }
-a.ui-button2:hover span span {
-	background-position: 100% -164px;
+a.ui-button2:hover:after, .quote-icon a.ui-button2:hover div {
+	background-position: 0 -39px;
 }
-.inactive a.ui-button2 span, a.ui-button2.inactive span {
-	background-position: 0 -82px;
+a.ui-button1.post-icon:after, 
+.reply-icon a.ui-button2:after {
+	background-image: url("{T_IMAGESET_PATH}/images/icons/icon_add.png");
 }
-.inactive a.ui-button2 span span, a.ui-button2.inactive span span {
-	background-position: 100% -205px;
-	color: #777;
+a.ui-button1.locked-icon:after, 
+.reply-icon.inactive a.ui-button2:after {
+	background-image: url("{T_IMAGESET_PATH}/images/icons/icon_lock.png");
 }
-a.ui-button2 div {
-	position: absolute;
-	top: 0;
-	right: 0;
-	margin: 0;
-	width: 35px;
-	height: 30px;
+a.ui-button2.newpm-icon:after {
+	background-image: url("{T_IMAGESET_PATH}/images/icons/icon_newpm.png");
 }
-
-.quote-icon a.ui-button2 span {
-	padding: 0 0 0 8px;
+a.ui-button2.pmreply-icon:after {
+	background-image: url("{T_IMAGESET_PATH}/images/icons/icon_reply.png");
 }
-.quote-icon a.ui-button2 span span {
-	padding: 0 8px 0 0;
-}
-a.ui-button2.poll-results, a.ui-button2.poll-vote {
-	width: 124px;
-	text-align: center;
-}
-a.ui-button2.poll-results span, a.ui-button2.poll-vote span {
-	padding: 0 0 0 8px;
-	width: 116px;
-}
-a.ui-button2.poll-results span span, a.ui-button2.poll-vote span span {
-	padding: 0 8px 0 0;
-	width: 108px;
-	overflow: hidden;
-	text-overflow: ellipsis;
+a.ui-button2.forwardpm-icon:after {
+	background-image: url("{T_IMAGESET_PATH}/images/icons/icon_forward.png");
 }
 .quote-icon a.ui-button2 div {
-	background: url("{T_IMAGESET_PATH}/images/icons/icon_quote.png") 50% 4px no-repeat;
-	position: inherit;
+	background-image: url("{T_IMAGESET_PATH}/images/icons/icon_quote.png");
+	position: absolute;
+	left: 6px;
+}
+
+.inactive a.ui-button2, a.ui-button2.inactive {
+	background-color: #1A1A1A;
+	background-image: linear-gradient(to bottom, #202020 0%, #111111 100%);
+	border-color: #3f3f3f;
+	box-shadow: 0 1px 7px 0 rgba(0,0,0,0.6), inset 0 0 3px 0 rgba(0,0,0,0.8);
+	text-shadow: 1px 1px rgba(0,0,0,0.8);
+	color: #777;
+}
+.quote-icon a.ui-button2 {
 	text-indent: -5000px;
-	text-transform: capitalize;
-	width: 25px;
+	width: 22px !important;
 }
-.reply-icon a.ui-button2 div {
-	background: url("{T_IMAGESET_PATH}/images/icons/icon_add.png") 50% 5px no-repeat;
-}
-.reply-icon.inactive a.ui-button2 div {
-	background: url("{T_IMAGESET_PATH}/images/icons/icon_lock.png") 50% 5px no-repeat;
-}
-a.ui-button2.newpm-icon div {
-	background: url("{T_IMAGESET_PATH}/images/icons/icon_newpm.png") 50% 4px no-repeat;
-}
-a.ui-button2.pmreply-icon div {
-	background: url("{T_IMAGESET_PATH}/images/icons/icon_reply.png") 50% 4px no-repeat;
-}
-a.ui-button2.forwardpm-icon div {
-	background: url("{T_IMAGESET_PATH}/images/icons/icon_forward.png") 50% 4px no-repeat;
-}
-.quote-icon a.ui-button2:hover div {
-	background-position: 50% -37px;
-}
-.reply-icon a.ui-button2:hover div {
-	background-position: 50% -36px;
-}
-.reply-icon.inactive a.ui-button2:hover div {
-	background-position: 50% -36px;
-}
-a.ui-button2.newpm-icon:hover div {
-	background-position: 50% -37px;
-}
-a.ui-button2.pmreply-icon:hover div {
-	background-position: 50% -37px;
-}
-a.ui-button2.forwardpm-icon:hover div {
-	background-position: 50% -37px;
+a.ui-button2.poll-results, a.ui-button2.poll-vote {
+	width: 110px;
+	margin: 0 2px;
+	padding: 0 6px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 a.ui-button2 input {
 	width: 100%;
@@ -426,5 +365,25 @@ a.ui-button2 input {
 	color: #FFAE00;
 }
 a.ui-button2:hover input {
+	color: #FFF;
+}
+
+a.ui-button3 {
+	display: block;
+	padding: 10px;
+	background: #320000;
+	background: linear-gradient(to bottom, rgba(30,1,1,1),rgba(70,5,5,1));
+	border: 1px solid #811;
+	color: #FFF;
+	font-size: 14px;
+	font-size: 1.4rem;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+}
+a.ui-button3:hover {
+	background: #320000;
+	background: linear-gradient(to bottom, rgba(60,10,10,1),rgba(110,10,10,1));
+	border: 1px solid #C11;
 	color: #FFF;
 }

@@ -69,9 +69,16 @@ h2.toggle > a {
 
 /* Custom Index styling
 ---------------------------------------- */
+.wow-index {
+	padding: 0 11px 0 5px;
+	padding: 0 1.1rem 0 0.5rem;
+	margin-bottom: 10px;
+	clear: left;
+}
 .wow-index .forabg {
 	margin: 0 0 15px 0;
 	margin: 0 0 1.5rem 0;
+	padding: 0;
 	/*overflow: hidden;*/
 	background: none;
 	box-shadow: none;
@@ -134,7 +141,7 @@ h2.toggle > a {
 	line-height: 16px;
 	line-height: 1.6rem;
 	font-weight: normal;
-	color: #D3AC6B;
+	color: #877B69;
 }
 .wow-index .forum-link:hover .forum-description {
 	color: #FFF;
@@ -233,6 +240,9 @@ h2.toggle > a {
 .wow-index .subforums-menu a:last-child {
 	margin-bottom: 5px;
 }
+.section-viewforum .wow-index {
+	padding: 0 5px;
+}
 .section-viewforum .wow-index h2 {
 	display: none;
 }
@@ -308,6 +318,9 @@ h2.toggle > a {
 	padding: 0 1.1rem 0 0.5rem;
 	margin-bottom: 10px;
 	clear: left;
+}
+.index-extra.solo {
+	padding: 0;
 }
 .index-extra div.block {
 	width: auto;
@@ -459,6 +472,8 @@ li.header dt, li.header dd {
 	font-size: 1rem;
 	font-family: Arial, Helvetica, sans-serif;
 	text-transform: uppercase;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 li.header dt {
@@ -477,6 +492,7 @@ li.header dl.icon dt {
 	/* Tweak for headers alignment when folder icon used */
 	padding-left: 0;
 	padding-right: 50px;
+	text-indent: 5px;
 }
 
 /* Forum list column styles */
@@ -764,6 +780,10 @@ div[class].topic-actions {
 	height: auto;
 }
 
+#topicreview .post:first-of-type {
+	margin-top: 0;
+}
+
 #topicreview .bg1 { background: #2c2c2c; background: rgba(49,49,49,0.9); }
 #topicreview .bg2 { background: #181818; background: rgba(27,27,27,0.9); }
 
@@ -864,6 +884,10 @@ dl.faq dt {
 .content ul, .content ol {
 	margin-bottom: 1em;
 	margin-left: 3em;
+}
+
+.content img {
+	max-width: 100%;
 }
 
 .posthilit {
@@ -1236,7 +1260,7 @@ dl.thumbnail dt a:hover img {
 
 .wow-poll-footer a {
     float: left;
-    left: 132px;
+    left: 128px;
     position: relative;
     top: 13px;
 	padding: 0;
@@ -1361,22 +1385,22 @@ fieldset.polls dd div {
 .bg2 .postprofile {
 	background: url("{T_IMAGESET_PATH}/images/avatar-bg2.gif") no-repeat;
 }
-.bg1 .blizz .postprofile {
+.bg1.blizz .postprofile {
 	background: url("{T_IMAGESET_PATH}/images/avatar-bg1-blizz.gif") no-repeat;
 }
-.bg2 .blizz .postprofile {
+.bg2.blizz .postprofile {
 	background: url("{T_IMAGESET_PATH}/images/avatar-bg2-blizz.gif") no-repeat;
 }
-.bg1 .propass .postprofile {
+.bg1.propass .postprofile {
 	background: url("{T_IMAGESET_PATH}/images/avatar-bg1-pro.gif") no-repeat;
 }
-.bg2 .propass .postprofile {
+.bg2.propass .postprofile {
 	background: url("{T_IMAGESET_PATH}/images/avatar-bg2-pro.gif") no-repeat;
 }
-.bg1 .red .postprofile {
+.bg1.red .postprofile {
 	background: url("{T_IMAGESET_PATH}/images/avatar-bg1-red.jpg") no-repeat;
 }
-.bg2 .red .postprofile {
+.bg2.red .postprofile {
 	background: url("{T_IMAGESET_PATH}/images/avatar-bg2-red.jpg") no-repeat;
 }
 
@@ -1443,6 +1467,12 @@ fieldset.polls dd div {
 	top: 10px;
 	left: 68px;
 	background-size: 64px 64px !important;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.game-avatar .context-avatar img, game-noavatar .context-avatar img {
+	height: 83px;
+	width: 82px;
 }
 .game-avatar-frame {
 	background: url("{T_IMAGESET_PATH}/images/portrait-frame.gif") no-repeat;
@@ -1475,6 +1505,11 @@ fieldset.polls dd div {
 .game-rank-icon > * {
 	vertical-align:middle;
 }
+.game-rank-icon .norank {
+	background: url("{T_IMAGESET_PATH}/images/icons/question.gif") no-repeat 50% 60%;
+	height: 100%;
+	width: 100%;
+}
 .game-icons-frame {
 	background: url("{T_IMAGESET_PATH}/images/portrait-icons.png") no-repeat;
 	height: 83px;
@@ -1486,12 +1521,16 @@ fieldset.polls dd div {
 .propass .game-icons-frame {
 	background: url("{T_IMAGESET_PATH}/images/portrait-icons-pro.gif") no-repeat;
 }
+.game-icons-frame img {
+	height: 18px;
+	width: 18px;
+}
 
 .game-icons-a, .game-icons-b, .game-icons-c {
 	height: 18px;
 	width: 18px;
 	position: absolute;
-	background-size: 18px 18px;
+	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-color: #000;
 	border-radius: 3px;
@@ -1507,7 +1546,6 @@ fieldset.polls dd div {
 .game-icons-c {
 	top: 51px;
 	left: 11px;
-	
 }
 .wow-info-frame {
 	background: url("{T_IMAGESET_PATH}/images/avatar-tile.png") repeat-y;
@@ -1702,6 +1740,191 @@ fieldset.polls dd div {
 }
 
 
+/* mChat MOD
+------------ */
+
+div.chatbox1 {
+	border: 1px solid #000;
+	padding: 2px;
+	background-color: #313131;
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.7);
+}
+
+div.chatbox2 {
+	border: 1px solid #000;
+}
+
+#mChatmain {
+	border: 1px solid #575757;
+	background: #202020 linear-gradient(to bottom, rgba(0,0,0,0.5) 0, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 80%, rgba(0,0,0,0.4) 100%);
+	padding: 2px;
+}
+
+div.mChatBG1, div.mChatBG2 {
+	padding: 3px;
+}
+
+div.mChatBG1 {
+	background: #252525;
+	background: #252525 linear-gradient(to bottom, rgba(30,30,30,1) 0,rgba(37,37,37,0) 35px); 
+	border: 1px solid;
+	border-color: #252525 #000 #000 #000;
+	overflow: hidden;
+}
+
+div.mChatBG1:hover {
+	background: #252525;
+	background: #252525 linear-gradient(to top, rgba(30,30,30,1) 0,rgba(37,37,37,0) 35px); 
+	color: #FFF;
+}
+
+div.mChatBG2 {
+	background: #161616;
+	background: #161616 linear-gradient(to bottom, rgba(11,11,11,1) 0,rgba(22,22,22,0) 35px); 
+	border: 1px solid;
+	border-color: #161616 #000 #000 #000;
+	overflow: hidden;
+}
+
+div.mChatBG2:hover {
+	background: #161616;
+	background: #161616 linear-gradient(to top, rgba(11,11,11,1) 0,rgba(22,22,22,0) 35px); 
+	color: #FFF;
+}
+
+div.mChatBG1 span, div.mChatBG2 span {
+	color: #877B69;
+}
+
+div.mChatRowLimit {
+	overflow: auto;
+	width: 100%;
+	width: auto;
+}
+
+div.mChatRowLimitCustom {
+	overflow: auto;
+	width: 100%;
+	width: auto;
+}
+
+div.mChatPanel {
+	text-align: center;
+	padding: 3px;
+	clear: left;
+}
+
+input.mChatText {
+	cursor: text;
+	width: 70%;
+	/*background-color: #FFFFFF;
+	border: 1px solid #B4BAC0;
+	color: #333333;*/
+	padding: 5px 5px 3px 5px;
+	margin: 3px 0px 6px 5px;
+}
+
+input.mChatText:hover {
+	border-color: #11A3EA;
+}
+
+div.mChatBodyFix {
+	width: 100% !important;
+}
+
+div.mChatStatic {
+	padding-left: 5px;
+	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+	text-align: center;
+	font-size: 1.1em;
+}
+
+div.mChatStats {
+	padding-left: 5px;
+	margin-top: 2px;
+	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+	text-align: left;
+	min-height: 1.3em;
+	font-size: 1.1em;
+	height: auto !important;
+}
+
+div.mChatRefresh {
+	padding-left: 5px;
+	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+	text-align: left;
+	font-size: 1.1em;
+	margin-top: 1.5em;
+	clear: both;
+}
+
+input.mChatColor {
+	width: 100%;
+	text-align: center;
+	background-color: #DEE3E7;
+	border-style: none;	
+}
+
+div.mChatMessage {
+	padding: 3px;
+	font-size: 1.1em;
+	width: 98%;
+}
+
+a.mChatScriptLink {
+	text-decoration:none;
+}
+
+img.mChatImage{
+	vertical-align: middle;
+}
+
+img.mChatImageLoad {
+	vertical-align: middle;
+	cursor: wait;
+	display: none;
+}
+
+img.mChatImageOk {
+	vertical-align: middle;
+	cursor: help;
+}
+
+img.mChatImageHideImg {
+	vertical-align: middle; 
+	cursor: help; 
+	display: none;
+}
+
+div.mChatSound {
+	position: absolute;
+	left: -1000px;
+	top: -1000px;
+}
+
+.mchat_alert {
+	color: #7E2217;
+	padding: 10px;
+}
+
+#mChatUserList {
+	display: none;
+	float: left;
+	padding: 5px 0;
+}
+
+.mChatAvatars {
+	float: left;
+	padding-right: 5px;
+}
+
+div.avatarMessage {
+	margin-left: 50px;
+	width: 90%;
+	margin-right: 5px;
+}
+
+
 /* Poster profile used by search*/
 .search .postprofile {
 	/*width: 30%;*/
@@ -1822,7 +2045,7 @@ dd.moderation span {
 
 @media screen and (max-width: 999px) {
 	.wow-index li.wow-forum {
-		width: 98%;
+		width: 99%;
 		min-height: inherit;
 	}
 	.wow-index .subforums-button {

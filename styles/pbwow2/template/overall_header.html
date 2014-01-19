@@ -78,6 +78,7 @@
 <script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/jquery.collapse_storage.js"></script>
 <script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/jquery-detectmobilebrowser.js"></script>
 <!-- IF S_JQUERY_TOPIC_PREVIEW --><script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/topic_preview.js"></script><!-- ENDIF -->
+<!-- IF S_MCHAT_ENABLE and (S_MCHAT_ON_INDEX or U_MCHAT) --><script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/jquery_cookie_mini.js"></script><!-- ENDIF -->
 
 <!--[if lt IE 8]>
 	<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/js/jquery.collapse_cookie_storage.js"></script>
@@ -95,6 +96,8 @@
 <!-- IF D3TIPS_SCRIPT -->{D3TIPS_SCRIPT}<!-- ENDIF -->
 <!-- IF ZAMTIPS_SCRIPT -->{ZAMTIPS_SCRIPT}<!-- ENDIF -->
 <!-- ENDIF -->
+<!-- INCLUDE scripts_header.html -->
+
 <!-- IF SPOILER_OPEN_TYPE eq 0 --><link rel="stylesheet" href="{PPKBB3CKER_ADDONS}css/prettyPhoto.css" type="text/css" /><!-- ENDIF -->
 <link rel="stylesheet" href="{T_THEME_PATH}/../../pbwow2/theme/spoiler.css" type="text/css" />
  
@@ -152,7 +155,7 @@ jQuery(document).ready(
 <!-- ENDIF -->
 </head>
 
-<body id="phpbb" class="phpbb section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}<!-- IF TOPBAR_CODE --> body-top-bar<!-- ENDIF --><!-- IF S_BG_FIXED --> bg-fixed<!-- ENDIF --><!-- IF S_TOPBAR_FIXED --> top-bar-fixed<!-- ENDIF -->">
+<body id="phpbb" class="phpbb section-{SCRIPT_NAME} {S_CONTENT_DIRECTION}<!-- IF TOPBAR_CODE --> body-top-bar<!-- IF S_TOPBAR_FIXED --> top-bar-fixed<!-- ENDIF --><!-- ENDIF --><!-- IF S_BG_FIXED --> bg-fixed<!-- ENDIF -->">
 <!-- IF TOPBAR_CODE -->
 <div id="top-bar">
 	<div><!-- IF S_QUICK_STYLE_OPTIONS --><!-- INCLUDE prime_quick_style.html --><!-- ENDIF -->{TOPBAR_CODE}<a class="cell<!-- IF (STREAMS_ONLINE) --> stream_online<!-- ENDIF -->" href="{U_STREAMS}"><!-- IF (STREAMS_ONLINE) --><!--<img src="{ROOT_PATH}/images/online.gif" width="20" height="15" alt="" /> --><!-- ENDIF -->{L_STREAMS}<!-- IF (STREAMS_ONLINE) --> ({STREAMS_ONLINE_COUNT})<!-- ENDIF --></a></div>
@@ -185,6 +188,7 @@ jQuery(document).ready(
 				<!-- IF U_DKP --><!--<li class="icon-dkp"><a href="{U_DKP}">{L_DKPPAGE}</a></li>--><!-- ENDIF -->
 				<!-- IF HEADERLINKS_CODE -->{HEADERLINKS_CODE}<!-- ENDIF -->
 				<li class="icon-faq"><a href="{U_FAQ}" title="{L_FAQ_EXPLAIN}">{L_FAQ}</a></li>
+				<!-- IF S_MCHAT_ENABLE and U_MCHAT --><li class="icon-bump"><a href="{U_MCHAT}#mChat" title="{L_MCHAT_TITLE}">{L_MCHAT_TITLE}</a></li><!-- ENDIF -->
 				<!-- IF not S_IS_BOT -->
 					<!-- IF S_DISPLAY_MEMBERLIST --><li class="icon-members"><a href="{U_MEMBERLIST}" title="{L_MEMBERLIST_EXPLAIN}">{L_MEMBERLIST}</a></li><!-- ENDIF -->
 					<!-- IF not S_USER_LOGGED_IN and S_REGISTER_ENABLED and not (S_SHOW_COPPA or S_REGISTRATION) --><li class="icon-register"><a href="{U_REGISTER}">{L_REGISTER}</a></li><!-- ENDIF -->

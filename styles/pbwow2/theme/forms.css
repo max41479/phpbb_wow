@@ -232,6 +232,8 @@ form.quick-login-panel h3 {
 	position: absolute;
 	top: -6px;
 	left: -3px;
+	text-transform: uppercase;
+	text-indent: -5000px;
 }
 .quick-login div.username label {
 	background: url("{T_IMAGESET_PATH}/{S_USER_LANG}/login-account.gif") no-repeat 0 0;
@@ -446,7 +448,7 @@ a.button1, a.button1:link, a.button1:visited, a.button1:active, a.button2, a.but
 
 /* Hover states */
 a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover {
-	border: 1px solid #00C0FF;
+	border-color: #00C0FF;
 	background-position: 0 100%;
 	box-shadow: 0 0 2px 1px rgba(255,255,255,0.3);
 	color: #FFF;
@@ -455,7 +457,7 @@ a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, inpu
 input.button1:active, input.button3:active, input.button2:active {
 	background-image: linear-gradient(to bottom, #111, #222);
 	box-shadow: inset 0 0 2px 1px #000, 0 2px 5px 1px rgba(0,0,0,0.5);
-	border: 1px solid #888;
+	border-color: #888;
 }
 
 input.disabled {

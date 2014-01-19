@@ -7,7 +7,9 @@
 <div class="index">
 <!-- ENDIF -->
 
+<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
 <!-- INCLUDE forumlist_body.html -->
+<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and not S_MCHAT_LOCATION --><!-- INCLUDE mchat_body.html --><!-- ENDIF -->
 
 <!-- IF S_DISPLAY_ONLINE_LIST -->
 <div class="index-extra" id="online">
@@ -16,6 +18,7 @@
 		<p>{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}
 		<!-- IF LEGEND --><br /><em>{L_LEGEND}: {LEGEND}</em><!-- ENDIF --></p>
 		<!-- IF U_VIEWONLINE --><a class="online-pagelink" href="{U_VIEWONLINE}"><img src="{T_IMAGESET_PATH}/images/icons/icon_pagelink.gif" alt="{L_WHO_IS_ONLINE}" title="{L_WHO_IS_ONLINE}" /></a><!-- ENDIF -->
+		<!-- IF S_MCHAT_ENABLE and S_MCHAT_ON_INDEX and S_MCHAT_LOCATION --><!-- INCLUDE mchat_stats.html --><!-- ENDIF -->
 	</div>
 </div>
 <!-- ENDIF -->

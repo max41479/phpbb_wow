@@ -820,19 +820,17 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 							'rank_title'				=> '',
 							'rank_image'				=> '',
 							'rank_image_src'			=> '',
-							'special_rank_title'		=> '',
-							'special_rank_image'		=> '',
-							'special_rank_image_src'	=> '',
+							'posts_rank_title'			=> '',
+							'posts_rank_image'			=> '',
+							'posts_rank_image_src'		=> '',
 							'user_special_styling'		=> '',
 							'user_special_color'		=> '',
 						);
 			
 						if(!empty($row['user_rank'])){
-							get_user_rank_global($row['user_rank'], $row['user_posts'], $user_cache[$row['poster_id']]['special_rank_title'], $user_cache[$row['poster_id']]['special_rank_image'], $user_cache[$row['poster_id']]['special_rank_image_src']);
+							get_user_rank_global($row['user_rank'], $row['user_posts'], $user_cache[$row['poster_id']]['rank_title'], $user_cache[$row['poster_id']]['rank_image'], $user_cache[$row['poster_id']]['rank_image_src']);
 						}
-
-						// Now we get all the 'secondary' ranks (based on post count etc.) and put them in the place of the user ranks. Switcharooh!
-						get_user_rank_global(0, $row['user_posts'], $user_cache[$row['poster_id']]['rank_title'], $user_cache[$row['poster_id']]['rank_image'], $user_cache[$row['poster_id']]['rank_image_src']);
+						get_user_rank_global(0, $row['user_posts'], $user_cache[$row['poster_id']]['posts_rank_title'], $user_cache[$row['poster_id']]['posts_rank_image'], $user_cache[$row['poster_id']]['posts_rank_image_src']);
 						
 						check_rank_special_styling($row['user_rank'], $user_cache[$row['poster_id']]['user_special_styling'], $user_cache[$row['poster_id']]['user_special_color']);
 						$user_cache[$row['poster_id']]['avatar_src'] = ($user->optionget('viewavatars')) ? get_user_avatar_src($row['user_avatar'], $row['user_avatar_type']) : '';
@@ -1107,9 +1105,9 @@ if ($keywords || $author || $author_id || $search_id || $submit)
 						'RANK_TITLE'			=> $user_cache[$row['poster_id']]['rank_title'],
 						'RANK_IMG'				=> $user_cache[$row['poster_id']]['rank_image'],
 						'RANK_IMG_SRC'			=> $user_cache[$row['poster_id']]['rank_image_src'],
-						'SPECIAL_RANK_TITLE'	=> $user_cache[$row['poster_id']]['special_rank_title'],
-						'SPECIAL_RANK_IMG'		=> $user_cache[$row['poster_id']]['special_rank_image'],
-						'SPECIAL_RANK_IMG_SRC'	=> $user_cache[$row['poster_id']]['special_rank_image_src'],
+						'POSTS_RANK_TITLE'		=> $user_cache[$row['poster_id']]['posts_rank_title'],
+						'POSTS_RANK_IMG'		=> $user_cache[$row['poster_id']]['posts_rank_image'],
+						'POSTS_RANK_IMG_SRC'	=> $user_cache[$row['poster_id']]['posts_rank_image_src'],
 						'USER_SPECIAL_STYLING'	=> $user_cache[$row['poster_id']]['user_special_styling'],
 						'USER_SPECIAL_COLOR'	=> $user_cache[$row['poster_id']]['user_special_color'],
 	

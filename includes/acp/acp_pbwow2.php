@@ -24,7 +24,7 @@ class acp_pbwow2
 		$this->tpl_name = 'acp_pbwow2';
 		
 		// Some constants
-		$module_version = '2.0.7b';
+		$module_version = '2.0.8';
 		$dbtable = defined('PBWOW2_CONFIG_TABLE') ? PBWOW2_CONFIG_TABLE : '';
 		$legacy_dbtable = defined('PBWOW_CONFIG_TABLE') ? PBWOW_CONFIG_TABLE : '';
 		$topics_table = TOPICS_TABLE;

@@ -3,37 +3,45 @@
 <h2>{PAGE_TITLE}</h2>
 
 <form method="post" action="{S_PROFILE_ACTION}" id="viewprofile">
-<div class="panel bg1<!-- IF S_ONLINE --> online<!-- ENDIF -->">
-	<div class="inner <!-- IF USER_SPECIAL_STYLING eq 'blizz' -->blizz<!-- ELSEIF USER_SPECIAL_STYLING eq 'propass' -->propass<!-- ELSEIF USER_SPECIAL_STYLING eq 'red' -->red<!-- ENDIF -->"><span class="corners-top"><span></span></span>
+<div class="panel bg1<!-- IF S_ONLINE --> online<!-- ENDIF --><!-- IF USER_SPECIAL_STYLING --> {USER_SPECIAL_STYLING}<!-- ENDIF -->">
+	<div class="inner"><span class="corners-top"><span></span></span>
 
 
 	<div class="postprofile<!-- IF S_ONLINE --> online<!-- ENDIF -->">
 		<div class="wow-profile">
 		<!-- IF AVATAR_SRC or S_PROFILE_PBAVATAR -->
 			<!-- IF AVATAR_SRC -->
-			<div class="game-avatar" style="background: url('{AVATAR_SRC}') no-repeat;">
+			<div class="game-avatar" style="background-image: url('{AVATAR_SRC}');">
 			<!-- ELSE -->
-			<div class="game-avatar" style="background: url('{T_IMAGESET_PATH}/images/portraits/{PROFILE_PBAVATAR_VALUE}') no-repeat;">
+			<div class="game-avatar" style="background-image: url('{T_IMAGESET_PATH}/images/portraits/{PROFILE_PBAVATAR_VALUE}');">
 			<!-- ENDIF -->
 				<div class="game-avatar-frame">
-					<div class="game-rank-icon"><!-- IF SPECIAL_RANK_IMG -->{SPECIAL_RANK_IMG}<!-- ELSEIF S_PROFILE_PBLEVEL and PROFILE_PBLEVEL_VALUE neq 0 --><b><small>{PROFILE_PBLEVEL_VALUE}</small></b><!-- ELSEIF not S_PROFILE_PBRACE and U_POST_AUTHOR and RANK_IMG -->{RANK_IMG}<!-- ELSE --><img src="{T_IMAGESET_PATH}/images/icons/question.gif" alt="" /><!-- ENDIF --></div>
-
+					<div class="game-rank-icon">
+						<!-- IF RANK_IMG and ((POSTS_RANK_TITLE neq RANK_TITLE) or (not S_PROFILE_PBRACE and not S_PROFILE_PBDCLASS)) -->
+						{RANK_IMG}
+						<!-- ELSEIF S_PROFILE_PBLEVEL and PROFILE_PBLEVEL_VALUE neq 0 -->
+						<b><small>{PROFILE_PBLEVEL_VALUE}</small></b>
+						<!-- ELSE -->
+						<div class="norank"></div>
+						<!-- ENDIF -->
+					</div>
+	
 					<!-- IF S_PROFILE_PBRACE or S_PROFILE_PBDCLASS -->
 					<div class="game-icons-frame">
 
 						<!-- IF PROFILE_PBRACE_VALUEID -->
-						<div class="game-icons-a wow-{PROFILE_PBRACE_VALUEID}<!-- IF S_PROFILE_PBGENDER and PROFILE_PBGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{PROFILE_PBRACE_VALUE}" alt="{PROFILE_PBRACE_VALUE}" /></div>
+						<div class="game-icons-a wow-{PROFILE_PBRACE_VALUEID}<!-- IF S_PROFILE_PBGENDER and PROFILE_PBGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" title="{PROFILE_PBRACE_VALUE}" alt="{PROFILE_PBRACE_VALUE}" /></div>
 						<!-- ELSEIF PROFILE_PBDCLASS_VALUEID -->
-						<div class="game-icons-a diablo-{PROFILE_PBDCLASS_VALUEID}<!-- IF S_PROFILE_PBDGENDER and PROFILE_PBDGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{PROFILE_PBDCLASS_VALUE}" alt="{PROFILE_PBDCLASS_VALUE}" /></div>							
+						<div class="game-icons-a diablo-{PROFILE_PBDCLASS_VALUEID}<!-- IF S_PROFILE_PBDGENDER and PROFILE_PBDGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" title="{PROFILE_PBDCLASS_VALUE}" alt="{PROFILE_PBDCLASS_VALUE}" /></div>							
 						<!-- ENDIF -->
 						
 						<!-- IF PROFILE_PBCLASS_VALUEID -->
-						<div class="game-icons-b wow-{PROFILE_PBCLASS_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{PROFILE_PBCLASS_VALUE}" alt="{PROFILE_PBCLASS_VALUE}" /></div>
+						<div class="game-icons-b wow-{PROFILE_PBCLASS_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" title="{PROFILE_PBCLASS_VALUE}" alt="{PROFILE_PBCLASS_VALUE}" /></div>
 						<!-- ELSEIF PROFILE_PBDFOLLOWER_VALUEID -->
-						<div class="game-icons-b diablo-{PROFILE_PBDFOLLOWER_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{PROFILE_PBDFOLLOWER_VALUE}" alt="{PROFILE_PBDFOLLOWER_VALUE}" /></div>
+						<div class="game-icons-b diablo-{PROFILE_PBDFOLLOWER_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" title="{PROFILE_PBDFOLLOWER_VALUE}" alt="{PROFILE_PBDFOLLOWER_VALUE}" /></div>
 						<!-- ENDIF -->
 						
-						<div class="game-icons-c<!-- IF S_PROFILE_PBFACTION --> faction-{PROFILE_PBFACTION_VALUE}<!-- ENDIF -->"<!-- IF RANK_IMG and postrow.RANK_IMG != postrow.SPECIAL_RANK_IMG --> style="background-image: url('{RANK_IMG_SRC}');"<!-- ENDIF -->><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" alt="{RANK_TITLE}" title="{RANK_TITLE}" /></div>
+						<div class="game-icons-c<!-- IF S_PROFILE_PBFACTION --> faction-{PROFILE_PBFACTION_VALUE}<!-- ENDIF -->"<!-- IF POSTS_RANK_IMG --> style="background-image: url('{POSTS_RANK_IMG_SRC}');"<!-- ENDIF -->><img src = "{T_IMAGESET_PATH}/images/pixel.gif" alt="{POSTS_RANK_TITLE}" title="{POSTS_RANK_TITLE}" /></div>
 
 					</div>
 					<!-- ENDIF -->
@@ -51,9 +59,9 @@
 			<dl>
 				<dt class="author">{USERNAME_FULL}</dt>
 				<!-- IF S_PROFILE_PBGUILD --><dd class="guild">&lsaquo; {PROFILE_PBGUILD_VALUE} &rsaquo;</dd><!-- ENDIF -->
-				<!-- IF SPECIAL_RANK_TITLE or RANK_TITLE --><dd class="separator"></dd><!-- ENDIF -->
-				<!-- IF SPECIAL_RANK_TITLE --><dd class="special-rank" style="display: block; font-weight: bold; font-size: 1.1em;"">{SPECIAL_RANK_TITLE}</dd><!-- ENDIF -->
-				<!-- IF (RANK_TITLE or RANK_IMG) and (RANK_TITLE != SPECIAL_RANK_TITLE) --><dd class="rank" style="display: block; font-weight: bold; font-size: 1.1em;">{RANK_TITLE}</dd><!-- ENDIF -->
+				<!-- IF RANK_TITLE or RANK_IMG --><dd class="separator"></dd>
+				<dd class="rank" style="display: block; font-weight: bold; font-size: 1.1em;">{RANK_TITLE}</dd><!-- ENDIF -->
+				<!-- IF POSTS_RANK_TITLE neq RANK_TITLE --><dd class="special-rank" style="display: block; font-weight: bold; font-size: 1.1em;"">{POSTS_RANK_TITLE}</dd><!-- ENDIF -->
 				<!-- IF S_ONLINE --><dd class="separator"></dd><dd class="online">{L_ONLINE}</dd><!-- ENDIF -->
 			</dl>
 
@@ -70,7 +78,7 @@
 				<!-- IF U_USER_BAN --> [ <a href="{U_USER_BAN}">{L_USER_BAN}</a> ]<!-- ENDIF -->
 				<!-- IF U_SWITCH_PERMISSIONS --> [ <a href="{U_SWITCH_PERMISSIONS}">{L_USE_PERMISSIONS}</a> ]<!-- ENDIF -->
 			</dd>
-			<!-- IF not AVATAR_IMG -->
+			<!-- IF not AVATAR_IMG and not S_PROFILE_PBAVATAR -->
 				<!-- IF RANK_TITLE --><dt>{L_RANK}:</dt> <dd>{RANK_TITLE}</dd><!-- ENDIF -->
 				<!-- IF RANK_IMG --><dt><!-- IF RANK_TITLE -->&nbsp;<!-- ELSE -->{L_RANK}:<!-- ENDIF --></dt> <dd>{RANK_IMG}</dd><!-- ENDIF -->
 			<!-- ENDIF -->

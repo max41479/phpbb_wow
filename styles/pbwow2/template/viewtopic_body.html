@@ -3,20 +3,20 @@
 <div class="clear"></div>
 
 <!-- IF S_FORUM_RULES -->
-<div class="wow-topics">
+<div class="wow-topics rule-block">
 	<div class="innerborder1">
 		<div class="innerborder2">
 			<div class="innerbg1">
 				<div class="innerbg2">
 					<div class="rules">
-						<dl>
 						<!-- IF U_FORUM_RULES -->
-							<dt><a href="{U_FORUM_RULES}">{L_FORUM_RULES}</a></dt>
+						<a class="ui-button3" href="{U_FORUM_RULES}">{L_FORUM_RULES}</a>
 						<!-- ELSE -->
+						<dl>
 							<dt>{L_FORUM_RULES}</dt>
 							<dd>{FORUM_RULES}</dd>
-						<!-- ENDIF -->
 						</dl>
+						<!-- ENDIF -->
 					</div>
 				</div>
 			</div>
@@ -73,15 +73,15 @@
 
 			<div class="wow-poll-footer">
 				<!-- IF not S_DISPLAY_RESULTS -->
-				<a href="{U_VIEW_RESULTS}" class="ui-button2 poll-results"><span><span>{L_VIEW_RESULTS}</span></span></a>
+				<a href="{U_VIEW_RESULTS}" class="ui-button2 poll-results">{L_VIEW_RESULTS}</a>
 				<!-- ELSE -->
-				<a class="ui-button2 poll-results inactive"><span><span>{L_VIEW_RESULTS}</span></span></a>
+				<a class="ui-button2 poll-results inactive">{L_VIEW_RESULTS}</a>
 				<!-- ENDIF -->
 				
 				<!-- IF S_CAN_VOTE -->
-				<a class="ui-button2 poll-vote"><span><span><input type="submit" name="update" value="{L_SUBMIT_VOTE}" class="vote" /></span></span></a>
+				<a class="ui-button2 poll-vote"><input type="submit" name="update" value="{L_SUBMIT_VOTE}" class="vote" /></a>
 				<!-- ELSE -->
-				<a class="ui-button2 poll-vote inactive"><span><span>{L_SUBMIT_VOTE}</span></span></a>
+				<a class="ui-button2 poll-vote inactive">{L_SUBMIT_VOTE}</a>
 				<!-- ENDIF -->
 			</div>
 			</fieldset>
@@ -108,42 +108,50 @@
 
 <!-- BEGIN postrow -->
 	<!-- IF postrow.S_FIRST_UNREAD --><a id="unread"></a><!-- ENDIF -->
-	    <div id="p{postrow.POST_ID}" class="post <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF postrow.S_UNREAD_POST --> unreadpost<!-- ENDIF --><!-- IF postrow.S_POST_REPORTED --> reported<!-- ENDIF -->">
+	    <div id="p{postrow.POST_ID}" class="post <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF postrow.S_UNREAD_POST --> unreadpost<!-- ENDIF --><!-- IF postrow.S_POST_REPORTED --> reported<!-- ENDIF --><!-- IF postrow.USER_SPECIAL_STYLING --> {postrow.USER_SPECIAL_STYLING}<!-- ENDIF -->">
 			<div class="innerborder1">
 				<div class="innerborder2">
 					<div class="innerbg1">
 						<div class="innerbg2">
-							<div class="inner <!-- IF postrow.USER_SPECIAL_STYLING eq 'blizz' -->blizz<!-- ELSEIF postrow.USER_SPECIAL_STYLING eq 'propass' -->propass<!-- ELSEIF postrow.USER_SPECIAL_STYLING eq 'red' -->red<!-- ENDIF -->">
+							<div class="inner">
 
 	<!-- IF not postrow.S_IGNORE_POST -->
 		<div class="postprofile<!-- IF postrow.S_ONLINE and not postrow.S_IGNORE_POST --> online<!-- ENDIF -->" id="profile{postrow.POST_ID}">
 			<div class="wow-profile">
 			<!-- IF postrow.POSTER_AVATAR_SRC or postrow.S_PROFILE_PBAVATAR -->
 				<!-- IF postrow.POSTER_AVATAR_SRC -->
-				<div class="game-avatar" style="background: url('{postrow.POSTER_AVATAR_SRC}') no-repeat;">
+				<div class="game-avatar" style="background-image: url('{postrow.POSTER_AVATAR_SRC}');">
 				<!-- ELSE -->
-				<div class="game-avatar" style="background: url('{T_IMAGESET_PATH}/images/portraits/{postrow.PROFILE_PBAVATAR_VALUE}') no-repeat;">
+				<div class="game-avatar" style="background-image: url('{T_IMAGESET_PATH}/images/portraits/{postrow.PROFILE_PBAVATAR_VALUE}');">
 				<!-- ENDIF -->
 					<div class="game-avatar-frame">
-						<!-- IF postrow.U_POST_AUTHOR --><a id="a{postrow.POST_ID}" class="context-avatar" href="{postrow.U_POST_AUTHOR}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="83" width="82" title="{postrow.POST_AUTHOR}" alt="{postrow.POST_AUTHOR}" /></a><!-- ENDIF -->
-						<div class="game-rank-icon"><!-- IF postrow.SPECIAL_RANK_IMG -->{postrow.SPECIAL_RANK_IMG}<!-- ELSEIF postrow.S_PROFILE_PBLEVEL and postrow.PROFILE_PBLEVEL_VALUE neq 0 --><b><small>{postrow.PROFILE_PBLEVEL_VALUE}</small></b><!-- ELSEIF not postrow.S_PROFILE_PBRACE and postrow.U_POST_AUTHOR and postrow.RANK_IMG -->{postrow.RANK_IMG}<!-- ELSE --><img src="{T_IMAGESET_PATH}/images/icons/question.gif" alt="" /><!-- ENDIF --></div>
+						<!-- IF postrow.U_POST_AUTHOR --><a id="a{postrow.POST_ID}" class="context-avatar" href="{postrow.U_POST_AUTHOR}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" title="{postrow.POST_AUTHOR}" alt="{postrow.POST_AUTHOR}" /></a><!-- ENDIF -->
+						<div class="game-rank-icon">
+							<!-- IF postrow.RANK_IMG and ((postrow.POSTS_RANK_TITLE neq postrow.RANK_TITLE) or (not postrow.S_PROFILE_PBRACE and not postrow.S_PROFILE_PBDCLASS)) -->
+							{postrow.RANK_IMG}
+							<!-- ELSEIF postrow.S_PROFILE_PBLEVEL and postrow.PROFILE_PBLEVEL_VALUE neq 0 -->
+							<b><small>{postrow.PROFILE_PBLEVEL_VALUE}</small></b>
+							<!-- ELSE -->
+							<div class="norank"></div>
+							<!-- ENDIF -->
+						</div>
 
 						<!-- IF postrow.S_PROFILE_PBRACE or postrow.S_PROFILE_PBDCLASS -->
 						<div class="game-icons-frame">
 
 							<!-- IF postrow.PROFILE_PBRACE_VALUEID -->
-							<div class="game-icons-a wow-{postrow.PROFILE_PBRACE_VALUEID}<!-- IF postrow.S_PROFILE_PBGENDER and postrow.PROFILE_PBGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{postrow.PROFILE_PBRACE_VALUE}" alt="{postrow.PROFILE_PBRACE_VALUE}" /></div>
+							<div class="game-icons-a wow-{postrow.PROFILE_PBRACE_VALUEID}<!-- IF postrow.S_PROFILE_PBGENDER and postrow.PROFILE_PBGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" title="{postrow.PROFILE_PBRACE_VALUE}" alt="{postrow.PROFILE_PBRACE_VALUE}" /></div>
 							<!-- ELSEIF postrow.PROFILE_PBDCLASS_VALUEID -->
-							<div class="game-icons-a diablo-{postrow.PROFILE_PBDCLASS_VALUEID}<!-- IF postrow.S_PROFILE_PBDGENDER and postrow.PROFILE_PBDGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{postrow.PROFILE_PBDCLASS_VALUE}" alt="{postrow.PROFILE_PBDCLASS_VALUE}" /></div>							
+							<div class="game-icons-a diablo-{postrow.PROFILE_PBDCLASS_VALUEID}<!-- IF postrow.S_PROFILE_PBDGENDER and postrow.PROFILE_PBDGENDER_VALUEID > 1 --> female<!-- ENDIF -->"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" title="{postrow.PROFILE_PBDCLASS_VALUE}" alt="{postrow.PROFILE_PBDCLASS_VALUE}" /></div>							
 							<!-- ENDIF -->
 							
 							<!-- IF postrow.PROFILE_PBCLASS_VALUEID -->
-							<div class="game-icons-b wow-{postrow.PROFILE_PBCLASS_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{postrow.PROFILE_PBCLASS_VALUE}" alt="{postrow.PROFILE_PBCLASS_VALUE}" /></div>
+							<div class="game-icons-b wow-{postrow.PROFILE_PBCLASS_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" title="{postrow.PROFILE_PBCLASS_VALUE}" alt="{postrow.PROFILE_PBCLASS_VALUE}" /></div>
 							<!-- ELSEIF postrow.PROFILE_PBDFOLLOWER_VALUEID -->
-							<div class="game-icons-b diablo-{postrow.PROFILE_PBDFOLLOWER_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" title="{postrow.PROFILE_PBDFOLLOWER_VALUE}" alt="{postrow.PROFILE_PBDFOLLOWER_VALUE}" /></div>
+							<div class="game-icons-b diablo-{postrow.PROFILE_PBDFOLLOWER_VALUEID}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" title="{postrow.PROFILE_PBDFOLLOWER_VALUE}" alt="{postrow.PROFILE_PBDFOLLOWER_VALUE}" /></div>
 							<!-- ENDIF -->
 							
-							<div class="game-icons-c<!-- IF postrow.S_PROFILE_PBFACTION --> faction-{postrow.PROFILE_PBFACTION_VALUE}<!-- ENDIF -->"<!-- IF postrow.RANK_IMG and postrow.RANK_IMG != postrow.SPECIAL_RANK_IMG --> style="background-image: url('{postrow.RANK_IMG_SRC}');"<!-- ENDIF -->><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="18" width="18" alt="{postrow.RANK_TITLE}" title="{postrow.RANK_TITLE}" /></div>
+							<div class="game-icons-c<!-- IF postrow.S_PROFILE_PBFACTION --> faction-{postrow.PROFILE_PBFACTION_VALUE}<!-- ENDIF -->"<!-- IF postrow.POSTS_RANK_IMG --> style="background-image: url('{postrow.POSTS_RANK_IMG_SRC}');"<!-- ENDIF -->><img src = "{T_IMAGESET_PATH}/images/pixel.gif" alt="{postrow.POSTS_RANK_TITLE}" title="{postrow.POSTS_RANK_TITLE}" /></div>
 
 						</div>
 						<!-- ENDIF -->
@@ -154,7 +162,7 @@
 				<!-- IF postrow.U_POST_AUTHOR --><a href="{postrow.U_POST_AUTHOR}">{postrow.POSTER_AVATAR}</a><!-- ELSE -->{postrow.POSTER_AVATAR}<!-- ENDIF -->
 			<!-- ELSE -->
 				<div class="game-noavatar">
-					<!-- IF postrow.U_POST_AUTHOR --><a id="a{postrow.POST_ID}" class="context-avatar" href="{postrow.U_POST_AUTHOR}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" height="83" width="82" title="{postrow.POST_AUTHOR}" alt="{postrow.POST_AUTHOR}" /></a><!-- ENDIF -->
+					<!-- IF postrow.U_POST_AUTHOR --><a id="a{postrow.POST_ID}" class="context-avatar" href="{postrow.U_POST_AUTHOR}"><img src = "{T_IMAGESET_PATH}/images/pixel.gif" title="{postrow.POST_AUTHOR}" alt="{postrow.POST_AUTHOR}" /></a><!-- ENDIF -->
 				</div>
 			<!-- ENDIF -->
 			</div>
@@ -165,8 +173,8 @@
 					<a id="u{postrow.POST_ID}" class="context-link<!-- IF postrow.POST_AUTHOR_COLOUR --> username-coloured" style="color: {postrow.POST_AUTHOR_COLOUR}<!-- ENDIF -->" href="{postrow.U_POST_AUTHOR}">{postrow.POST_AUTHOR}</a>
 					<!-- ELSE --><strong>{postrow.POST_AUTHOR_FULL}</strong><!-- ENDIF --></dt>
 					<!-- IF postrow.S_PROFILE_PBGUILD --><dd class="guild">&lsaquo; {postrow.PROFILE_PBGUILD_VALUE} &rsaquo;</dd><!-- ENDIF -->
-					<!-- IF postrow.SPECIAL_RANK_TITLE --><dd class="special-rank">{postrow.SPECIAL_RANK_TITLE}</dd><!-- ENDIF -->
-					<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd class="rank">{postrow.RANK_TITLE}<!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
+					<!-- IF postrow.RANK_TITLE --><dd class="special-rank">{postrow.RANK_TITLE}</dd><!-- ENDIF -->
+					<!-- IF postrow.POSTS_RANK_TITLE neq postrow.RANK_TITLE --><dd class="rank">{postrow.POSTS_RANK_TITLE}<!-- IF postrow.POSTS_RANK_TITLE and postrow.POSTS_RANK_IMG --><br /><!-- ENDIF -->{postrow.POSTS_RANK_IMG}</dd><!-- ENDIF -->
 					<dd class="separator"></dd>
 					<!-- BEGIN custom_fields --><dd class="{postrow.custom_fields.PROFILE_FIELD_IDENT}"><strong>{postrow.custom_fields.PROFILE_FIELD_NAME}:</strong> {postrow.custom_fields.PROFILE_FIELD_VALUE}</dd><!-- END custom_fields -->
 					<!-- IF postrow.POSTER_POSTS != '' --><dd class="numberposts"><strong>{L_POSTS}:</strong> {postrow.POSTER_POSTS}</dd><!-- ENDIF -->
@@ -226,9 +234,9 @@
 					<!-- IF postrow.U_REPORT --><li class="report-icon"><a href="{postrow.U_REPORT}" title="{L_REPORT_POST}"><span>{L_REPORT_POST}</span></a></li><!-- ENDIF -->
 					<!-- IF postrow.U_WARN --><li class="warn-icon"><a href="{postrow.U_WARN}" title="{L_WARN_USER}"><span>{L_WARN_USER}</span></a></li><!-- ENDIF -->
 					<!-- IF postrow.U_INFO --><li class="info-icon"><a href="{postrow.U_INFO}" title="{L_INFORMATION}"><span>{L_INFORMATION}</span></a></li><!-- ENDIF -->
-					<!-- IF postrow.U_QUOTE --><li class="<!-- IF S_IS_LOCKED -->quote-icon inactive<!-- ELSE -->quote-icon<!-- ENDIF -->"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}" class="ui-button2"><span><span><div>{L_REPLY_WITH_QUOTE}</div></span></span></a></li><!-- ENDIF -->
-					<!-- IF S_DISPLAY_REPLY_INFO --><!-- IF S_IS_LOCKED --><li class="reply-icon inactive"><a href="{U_POST_REPLY_TOPIC}" title="{L_TOPIC_LOCKED_SHORT}" class="ui-button2"><span><span>{L_POST}<div></div></span></span></a></li><!-- ELSE -->
-					<li class="reply-icon"><a href="{U_POST_REPLY_TOPIC}" title="{L_POST_REPLY}" class="ui-button2"><span><span>{L_POST}<div></div></span></span></a></li><!-- ENDIF --><!-- ENDIF -->
+					<!-- IF postrow.U_QUOTE --><li class="<!-- IF S_IS_LOCKED -->quote-icon inactive<!-- ELSE -->quote-icon<!-- ENDIF -->"><a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}" class="ui-button2">{L_REPLY_WITH_QUOTE}<div></div></a></li><!-- ENDIF -->
+					<!-- IF S_DISPLAY_REPLY_INFO --><!-- IF S_IS_LOCKED --><li class="reply-icon inactive"><a href="{U_POST_REPLY_TOPIC}" title="{L_TOPIC_LOCKED_SHORT}" class="ui-button2">{L_POST}</a></li><!-- ELSE -->
+					<li class="reply-icon"><a href="{U_POST_REPLY_TOPIC}" title="{L_POST_REPLY}" class="ui-button2">{L_POST}</a></li><!-- ENDIF --><!-- ENDIF -->
 				</ul>
 			<!-- ENDIF -->
 		<!-- ENDIF -->
@@ -351,7 +359,7 @@
 <div class="clear"></div>
 
 <script type="text/javascript">
-$(document).ready(function(){
+$(document).ready(function($){
 	if (typeof jQuery != 'undefined') {
 		$("a.context-link, a.context-avatar").attr("href", "#")
 	

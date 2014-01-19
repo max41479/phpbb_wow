@@ -460,7 +460,7 @@ a#logo:hover {
 
 .panel {
 	margin-bottom: 4px;
-	padding: 0 10px;
+	padding: 8px 10px;
 	color: #CCC;
 	background: #111;
 	background: rgba(20,20,20,0.7);
@@ -533,7 +533,7 @@ span.corners-top, span.corners-bottom, span.corners-top span, span.corners-botto
 	font-size: 1px;
 	line-height: 1px;
 	display: block;
-	height: 5px;
+	height: 0;
 	background-repeat: no-repeat;
 }
 
@@ -959,6 +959,19 @@ div.rules {
 div.rules strong {
 	font-size: 13px;
 	font-size: 1.3rem;
+}
+
+div.rules dt {
+	font-weight: bold;
+	padding: 5px 5px 0;
+	font-size: 14px;
+	font-size: 1.4rem;
+	text-align: center;
+	color: #FF1111;
+}
+div.rules dd {
+	text-align: justify;
+	padding: 10px;
 }
 
 div.rules ul, div.rules ol {

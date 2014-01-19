@@ -351,7 +351,7 @@ ul.cplist {
 
 /* Friends list */
 .cp-mini {
-	padding: 0 5px;
+	padding: 5px;
 	margin: 10px 15px 10px 5px;
 	background: #212121;
 	background: rgba(33,33,33,0.75);
@@ -424,6 +424,10 @@ ol.def-rules li {
 	padding: 0 3px;
 }*/
 
+.pmlist li dl {
+	border-left: 3px solid rgba(0,0,0,0) !important;
+}
+
 .pmlist li.pm_message_reported_colour, .pm_message_reported_colour {
 	border-left-color: #BC2A4D;
 	border-right-color: #BC2A4D;
@@ -436,7 +440,7 @@ ol.def-rules li {
 }
 
 .pmlist li.pm_marked_colour dl {
-	border-left: 5px solid #FF6600 !important;
+	border-left: 3px solid #FF6600 !important;
 }
 
 .pmlist li.pm_replied_colour, .pm_replied_colour {
@@ -446,7 +450,7 @@ ol.def-rules li {
 }
 
 .pmlist li.pm_replied_colour dl {
-	border-left: 5px solid #A9B8C2 !important;
+	border-left: 3px solid #A9B8C2 !important;
 }
 
 .pmlist li.pm_friend_colour, .pm_friend_colour {
@@ -456,7 +460,7 @@ ol.def-rules li {
 }
 
 .pmlist li.pm_friend_colour dl {
-	border-left: 5px solid #5CFF00 !important;
+	border-left: 3px solid #5CFF00 !important;
 }
 
 .pmlist li.pm_foe_colour, .pm_foe_colour {
@@ -466,7 +470,7 @@ ol.def-rules li {
 }
 
 .pmlist li.pm_foe_colour dl {
-	border-left: 5px solid #AA1111 !important;
+	border-left: 3px solid #AA1111 !important;
 }
 
 .pm-legend {
