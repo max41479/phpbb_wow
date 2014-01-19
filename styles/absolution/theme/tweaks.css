@@ -257,3 +257,8 @@ color: white;
 	height: 20px;
 	padding-right: 5px;
 }
+
+img.center {
+	display: block;
+	margin: 0 auto;
+}
